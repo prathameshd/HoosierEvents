@@ -1,0 +1,302 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="C:\dev\bootstrap-3.3.7\dist\css\bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="create_event.css">
+  	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <link rel="stylesheet" type="text/css" href="HomePage Style.css">
+  <style>
+  body, html, .container-fluid {
+     
+	 width:100%
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
+  <div class="container-fluid" style="text-align:left">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="NewFile.html" id="abc">HoosierEvents</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="NewFile.html" style="color:white !important;text-align:">Home</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" action="">
+      <div class="form-group">
+        <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
+      </div>
+      <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="#" style="color:white !important;"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+    </ul>
+
+	</div>
+</nav>
+
+
+
+
+<div class="container" style="top:0%; width:100%;position:relative;">
+<div class="col-sm-2" style="background-color:">
+</div>
+<div class="col-sm-8" style=" ">
+<div class="row" style="color:darkred">
+<h2>create your event!</h2>
+</div><br>
+<div class="row" style="color:darkslategrey">
+EVENT NAME
+</div>
+<div class="row">
+<input type="text" class="form-control" id="usr">
+</div><br>
+<div class="row" style="color:darkslategrey">
+<span class="glyphicon glyphicon-map-marker" style="color:#2D80DF"></span> LOCATION
+</div>
+<div class="row">
+<input type="text" class="form-control" id="usr">
+</div><br>
+<div class="row" style="color:darkslategrey">
+<span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Date</div>
+<div class="row" style="width:50%;"><input type="date" class="form-control" style="width:100%;" id="usr"></div>
+<br>
+
+<div class="row">
+	<div class="col-sm-4" style="background-color:">
+	<div class="row">STARTS</div>
+	<div class="row"><input type="time" class="form-control" style="width:75%;" id="usr"></div>
+	</div>
+	<div class="col-sm-4" style="background-color:">
+	<div class="row">ENDS</div>
+	<div class="row"><input type="time" class="form-control" style="width:75%;" id="usr"></div>
+	</div>
+</div>
+<!--
+<div class="row">
+<div class="col-sm-6">
+<input type="time" class="form-control" style="width:30%;" id="usr">
+</div>
+<div class="col-sm-6">
+<input type="time" class="form-control" style="width:30%;" id="usr">
+</div>
+</div>-->
+<br>
+<div class="row"><span class="glyphicon glyphicon-file" style="color:#2D80DF"></span> Upload an Image<br><small>Image must be of dimensions 280 X 140</small></div>
+<div class="row">
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+</div>
+<div class="row" ><br>
+<p style="color:darkslategrey">DESCRIPTION</p>
+<small>Describe the event(200 words max)</small>
+</div>
+<div class="row">
+<textarea name="abc" style="width:75%;height:35%;resize:none;">
+</textarea>
+</div><br><br>
+<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<br>
+<div class="col-md-4" style="">WHAT TYPE OF EVENT IS THIS ?</div>
+<div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>PUBLIC</div>
+<div class="col-sm-4"><input type="radio" class="form-check-input" name="optradio">PRIVATE</div>
+<br><br>
+</div>
+<br>
+<div class="row" style="">
+<p style="color:darkslategrey">CATEGORY</p>
+<small>Select the categories that best describe the event.</small>
+</div>
+<div class="row">
+<select multiple class="form-control" style="height:20%" id="exampleSelect2">
+      <option>Business</option>
+      <option>Outdoors</option>
+      <option>Education</option>
+      <option>Career</option>
+      <option>Culture</option>
+    </select>
+</div>
+<br><div class="row" style="color:darkslategrey">
+Number of Seats 
+</div>
+<div class="row">
+<input type="text" class="form-control" id="usr">
+</div><br>
+<div class="row">
+ADD CUSTOM TAGS
+</div>
+<div class="row">
+<input type="text" class="form-control" id="usr">
+</div>
+
+<br>
+<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<br>
+<div class="col-md-4">PROMOTE THIS EVENT?<br><small>Spread the word! Get featured</small></div>
+<div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>YES</div>
+<div class="col-sm-4"><input type="radio" class="form-check-input" name="optradio">NO</div>
+<br><br>
+</div>
+<br><br>
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<button class="btn-block create_button"><h5>HOST EVENT </h5></button>
+</div>
+<div class="col-sm-4"></div>
+</div>
+
+</div>
+<div class="col-sm-2" style="background-color:">
+</div>
+
+</div>
+<br><br>
+<div class="container-fluid" style="top:20%;position:relative">
+<!-- Footer -->
+		<footer class="page-footer font-small unique-color-dark">
+		
+		    <div id="footertopbar">
+		      <div class="container">
+		
+		        <!-- Grid row-->
+		        <div class="row py-4 d-flex align-items-center">
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+		            <h6 class="mb-0">Get connected with us on social networks!</h6>
+		          </div>
+		          <!-- Grid column -->
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-7 text-center text-md-right">
+		
+		            <!-- Facebook -->
+		            <a id="socialmedialink" href="#" class="fb-ic">
+		              <i class="fa fa-facebook white-text mr-4"> </i>
+		            </a>
+		            <!-- Twitter -->
+		            <a id="socialmedialink" href="#" class="tw-ic">
+		              <i class="fa fa-twitter white-text mr-4"> </i>
+		            </a>
+		            <!-- Google +-->
+		            <a id="socialmedialink" href="#" class="gplus-ic">
+		              <i class="fa fa-google-plus white-text mr-4"> </i>
+		            </a>
+		            <!--Linkedin -->
+		            <a id="socialmedialink" href="#" class="li-ic">
+		              <i class="fa fa-linkedin white-text mr-4"> </i>
+		            </a>
+		            <!--Instagram-->
+		            <a id="socialmedialink" href="#" class="ins-ic">
+		              <i class="fa fa-instagram white-text"> </i>
+		            </a>
+		
+		          </div>
+		          <!-- Grid column -->
+		
+		        </div>
+		        <!-- Grid row-->
+		
+		      </div>
+		    </div>
+		
+		    <!-- Footer Links -->
+		    <div id="footer" class="container text-center text-md-left mt-5">
+		
+		      <!-- Grid row -->
+		      <div class="row mt-3">
+		
+		        <!-- Grid column -->
+		        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+		
+		          <!-- Content -->
+		          <h6 class="text-uppercase font-weight-bold">Hoosier Events</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p> Lorem ipsum dolor sit amet, consectetur
+		            adipisicing elit.</p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		        <!-- Grid column -->
+		       <!--  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+		
+		          <!-- Links -->
+		         <!--   <h6 class="text-uppercase font-weight-bold">Products</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <a href="#!">MDBootstrap</a>
+		          </p>
+		          <p>
+		            <a href="#!">MDWordPress</a>
+		          </p>
+		          <p>
+		            <a href="#!">BrandFlow</a>
+		          </p>
+		          <p>
+		            <a href="#!">Bootstrap Angular</a>
+		          </p>
+		
+		        </div> -->
+		        <!-- Grid column -->
+		
+		        <!-- Grid column -->
+		        <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <a href="#!">Your Account</a>
+		          </p>
+		          <p>
+		            <a href="#!">Organize an event</a>
+		          </p>
+		          <p>
+		            <a href="#!">About us</a>
+		          </p>
+		          <p>
+		            <a href="#!">Help</a>
+		          </p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		        <!-- Grid column -->
+		        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <i class="fa fa-home mr-3"></i> Bloomington, IN 47408, US</p>
+		          <p>
+		            <i class="fa fa-envelope mr-3"></i> info@example.com</p>
+		          <p>
+		            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+		          <p>
+		            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		      </div>
+		      <!-- Grid row -->
+		
+		    </div>
+		    <!-- Footer Links -->
+		
+		    <!-- Copyright -->
+		    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+		      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> HoosierEvents</a>
+		    </div>
+		    <!-- Copyright -->
+		
+		  </footer>
+</div>
+</body>
+</html>
