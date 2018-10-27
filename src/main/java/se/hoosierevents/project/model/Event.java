@@ -8,15 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
+import org.hibernate.mapping.Set;
 
 @Entity
 @Table(name = "events_master")
@@ -38,9 +40,10 @@ public class Event {
 		this.eventTitle = eventTitle;
 	}
 
-	@Cascade(CascadeType.MERGE)
+	//@Cascade(CascadeType.MERGE)
 	@ManyToOne(targetEntity=User.class)
-	private Optional<User> createdBy;
+	@JoinColumn(name="user_id")
+	private User createdBy;
 
 	public Long getId() {
 		return id;
@@ -50,11 +53,11 @@ public class Event {
 		this.id = id;
 	}
 
-	public Optional<User> getCreatedBy() {
+	public User getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Optional<User> optional) {
+	public void setCreatedBy(User optional) {
 		this.createdBy = optional;
 	}
 
@@ -81,8 +84,9 @@ public class Event {
 	@Column(name = "ispromoted")
 	private Boolean isPromoted;
 
-	@ManyToOne
-	private Optional<EventCategory> eventCategory;
+	@OneToOne
+	@JoinColumn(name="id")
+	private EventCategory eventCategory;
 
 	
 	
@@ -150,11 +154,11 @@ public class Event {
 		this.isPromoted = isPromoted;
 	}
 
-	public Optional<EventCategory> getEventCategory() {
+	public EventCategory getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(Optional<EventCategory> optional) {
-		this.eventCategory = optional;
+	public void setEventCategory(EventCategory eventCategory) {
+		this.eventCategory = eventCategory;
 	}
 }
