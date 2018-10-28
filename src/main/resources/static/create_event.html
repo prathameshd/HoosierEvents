@@ -1,11 +1,8 @@
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-  <script src="script/createEvent.js"></script>
+  <link rel="stylesheet" href="C:\dev\bootstrap-3.3.7\dist\css\bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="create_event.css">
@@ -26,17 +23,23 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="NewFile.html" id="abc">HoosierEvents</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="NewFile.html" style="color:white !important;text-align:">Home</a></li>
+    <ul class="nav navbar-nav" >
+      <li id="homepage"><a class="top-nav-links" href="NewFile.html" style="">Home</a></li>
     </ul>
+	
+	<ul class="nav navbar-nav" id="explore">
+      <li><a class="top-nav-links" href="search_events.html" style="">Explore Events</a></li>
+    </ul>
+	<!--
     <form class="navbar-form navbar-left" action="">
       <div class="form-group">
         <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
-      </div>
+      </div>	
       <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
-    </form>
-	<ul class="nav navbar-nav navbar-right">
-      <li><a href="#" style="color:white !important;"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+    
+	</form>-->
+		<ul class="nav navbar-nav navbar-right">
+      <li><a href="#" style="">Sign Out</a></li>
     </ul>
 
 	</div>
@@ -46,25 +49,63 @@
 
 
 <div class="container" style="top:0%; width:100%;position:relative;">
+
 <div class="col-sm-2" style="background-color:">
 </div>
 <div class="col-sm-8" style=" ">
 <div class="row" style="color:darkred">
 <h2>create your event!</h2>
 </div><br>
-<div class="row" style="color:darkslategrey">
-EVENT NAME
+
+<form action="#" th:action="@{/addnewevent}" th:object="${command}" method="post">
+
+<div class="row" style="">
+<h4>Event Name</h4>
 </div>
 <div class="row">
-<input type="text" class="form-control" id="usr">
+<input type="text" class="form-control" id="event_name" th:field="*{event_name}">
 </div><br>
-<div class="row" style="color:darkslategrey">
-<span class="glyphicon glyphicon-map-marker" style="color:#2D80DF"></span> LOCATION
+<div class="row" style="">
+ <h4><span class="glyphicon glyphicon-map-marker" style="color:#2D80DF"></span>Location</h4>
 </div>
 <div class="row">
-<input type="text" class="form-control" id="usr">
+<input type="text" class="form-control" id="event_location">
 </div><br>
-<div class="row" style="color:darkslategrey">
+<div class="row" style="">
+<h4><span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Details</h4></div>
+<div class="row">
+<div class="col-sm-2"><h5>Start Time</h5></div>
+<div class="col-sm-5" style="text-align:left">
+<input type="date" class="form-control" style="width:50%;" id="start_date">
+</div>
+<div class="col-sm-5">
+	<input type="time" class="form-control" style="width:50%;" id="start_time">
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-2"><h5>End Time</h5></div>
+<div class="col-sm-5" style="text-align:left">
+<input type="date" class="form-control" style="width:50%;" id="end_date">
+</div>
+<div class="col-sm-5">
+	<input type="time" class="form-control" style="width:50%;" id="end_time">
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-2"><h5>Time zone:</h5></div>
+<div class="col-sm-5">
+<select class="form-control" style="width:50%" id="event_timezone">
+      <option>GMT -5:30</option>
+      <option>GMT +2:00</option>
+      <option>GMT -3:00</option>
+      <option>GMT -7:00</option>
+    </select>
+	</div>
+</div>
+<!--
+<div class="row" style="">
 <span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Date</div>
 <div class="row" style="width:50%;"><input type="date" class="form-control" style="width:100%;" id="usr"></div>
 <br>
@@ -79,6 +120,8 @@ EVENT NAME
 	<div class="row"><input type="time" class="form-control" style="width:75%;" id="usr"></div>
 	</div>
 </div>
+
+-->
 <!--
 <div class="row">
 <div class="col-sm-6">
@@ -89,32 +132,33 @@ EVENT NAME
 </div>
 </div>-->
 <br>
-<div class="row"><span class="glyphicon glyphicon-file" style="color:#2D80DF"></span> Upload an Image<br><small>Image must be of dimensions 280 X 140</small></div>
 <div class="row">
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+<h4><span class="glyphicon glyphicon-file" style="color:#2D80DF"></span> Upload an Image</h4><small>Image must be of dimensions 280 X 140</small></div>
+<div class="row">
+    <input type="file" class="form-control-file" id="event_image">
 </div>
 <div class="row" ><br>
-<p style="color:darkslategrey">DESCRIPTION</p>
+<h4>Description</h4>
 <small>Describe the event(200 words max)</small>
 </div>
 <div class="row">
-<textarea name="abc" style="width:75%;height:35%;resize:none;">
+<textarea name="abc" id="event_desc" style="width:75%;height:35%;resize:none;">
 </textarea>
 </div><br><br>
-<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<div class="row" style="background-color:white;border-radius:10px;">
 <br>
-<div class="col-md-4" style="">WHAT TYPE OF EVENT IS THIS ?</div>
-<div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>PUBLIC</div>
-<div class="col-sm-4"><input type="radio" class="form-check-input" name="optradio">PRIVATE</div>
+<div class="col-md-4" style=""><h4 style="color:#2D80DF;">WHAT TYPE OF EVENT IS THIS ?</h4></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="optradio" id="event_type" checked>PUBLIC</h5></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="optradio">PRIVATE</h5></div>
 <br><br>
 </div>
 <br>
 <div class="row" style="">
-<p style="color:darkslategrey">CATEGORY</p>
-<small>Select the categories that best describe the event.</small>
+<h4>Category</h4>
+Select a category that best describes the event.
 </div>
 <div class="row">
-<select multiple class="form-control" style="height:20%" id="exampleSelect2">
+<select class="form-control" id="event_category">
       <option>Business</option>
       <option>Outdoors</option>
       <option>Education</option>
@@ -122,32 +166,27 @@ EVENT NAME
       <option>Culture</option>
     </select>
 </div>
-<br><div class="row" style="color:darkslategrey">
-Number of Seats 
+<br><div class="row">
+<h4>Number of Seats</h4> 
 </div>
 <div class="row">
-<input type="text" class="form-control" id="usr">
-</div><br>
-<div class="row">
-ADD CUSTOM TAGS
+<input type="text" class="form-control" id="event_max">
 </div>
-<div class="row">
-<input type="text" class="form-control" id="usr">
-</div>
+</form>
 
 <br>
-<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<div class="row" style="background-color:white;border-radius:10px;">
 <br>
-<div class="col-md-4">PROMOTE THIS EVENT?<br><small>Spread the word! Get featured</small></div>
-<div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>YES</div>
-<div class="col-sm-4"><input type="radio" class="form-check-input" name="optradio">NO</div>
+<div class="col-md-4"><h4 style="color:#2D80DF;"> PROMOTE THIS EVENT?</h4><small>Spread the word! Get featured</small></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="rad2" id="event_promote" checked>YES</h5> </div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="rad2">NO</h5></div>
 <br><br>
 </div>
-<br><br>
+<br><br><br>
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
-<button class="btn-block create_button" onClick="saveEvent()"><h5>HOST EVENT </h5></button>
+<button class="btn-block create_button" id="event_host_button"><h5>HOST EVENT </h5></button>
 </div>
 <div class="col-sm-4"></div>
 </div>
@@ -157,149 +196,63 @@ ADD CUSTOM TAGS
 </div>
 
 </div>
-<br><br>
-<div class="container-fluid" style="top:20%;position:relative">
-<!-- Footer -->
-		<footer class="page-footer font-small unique-color-dark">
-		
-		    <div id="footertopbar">
-		      <div class="container">
-		
-		        <!-- Grid row-->
-		        <div class="row py-4 d-flex align-items-center">
-		
-		          <!-- Grid column -->
-		          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-		            <h6 class="mb-0">Get connected with us on social networks!</h6>
-		          </div>
-		          <!-- Grid column -->
-		
-		          <!-- Grid column -->
-		          <div class="col-md-6 col-lg-7 text-center text-md-right">
-		
-		            <!-- Facebook -->
+
+<!-- <!FOOTER DIV> -->
+
+<div class="container-fluid footer">
+<div class="row" style="background-color:#AE1616; color:black">
+<div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
+<div class="col-sm-6"></div>
+<div class="col-sm-3">
+<div class="row" style="text-align:center">
+<!-- Facebook -->	<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="fb-ic">
 		              <i class="fa fa-facebook white-text mr-4"> </i>
 		            </a>
+					</div>
 		            <!-- Twitter -->
+					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="tw-ic">
 		              <i class="fa fa-twitter white-text mr-4"> </i>
 		            </a>
+					</div>
 		            <!-- Google +-->
+					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="gplus-ic">
 		              <i class="fa fa-google-plus white-text mr-4"> </i>
 		            </a>
-		            <!--Linkedin -->
-		            <a id="socialmedialink" href="#" class="li-ic">
-		              <i class="fa fa-linkedin white-text mr-4"> </i>
-		            </a>
-		            <!--Instagram-->
-		            <a id="socialmedialink" href="#" class="ins-ic">
-		              <i class="fa fa-instagram white-text"> </i>
-		            </a>
-		
-		          </div>
-		          <!-- Grid column -->
-		
-		        </div>
-		        <!-- Grid row-->
-		
-		      </div>
-		    </div>
-		
-		    <!-- Footer Links -->
-		    <div id="footer" class="container text-center text-md-left mt-5">
-		
-		      <!-- Grid row -->
-		      <div class="row mt-3">
-		
-		        <!-- Grid column -->
-		        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-		
-		          <!-- Content -->
-		          <h6 class="text-uppercase font-weight-bold">Hoosier Events</h6>
-		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		          <p> Lorem ipsum dolor sit amet, consectetur
-		            adipisicing elit.</p>
-		
-		        </div>
-		        <!-- Grid column -->
-		
-		        <!-- Grid column -->
-		       <!--  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-		
-		          <!-- Links -->
-		         <!--   <h6 class="text-uppercase font-weight-bold">Products</h6>
-		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		          <p>
-		            <a href="#!">MDBootstrap</a>
-		          </p>
-		          <p>
-		            <a href="#!">MDWordPress</a>
-		          </p>
-		          <p>
-		            <a href="#!">BrandFlow</a>
-		          </p>
-		          <p>
-		            <a href="#!">Bootstrap Angular</a>
-		          </p>
-		
-		        </div> -->
-		        <!-- Grid column -->
-		
-		        <!-- Grid column -->
-		        <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-		
-		          <!-- Links -->
-		          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
-		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		          <p>
-		            <a href="#!">Your Account</a>
-		          </p>
-		          <p>
-		            <a href="#!">Organize an event</a>
-		          </p>
-		          <p>
-		            <a href="#!">About us</a>
-		          </p>
-		          <p>
-		            <a href="#!">Help</a>
-		          </p>
-		
-		        </div>
-		        <!-- Grid column -->
-		
-		        <!-- Grid column -->
-		        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-		
-		          <!-- Links -->
-		          <h6 class="text-uppercase font-weight-bold">Contact</h6>
-		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		          <p>
-		            <i class="fa fa-home mr-3"></i> Bloomington, IN 47408, US</p>
-		          <p>
-		            <i class="fa fa-envelope mr-3"></i> info@example.com</p>
-		          <p>
-		            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
-		          <p>
-		            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
-		
-		        </div>
-		        <!-- Grid column -->
-		
-		      </div>
-		      <!-- Grid row -->
-		
-		    </div>
-		    <!-- Footer Links -->
-		
-		    <!-- Copyright -->
-		    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-		      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> HoosierEvents</a>
-		    </div>
-		    <!-- Copyright -->
-		
-		  </footer>
+					</div>
 </div>
+</div>
+</div>
+<div class="row" style="background-color:#534E4E">
+	<div class="col-sm-4">
+	<div class="row"><h5><b>Hoosier Events</b></h5></div>
+		<div class="row">Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</div>
+	<br>
+	</div>
+	<div class="col-sm-4 links" style="color:white"><h5><b>Useful Links</b></h5>
+		
+		<div class="row"><a href="" style="color:#48A2BD">Your Account</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">About us</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">Help</a></div>
+		<br>
+	</div>
+	
+	<div class="col-sm-4"><h5><b>Contact Us</b></h5>
+				            <i class="fa fa-home mr-3"></i>&nbsp Bloomington, IN 47408, US
+							<br>
+				            <i class="fa fa-envelope mr-3"></i>&nbsp info@example.com
+							<br>
+							<i class="fa fa-phone mr-3"></i>&nbsp + 01 234 567 88
+
+
+	</div>
+</div>
+</div>
+
+<script>
+
+</script>
 </body>
 </html>

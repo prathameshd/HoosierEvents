@@ -1,3 +1,18 @@
+
+#explore:hover{
+background-color:black;
+
+	
+
+}
+.top-nav-links{
+	color:black !important;
+}
+
+.top-nav-links:hover{
+	color:white !important;
+}
+
 .footer{
 	height:20%;	
 	top:20%;	
@@ -5,6 +20,11 @@
 	position:relative;
 	background-color:#534E4E;
 	color:white
+}
+
+#homepage:hover{
+background-color:black;
+
 }
 
 .create_button{
