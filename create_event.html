@@ -23,17 +23,23 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="NewFile.html" id="abc">HoosierEvents</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="NewFile.html" style="color:white !important;text-align:">Home</a></li>
+    <ul class="nav navbar-nav" >
+      <li id="homepage"><a href="NewFile.html" style="color:white !important;text-align:">Home</a></li>
     </ul>
+	
+	<ul class="nav navbar-nav" id="explore">
+      <li><a href="search_events.html" style="color:white !important;text-align:">Explore Events</a></li>
+    </ul>
+	<!--
     <form class="navbar-form navbar-left" action="">
       <div class="form-group">
         <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
-      </div>
+      </div>	
       <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
-    </form>
-	<ul class="nav navbar-nav navbar-right">
-      <li><a href="#" style="color:white !important;"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+    
+	</form>-->
+		<ul class="nav navbar-nav navbar-right">
+      <li><a href="#" style="color:white !important;">Sign Out</a></li>
     </ul>
 
 	</div>
@@ -43,6 +49,7 @@
 
 
 <div class="container" style="top:0%; width:100%;position:relative;">
+
 <div class="col-sm-2" style="background-color:">
 </div>
 <div class="col-sm-8" style=" ">
@@ -98,7 +105,7 @@ EVENT NAME
 <textarea name="abc" style="width:75%;height:35%;resize:none;">
 </textarea>
 </div><br><br>
-<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<div class="row" style="background-color:white;border-radius:10px;color:#2D80DF;">
 <br>
 <div class="col-md-4" style="">WHAT TYPE OF EVENT IS THIS ?</div>
 <div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>PUBLIC</div>
@@ -108,10 +115,10 @@ EVENT NAME
 <br>
 <div class="row" style="">
 <p style="color:darkslategrey">CATEGORY</p>
-<small>Select the categories that best describe the event.</small>
+<small>Select a category that best describes the event.</small>
 </div>
 <div class="row">
-<select multiple class="form-control" style="height:20%" id="exampleSelect2">
+<select class="form-control" id="exampleSelect2">
       <option>Business</option>
       <option>Outdoors</option>
       <option>Education</option>
@@ -125,22 +132,17 @@ Number of Seats
 <div class="row">
 <input type="text" class="form-control" id="usr">
 </div><br>
-<div class="row">
-ADD CUSTOM TAGS
-</div>
-<div class="row">
-<input type="text" class="form-control" id="usr">
-</div>
+
 
 <br>
-<div class="row" style="background-color:#2D80DF;border-radius:10px;color:white;">
+<div class="row" style="background-color:white;border-radius:10px;color:#2D80DF;">
 <br>
 <div class="col-md-4">PROMOTE THIS EVENT?<br><small>Spread the word! Get featured</small></div>
 <div class="col-sm-4"><input type="radio" class="form-check-input"name="optradio" checked>YES</div>
 <div class="col-sm-4"><input type="radio" class="form-check-input" name="optradio">NO</div>
 <br><br>
 </div>
-<br><br>
+<br><br><br>
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
@@ -154,7 +156,7 @@ ADD CUSTOM TAGS
 </div>
 
 </div>
-<br><br>
+<br>
 <div class="container-fluid" style="top:20%;position:relative">
 <!-- Footer -->
 		<footer class="page-footer font-small unique-color-dark">

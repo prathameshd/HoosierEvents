@@ -7,6 +7,18 @@
 	color:white
 }
 
+#explore:hover{
+background-color:black;
+
+	
+
+}
+
+#homepage:hover{
+background-color:black;
+
+}
+
 .create_button{
 	color:green;
 	background-color:white;
