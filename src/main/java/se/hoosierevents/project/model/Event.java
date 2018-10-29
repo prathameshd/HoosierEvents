@@ -1,7 +1,6 @@
 package se.hoosierevents.project.model;
 
 import java.util.Date;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,24 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
-import org.hibernate.mapping.Set;
 
 @Entity
 @Table(name = "events_master")
 public class Event {
 	@Id
-	@NotNull // Samething at db level can be done by @Column (name="", nullable= false)
-	@Column(name = "event_id", unique = true)
+	//@NotNull // Samething at db level can be done by @Column (name="", nullable= false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "event_id",updatable = false)
 	private Long id;
 
 	@Column(name = "event_name")
@@ -42,7 +38,7 @@ public class Event {
 
 	//@Cascade(CascadeType.MERGE)
 	@ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="created_by", referencedColumnName="user_id") 
 	private User createdBy;
 
 	public Long getId() {
@@ -85,7 +81,7 @@ public class Event {
 	private Boolean isPromoted;
 
 	@OneToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="category")
 	private EventCategory eventCategory;
 
 	
@@ -94,7 +90,7 @@ public class Event {
 	}
 	
 	public Event(String title) {
-		setEventTitle(title);
+		this.eventTitle = title;
 	}
 	
 	

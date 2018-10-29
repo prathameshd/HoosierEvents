@@ -1,11 +1,13 @@
 package se.hoosierevents.project.model;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+@Embeddable
 @Table(name = "categories")
 public class EventCategory {
 

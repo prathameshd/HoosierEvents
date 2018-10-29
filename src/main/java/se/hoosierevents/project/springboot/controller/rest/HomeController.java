@@ -1,6 +1,5 @@
 package se.hoosierevents.project.springboot.controller.rest;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,11 @@ public class HomeController {
 	public String index() {
 		return "homePage.html";
 	}
-	
+
 	@RequestMapping("/saveEvent")
 	public String saveEvent(HttpServletRequest r, Model m) {
-		
-		//String id = Req
+
+		// String id = Req
 		service.saveEvent(new Event("wewe"));
 		return new String(service.getAllEvents());
 	}
