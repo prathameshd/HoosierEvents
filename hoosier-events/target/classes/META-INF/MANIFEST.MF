@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: vanessa
+Build-Jdk: 9.0.4
+Implementation-Title: HoosierEvents
+Implementation-Version: 0.0
+Implementation-Vendor-Id: se.team4.project.eventManagement
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+

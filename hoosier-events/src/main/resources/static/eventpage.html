@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	   <!--  <link rel="stylesheet" type="text/css" href="HomePage Style.css"> -->
+	    <link rel="stylesheet" type="text/css" href="eventpage.css">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<!-- <div id="header">
+			<script>
+	            $("#header").load("header.html");
+	        </script>
+		</div> -->
+		<!-- Navigation bar -->
+		<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+  			<!--  Brand/logo -->
+  			<a class="navbar-brand" href="#">
+  				<img id="logoimg" src="Logo 4.jpg" class="img-fluid">
+  			</a>
+  			
+  			<ul id="navbarlist" class="navbar-nav">
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="HomePage.html">Home</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="#">Explore</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="create_event.html">Create Event</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="#">Sign In</a>
+			    </li>
+			</ul>
+			
+			<div id=smallmenucontainer>
+				<button id="smallmenu" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div id="menuicon"></div>
+					<div id="menuicon"></div>
+					<div id="menuicon"></div>
+				</button>
+				<div id="smallmenuitem" class="dropdown-menu">
+				    <a class="dropdown-item" href="HomePage.html">Home</a> 
+				    <a class="dropdown-item" href="#">Explore</a> 
+				    <a class="dropdown-item" href="create_event.html">Create Event</a> 
+				    <a class="dropdown-item" href="#">Sign In</a> 
+			    </div>
+			 </div>
+			 
+ 		</nav>
+ 		
+ 		
+ 		
+ 		<div class="container-fluid" style="background-color:;">	
+<div class="container" style="width:90%;top:10%;padding-top:15%;position:relative;background-color:;-bottom:0.5px groove #F4EFFE">
+<div class="row">
+	<!-- IMAGE DIV -->
+	<div class="col-sm-8">
+		<div class="row">
+		<img src="football.jpg" class="" style="width:740px;height:360px;max-height:40%;max-width:100%;">
+		</div>
+	</div>
+<br>
+	<!-- event details div -->
+	<div class="col-sm-4" >
+		<div class="headers">
+		<div class="row" ><h3 id="event_title"></h3></div>
+		<div class="row" ><h5 id="event_date"></h5></div>
+		<div class="row" ><h5 id="event_location"></h5></div>
+		<div class="row" style="color:#726868"><h5>10am-3pm</h5></div>
+		<div class="row" style="color:green"><h5>TICKETS:Available</h5></div>
+		<br><br><br>
+		</div>
+		<div class="row" style="bottom:10%;position:relative">
+			<a href="Payment Portal.html" class="btn-block register_button">REGISTER</a>
+		</div>
+	</div>
+
+</div>	
+</div>
+</div>
+<br><br><br>
+
+<!-- DESCRIPTION AND DETAILS DIV -->
+<div class="container" style="top:20%;width:90%;position:relative">
+
+	<div class="col-sm-8">
+      
+		<div class="row" style="width:90%">
+			<div class="page-header"><h3>Description</h3></div>
+		 </div>
+		<div class="row" style="width:90%;">
+			<div><p id="event_description"> </p></div>
+		</div>
+    </div>
+		<br><br><br>
+	
+    <div class="col-sm-4">    
+		<div class="row" >
+			<iframe id="myIframe" style="width:100%;position:relative;left:0%;"></iframe>
+		</div>
+		<br>
+		
+		<div class="row page-header">
+			<div class="col-sm-8"><h4>Contact Information:</h4></div>
+			<div class="col-sm-4" style="text-align:center"><button class="btn-block chat-button">CHAT </button></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6"><h5 id="created_by"></h5></div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6"><h5>event@corp.com</h5></div>
+
+		
+	
+			<div class="col-sm-6"><h5>812555555</h5></div>
+		</div><br>
+		
+	<!--	<div class="row" style="text-align:center">
+					<div class="page-header"><h5>TAGS</h5></div>
+				
+		</div>	
+		
+		<div class="row" style="text-align:center;">
+			<button style="border-radius:5px;border:1px solid black;color:white;background-color:black;">qwe</button>
+			<button style="border-radius:5px;border:1px solid black;color:white;background-color:black;">123</button>
+			<b>#abc #xyz </b>
+		</div>	-->
+	</div>
+
+</div>
+<br><br><br><br><br>
+
+
+
+ 			<!-- Footer -->
+		<footer class="page-footer font-small unique-color-dark">
+		
+		    <div id="footertopbar">
+		      <div class="container">
+		
+		        <!-- Grid row-->
+		        <div class="row py-4 d-flex align-items-center">
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+		            <h6 class="mb-0">Get connected with us on social networks!</h6>
+		          </div>
+		          <!-- Grid column -->
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-7 text-center text-md-right">
+		
+		            <!-- Facebook -->
+		            <a id="socialmedialink" href="https://www.facebook.com/HoosierEvents-171611190445772/?view_public_for=171611190445772" class="fb-ic">
+		              <i class="fa fa-facebook white-text mr-4"> </i>
+		            </a>
+		            <!-- Twitter -->
+		            <a id="socialmedialink" href="https://twitter.com/EventsHoosier" class="tw-ic">
+		              <i class="fa fa-twitter white-text mr-4"> </i>
+		            </a>
+		            <!-- Google +-->
+		            <a id="socialmedialink" href="https://plus.google.com/u/0/106790516341153503048" class="gplus-ic">
+		              <i class="fa fa-google-plus white-text mr-4"> </i>
+		            </a>
+		            <!--Linkedin -->
+		            <!-- <a id="socialmedialink" href="#" class="li-ic">
+		              <i class="fa fa-linkedin white-text mr-4"> </i>
+		            </a> -->
+		            <!--Instagram-->
+		            <a id="socialmedialink" href="#" class="ins-ic">
+		              <i class="fa fa-instagram white-text"> </i>
+		            </a>
+		
+		          </div>
+		          <!-- Grid column -->
+		
+		        </div>
+		        <!-- Grid row-->
+		
+		      </div>
+		    </div>
+		
+		    <!-- Footer Links -->
+		    <div id="footer" class="container text-center text-md-left mt-5">
+		
+		      <!-- Grid row -->
+		      <div class="row mt-3">
+		
+		        <!-- Grid column -->
+		        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+		
+		          <!-- Content -->
+		          <h6 class="text-uppercase font-weight-bold">Hoosier Events</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p> Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</p>
+		
+		        </div>
+		        <!-- Grid column -->
+
+		
+		        <!-- Grid column -->
+		        <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <a href="#!">Your Account</a>
+		          </p>
+		          <p>
+		            <a href="#!">Organize an event</a>
+		          </p>
+		          <p>
+		            <a href="#!">About us</a>
+		          </p>
+		          <p>
+		            <a href="#!">Help</a>
+		          </p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		        <!-- Grid column -->
+		        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <i class="fa fa-home mr-3"></i> Bloomington, IN 47408, US</p>
+		          <p>
+		            <i class="fa fa-envelope mr-3"></i>hoosiereventsiu@gmail.com</p>
+		          <p>
+		            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+		          <p>
+		            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		      </div>
+		      <!-- Grid row -->
+		
+		    </div>
+		    <!-- Footer Links -->
+		
+		    <!-- Copyright -->
+		    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+		      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> HoosierEvents</a>
+		    </div>
+		    <!-- Copyright -->
+		
+		  </footer>
+		  <!-- Footer -->
+		  
+	<script>
+var t='{"event_name":"Hoosiers vs Spartans","event_date":"20th November","event_location":"Memorial Stadium, Bloomington, Indiana","event_description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","created_by":"IU"}';
+var temp=JSON.parse(t);
+
+document.getElementById("event_title").innerHTML=temp.event_name;
+document.getElementById("event_date").innerHTML=temp.event_date;
+document.getElementById("event_location").innerHTML=temp.event_location;
+document.getElementById("event_description").innerHTML=temp.event_description;
+document.getElementById("created_by").innerHTML=temp.created_by;
+
+var loc=temp.event_location;
+
+/*passing parameter to iframe*/
+document.getElementById('myIframe').src = "map.html?seed=" + loc;
+
+var event_id=1;
+
+	//AJAX CALL TO POPULATE PAGE
+$(document).ready(function(){
+	 $.ajax({
+	type:'POST',
+	dataType:'json',
+	data: {id:event_id},
+	url:"/getEvent",
+	async: false,
+	  success: function(data) {
+			console.log('success',data);
+	   },
+	   error:function(exception){alert('Exeption:'+exception);}
+	});  
+	
+	//AJAX CALL TO RETRIEVE DETAILS
+	  $.get("/getEvent", function(data, status){
+		  	alert("Hello");
+            alert("Data: " + data + "\nStatus: " + status);
+			var data_var=JSON.parse(data);
+			document.getElementById("event_title").innerHTML=data_var.event_name;
+			document.getElementById("event_date").innerHTML=data_var.event_date;
+			document.getElementById("event_location").innerHTML=data_var.event_location;
+			document.getElementById("event_description").innerHTML=data_var.event_description;
+			document.getElementById("created_by").innerHTML=data_var.created_by;
+        }); 
+	});	
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRL6D4jfWOtmDd3ge1pRtkEx6OtrqdU8c&callback=myMap"></script>
+	</body>
+</html>

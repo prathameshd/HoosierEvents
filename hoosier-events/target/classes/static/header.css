@@ -1,0 +1,49 @@
+#logoimg {
+	width: 40%;
+	height: 10%;
+	padding-left:5%;
+}
+
+nav {
+	font-family: "Verdana";
+	font-size: 100%;
+	background-color:#990000;
+}
+
+#bar{
+	color:white;
+}
+
+#navbarlistitem {
+	text-align: right;
+	padding-left: 5%;
+	width:100%;
+	white-space:nowrap;
+}
+
+#smallmenu {
+	display:none;
+	background-color:#990000;
+	padding-top:50%;
+	padding-left:100%;
+}
+
+@media (max-width: 960px) {
+  #navbarlist     { display: none; }
+  #smallmenu  { display: inline-block; }
+}
+
+#menuicon {
+    width: 35px;
+    height: 5px;
+    background-color: #EEEDEB;
+    margin: 6px 0;
+}
+
+#smallmenucontainer {
+	position:relative;
+}
+
+#smallmenuitem {
+	position:absolute;
+}

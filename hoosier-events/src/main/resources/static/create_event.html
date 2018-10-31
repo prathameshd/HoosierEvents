@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	    <link rel="stylesheet" type="text/css" href="create_event.css">
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		
+		<!-- Navigation bar -->
+		<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+  			<!--  Brand/logo -->
+  			<a class="navbar-brand" href="#">
+  				<img id="logoimg" src="Logo 4.jpg" class="img-fluid">
+  			</a>
+  			
+  			<ul id="navbarlist" class="navbar-nav">
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="HomePage.html">Home</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="#">Explore</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="create_event.html">Create Event</a>
+			    </li>
+			    <li id="navbarlistitem" class="nav-item">
+			      <a class="nav-link" href="#">Sign In</a>
+			    </li>
+			</ul>
+			
+			<div id=smallmenucontainer>
+				<button id="smallmenu" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div id="menuicon"></div>
+					<div id="menuicon"></div>
+					<div id="menuicon"></div>
+				</button>
+				<div id="smallmenuitem" class="dropdown-menu">
+				    <a class="dropdown-item" href="HomePage.html">Home</a> 
+				    <a class="dropdown-item" href="#">Explore</a> 
+				    <a class="dropdown-item" href="create_event.html">Create Event</a> 
+				    <a class="dropdown-item" href="#">Sign In</a> 
+			    </div>
+			 </div>
+			 
+ 		</nav>
+ 		
+ 		
+ 		<div class="container" style="top:0%;padding-top:10%; width:100%;position:relative;padding-bottom:10%">
+
+<div class="col-sm-2" style="background-color:">
+</div>
+<div class="col-sm-8" style=" ">
+<div class="row" style="color:darkred">
+<h2>Create your Event!</h2>
+</div><br>
+
+<form action="#" th:action="@{/addnewevent}" th:object="${command}" method="post">
+
+<div class="row" style="">
+<h4>Event Name</h4>
+</div>
+<div class="row">
+<input type="text" class="form-control" id="event_name" th:field="*{event_name}">
+</div><br>
+<div class="row" style="">
+ <h4><span class="glyphicon glyphicon-map-marker" style="color:#2D80DF"></span>Location</h4>
+</div>
+<div class="row">
+<input type="text" class="form-control" id="event_location">
+</div><br>
+<div class="row" style="">
+<h4><span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Details</h4></div>
+<div class="row">
+<div class="col-sm-2"><h5>Start Time</h5></div>
+<div class="col-sm-5" style="text-align:left">
+<input type="date" class="form-control" style="width:50%;" id="start_date">
+</div>
+<div class="col-sm-5">
+	<input type="time" class="form-control" style="width:50%;" id="start_time">
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-2"><h5>End Time</h5></div>
+<div class="col-sm-5" style="text-align:left">
+<input type="date" class="form-control" style="width:50%;" id="end_date">
+</div>
+<div class="col-sm-5">
+	<input type="time" class="form-control" style="width:50%;" id="end_time">
+</div>
+</div>
+<br>
+<div class="row">
+<div class="col-sm-2"><h5>Time zone:</h5></div>
+<div class="col-sm-5">
+<select class="form-control" style="width:50%" id="event_timezone">
+      <option>GMT -5:30</option>
+      <option>GMT +2:00</option>
+      <option>GMT -3:00</option>
+      <option>GMT -7:00</option>
+    </select>
+	</div>
+</div>
+<br>
+<div class="row">
+<h4><span class="glyphicon glyphicon-file" style="color:#2D80DF"></span> Upload an Image</h4><small>Image must be of dimensions 280 X 140</small></div>
+<div class="row">
+    <input type="file" class="form-control-file" id="event_image">
+</div>
+<div class="row" ><br>
+<h4>Description</h4>
+<small>Describe the event(200 words max)</small>
+</div>
+<div class="row">
+<textarea name="abc" id="event_desc" style="width:75%;height:35%;resize:none;">
+</textarea>
+</div><br><br>
+<div class="row" style="background-color:white;border-radius:10px;">
+<br>
+<div class="col-md-4" style=""><h4 style="color:#2D80DF;">WHAT TYPE OF EVENT IS THIS ?</h4></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="optradio" id="event_type" checked>PUBLIC</h5></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="optradio">PRIVATE</h5></div>
+<br><br>
+</div>
+<br>
+<div class="row" style="">
+<h4>Category</h4>
+Select a category that best describes the event.
+</div>
+<div class="row">
+<select class="form-control" id="event_category">
+      <option>Business</option>
+      <option>Outdoors</option>
+      <option>Education</option>
+      <option>Career</option>
+      <option>Culture</option>
+    </select>
+</div>
+<br><div class="row">
+<h4>Number of Seats</h4> 
+</div>
+<div class="row">
+<input type="text" class="form-control" id="event_max">
+</div>
+</form>
+
+<br>
+<div class="row" style="background-color:white;border-radius:10px;">
+<br>
+<div class="col-md-4"><h4 style="color:#2D80DF;"> PROMOTE THIS EVENT?</h4><small>Spread the word! Get featured</small></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="rad2" id="event_promote" checked>YES</h5> </div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="rad2">NO</h5></div>
+<br><br>
+</div>
+<br><br><br>
+<div class="row">
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+<button class="btn-block create_button" id="event_host_button" onClick="saveEvent()"><h5>HOST EVENT </h5></button>
+</div>
+<div class="col-sm-4"></div>
+</div>
+
+</div>
+<div class="col-sm-2" style="background-color:">
+</div>
+
+</div>
+
+
+
+ 		
+ 		<!-- Footer -->
+		<footer class="page-footer font-small unique-color-dark">
+		
+		    <div id="footertopbar">
+		      <div class="container">
+		
+		        <!-- Grid row-->
+		        <div class="row py-4 d-flex align-items-center">
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+		            <h6 class="mb-0">Get connected with us on social networks!</h6>
+		          </div>
+		          <!-- Grid column -->
+		
+		          <!-- Grid column -->
+		          <div class="col-md-6 col-lg-7 text-center text-md-right">
+		
+		            <!-- Facebook -->
+		            <a id="socialmedialink" href="https://www.facebook.com/HoosierEvents-171611190445772/?view_public_for=171611190445772" class="fb-ic">
+		              <i class="fa fa-facebook white-text mr-4"> </i>
+		            </a>
+		            <!-- Twitter -->
+		            <a id="socialmedialink" href="https://twitter.com/EventsHoosier" class="tw-ic">
+		              <i class="fa fa-twitter white-text mr-4"> </i>
+		            </a>
+		            <!-- Google +-->
+		            <a id="socialmedialink" href="https://plus.google.com/u/0/106790516341153503048" class="gplus-ic">
+		              <i class="fa fa-google-plus white-text mr-4"> </i>
+		            </a>
+		            <!--Linkedin -->
+		            <!-- <a id="socialmedialink" href="#" class="li-ic">
+		              <i class="fa fa-linkedin white-text mr-4"> </i>
+		            </a> -->
+		            <!--Instagram-->
+		            <a id="socialmedialink" href="#" class="ins-ic">
+		              <i class="fa fa-instagram white-text"> </i>
+		            </a>
+		
+		          </div>
+		          <!-- Grid column -->
+		
+		        </div>
+		        <!-- Grid row-->
+		
+		      </div>
+		    </div>
+		
+		    <!-- Footer Links -->
+		    <div id="footer" class="container text-center text-md-left mt-5">
+		
+		      <!-- Grid row -->
+		      <div class="row mt-3">
+		
+		        <!-- Grid column -->
+		        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+		
+		          <!-- Content -->
+		          <h6 class="text-uppercase font-weight-bold">Hoosier Events</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p> Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</p>
+		
+		        </div>
+		        <!-- Grid column -->
+
+		
+		        <!-- Grid column -->
+		        <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <a href="#!">Your Account</a>
+		          </p>
+		          <p>
+		            <a href="#!">Organize an event</a>
+		          </p>
+		          <p>
+		            <a href="#!">About us</a>
+		          </p>
+		          <p>
+		            <a href="#!">Help</a>
+		          </p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		        <!-- Grid column -->
+		        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+		
+		          <!-- Links -->
+		          <h6 class="text-uppercase font-weight-bold">Contact</h6>
+		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+		          <p>
+		            <i class="fa fa-home mr-3"></i> Bloomington, IN 47408, US</p>
+		          <p>
+		            <i class="fa fa-envelope mr-3"></i>hoosiereventsiu@gmail.com</p>
+		          <p>
+		            <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+		          <p>
+		            <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+		
+		        </div>
+		        <!-- Grid column -->
+		
+		      </div>
+		      <!-- Grid row -->
+		
+		    </div>
+		    <!-- Footer Links -->
+		
+		    <!-- Copyright -->
+		    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+		      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> HoosierEvents</a>
+		    </div>
+		    <!-- Copyright -->
+		
+		  </footer>
+		  <!-- Footer -->
+	</body>
+</html>
