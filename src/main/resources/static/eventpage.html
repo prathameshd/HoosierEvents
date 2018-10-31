@@ -27,10 +27,10 @@
 <nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
   <div class="container-fluid" style="text-align:left">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" id="abc">HoosierEvents</a>
+      <a class="navbar-brand" href="homePage.html" id="abc">HoosierEvents</a>
     </div>
     <ul class="nav navbar-nav">
-      <li id="homepage"><a href="#" class="top-nav-links" style="color:white;text-align:">Home</a></li>
+      <li id="homepage"><a href="homePage.html" class="top-nav-links" style="color:white;text-align:">Home</a></li>
     </ul>
 	<ul class="nav navbar-nav" id="explore">
       <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
@@ -71,7 +71,7 @@
 		<div class="row" style="color:green"><h5>TICKETS:Available</h5></div>
 		<br><br><br>
 		</div>
-		<div class="row" style="bottom:10%;position:relative"><button class="btn-block register_button" ><h5>REGISTER<h5></button></div>
+		<a href="Payment Portal.html" ><div class="row" style="bottom:10%;position:relative"><button class="btn-block register_button" ><h5>REGISTER<h5></button></div></a>
 	</div>
 
 </div>	
@@ -188,7 +188,7 @@
 
 
 <script>
-var t='{"event_name":"IMU Late Night","event_date":"20th November","event_location":"Indiana Memorial Union,Bloomington,Indiana","event_description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","created_by":"IU"}';
+/*var t='{"event_name":"IMU Late Night","event_date":"20th November","event_location":"Indiana Memorial Union,Bloomington,Indiana","event_description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","created_by":"IU"}';
 var temp=JSON.parse(t);
 
 document.getElementById("event_title").innerHTML=temp.event_name;
@@ -199,11 +199,11 @@ document.getElementById("created_by").innerHTML=temp.created_by;
 
 var loc=temp.event_location;
 
-/*passing parameter to iframe*/
-document.getElementById('myIframe').src = "map.html?seed=" + loc;
+passing parameter to iframe*/
+//document.getElementById('myIframe').src = "map.html?seed=" + loc;
 
 var event_id=117;
-
+console.log("${'m.event'}");
 	//AJAX CALL TO POPULATE PAGE
 $(document).ready(function(){
 	$.ajax({
@@ -213,12 +213,20 @@ $(document).ready(function(){
 	url:"/getEvent",
 	  success: function(data) {
 			console.log('success',data);
+			console.log("${m.event}");
+			//var data_var=JSON.parse(data);
+			document.getElementById("event_title").innerHTML=data.eventTitle;
+			document.getElementById("event_date").innerHTML=data.startDate;
+			document.getElementById("event_location").innerHTML=data.location;
+			document.getElementById("event_description").innerHTML=data.description;
+			document.getElementById("created_by").innerHTML=data.createdBy.name;
+			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
 	   },
 	   error:function(exception){alert('Exeption:'+exception);}
 	}); 
 	
 	//AJAX CALL TO RETRIEVE DETAILS
-	 $.get("/getEvent", function(data, status){
+	 /*$.get("/getEvent", function(data, status){
             alert("Data: " + data + "\nStatus: " + status);
 			var data_var=JSON.parse(data);
 			document.getElementById("event_title").innerHTML=data_var.event_name;
@@ -226,7 +234,7 @@ $(document).ready(function(){
 			document.getElementById("event_location").innerHTML=data_var.event_location;
 			document.getElementById("event_description").innerHTML=data_var.event_description;
 			document.getElementById("created_by").innerHTML=data_var.created_by;
-        });
+        });*/
 	});	
 
 </script>

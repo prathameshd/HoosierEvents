@@ -20,9 +20,10 @@ import org.hibernate.annotations.Type;
 @Table(name = "events_master")
 public class Event {
 	@Id
-	//@NotNull // Samething at db level can be done by @Column (name="", nullable= false)
+	// @NotNull // Samething at db level can be done by @Column (name="", nullable=
+	// false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "event_id",updatable = false)
+	@Column(name = "event_id", updatable = false)
 	private Long id;
 
 	@Column(name = "event_name")
@@ -36,9 +37,9 @@ public class Event {
 		this.eventTitle = eventTitle;
 	}
 
-	//@Cascade(CascadeType.MERGE)
-	@ManyToOne(targetEntity=User.class)
-	@JoinColumn(name="created_by", referencedColumnName="user_id") 
+	// @Cascade(CascadeType.MERGE)
+	@ManyToOne(targetEntity = User.class)
+	@JoinColumn(name = "created_by", referencedColumnName = "user_id")
 	private User createdBy;
 
 	public Long getId() {
@@ -71,7 +72,7 @@ public class Event {
 	private Date endDate;
 
 	@Column(name = "description")
-	private String Description;
+	private String description;
 
 	@Column(name = "ispublic", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
@@ -81,19 +82,16 @@ public class Event {
 	private Boolean isPromoted;
 
 	@OneToOne
-	@JoinColumn(name="category")
+	@JoinColumn(name = "category")
 	private EventCategory eventCategory;
 
-	
-	
 	public Event() {
 	}
-	
+
 	public Event(String title) {
 		this.eventTitle = title;
 	}
-	
-	
+
 	public String getLocation() {
 		return location;
 	}
@@ -127,11 +125,11 @@ public class Event {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		description = description;
 	}
 
 	public Boolean getIsPublic() {

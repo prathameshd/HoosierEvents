@@ -11,5 +11,6 @@ function saveEvent() {
     };
     xhttp.open("POST", "saveEvent", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send("Your JSON Data Here");
+    Object data = { eventTitle: document.getElementById("event_name").value};
+    xhttp.send(data);
 }

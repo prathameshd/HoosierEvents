@@ -24,10 +24,10 @@
 <nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
   <div class="container-fluid" style="text-align:left">
     <div class="navbar-header">
-      <a class="navbar-brand" href="NewFile.html" id="abc">HoosierEvents</a>
+      <a class="navbar-brand" href="homePage.html" id="abc">HoosierEvents</a>
     </div>
     <ul class="nav navbar-nav" >
-      <li id="homepage"><a class="top-nav-links" href="NewFile.html" style="">Home</a></li>
+      <li id="homepage"><a class="top-nav-links" href="homePage.html" style="">Home</a></li>
     </ul>
 	
 	<ul class="nav navbar-nav" id="explore">
@@ -60,26 +60,26 @@
 <h2>create your event!</h2>
 </div><br>
 
-<form action="#" th:action="@{/addnewevent}" th:object="${command}" method="post">
+<form action="saveEvent" th:action="@{/addnewevent}" th:object="${command}" method="post">
 
 <div class="row" style="">
 <h4>Event Name</h4>
 </div>
 <div class="row">
-<input type="text" class="form-control" id="event_name" th:field="*{event_name}">
+<input type="text" class="form-control" name="eventTitle" id="event_name" th:field="*{event_name}">
 </div><br>
 <div class="row" style="">
  <h4><span class="glyphicon glyphicon-map-marker" style="color:#2D80DF"></span>Location</h4>
 </div>
 <div class="row">
-<input type="text" class="form-control" id="event_location">
+<input type="text" class="form-control" name="location" id="event_location">
 </div><br>
 <div class="row" style="">
 <h4><span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Details</h4></div>
 <div class="row">
 <div class="col-sm-2"><h5>Start Time</h5></div>
 <div class="col-sm-5" style="text-align:left">
-<input type="date" class="form-control" style="width:50%;" id="start_date">
+<input type="date" class="form-control" name="startDate" style="width:50%;" id="start_date">
 </div>
 <div class="col-sm-5">
 	<input type="time" class="form-control" style="width:50%;" id="start_time">
@@ -89,7 +89,7 @@
 <div class="row">
 <div class="col-sm-2"><h5>End Time</h5></div>
 <div class="col-sm-5" style="text-align:left">
-<input type="date" class="form-control" style="width:50%;" id="end_date">
+<input type="date" class="form-control" style="width:50%;" name="endDate" id="end_date">
 </div>
 <div class="col-sm-5">
 	<input type="time" class="form-control" style="width:50%;" id="end_time">
@@ -99,7 +99,7 @@
 <div class="row">
 <div class="col-sm-2"><h5>Time zone:</h5></div>
 <div class="col-sm-5">
-<select class="form-control" style="width:50%" id="event_timezone">
+<select class="form-control" style="width:50%" name= "timeZOne" id="event_timezone">
       <option>GMT -5:30</option>
       <option>GMT +2:00</option>
       <option>GMT -3:00</option>
@@ -145,13 +145,13 @@
 <small>Describe the event(200 words max)</small>
 </div>
 <div class="row">
-<textarea name="abc" id="event_desc" style="width:75%;height:35%;resize:none;">
+<textarea name="description" id="event_desc" style="width:75%;height:35%;resize:none;">
 </textarea>
 </div><br><br>
 <div class="row" style="background-color:white;border-radius:10px;">
 <br>
 <div class="col-md-4" style=""><h4 style="color:#2D80DF;">WHAT TYPE OF EVENT IS THIS ?</h4></div>
-<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="optradio" id="event_type" checked>PUBLIC</h5></div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="isPublic" id="event_type" checked>PUBLIC</h5></div>
 <div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="optradio">PRIVATE</h5></div>
 <br><br>
 </div>
@@ -161,7 +161,7 @@
 Select a category that best describes the event.
 </div>
 <div class="row">
-<select class="form-control" id="event_category">
+<select class="form-control" name="eventCategory" id="event_category">
       <option>Business</option>
       <option>Outdoors</option>
       <option>Education</option>
@@ -173,15 +173,14 @@ Select a category that best describes the event.
 <h4>Number of Seats</h4> 
 </div>
 <div class="row">
-<input type="text" class="form-control" id="event_max">
+<input type="text" name="seats" class="form-control" id="event_max">
 </div>
-</form>
 
 <br>
 <div class="row" style="background-color:white;border-radius:10px;">
 <br>
 <div class="col-md-4"><h4 style="color:#2D80DF;"> PROMOTE THIS EVENT?</h4><small>Spread the word! Get featured</small></div>
-<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="rad2" id="event_promote" checked>YES</h5> </div>
+<div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="isPromoted" id="event_promote" checked>YES</h5> </div>
 <div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="rad2">NO</h5></div>
 <br><br>
 </div>
@@ -189,7 +188,7 @@ Select a category that best describes the event.
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
-<button class="btn-block create_button" id="event_host_button" onClick="saveEvent()"><h5>HOST EVENT </h5></button>
+<input type="submit"  value="HOST EVENT" class="btn-block create_button" id="event_host_button">
 </div>
 <div class="col-sm-4"></div>
 </div>

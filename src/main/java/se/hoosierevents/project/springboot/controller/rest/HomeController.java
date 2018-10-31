@@ -18,12 +18,4 @@ public class HomeController {
 	public String index() {
 		return "homePage.html";
 	}
-
-	@RequestMapping("/saveEvent")
-	public String saveEvent(HttpServletRequest r, Model m) {
-
-		// String id = Req
-		service.saveEvent(new Event("wewe"));
-		return new String(service.getAllEvents());
-	}
 }
