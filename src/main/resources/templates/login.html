@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HoosierEvents</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500" />
+    <link rel="stylesheet" th:href = "@{/css/bootstraphom.min.css}" />
+    <link rel="stylesheet" th:href = "@{/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href = "@{/css/form-elements.css}" />
+    <link rel="stylesheet" th:href = "@{/css/style.css}" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--&lt;!&ndash; Favicon and touch icons &ndash;&gt;-->
+    <!--<link rel="shortcut icon" href="assets/ico/favicon.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">-->
+
+</head>
+
+<body>
+
+
+
+<div id="bg">
+    <img th:src="@{images/1.jpg}" alt="" />
+</div>
+
+<!-- Top content -->
+<div class="top-content">
+
+    <div class="inner-bg">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2 text">
+                    <h1><img th:src="@{images/Logo4.jpg}" /></h1>
+                    <div class="description">
+                        <p>
+                            Login or Register
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5">
+
+                    <div class="form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Login to our site</h3>
+                                <p>Enter username and password to log on:</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <div class="form">
+
+                                <form  name="f" th:action="@{/login}" method="post" class="login-form">
+
+                                    <div th:if="${param.error}" class="alert alert-error">
+                                        Invalid username or password.
+                                    </div>
+                                    <div th:if="${param.logout}" class="alert alert-success">
+                                        You have been logged out.
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="username">Username</label>
+                                        <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="password">Password</label>
+                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password" />
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn">Sign In</button>
+                                    </div>
+
+                                </form>
+
+
+                                <!--<form name="f" th:action="@{/forgotPassword}" method="post" class="forgot-form">-->
+
+                                    <!--<input type="text" placeholder="Username" name="usernameforgot" id="usernameforgot"/>-->
+
+                                    <!--<input type="text" placeholder="New Password" name="passwordforgot" id="passwordforgot"/>-->
+
+                                    <!--<button type="submit" class="btn">Send Email containing password</button>-->
+
+                                <!--</form>-->
+
+                              <form method="get" th:action="@{/forgotPass}">
+                                  <div class="form-actions">
+                                      <button type="submit" class="btn">Forgot Password?</button>
+                                  </div>
+                              </form>
+
+                            </div></div>
+                    </div>
+
+                    <div class="social-login">
+                        <h3>...or login with:</h3>
+                        <div class="social-login-buttons">
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-facebook"></i> Facebook
+                            </a>
+
+                            <a class="btn btn-link-2" href="#">
+                                <i class="fa fa-google-plus"></i> Google
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-1 middle-border"></div>
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-5">
+
+                    <div class="form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>Sign up now</h3>
+                                <p>Fill in the form below to get instant access:</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-pencil"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            <!--/*@thymesVar id="RegForm" type="com.login.ldap.springboot.controller.RegForm"*/-->
+                            <form role="form" th:action="@{/signup/me}" method="post">
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-first-name">First name</label>
+                                    <input  type="text" name="name"  placeholder="First name..." class="form-first-name form-control" id="form-first-name" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-last-name">Password</label>
+                                    <input  type="password"   name="password" placeholder="Password..." class="form-last-name form-control" id="form-last-name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-email">Email</label>
+                                    <input  type="text"  name="email" placeholder="Email..." class="form-email form-control" id="form-email" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-phone">Phone</label>
+                                    <input  type="text"  name="phone" placeholder="Phone Number..." class="form-phone form-control" id="form-phone" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only"  for="form-about-yourself">Address</label>
+                                    <textarea  name="address" placeholder="About yourself..."
+                                              class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="sr-only"  for="form-about-yourself">Address</label>
+                                    <select  name="question"  placeholder="Select question" class="form-question form-select-button" id="form-questions">
+                                        <option id="1" value="What is your mothers name?" />
+                                        <option id="2" value="In which city did you do your schooling?" />
+                                        <option id="3" value="What is your nick name?" />
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="sr-only"  for="form-about-yourself">Address</label>
+                                    <input type="text"  name="answer" placeholder="Answer..."
+                                               class="form-answer form-control" id="form-answer" />
+                                </div>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+                                <div class="form-actions" >
+                                    <button class="btn" type="submit"  >Sign me up!</button>
+                                    </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="footer-border"></div>
+                <p>Everything best in Bloomington</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<!-- Javascript -->
+<script th:src="@{/js/jquery-1.11.1.min.js}" ></script>
+<script th:src="@{/js/bootstraphom.min.js}" ></script>
+<script th:src = "@{/js/jquery.backstretch.min.js}" ></script>
+<script th:src="@{/js/scripts.js}" ></script>
+<script th:src="@{/js/scripts_login.js}" ></script>
+
+
+
+<!--<script th:inline="javascript">-->
+        <!---->
+        <!---->
+    <!--}-->
+
+<!--</script>-->
+
+
+</body>
+
+
+
+
+
+</html>

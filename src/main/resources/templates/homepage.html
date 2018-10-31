@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--<link rel="stylesheet" th:href="{https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css}">-->
+
+    <link rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}" />
+    <!--<link rel="stylesheet" type="text/css" href="HomePage Style.css">-->
+
+    <link rel="stylesheet"
+          th:href="@{/css/hompage.css}" />
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+</head>
+
+<body>
+
+<th:block>
+
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#">
+            <img id="logoimg" th:src="@{/images/Logo4.jpg}" class="img-fluid" />
+        </a>
+        <ul id="navbarlist" class="navbar-nav">
+            <li id="navbarlistitem1" class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li id="navbarlistitem2" class="nav-item">
+                <a class="nav-link" href="#">Organize</a>
+            </li>
+            <li id="navbarlistitem3" class="nav-item">
+                <a class="nav-link" href="#">Sign In</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id="demo" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!--The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img id="carouselimg1" class="mx-auto d-block img-fluid" th:src="@{/images/football.jpg}" />
+                </div>
+                <div class="carousel-item">
+                    <img id="carouselimg2" class="mx-auto d-block img-fluid" th:src="@{/images/theatre.jpg}" />
+                </div>
+                <div class="carousel-item">
+                    <img id="carouselimg3" class="mx-auto d-block img-fluid" th:src="@{/images/concert.jpg}" />
+                </div>
+            </div>
+
+            <div id="searchbar" class="input-group">
+                <div id="searchbarcol" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <input id="searchbartextbox" type="text" class="form-control" aria-label="Text input with dropdown button" />
+                </div>
+                <div class="input-group-append">
+                    <button id="searchbardropdown" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
+
+            </div>
+<!--______________-->
+
+    <!--__________-->
+
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+</th:block>
+
+
+
+
+
+</body>
+</html>
