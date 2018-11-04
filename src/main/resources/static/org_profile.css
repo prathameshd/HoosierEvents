@@ -1,0 +1,44 @@
+.footer{
+	height:20%;	
+	top:35% !important;	
+	text-align:center;
+	position:relative;
+	background-color:#534E4E;
+	color:white
+}
+#live_events{
+	height:45px;
+	background-color:green;
+	color:white;
+}
+
+#pen_events{
+	height:45px;
+	background-color:orange;
+	color:white;
+}
+
+
+#users_count{
+	height:50px;;
+	width:50%;
+	background-color:darkslategrey;
+	color:white;
+	text-align:left;
+}
+
+#live_events:hover,#pen_events:hover,#users_count:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.abcd
+{
+	background-color:lightgrey;
+	color:darkslategrey;
+}
+
+.abcd:hover{
+	    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+	
+}

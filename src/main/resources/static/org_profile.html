@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="org_profile.css">
+  	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	   <! <link rel="stylesheet" type="text/css" href="HomePage Style.css">
+
+  <style>
+  body, html, .container-fluid {
+     
+	 width:100%
+}
+</style>
+</head>
+<body>
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
+  <div class="container-fluid" style="text-align:left">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="homePage.html" id="abc">HoosierEvents</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li id="homepage"><a href="homePage.html" class="top-nav-links" style="color:white;text-align:">Home</a></li>
+    </ul>
+	<!--<ul class="nav navbar-nav" id="explore">
+      <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
+    </ul>-->
+	
+<!--    <form class="navbar-form navbar-left" action="">
+      <div class="form-group">
+        <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
+      </div>
+      <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
+    </form> -->
+	<ul class="nav navbar-nav navbar-right">
+	 <li><a class="top-nav-links" id="createevent" href="create_event.html" style="">Create Event</a></li>
+      <li><a href="#" style="">Sign Out</a></li>
+    </ul>
+
+	</div>
+</nav>
+<!--<div style="background-color:red;left:-30%;height:100%;width:40%;position:relative;">-->
+<div class="container-fluid" style="height:100% !important;">
+<div class="row">
+	<div class="col-sm-4" style="border-right:1px solid lightgrey">
+	<!--<div class="container" style="height:100%;position:relative;top:10%;">-->
+	  <h3>Welcome</h3>
+	  <h4 id="user_name_display">Data Science Club</h4>
+	  <ul class="nav nav-pills nav-stacked">
+		<li class="active"><a data-toggle="pill" href="#dash">Dashboard</a></li>
+		<li class="dropdown">
+		  <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Events <span class="caret"></span></a>
+		  <ul class="dropdown-menu">
+			<li><a data-toggle="pill" href="#approved">Approved</a></li>
+			<li><a data-toggle="pill" href="#pending">Pending</a></li>
+			<li><a data-toggle="pill" href="#elapsed">Elapsed</a></li>                        
+		  </ul>
+		</li>
+		<li><a data-toggle="pill" href="#edit_events">Change Event Information</a></li>
+		<li><a data-toggle="pill" href="#edit">Edit Profile</a></li>
+		<!--<li><a data-toggle="pill" href="#">Menu 3</a></li>-->
+	  </ul>
+	</div>
+	
+	<div class="col-sm-8">
+	
+<div class="tab-content">
+    <div id="edit" class="tab-pane fade">
+      <h3>Edit Details</h3>
+<!--	  <form id="modify_details" action="/modifyUser">	-->
+	  Name
+	  <input type="text" class="form-control" id="user_name">
+	Address
+	<input type="text" class="form-control" id="user_address">
+	Contact<input type="text" class="form-control" id="user_contact">
+	Email<input type="text" class="form-control" id="user_email">
+	<br>
+	<button class="btn-block" id="update_button" onClick="updateUser()" style="width:50%;"><h5>Update Details </h5></button>
+  </div>
+	
+	<div id="dash" class="tab-pane fade in active ">
+      <h3>Event Statistics</h3>
+	 
+	<div class="row">
+	 <div class="col-sm-6">
+	  <!--<div id="piechart">
+	  
+	  </div>-->
+	  <div class="panel panel-default" id="live_events" ><h5> &nbspLive Events:<span id="total_events"> </span></h5></div>
+
+	  </div>
+	  <div class="col-sm-6">
+	  	 <div class="panel panel-default" id="pen_events"><h5>&nbsp Events Pending Approval:<span id="pending_events"> </span></h5></div>
+
+	  
+	  </div>
+	  
+	  </div>
+	  <h3>User Demographics</h3>
+	  <div class="row">
+	  <div class="col-sm-6">
+	  	   <div class="panel panel-default" id="users_count" ><h5 style="top:25%;position:relative"> &nbsp Total Users:<span id="total_users"> </span></h5></div>
+		</div> 	
+		
+	  </div>
+	  <h3>Revenue Stats</h3>
+	  <div class="row">
+	  <div class="col-sm-6">
+		<h4>Net Revenue:<span id="total_revenue"></span></h4>
+		</div>
+		<div class="col-sm-6">
+		<h4>Average Revenue Per Event:<span id="avg_revenue"></span></h4>
+		</div>
+	  </div>
+<!--	  <div id="container" class="cols">
+    <div class="box">a</div>
+    <div class="box">b</div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</div>-->
+      
+    </div>
+	<div id="approved" class="tab-pane fade">
+      <h3>Approved Events</h3>
+	  <div id="app"></div>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+	<div id="pending" class="tab-pane fade">
+      <h3>Events Pending Approval</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+	<div id="elapsed" class="tab-pane fade">
+      <h3>Elapsed Events</h3>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+		<div id="edit_events" class="tab-pane fade">
+      <h3>Edit Events</h3>
+<!--	  Event ID
+	  	<input type="text" class="form-control" id="event_id">-->
+		Event Name
+<!--			  	<input type="text" class="form-control" id="event_id">-->
+	<select class="form-control" style="width:50%" name= "event_name" id="event_name">
+ 
+    </select>
+
+		Location
+			  	<input type="text" class="form-control" id="event_id">
+
+		Start 
+		<ul>
+		<li><input type="date" class="form-control" name="startDate" style="width:50%;" id="start_date"></li>
+		<li><input type="time" class="form-control" name="startDate" style="width:50%;" id="start_time"></li>
+		</ul>
+
+		End Time
+		<ul>
+		<li><input type="date" class="form-control" name="startDate" style="width:50%;" id="end_date"></li>
+		<li><input type="time" class="form-control" name="startDate" style="width:50%;" id="end_time"></li>
+		</ul>
+		Timezone
+		<select class="form-control" style="width:50%" name= "timeZOne" id="event_timezone">
+      <option>GMT -5:30</option>
+      <option>GMT +2:00</option>
+      <option>GMT -3:00</option>
+      <option>GMT -7:00</option>
+    </select>
+		Description<br>
+		<textarea name="description" id="event_desc" style="width:75%;height:35%;resize:none;"></textarea><br>
+		Category
+		<select class="form-control" name="eventCategory" id="event_category">
+      <option>Business</option>
+      <option>Outdoors</option>
+      <option>Education</option>
+      <option>Career</option>
+      <option>Culture</option>
+    </select>
+    </div>
+ </div>
+	</div>
+</div>
+
+
+  
+<!--</div>-->
+</div>
+<br><br><br>
+<!-- <!FOOTER DIV> -->
+<!--
+<div class="container-fluid footer">
+<div class="row" style="background-color:#AE1616; color:black">
+<div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
+<div class="col-sm-6"></div>
+<div class="col-sm-3">
+<div class="row" style="text-align:center">
+	<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="fb-ic">
+		              <i class="fa fa-facebook white-text mr-4"> </i>
+		            </a>
+					</div>
+		            
+					<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="tw-ic">
+		              <i class="fa fa-twitter white-text mr-4"> </i>
+		            </a>
+					</div>
+		           
+					<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="gplus-ic">
+		              <i class="fa fa-google-plus white-text mr-4"> </i>
+		            </a>
+					</div>
+</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-sm-4">
+	<div class="row"><h5><b>Hoosier Events</b></h5></div>
+		<div class="row">Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</div>
+	<br>
+	</div>
+	<div class="col-sm-4 links" style="color:white"><h5><b>Useful Links</b></h5>
+		
+		<div class="row"><a href="" style="color:#48A2BD">Your Account</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">About us</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">Help</a></div>
+		<br>
+	</div>
+	
+	<div class="col-sm-4"><h5><b>Contact Us</b></h5>
+				            <i class="fa fa-home mr-3"></i>&nbsp Bloomington, IN 47408, US
+							<br>
+				            <i class="fa fa-envelope mr-3"></i>&nbsp info@example.com
+							<br>
+							<i class="fa fa-phone mr-3"></i>&nbsp + 01 234 567 88
+
+
+	</div>
+</div>
+</div>
+-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script>
+
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Work', 8],
+  ['Friends', 2],
+  ['Eat', 2],
+  ['TV', 2],
+  ['Gym', 2],
+  ['Sleep', 8]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'My Average Day', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+
+var total =10;
+var pending=3;
+var count=50;
+var div_count=6;
+$(document).ready(function(){
+
+document.getElementById("total_events").innerHTML+=total;
+document.getElementById("pending_events").innerHTML+=pending;
+document.getElementById("total_users").innerHTML+=count;
+/*
+	$.ajax({
+	type:'POST',
+	dataType:'json',
+	data: {id:user_id},
+	url:"/getUser",
+	  	success: function(data) {
+			console.log('success',data);
+			console.log("${m.event}");
+			//var data_var=JSON.parse(data);
+			document.getElementById("user_name").innerHTML=data.name;
+			document.getElementById("user_address").innerHTML=data.address;
+			document.getElementById("user_contact").innerHTML=data.contact;
+			document.getElementById("user_email").innerHTML=data.email;
+//			document.getElementById("created_by").innerHTML=data.createdBy.name;
+//			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
+		},
+		// error:function(exception){alert('Exeption:'+exception);}
+	  
+	}); 
+	*/
+
+	var i;
+	for(i=0;i<div_count;i++){
+	
+				var div = document.createElement("div");
+			//div.style.width = "100px";
+			//div.style.height = "100px";
+			//div.style.background = "lightgrey";
+			div.style.border= "1px solid lightgrey";
+				div.style.borderRadius= "6px";
+			div.id="div"+i;
+			//alert(div.id);
+			div.style.align="center";
+			var temp="div"+i;
+			//alert(temp);
+			//var y=document.getElementById("temp");
+			//document.getElementById('temp').addEventListener("click", function(){alert('q');});	//pass id
+			//div.onClick="myFunction()"
+			div.className="row col-sm-10 panel panel-default abcd";
+			div.innerHTML= "EventName<br>";
+			div.innerHTML+= "Date<br>";
+			div.innerHTML+= "Location";
+			
+			var b=document.createElement("button");
+			b.id="button"+i;
+			b.innerHTML="Edit";
+			b.style="left:95%;position:relative;";
+			b.addEventListener("click",editbutton(b.id));
+			//alert(b.id);
+			document.getElementById("approved").appendChild(div);
+			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).appendChild(b);
+						//document.getElementById("approved").innerHTML+="<br>";
+
+			
+}
+	
+	});
+	
+	function editbutton(id)
+	{
+	// call edit page via controller and pass event id via edit button
+	// on editpage get id and autofill page via retrieving data from controller
+	alert(id);
+	/*
+	$.ajax({
+	type:'POST',
+	dataType:'json',
+	data: {id:user_id},
+	url:"/getUser",
+	  	success: function(data) {
+			console.log('success',data);
+			console.log("${m.event}");
+			//var data_var=JSON.parse(data);
+			document.getElementById("user_name").innerHTML=data.name;
+			document.getElementById("user_address").innerHTML=data.address;
+			document.getElementById("user_contact").innerHTML=data.contact;
+			document.getElementById("user_email").innerHTML=data.email;
+//			document.getElementById("created_by").innerHTML=data.createdBy.name;
+//			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
+		},
+		// error:function(exception){alert('Exeption:'+exception);}
+	  
+	}); */
+	}
+</script>
+</body>
+</html>
