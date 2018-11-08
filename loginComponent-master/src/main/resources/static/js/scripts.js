@@ -9,6 +9,14 @@ jQuery(document).ready(function() {
     /*
         Login form validation
     */
+
+    document.getElementById('button').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "flex";
+    });
+
+    document.querySelector('.close').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "none";
+    });
     $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
     	$(this).removeClass('input-error');
     });

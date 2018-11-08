@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 
 <head>
 
@@ -33,6 +34,8 @@
 
 <body>
 
+
+
 <div id="bg">
     <img th:src="@{images/1.jpg}" alt="" />
 </div>
@@ -45,7 +48,7 @@
 
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>HoosierEvents</strong></h1>
+                    <h1><img th:src="@{images/Logo4.jpg}" /></h1>
                     <div class="description">
                         <p>
                             Login or Register
@@ -73,14 +76,14 @@
                                 <form  name="f" th:action="@{/login}" method="post" class="login-form">
 
                                     <div th:if="${param.error}" class="alert alert-error">
-                                        Invalid username and password.
+                                        Invalid username or password.
                                     </div>
                                     <div th:if="${param.logout}" class="alert alert-success">
                                         You have been logged out.
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" for="username">Username</label>
-                                        <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username" />
+                                        <label class="sr-only" for="email">Username</label>
+                                        <input type="email" name="username" placeholder="Email..." class="form-username form-control" id="email" />
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="password">Password</label>
@@ -89,6 +92,16 @@
                                     <div class="form-actions">
                                         <button type="submit" class="btn">Sign In</button>
                                     </div>
+
+
+
+
+                                </form>
+                                <form name="f" th:action="@{/forgotPassword/te}" method="post" class="forgot-form">
+
+                                    <input type="text" placeholder="Username" name="usernameforgot" id="usernameforgot"/>
+                                <button type="submit" class="btn">Send Email containing password</button>
+
                                 </form>
                             </div></div>
                     </div>
@@ -99,9 +112,7 @@
                             <a class="btn btn-link-2" href="#">
                                 <i class="fa fa-facebook"></i> Facebook
                             </a>
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-twitter"></i> Twitter
-                            </a>
+
                             <a class="btn btn-link-2" href="#">
                                 <i class="fa fa-google-plus"></i> Google Plus
                             </a>
@@ -126,29 +137,44 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <form role="form" action="" method="post" class="registration-form">
+                            <!--/*@thymesVar id="RegForm" type="com.login.ldap.springboot.controller.RegForm"*/-->
+                            <form role="form" th:action="@{/signup/me}" method="post">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name" />
+                                    <input  type="text" name="name"  placeholder="First name..." class="form-first-name form-control" id="form-first-name" />
+
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Last name</label>
-                                    <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name" />
+                                    <label class="sr-only" for="form-last-name">Password</label>
+                                    <input  type="password"   name="password" placeholder="Password..." class="form-last-name form-control" id="form-last-name" />
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
-                                    <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email" />
+                                    <input  type="text"  name="email" placeholder="Email..." class="form-email form-control" id="form-email" />
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-about-yourself">About yourself</label>
-                                    <textarea name="form-about-yourself" placeholder="About yourself..."
-                                              class="form-about-yourself form-control" id="form-about-yourself"></textarea>
+                                    <label class="sr-only" for="form-phone">Phone</label>
+                                    <input  type="text"  name="phone" placeholder="Phone Number..." class="form-phone form-control" id="form-phone" />
                                 </div>
-                                <button type="submit" class="btn">Sign me up!</button>
+
+                                <div class="form-group">
+                                    <label class="sr-only">Organizer or User</label>
+                                    <input type="radio" name="userorg" id="user" value="user" checked="checked">User </input>
+                                    <input type="radio" name="userorg" value="organizer" id="organizer">Organizer</input>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+                                </div>
+                                <div class="form-actions" >
+                                    <button class="btn" type="submit"  >Sign me up!</button>
+                                    </div>
                             </form>
+
                         </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -175,9 +201,22 @@
 <script th:src="@{/js/bootstraphom.min.js}" ></script>
 <script th:src = "@{/js/jquery.backstretch.min.js}" ></script>
 <script th:src="@{/js/scripts.js}" ></script>
+<script th:src="@{/js/scripts_login.js}" ></script>
 
+
+
+<!--<script th:inline="javascript">-->
+        <!---->
+        <!---->
+    <!--}-->
+
+<!--</script>-->
 
 
 </body>
+
+
+
+
 
 </html>

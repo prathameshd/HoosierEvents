@@ -38,3 +38,91 @@ objectclass: groupOfUniqueNames
 cn: managers
 ou: manager
 uniqueMember: uid=swaroop,ou=people,dc=loginComponent,dc=com
+
+
+
+dn: uid=testing123@gmail.com , ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: testing123@gmail.com
+uid: testing123@gmail.com
+userPassword: {SHA}cojt0Pw//L6ToM8G41aOKFIWh7w=
+
+
+
+dn: uid=a@a.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: a@a.com
+uid: a@a.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@email.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@email.com
+uid: email@email.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@dsfsfsfd.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@dsfsfsfd.com
+uid: email@dsfsfsfd.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@sdfsd.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@sdfsd.com
+uid: email@sdfsd.com
+userPassword: {SHA}QL0AFWMIX8NRZTKeof9cXsvbvu8=
+
+
+
+dn: uid=b@uou.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: b@uou.com
+uid: b@uou.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=arswaroop@outlook.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: arswaroop@outlook.com
+uid: arswaroop@outlook.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=po@po.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: po@po.com
+uid: po@po.com
+userPassword: {SHA}jLIjfQZ5yojbZGTqxg2pY0VROWQ=

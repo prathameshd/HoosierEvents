@@ -1,0 +1,12 @@
+Some StringProduct name is iPhone and its price is 1000 $
+
+
+
+dn: uid=xfxc@sdsd.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: xfxc@sdsd.com
+uid: xfxc@sdsd.com
+userPassword: {SHA}tfKKtdMWirkYUk65z7iNkt/qcks=
