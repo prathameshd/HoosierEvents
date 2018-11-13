@@ -1,6 +1,7 @@
 package com.login.ldap.springboot;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.ldap.repository.config.EnableLdapRepositories;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Configuration
 @SpringBootApplication
+@EnableOAuth2Sso
 @EntityScan("com.login.ldap.model")
 @EnableLdapRepositories(basePackages = "com.login.ldap.springboot.data.repository.**")
 public class loginComponent {

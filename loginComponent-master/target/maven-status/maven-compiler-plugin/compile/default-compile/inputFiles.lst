@@ -13,7 +13,6 @@ C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\j
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\model\OrganizationUser.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\controller\forgotPassword.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\model\Organisation.java
-C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\loginComponent.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\data\repository\UserRepository.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\data\service\UserService.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\model\ClubUser.java
@@ -23,4 +22,5 @@ C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\j
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\model\EventCategory.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\controller\HomeController.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\model\GuestUser.java
+C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\loginComponent.java
 C:\Users\Swaroop\Desktop\hoosier-events-swaroop\loginComponent-master\src\main\java\com\login\ldap\springboot\controller\SignUp.java

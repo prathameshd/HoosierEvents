@@ -1,83 +1,168 @@
 package com.login.ldap.springboot.controller;
 
-import com.login.ldap.springboot.data.service.LdapClient;
-import com.unboundid.ldap.sdk.LDAPConnection;
+import com.login.ldap.model.User;
+import com.login.ldap.springboot.repository.UserRepository;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ldap.core.AttributesMapper;
 import org.springframework.ldap.core.LdapTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.Null;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 @RestController
 public class forgotPassword {
 
-
     @Autowired
     EmailService emailService;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    @RequestMapping(value = "/forgotPassword/te", method = RequestMethod.POST)
-    public final RedirectView forgot(HttpServletRequest request, RegForm regForm,@RequestParam("usernameforgot") String username){
+    public String ValidCode;
 
-        File f = new File("schema.ldif");
-String password="";
+    public String id;
+    public String username1;
+    Random rand;
+    private LocalDateTime expiredDateTime;
+    private LocalDateTime issuedDateTime;
+    private LocalDateTime confirmedDateTime;
+    private String status;
 
+@Autowired
+LdapTemplate ldapTemplate;
 
-try {
-    ////////////////////////////////////////////
+@RequestMapping(value = "/validEmail", method= RequestMethod.GET, produces = "application/json")
+public final Map<String,String> verifyEmail(@PathVariable String emailvalid)
+{
+    System.out.println("I am finally here");
+    final Map<String, String> messageObject = new HashMap<>();
 
-    BufferedReader b = new BufferedReader(new FileReader(f));
-    String readLine = "";
+//    String emailvalid="arswaroop@outlk.com";
 
-    int flag=0;
-    while ((readLine = b.readLine()) != null) {
-            if(flag==1)
-            {
-                password=b.readLine();
-                break;
-            }
+    User userfound;
 
-            if(readLine=="uid: "+username)
-            {
-                flag=1;
-            }
-
-
-    }
-    ////////////////////////////////////////////
-b.close();
-
-}catch(Exception e){}
-finally {
+if(userRepository.findOne(emailvalid)==null)
+{
+    messageObject.put("user","");
+    return messageObject;
 
 }
 
-        Mail mail = new Mail();
-        mail.setFrom("noreply@noreply.com");
-        mail.setSubject("Your Password is");
-        mail.setContent("Your Password is"+password);
-        mail.setTo(username);
-        System.out.println(username);
-        emailService.sendSimpleMessage(mail);
+else {
+    userfound = userRepository.findOne(emailvalid);
+
+    String user;
+    messageObject.put("user", userfound.getEmail());
+return messageObject;
+}
+}
 
 
+@RequestMapping(value = "/sendCode", method = RequestMethod.POST)
+public final RedirectView sendCode(@RequestParam("email") String username){
+    this.username1=username;
 
 
-        return new RedirectView("/login");
+     this.rand=new Random();
+     this.issuedDateTime=LocalDateTime.now();
+    this.expiredDateTime = this.issuedDateTime.plusHours(1);
+    this.status="pending";
+
+     id = String.format("%04d", rand.nextInt(10000));
+
+//    List<String> a= ldapTemplate.search(
+//            "ou=people",
+//            "cn=" + username,
+//            (AttributesMapper<String>) attrs -> (String) attrs
+//                    .get("cn")
+//                    .get());
+//     if(a.equals(""))
+//     {
+//
+//     }
+//
+
+    Mail mail = new Mail();
+    mail.setFrom("noreply@noreply.com");
+    mail.setSubject("HoosierEvents Password Recovery Code");
+    mail.setContent("Code to reset your password is " + id);
+    mail.setTo(username);
+    emailService.sendSimpleMessage(mail);
+
+
+    return new RedirectView("/forgotPassword");
+
+
+}
+
+@RequestMapping(value="/forgotPass" , method = RequestMethod.GET)
+public final RedirectView changetoForgot()
+{
+    return new RedirectView("/forgotPassword");
+
+}
+
+
+    @RequestMapping(value = "/forgotPass", method = RequestMethod.POST)
+    public final RedirectView forgot(Model model, HttpServletRequest request, RegForm regForm, @RequestParam("password") String password, @RequestParam("code") String code, BindingResult bindingResult){
+System.out.println(username1+" "+password);
+        this.ValidCode=code;
+
+
+        this.confirmedDateTime=LocalDateTime.now();
+        if(this.confirmedDateTime.isAfter(this.expiredDateTime)){
+            return new RedirectView ("/forgotPassworderror") ;
+
+        }
+
+
+        System.out.println(code +  " " + id);
+
+        if(code.equals(id)) {
+
+            User userFromDb = userRepository.findOne(this.username1);
+
+            userFromDb.setPassword(bCryptPasswordEncoder.encode(password));
+
+            userRepository.save(userFromDb);
+
+            Mail mail = new Mail();
+            mail.setFrom("noreply@noreply.com");
+            mail.setSubject("HoosierEvents Password Recovery");
+            mail.setContent("Your Password is changed!");
+            mail.setTo(this.username1);
+//        emailService.sendSimpleMessage(mail);
+
+
+            return new RedirectView ("/login");
+
+        }
+
+        else {
+            return new RedirectView ("/forgotpassword");
+        }
     }
 
 

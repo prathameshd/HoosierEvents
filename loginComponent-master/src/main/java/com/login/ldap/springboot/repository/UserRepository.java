@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+import java.util.Optional;
 
-	public User findById(String email);
+public interface UserRepository extends CrudRepository<User, String> {
+
+
 }

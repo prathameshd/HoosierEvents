@@ -11,6 +11,8 @@ public class CustomLoginPage extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/forgotPassword").setViewName("forgotPassword");
+        registry.addViewController("/forgotPassworderror").setViewName("forgotPassworderror");
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }

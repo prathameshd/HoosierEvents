@@ -1,10 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/signup.css}" />
+  	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<style>
+body{
+background-color:#F0EDED;
+}
+label{
+color:navy;
+}
+</style>
+</head>
+<body>  
+<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
+  <div class="container-fluid" style="text-align:left">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="homePage.html" id="abc">HoosierEvents</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li id="homepage"><a href="homePage.html" class="top-nav-links" style="color:white;">Home</a></li>
+    </ul>
+	<!--<ul class="nav navbar-nav" id="explore">
+      <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
+    </ul>-->
+	
+<!--    <form class="navbar-form navbar-left" action="">
+      <div class="form-group">
+        <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
+      </div>
+      <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
+    </form> -->
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="loginpage.html" style="">Sign In</a></li>
+    </ul>
+
+	</div>
+</nav>
+    
+<div class="container" style="top:5%;border:0.5px solid #F0EDED;border-radius:4px;position:relative;background-color:white">
+	<div class="row">
+		<div class="col-sm-12"><h3>Sign Up with Hoosier Events!</h3></div>
+	</div>	<br />
+	  <div class="form-bottom">
+                            <!--/*@thymesVar id="RegForm" type="com.login.ldap.springboot.controller.RegForm"*/-->
+                            <form role="form" th:action="@{/signup/me}" method="post">
+                                <div class="form-group">
+                                    <label class="" for="form-first-name">First name<span style="color:red">*</span></label>
+                                    <input  type="text" name="name"  placeholder="First name..." class="form-first-name form-control" id="form-first-name" required="required" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="" for="form-last-name">Password<span style="color:red">*</span></label>
+                                    <input  type="password"   name="password_sign" placeholder="Password..." class="form-last-name form-control" required="required" id="form-last-name" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="" for="form-email">Email<span style="color:red">*</span></label>
+                                    <input  type="text"  name="email_sign" placeholder="Email..." class="form-email form-control" required="required" id="form-email" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="" for="form-phone">Phone<span style="color:red">*</span></label>
+                                    <input  type="text"  name="phone" placeholder="Phone Number..." class="form-phone form-control" required="required"  id="form-phone" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="">Organizer or User<span style="color:red">*</span></label>
+                                    <input type="radio" name="userorg" id="user" value="user" checked="checked">User </input>
+                                    <input type="radio" name="userorg" value="organizer" id="organizer">Organizer</input>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+                                </div>
+								<div class="row">
+								<div class="col-sm-12"><h6><span style="color:red">*</span>Fields are mandatory</h6></div></div>
+                                <div class="form-actions" >
+									
+                                    <button class="btn" type="submit" id="submit_button"  >Sign me up!</button>
+                                </div>
+                            </form>
+
+                        </div>
+</div>		
+<!-- <!FOOTER DIV> -->
+
+<div class="container-fluid footer">
+<div class="row" style="background-color:#AE1616; color:black">
+<div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
+<div class="col-sm-6"></div>
+<div class="col-sm-3">
+<div class="row" style="text-align:center">
+<!-- Facebook -->	<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="fb-ic">
+		              <i class="fa fa-facebook white-text mr-4"> </i>
+		            </a>
+					</div>
+		            <!-- Twitter -->
+					<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="tw-ic">
+		              <i class="fa fa-twitter white-text mr-4"> </i>
+		            </a>
+					</div>
+		            <!-- Google +-->
+					<div class="col-sm-3">
+		            <a id="socialmedialink" href="#" class="gplus-ic">
+		              <i class="fa fa-google-plus white-text mr-4"> </i>
+		            </a>
+					</div>
+</div>
+</div>
+</div>
+<div class="row" style="background-color:#534E4E">
+	<div class="col-sm-4">
+	<div class="row"><h4>Hoosier Events</h4></div>
+		<div class="row"><h5>Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</h5></div>
+	<br />
+	</div>
+	<div class="col-sm-4 links" style="color:white"><h4>Useful Links</h4>
+		
+		<div class="row"><a href="" style="color:#48A2BD">Your Account</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">About us</a></div>
+		<div class="row"><a href="" style="color:#48A2BD">Help</a></div>
+		<br />
+	</div>
+	
+	<div class="col-sm-4"><h4>Contact Us</h4>
+				            <i class="fa fa-home mr-3"></i>&nbsp; Bloomington, IN 47408, US
+							<br />
+				            <i class="fa fa-envelope mr-3"></i>&nbsp; info@example.com
+							<br />
+							<i class="fa fa-phone mr-3"></i>&nbsp; + 01 234 567 88
+
+
+	</div>
+</div>
+</div>
+				
 </body>
-</html>
+</html>						

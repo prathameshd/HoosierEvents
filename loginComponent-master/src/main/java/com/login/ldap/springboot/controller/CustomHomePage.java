@@ -10,9 +10,9 @@ public class CustomHomePage extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/homepage").setViewName("homepage");
-        registry.addViewController("/signup").setViewName("login");
-
+        registry.addViewController("/homepage").setViewName("homepage_new");
+        registry.addViewController("/sign").setViewName("signup");
+        registry.addViewController("/eventpage").setViewName("eventpage");
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }

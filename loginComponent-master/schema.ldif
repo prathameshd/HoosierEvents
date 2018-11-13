@@ -10,3 +10,27 @@ objectclass:inetOrgPerson
 cn: xfxc@sdsd.com
 uid: xfxc@sdsd.com
 userPassword: {SHA}tfKKtdMWirkYUk65z7iNkt/qcks=
+
+
+
+dn: uid=fundoo93@gmail.com,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: fundoo93@gmail.com
+uid: fundoo93@gmail.com
+userPassword: {SHA}2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+
+
+dn: uid=arswaroop9@gmail.com,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: arswaroop9@gmail.com
+uid: arswaroop9@gmail.com
+userPassword: {SHA}jLIjfQZ5yojbZGTqxg2pY0VROWQ=
+
+

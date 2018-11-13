@@ -9,14 +9,10 @@ spring:
   ##    password: my+sql=p565f18_srajash
   ##    username: p565f18_srajash
 
-
-
-
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/hoosierevents
     password: root
     username: root
-
   jpa:
     database: mysql
     show-sql: true
@@ -40,7 +36,7 @@ spring:
           starttls:
             enable: true
     protocol: smtp
-    test-connection: true
+    test-connection: false
 
 
   ldap:
@@ -50,7 +46,8 @@ spring:
     # In this example we use an embedded ldap server. When using a real one,
     # you can configure the settings here.
     #
-    # urls: ldap://localhost:12345
+    # urls: ldap://localhost:12345  clientId: 270558996933505
+    #      clientSecret: ee6aea892482bfe1ad914bf1055d4d6a
     # base: dc=loginComponent,dc=com
     # username: uid=admin
     # password: secret
@@ -67,6 +64,11 @@ spring:
       port: 12345
       validation:
         enabled: false
+  social:
+    facebook:
+      app-secret: ee6aea892482bfe1ad914bf1055d4d6a
+      app-id: 270558996933505
 security:
+
   basic:
     enabled: false
