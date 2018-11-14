@@ -34,13 +34,13 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
+    //@Autowired
     private ConnectionFactoryLocator connectionFactoryLocator;
 
-    @Autowired
+    //@Autowired
     private UsersConnectionRepository usersConnectionRepository;
 
-    @Autowired
+    //@Autowired
     private FacebookConnectionSignup facebookConnectionSignup;
 
     @Bean
@@ -88,7 +88,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
+    //@Bean
     public ProviderSignInController providerSignInController() {
         ((InMemoryUsersConnectionRepository) usersConnectionRepository)
                 .setConnectionSignUp(facebookConnectionSignup);
