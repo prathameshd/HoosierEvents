@@ -1,0 +1,164 @@
+dn: dc=loginComponent,dc=com
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: loginComponent
+
+dn: ou=groups,dc=loginComponent,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+
+dn: uid=swaroop,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: swaroop
+uid: swaroop
+userPassword: {SHA}XnBOzlJPAtUlvr9tRRb5IBEKhg8=
+
+
+dn: cn=developers,ou=groups,dc=loginComponent,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: developers
+ou: developer
+uniqueMember: uid=swaroop,ou=people,dc=loginComponent,dc=com
+
+dn: cn=managers,ou=groups,dc=loginComponent,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: managers
+ou: manager
+uniqueMember: uid=swaroop,ou=people,dc=loginComponent,dc=com
+
+
+
+dn: uid=testing123@gmail.com , ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: testing123@gmail.com
+uid: testing123@gmail.com
+userPassword: {SHA}cojt0Pw//L6ToM8G41aOKFIWh7w=
+
+
+
+dn: uid=a@a.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: a@a.com
+uid: a@a.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@email.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@email.com
+uid: email@email.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@dsfsfsfd.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@dsfsfsfd.com
+uid: email@dsfsfsfd.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=email@sdfsd.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: email@sdfsd.com
+uid: email@sdfsd.com
+userPassword: {SHA}QL0AFWMIX8NRZTKeof9cXsvbvu8=
+
+
+
+dn: uid=b@uou.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: b@uou.com
+uid: b@uou.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=arswaroop@outlook.com,ou=people,dc=loginComponent,dc=com
+object class: top
+object class: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: arswaroop@outlook.com
+uid: arswaroop@outlook.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+dn: uid=po@po.com,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: po@po.com
+uid: po@po.com
+userPassword: {SHA}jLIjfQZ5yojbZGTqxg2pY0VROWQ=
+
+
+
+
+dn: uid=arswaroop9@gmail.com,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: arswaroop9@gmail.com
+uid: arswaroop9@gmail.com
+userPassword: {SHA}cRDtpNCeBiql5KOQsKVyrA0sAiA=
+
+
+
+
+
+dn: uid=srajash@iu.edu,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: srajash@iu.edu
+uid: srajash@iu.edu
+userPassword: {SHA}2jmj7l5rSw0yVb/vlWAYkK/YBwk=
+
+
+
+dn: uid=aaaaa,ou=people,dc=loginComponent,dc=com
+objectclass: top
+objectclass: person
+objectclass:organizationalPerson
+objectclass:inetOrgPerson
+cn: aaaaa
+uid: aaaaa
+userPassword: {SHA}31HjfCaaqU04+T5Te/biAgshQGw=

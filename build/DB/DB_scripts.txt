@@ -1,0 +1,46 @@
+/*USER TABLE*/
+
+	/*Details about user_details
+	user_id 		:is auto generated primary key
+	user_type		:takes values 1 for Normal USER; 2 for Departments/Organization 3 for student*/
+	
+CREATE TABLE user_details(
+  user_id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  user_password varchar(100) DEFAULT NULL,
+  name varchar(30) DEFAULT NULL,
+  contact int(10) DEFAULT NULL,
+  address varchar(50) DEFAULT NULL,
+  email varchar(25) DEFAULT NULL,
+  user_type int(11) DEFAULT NULL,
+  active int(11) DEFAULT NULL
+);
+
+	
+/*Remove Category table/model */
+/*changed fields of event_master*/
+
+/*EVENT TABLE*/
+create table events_master(event_name VARCHAR(25),event_id INT PRIMARY KEY AUTO_INCREMENT, created_by INT,location VARCHAR(50),start_time DATETIME,end_time DATETIME,
+						description VARCHAR(500),ispublic INT(1),category VARCHAR(25),max INT,price INT,available INT,isapproved INT(1),
+						FOREIGN KEY(created_by)REFERENCES user_details(user_id));
+						
+	/*Details about events_master
+	event_id 		:is primary key auto generated
+	created_by		:foreign key referencing user_details unique ID
+	ispromoted		:takes value 1 for Promoted; 0 for not Promoted
+	ispublic		:takes value 1 for Public; 0 for Private
+	category 		:INT that takes values from another table(categories)*/
+
+
+
+	/*ticket table not required for now*/
+/*TICKETS TABLE
+create table tickets(event_id INT,ticket_name VARCHAR(20),ticket_price INT,quantity INT,FOREIGN KEY(event_id) REFERENCES events_master(event_id));
+
+	
+	event_id		:foreign key referencing events_master
+	ticket_name		:name of ticket*/ 
+	
+/*added primary key column*/
+/*EVENT ATTENDENCE TABLE*/
+create table event_attend(ticket_id INT PRIMARY KEY AUTO_INCREMENT,event_id INT,user_id INT,FOREIGN KEY(event_id)REFERENCES events_master(event_id),FOREIGN KEY(user_id)REFERENCES user_details(user_id));

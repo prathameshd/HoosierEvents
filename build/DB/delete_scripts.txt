@@ -1,0 +1,16 @@
+use hoosierevents;
+
+
+
+
+
+
+drop table event_attend;
+
+drop table tickets;
+
+drop table events_master;
+
+drop table categories;
+
+drop table user_details;

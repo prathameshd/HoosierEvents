@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -61,9 +60,6 @@ public class Event {
 	@Column(name = "location")
 	private String location;
 
-	@Column(name = "timezone")
-	private String timeZone;
-
 	@Column(name = "start_time", columnDefinition = "DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
@@ -81,9 +77,18 @@ public class Event {
 	@Column(name = "ispromoted")
 	private Boolean isPromoted;
 
-	@OneToOne
-	@JoinColumn(name = "category")
-	private EventCategory eventCategory;
+	@Column(name = "category")
+	private String eventCategory;
+
+	@Column(name = "max")
+	private int maximumSeats;
+
+	@Column(name = "available")
+	private int avaialableSeats;
+
+	@Column(name = "isapproved", nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private Boolean isApproved;
 
 	public Event() {
 	}
@@ -98,14 +103,6 @@ public class Event {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public String getTimeZone() {
-		return timeZone;
-	}
-
-	public void setTimeZone(String timeZone) {
-		this.timeZone = timeZone;
 	}
 
 	public Date getStartDate() {
@@ -148,11 +145,11 @@ public class Event {
 		this.isPromoted = isPromoted;
 	}
 
-	public EventCategory getEventCategory() {
+	public String getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(EventCategory eventCategory) {
+	public void setEventCategory(String eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 }

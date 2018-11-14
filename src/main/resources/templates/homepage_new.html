@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/HomePageStyle.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">
+        <img id="logoimg" th:src="@{/images/Logo4.jpg}" class="img-fluid" />
+    </a>
+
+    <ul id="navbarlist" class="navbar-nav">
+        <li id="navbarlistitem" class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+        <li id="navbarlistitem" class="nav-item">
+            <a class="nav-link" href="#">Organize</a>
+        </li>
+        <li id="navbarlistitem" class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+        </li>
+    </ul>
+
+    <div id="smallmenucontainer">
+        <button id="smallmenu" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div id="menuicon"></div>
+            <div id="menuicon"></div>
+            <div id="menuicon"></div>
+        </button>
+        <div id="smallmenuitem" class="dropdown-menu">
+            <a class="dropdown-item" href="#">Home</a>
+            <a class="dropdown-item" href="#">Organize</a>
+            <a class="dropdown-item" href="#">Sign In</a>
+        </div>
+    </div>
+
+</nav>
+
+<!-- Carousel with search bar -->
+<div class="container">
+    <div id="demo" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img id="carouselimg" class="mx-auto d-block img-fluid" th:src="@{/images/football.jpg}" />
+            </div>
+            <div class="carousel-item">
+                <img id="carouselimg" class="mx-auto d-block img-fluid" th:src="@{/images/theatre.jpg}" />
+            </div>
+            <div class="carousel-item">
+                <img id="carouselimg" class="mx-auto d-block img-fluid" th:src="@{/images/concert.jpg}" />
+            </div>
+        </div>
+
+        <div id="searchbar" class="input-group">
+            <div id="searchbarcol" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <input id="searchbartextbox" type="text" class="form-control" aria-label="Text input with dropdown button" />
+            </div>
+            <div class="input-group-append">
+                <button id="searchbardropdown" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div role="separator" class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+<div id="eventtilescontainer" class="container-fluid">
+    <div  class="row">
+        <div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div id="eventtilescard" class="card" style="width: 18rem;">
+                <img class="card-img-top" th:src="@{/images/theatre.jpg}" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">(R)evolution Of Steve Jobs</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a id="eventtilebtn" href="#" class="btn btn-primary">Know more</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div id="eventtilescard" class="card" style="width: 18rem;">
+                <img class="card-img-top" th:src="@{/images/football.jpg}" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">IU Hoosiers vs Michigan State Spartans</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a id="eventtilebtn" th:href="@{/eventpage}" class="btn btn-primary">Know more</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <div id="eventtilescard" class="card" style="width: 18rem;">
+                <img class="card-img-top" th:src="@{/images/concert.jpg}" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">Ed Sheeran Live!</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a id="eventtilebtn" href="#" class="btn btn-primary">Know more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small unique-color-dark">
+
+    <div id="footertopbar">
+        <div class="container">
+
+            <!-- Grid row-->
+            <div class="row py-4 d-flex align-items-center">
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                    <h6 class="mb-0">Get connected with us on social networks!</h6>
+                </div>
+                <!-- Grid column -->
+
+                <!-- Grid column -->
+                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                    <!-- Facebook -->
+                    <a id="socialmedialink" href="#" class="fb-ic">
+                        <i class="fa fa-facebook white-text mr-4"> </i>
+                    </a>
+                    <!-- Twitter -->
+                    <a id="socialmedialink" href="#" class="tw-ic">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                    <!-- Google +-->
+                    <a id="socialmedialink" href="#" class="gplus-ic">
+                        <i class="fa fa-google-plus white-text mr-4"> </i>
+                    </a>
+                    <!--Linkedin -->
+                    <a id="socialmedialink" href="#" class="li-ic">
+                        <i class="fa fa-linkedin white-text mr-4"> </i>
+                    </a>
+                    <!--Instagram-->
+                    <a id="socialmedialink" href="#" class="ins-ic">
+                        <i class="fa fa-instagram white-text"> </i>
+                    </a>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row-->
+
+        </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div id="footer" class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">Hoosier Events</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" />
+                <p> Lorem ipsum dolor sit amet, consectetur
+                    adipisicing elit.</p>
+
+            </div>
+
+            <!-- Grid column -->
+            <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" />
+                <p>
+                    <a href="#!">Your Account</a>
+                </p>
+                <p>
+                    <a href="#!">Organize an event</a>
+                </p>
+                <p>
+                    <a href="#!">About us</a>
+                </p>
+                <p>
+                    <a href="#!">Help</a>
+                </p>
+
+            </div>
+
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" />
+                <p>
+                    <i class="fa fa-home mr-3"></i> Bloomington, IN 47408, US</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> info@example.com</p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 01 234 567 89</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+        <a href="https://mdbootstrap.com/bootstrap-tutorial/"> HoosierEvents</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+</body>
+</html>
