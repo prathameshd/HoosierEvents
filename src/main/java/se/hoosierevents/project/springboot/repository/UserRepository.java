@@ -6,5 +6,6 @@ import se.hoosierevents.project.model.User;
 
 public interface UserRepository extends CrudRepository<User, String> {
 
-	//public User findById(Long id);
+	public User findById(Long id);
+	public User findByEmail(String email);
 }

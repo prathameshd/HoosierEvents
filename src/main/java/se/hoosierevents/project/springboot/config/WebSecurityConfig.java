@@ -2,10 +2,11 @@ package se.hoosierevents.project.springboot.config;
 
 
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,12 +17,10 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import se.hoosierevents.project.springboot.controller.FacebookConnectionSignup;
 import se.hoosierevents.project.springboot.controller.FacebookSignInAdapter;
 import se.hoosierevents.project.springboot.controller.SuccessfulLoginHandler;
-
-import javax.sql.DataSource;
-import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity

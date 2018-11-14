@@ -1,34 +1,29 @@
 package se.hoosierevents.project.springboot.controller;
 
 
-import org.hibernate.validator.constraints.Email;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-import se.hoosierevents.project.model.User;
-import se.hoosierevents.project.springboot.repository.UserRepository;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.constraints.Null;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
+
+import se.hoosierevents.project.model.User;
+import se.hoosierevents.project.springboot.repository.UserRepository;
+
 @RestController
-public class forgotPassword {
+public class ForgotPassword {
 
     @Autowired
     EmailService emailService;
@@ -61,7 +56,7 @@ public final Map<String,String> verifyEmail(@PathVariable String emailvalid)
 
     User userfound;
 
-if(userRepository.findOne(emailvalid)==null)
+if(userRepository.findByEmail(emailvalid)==null)
 {
     messageObject.put("user","");
     return messageObject;
@@ -69,7 +64,7 @@ if(userRepository.findOne(emailvalid)==null)
 }
 
 else {
-    userfound = userRepository.findOne(emailvalid);
+    userfound = userRepository.findByEmail(emailvalid);
 
     String user;
     messageObject.put("user", userfound.getEmail());
@@ -140,7 +135,7 @@ System.out.println(username1+" "+password);
 
         if(code.equals(id)) {
 
-            User userFromDb = userRepository.findOne(this.username1);
+            User userFromDb = userRepository.findByEmail(this.username1);
 
             userFromDb.setPassword(bCryptPasswordEncoder.encode(password));
 
