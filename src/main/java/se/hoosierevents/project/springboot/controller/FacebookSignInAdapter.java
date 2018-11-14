@@ -1,4 +1,4 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

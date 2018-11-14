@@ -1,7 +1,6 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
-import com.login.ldap.model.User;
-import com.login.ldap.springboot.repository.UserRepository;
+
 import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import se.hoosierevents.project.springboot.springboot.controller.EmailService;
+import se.hoosierevents.project.model.User;
+import se.hoosierevents.project.springboot.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Null;

@@ -1,7 +1,7 @@
 package se.hoosierevents.project.springboot.springboot.config;
 
-import se.hoosierevents.project.springboot.springboot.controller.FacebookConnectionSignup;
-import se.hoosierevents.project.springboot.springboot.controller.FacebookSignInAdapter;
+import se.hoosierevents.project.springboot.controller.FacebookConnectionSignup;
+import se.hoosierevents.project.springboot.controller.FacebookSignInAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import se.hoosierevents.project.springboot.springboot.controller.SuccessfulLoginHandler;
+import se.hoosierevents.project.springboot.controller.SuccessfulLoginHandler;
 
 import java.util.Collections;
 

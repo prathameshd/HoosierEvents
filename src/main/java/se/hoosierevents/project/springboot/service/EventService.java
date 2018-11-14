@@ -34,8 +34,8 @@ public class EventService implements Service {
 	}
 
 	public void saveEvent(Event event) {
-		event.setCreatedBy(userRepository.findById(99L).get());
-		event.setEventCategory(eventCategoryRepository.findById(1L).get());
+//		event.setCreatedBy(userRepository.findById(99L).get());
+//		event.setEventCategory(eventCategoryRepository.findById(1L).get());
 		eventRepository.save(event);
 	}
 

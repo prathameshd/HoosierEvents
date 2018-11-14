@@ -1,4 +1,4 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

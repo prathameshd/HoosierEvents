@@ -1,12 +1,12 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
-import com.login.ldap.springboot.repository.UserRepository;
 
-import com.login.ldap.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import se.hoosierevents.project.model.User;
+import se.hoosierevents.project.springboot.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SignUp {
 
 @Autowired
-    UserRepository userRepository;
+UserRepository userRepository;
 
 
     @Autowired

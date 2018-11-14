@@ -1,4 +1,4 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
 import org.springframework.core.Ordered;
 import org.springframework.web.bind.annotation.RestController;

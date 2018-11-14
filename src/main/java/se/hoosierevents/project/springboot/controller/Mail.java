@@ -1,4 +1,4 @@
-package com.login.ldap.springboot.controller;
+package se.hoosierevents.project.springboot.controller;
 
 public class Mail {
 
