@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.*;
 
 
 @SpringBootApplication
-@ComponentScan("se.hoosierevents.project.springboot")
+//@ComponentScan("se.hoosierevents.project.springboot")
 @EntityScan("se.hoosierevents.project.model")
 @Configuration
 @EnableOAuth2Sso

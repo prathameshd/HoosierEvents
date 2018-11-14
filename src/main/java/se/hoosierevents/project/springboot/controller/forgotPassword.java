@@ -5,8 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ldap.core.AttributesMapper;
-import org.springframework.ldap.core.LdapTemplate;
+
 import org.springframework.security.authentication.encoding.LdapShaPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
@@ -51,8 +50,6 @@ public class forgotPassword {
     private LocalDateTime confirmedDateTime;
     private String status;
 
-@Autowired
-LdapTemplate ldapTemplate;
 
 @RequestMapping(value = "/validEmail", method= RequestMethod.GET, produces = "application/json")
 public final Map<String,String> verifyEmail(@PathVariable String emailvalid)
