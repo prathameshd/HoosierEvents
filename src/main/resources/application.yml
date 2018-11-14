@@ -10,7 +10,7 @@ spring:
   ##    username: p565f18_srajash
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/sarajash
+    url: jdbc:mysql://127.0.0.1:3306/hoosierevents?useSSL=false
     password: root
     username: root
   jpa:
