@@ -1,269 +1,281 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
-
+	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>HoosierEvents</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500" />
-    <link rel="stylesheet" th:href = "@{/css/bootstraphom.min.css}" />
-    <link rel="stylesheet" th:href = "@{/css/font-awesome.min.css}" />
-    <link rel="stylesheet" th:href = "@{/css/form-elements.css}" />
-    <link rel="stylesheet" th:href = "@{/css/style.css}" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 
-    <!--&lt;!&ndash; Favicon and touch icons &ndash;&gt;-->
-    <!--<link rel="shortcut icon" href="assets/ico/favicon.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">-->
-
+  <link rel="stylesheet" th:href="@{/css/loginpage.css}" />
+  	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<style>
+body{background-color:#F0EDED;}
+    .footer {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: -1;
+    }
+</style>
 </head>
 
 <body>
 
-<!--___________-->
+
+<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%">
+  <div class="container-fluid" style="text-align:left">
+    <div class="navbar-header">
+      <a class="navbar-brand" id="abc">HoosierEvents</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li id="homepage"><a class="top-nav-links" style="color:white;">Home</a></li>
+    </ul>
+	<!--<ul class="nav navbar-nav" id="explore">
+      <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
+    </ul>-->
+	
+<!--    <form class="navbar-form navbar-left" action="">
+      <div class="form-group">
+        <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
+      </div>
+      <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
+    </form> -->
 
 
+	</div>
+</nav>
 
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '270558996933505',
-            cookie     : true,
-            xfbml      : true,
-            version    : 'v3.2'
-        });
-
-        FB.AppEvents.logPageView();
-
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<!--________-->
-
-
-
-
-<div id="bg">
-    <img th:src="@{images/1.jpg}" alt="" />
+<div class="container" style="background-color:white;top:10%;position:relative;width:50%;border:0.5px solid #F0EDED;border-radius:4px;">
+<div class="row">
+<div class="col-sm-12"><h3>Login</h3></div>
 </div>
-
-<!-- Top content -->
-<div class="top-content">
-
-    <div class="inner-bg">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><img th:src="@{images/Logo4.jpg}" /></h1>
-                    <div class="description">
-                        <p>
-                            Login or Register
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-5">
-
-                    <div class="form-box">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h3>Login to our site</h3>
-                                <p>Enter username and password to log on:</p>
-                            </div>
-                            <div class="form-top-right">
-                                <i class="fa fa-lock"></i>
-                            </div>
-                        </div>
-                        <div class="form-bottom">
-                            <div class="form">
-
                                 <form  name="f" th:action="@{/login}" method="post" class="login-form">
 
-                                    <div th:if="${param.error}" class="alert alert-error">
-                                        Invalid username or password.
-                                    </div>
-                                    <div th:if="${param.logout}" class="alert alert-success">
-                                        You have been logged out.
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="username">Username</label>
-                                        <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="username" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="password">Password</label>
-                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password" />
-                                    </div>
-                                    <div class="form-actions">
-                                        <button type="submit" class="btn">Sign In</button>
-                                    </div>
 
+<div class="row form-group">
+    <div th:if="${param.error}" class="alert alert-error">
+        Invalid username or password.
+    </div>
+	<div class="col-sm-4"><h5><label class="" for="email">Username</label></h5></div>
+	<div class="col-sm-8">
+        <input type="email" name="email" placeholder="" class="form-username form-control" id="email" required="required" />
+	</div>
+</div>
+<div class="row form-group">
+	<div class="col-sm-4">
+		<h5><label class="" for="password">Password</label></h5>
+	</div>
+	<div class="col-sm-8">
+        <input type="password" name="user_password" placeholder="" class="form-password form-control" id="password" required="required" />
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+
+
+        <button type="button" class="btn-link" id="forgot_button">Forgot Password?</button>
+
+        <a href="/sign" >Sign Up!!</a>
+
+      
+	</div>							
+</div>
+<div class="row form-action">
+	<div class="col-sm-12">
+                     <button type="submit" id="login_button" class="btn-block btn-success"><h5>Sign In</h5></button>
+	</div>
+</div>
                                 </form>
 
-
-                                <!--<form name="f" th:action="@{/forgotPassword}" method="post" class="forgot-form">-->
-
-                                    <!--<input type="text" placeholder="Username" name="usernameforgot" id="usernameforgot"/>-->
-
-                                    <!--<input type="text" placeholder="New Password" name="passwordforgot" id="passwordforgot"/>-->
-
-                                    <!--<button type="submit" class="btn">Send Email containing password</button>-->
-
-                                <!--</form>-->
-
-                              <form method="get" th:action="@{/forgotPass}">
-                                  <div class="form-actions">
-                                      <button type="submit" class="btn">Forgot Password?</button>
-                                  </div>
-                              </form>
-
-                            </div></div>
-                    </div>
-
-                    <div class="social-login">
-                        <h3>...or login with:</h3>
-                        <div class="social-login-buttons">
-
-                            <form  th:action="@{/signin/facebook}" method="post">
-                                <input type="hidden" name="scope" value="public_profile" />
-                                <input type="submit" placeholder="Facebook Login">  <i class="fa fa-facebook"></i> Facebook</input>
-
-
-                            </form>
-
-
+                   <div class="row social-login">
+                        <div class="col-sm-4">
+						<h5>Login with:</h5></div>
+                        <div class="col-sm-8 social-login-buttons">
+                            <a class="btn btn-link-1-facebook" href="/signin/facebook">
+                             <i class="fa fa-facebook"></i> Facebook</input>
+                            </a>
                             <a class="btn btn-link-2" href="#">
                                 <i class="fa fa-google-plus"></i> Google
                             </a>
                         </div>
                     </div>
-
-                </div>
-
-                <div class="col-sm-1 middle-border"></div>
-                <div class="col-sm-1"></div>
-
-                <div class="col-sm-5">
-
-                    <div class="form-box">
-                        <div class="form-top">
-                            <div class="form-top-left">
-                                <h3>Sign up now</h3>
-                                <p>Fill in the form below to get instant access:</p>
-                            </div>
-                            <div class="form-top-right">
-                                <i class="fa fa-pencil"></i>
-                            </div>
-                        </div>
-                        <div class="form-bottom">
-                            <!--/*@thymesVar id="RegForm" type="se.hoosierevents.project.springboot.springboot.controller.RegForm"*/-->
-                            <form role="form" th:action="@{/signup/me}" method="post">
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">First name</label>
-                                    <input  type="text" name="name"  placeholder="First name..." class="form-first-name form-control" id="form-first-name" />
-
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Password</label>
-                                    <input  type="password"   name="password" placeholder="Password..." class="form-last-name form-control" id="form-last-name" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-email">Email</label>
-                                    <input  type="text"  name="email" placeholder="Email..." class="form-email form-control" id="form-email" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-phone">Phone</label>
-                                    <input  type="text"  name="phone" placeholder="Phone Number..." class="form-phone form-control" id="form-phone" />
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="sr-only"  for="form-about-yourself">Address</label>
-                                    <textarea  name="address" placeholder="Address"
-                                              class="form-about-yourself form-control" id="form-about-yourself"></textarea>
-                                </div>
-
-
-
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-                                <div class="form-actions" >
-                                    <button class="btn" type="submit"  >Sign me up!</button>
-                                    </div>
-                            </form>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+<div class="row"> </div>
 </div>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
+<!-- The Modal -->
+<div id="myModal" class="modal container">
 
-            <div class="col-sm-8 col-sm-offset-2">
-                <div class="footer-border"></div>
-                <p>Everything best in Bloomington</p>
+  <!-- Modal content -->
+  <div class="modal-content" style="width:60%;">
+    <span class="close">&times;</span>
+	<div class="row">
+	<div class="col-sm-8">	<h4>Recover Password</h4></div>
+	</div><br />
+ <div class="row">
+
+		  <div class="col-sm-8 form-group"  >
+              <input type="email" class="form-control" id="reset_email" name="resetemail" placeholder="Enter email ID"  required="required" />
+
+		  </div>
+		<div class="col-sm-4">
+		<button class="btn-default" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="email_validate()"><h5>Send Recovery Code to Email</h5></button>
+		</div>
+ </div>
+ <div id="invalid_email" style="color:red;display:none;"><h6>Enter valid email ID</h6></div>
+ <div id="pass_div" style="display:none;"><br />
+  <form th:action="@{/forgotPass}" id="register-form" role="form" autocomplete="off" class="form" method="post">
+
+ <div class="row">
+		 <div class="col-sm-4">Enter Code received:</div>
+		  <div class="col-sm-8">
+		  <input type="text" class="form-control" />
+		  </div>
+
+ </div>
+ <div class="row">
+		 <div class="col-sm-4">Enter new password</div>
+		   <div class="col-sm-8"><input type="password" class="form-control" /></div>
+
+ </div><br />
+ <div class="row">
+		 <div class="col-sm-12">
+		<!--<button class="btn-primary" style="background-color:darkslategrey;border:1px solid darkslategrey;border-radius:4px;" onclick="pass_reset()"><h5>Reset Password</h5></button>-->
+            <input name="recover-submit" class="btn btn-primary btn-block" value="Reset Password" type="submit" onclick="pass_reset()" />
+		</div>
+
+ </div>
+ </form>
+ </div>
+<!--  <div class="row">
+		 <div class="col-sm-3"></div>
+		  <div class="col-sm-3"></div>
+ </div> -->
+ </div>
+
+</div>
+<!-- <!FOOTER DIV> -->
+
+<div class="container-fluid footer">
+    <div class="row" style="background-color:#AE1616; color:black">
+        <div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-3">
+            <div class="row" style="text-align:center">
+                <!-- Facebook -->	<div class="col-sm-3">
+                <a id="socialmedialink" href="#" class="fb-ic">
+                    <i class="fa fa-facebook white-text mr-4"> </i>
+                </a>
             </div>
+                <!-- Twitter -->
+                <div class="col-sm-3">
+                    <a id="socialmedialink" href="#" class="tw-ic">
+                        <i class="fa fa-twitter white-text mr-4"> </i>
+                    </a>
+                </div>
+                <!-- Google +-->
+                <div class="col-sm-3">
+                    <a id="socialmedialink" href="#" class="gplus-ic">
+                        <i class="fa fa-google-plus white-text mr-4"> </i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color:#534E4E">
+        <div class="col-sm-4">
+            <div class="row"><h4>Hoosier Events</h4></div>
+            <div class="row"><h5>Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</h5></div>
+            <br />
+        </div>
+        <div class="col-sm-4 links" style="color:white"><h4>Useful Links</h4>
+
+            <div class="row"><a href="" style="color:#48A2BD">Your Account</a></div>
+            <div class="row"><a href="" style="color:#48A2BD">About us</a></div>
+            <div class="row"><a href="" style="color:#48A2BD">Help</a></div>
+            <br />
+        </div>
+
+        <div class="col-sm-4"><h4>Contact Us</h4>
+            <i class="fa fa-home mr-3"></i>&nbsp; Bloomington, IN 47408, US
+            <br />
+            <i class="fa fa-envelope mr-3"></i>&nbsp; info@example.com
+            <br />
+            <i class="fa fa-phone mr-3"></i>&nbsp; + 01 234 567 88
+
 
         </div>
     </div>
-</footer>
+</div>
+<script>
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("forgot_button");
+
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+	document.getElementById("reset_email").value="";
+}
 
 
-<!-- Javascript -->
-<script th:src="@{/js/jquery-1.11.1.min.js}" ></script>
-<script th:src="@{/js/bootstraphom.min.js}" ></script>
-<script th:src = "@{/js/jquery.backstretch.min.js}" ></script>
-<script th:src="@{/js/scripts.js}" ></script>
-<script th:src="@{/js/scripts_login.js}" ></script>
+span.onclick = function() {
+    modal.style.display = "none";
+	pass_div.style.display="none";
+}
 
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+			pass_div.style.display="none";
+    }
+}
 
+function email_validate(){
 
-<!--<script th:inline="javascript">-->
-        <!---->
-        <!---->
-    <!--}-->
+    console.log("hello");
 
-<!--</script>-->
+$.getJSON("/validEmail",{emailvalid:document.getElementById("reset_email")},function(data){
+    var k = data[user];
+    document.getElementById("invalid_email").style.display = "block";
 
+    if(k=="") {
+        document.getElementById("invalid_email").style.display = "block";
+    }
+});
+
+if(document.getElementById("reset_email").value=="" )
+{
+document.getElementById("invalid_email").style.display="block";
+
+}
+else{
+document.getElementById("invalid_email").style.display="none";
+pass_div.style.display="block";
+}
+}
+function pass_reset(){
+alert('password has been reset!');
+location.reload();
+}
+</script>
 
 </body>
-
-
-
-
-
 </html>
+<!--
+  <div class="form-group">
+                                        <label class="sr-only" for="email">Username</label>
+                                        <input type="email" name="email" placeholder="Email..." class="form-username form-control" id="email" />
+                                    </div>-->

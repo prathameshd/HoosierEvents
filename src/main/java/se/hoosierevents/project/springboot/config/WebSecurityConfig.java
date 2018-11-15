@@ -83,6 +83,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().successHandler(successHandler)
                 .loginPage("/login").permitAll()
+
                 .usernameParameter("email")
                 .passwordParameter("user_password");
 
