@@ -8,6 +8,5 @@ public interface UserRepository extends CrudRepository<User, String> {
 
 	public User findById(Long id);
 	public User findByEmail(String email);
-	public String findRole(String email);
 }
 
