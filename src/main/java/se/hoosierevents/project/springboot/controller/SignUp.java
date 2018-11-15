@@ -48,10 +48,11 @@ public final RedirectView signMeUp(HttpServletRequest request, RegForm regForm, 
     else
         user.setUser_type("2");
     user.setPassword(bCryptPasswordEncoder.encode(password));
+
     userRepository.save(user);
 
     System.out.println(name);
-    System.out.println(bCryptPasswordEncoder.encode(password));
+    System.out.println(user.getPassword());
 //        UserService users = new UserService();
 //       users.create(email, password);
 

@@ -14,7 +14,6 @@ public class User {
 	private Long id;
 
 	@Column(name="user_password")
-	@Transient
 	private String password;
 
 	@Column(name="active")
