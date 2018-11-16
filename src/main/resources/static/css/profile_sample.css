@@ -1,8 +1,7 @@
-.footer{
-	height:20%;	
-	top:35% !important;	
+.footer{	
+	bottom:0%;
 	text-align:center;
-	position:relative;
+	position:absolute;
 	background-color:#534E4E;
 	color:white
 }

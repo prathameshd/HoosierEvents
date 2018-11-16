@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -10,10 +11,10 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="org_profile.css">
+  <link rel="stylesheet" th:href="@{css/org_profile.css}">
   	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	   <! <link rel="stylesheet" type="text/css" href="HomePage Style.css">
+	   <! <link rel="stylesheet" type="text/css" th:href="@{css/HomePageStyle.css}">
 
   <style>
   body, html, .container-fluid {
@@ -140,7 +141,7 @@
 </div>-->
       
     </div>
-	<div id="approved" class="tab-pane fade">
+	<div id="approved" class="container tab-pane fade">
       <h3>Approved Events</h3>
 	  <div id="app"></div>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -204,6 +205,33 @@
 <!--</div>-->
 </div>
 <br><br><br>
+
+
+
+<div id="myModal" class="modal" style="display:none;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4>Edit Event</h4>
+<input type="text" id="modal_name">
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- <!FOOTER DIV> -->
 <!--
 <div class="container-fluid footer">
@@ -338,12 +366,17 @@ document.getElementById("total_users").innerHTML+=count;
 			div.innerHTML= "EventName<br>";
 			div.innerHTML+= "Date<br>";
 			div.innerHTML+= "Location";
-			
+			div.setAttribute("name","Event1");
+				div.setAttribute("date",'date1');
+									div.setAttribute("location",'location1');
+												
+												
 			var b=document.createElement("button");
 			b.id="button"+i;
 			b.innerHTML="Edit";
-			b.style="left:95%;position:relative;";
-			b.addEventListener("click",editbutton(b.id));
+			b.style="";
+			b.class="btn-default";
+			b.addEventListener("click",editbutton);
 			//alert(b.id);
 			document.getElementById("approved").appendChild(div);
 			document.getElementById(temp).innerHTML+="<br><br>";
@@ -359,7 +392,30 @@ document.getElementById("total_users").innerHTML+=count;
 	{
 	// call edit page via controller and pass event id via edit button
 	// on editpage get id and autofill page via retrieving data from controller
-	alert(id);
+		alert(this.id);
+	var x=this.parentElement.getAttribute("name");
+	alert(x);
+		var modal = document.getElementById('myModal');
+	   modal.style.display = "block";
+	   document.getElementById("modal_name").value=x;
+	   // Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "block";
+    }
+}
+
 	/*
 	$.ajax({
 	type:'POST',
@@ -381,6 +437,13 @@ document.getElementById("total_users").innerHTML+=count;
 	  
 	}); */
 	}
+	
+
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+
 </script>
 </body>
 </html>

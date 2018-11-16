@@ -1,9 +1,18 @@
-<!DOCTYPE html>
-<html>
-<div id="paypal-button-container"></div>
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<script>
-	// Render the PayPal button
+var event_name;
+
+//window.onload = function () {
+//    var url = document.location.href,
+//        params = url.split('?')[1].split('&'),
+//        data = {}, tmp;
+//    for (var i = 0, l = params.length; i < l; i++) {
+//         tmp = params[i].split('=');
+//         data[tmp[0]] = tmp[1];
+//    }
+//    event_name = decodeURIComponent(data.name);
+//    document.getElementById('here').innerHTML = event_name;
+//}
+
+// Render the PayPal button
 paypal.Button.render({
 						// Set your environment
 						env : 'sandbox', // sandbox | production
@@ -40,7 +49,7 @@ paypal.Button.render({
 								payment : {
 									transactions : [ {
 										amount : {
-											total : '10.00',
+											total : '1.00',
 											currency : 'USD'
 										}
 									} ]
@@ -50,9 +59,31 @@ paypal.Button.render({
 
 						onAuthorize : function(data, actions) {
 							return actions.payment.execute().then(function() {
-								window.alert('Payment Complete!');
+								alert("Payment Complete!") 
+								SaveEventTicket();		
 							});
 						}
 					}, '#paypal-button-container');
-</script>
-</html>
+
+function SaveEventTicket(){
+	
+	var url = document.location.href,
+    params = url.split('?')[1].split('&'),
+    data = {}, tmp;
+	for (var i = 0, l = params.length; i < l; i++) {
+	     tmp = params[i].split('=');
+	     data[tmp[0]] = tmp[1];
+	}
+	event_name = decodeURIComponent(data.name);
+	
+	$.ajax({
+		type:'POST',
+		data: {eventTitle:event_name},
+		url:"/saveEventTicket",
+		  success: function(data) {
+				console.log('success',data);
+				window.location.href = 'HomePage.html';
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+		   
+}

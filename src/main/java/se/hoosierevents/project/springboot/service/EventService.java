@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import se.hoosierevents.project.model.Event;
+import se.hoosierevents.project.model.EventCategory;
 import se.hoosierevents.project.springboot.repository.EventCategoryRepository;
 import se.hoosierevents.project.springboot.repository.EventRepository;
 import se.hoosierevents.project.springboot.repository.UserRepository;
@@ -23,7 +24,7 @@ public class EventService implements Service {
 	@Autowired
 	EventCategoryRepository eventCategoryRepository;
 
-	@Override
+	//@Override
 	public String Serve() {
 		// TODO Auto-generated method stub
 		return null;
@@ -39,18 +40,26 @@ public class EventService implements Service {
 		eventRepository.save(event);
 	}
 
-	public String getAllEvents() {
-		StringBuilder result = new StringBuilder();
-		List<Event> allEvents = new ArrayList<Event>();
-
-		allEvents = eventRepository.findAll();
-		Iterator<Event> i = allEvents.iterator();
-
-		while (i.hasNext()) {
-			Event event = (Event) i.next();
-			result.append(event.getId() + ": " + event.getEventTitle() + ", ");
-		}
-
-		return new String(result);
+	public List<Event> getAllEvents() {
+		return new ArrayList<Event> (eventRepository.findAll());
 	}
+
+	public List<Event> getEventsbyCategory(Long id) {
+		EventCategory eventcategory = eventCategoryRepository.findById(id).get();
+		return new ArrayList<Event> (eventRepository.findAllByEventCategory(eventcategory));
+	}
+
+	public List<Event> getEventsbyLocation(String location) {
+		return new ArrayList<Event> (eventRepository.findAllByLocation(location));
+	}
+
+	public Event getEventbyName(String event) {
+		return eventRepository.findAllByEventTitle(event).get();
+	}
+
+	public List<EventCategory> getAllCategories() {
+		return new ArrayList<EventCategory> (eventCategoryRepository.findAll());
+	}
+
+
 }

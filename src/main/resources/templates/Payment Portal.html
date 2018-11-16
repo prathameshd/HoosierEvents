@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html>
-	<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
+<meta http-equiv="pragma" content="no-cache" />
+<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	    <link rel="stylesheet" type="text/css" href="HomePage Style.css">
+	    <link rel="stylesheet" type="text/css" th:href="@{css/PaymentPortalStyle.css}">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	</head>
-	
-	<body>
-		
+	    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+		<script th:src="@{script/PaymentPortal.js}"></script>
+</head>
+<body>
+<div id="container">
+<div id="header">
 		<!-- Navigation bar -->
 		<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
   			<!-- Brand/logo -->
@@ -46,95 +50,12 @@
 			 </div>
 			 
  		</nav>
- 		
- 		<!-- Carousel with search bar -->
- 		<div class="container">
-	 		<div id="demo" class="carousel slide" data-ride="carousel" data-interval="2000" data-pause="hover">
-	
-				  <!-- Indicators -->
-				  <ul class="carousel-indicators">
-				    <li data-target="#demo" data-slide-to="0" class="active"></li>
-				    <li data-target="#demo" data-slide-to="1"></li>
-				    <li data-target="#demo" data-slide-to="2"></li>
-				  </ul>
-				
-				  <!-- The slideshow -->
-				  <div class="carousel-inner">
-				    <div class="carousel-item active">
-				      <img id="carouselimg" class="mx-auto d-block img-fluid" src="football.jpg">
-				    </div>
-				    <div class="carousel-item">
-				      <img id="carouselimg" class="mx-auto d-block img-fluid" src="theatre 2.jpg">
-				    </div>
-				    <div class="carousel-item">
-				      <img id="carouselimg" class="mx-auto d-block img-fluid" src="concert.jpg">
-				    </div>
-				  </div>
-				
-				<div id="searchbar" class="input-group">
-					<div id="searchbarcol" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-					  <input id="searchbartextbox" type="text" class="form-control" aria-label="Text input with dropdown button">
-					</div>
-				  <div class="input-group-append">
-				    <button id="searchbardropdown" class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-				    <div class="dropdown-menu">
-				      <a class="dropdown-item" href="#">Action</a>
-				      <a class="dropdown-item" href="#">Another action</a>
-				      <a class="dropdown-item" href="#">Something else here</a>
-				      <div role="separator" class="dropdown-divider"></div>
-				      <a class="dropdown-item" href="#">Separated link</a>
-				    </div>
-				  	</div>
-				  
-				</div>
-				
-				  <!-- Left and right controls -->
-				  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-				    <span class="carousel-control-prev-icon"></span>
-				  </a>
-				  <a class="carousel-control-next" href="#demo" data-slide="next">
-				    <span class="carousel-control-next-icon"></span>
-				  </a>
-			</div>
  		</div>
- 		
- 		<div id="eventtilescontainer" class="container-fluid">
-	 		<div  class="row">
-	 			<div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			 		<div id="eventtilescard" class="card" style="width: 18rem;">
-					  <img class="card-img-top" src="theatre 2.jpg" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title">(R)evolution Of Steve Jobs</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a id="eventtilebtn" href="#" class="btn btn-primary">Know more</a>
-					  </div>
-					</div>
-				</div>
-				
-				<div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			 		<div id="eventtilescard" class="card" style="width: 18rem;">
-					  <img class="card-img-top" src="football.jpg" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title">IU Hoosiers vs Michigan State Spartans</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a id="eventtilebtn" href="eventpage.html" class="btn btn-primary">Know more</a>
-					  </div>
-					</div>
-				</div>
-				
-				<div id="eventtilescol" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-			 		<div id="eventtilescard" class="card" style="width: 18rem;">
-					  <img class="card-img-top" src="concert.jpg" alt="Card image cap">
-					  <div class="card-body">
-					    <h5 class="card-title">Ed Sheeran Live!</h5>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a id="eventtilebtn" href="#" class="btn btn-primary">Know more</a>
-					  </div>
-					</div>
-				</div>
-			</div>
-		</div>
-			
+ 		<div id="body-container">
+ 		<!-- <div id="here"></div> -->
+ 		<div><h2>Choose your preferred method of payment:</h2></div>
+		<div id="paypal-button-container"></div></div></div>
+
 		<!-- Footer -->
 		<footer class="page-footer font-small unique-color-dark">
 		
@@ -199,31 +120,6 @@
 		            adipisicing elit.</p>
 		
 		        </div>
-		        <!-- Grid column -->
-		
-		        <!-- Grid column -->
-		       <!--  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-		
-		          <!-- Links -->
-		         <!--   <h6 class="text-uppercase font-weight-bold">Products</h6>
-		          <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		          <p>
-		            <a href="#!">MDBootstrap</a>
-		          </p>
-		          <p>
-		            <a href="#!">MDWordPress</a>
-		          </p>
-		          <p>
-		            <a href="#!">BrandFlow</a>
-		          </p>
-		          <p>
-		            <a href="#!">Bootstrap Angular</a>
-		          </p>
-		
-		        </div> -->
-		        <!-- Grid column -->
-		
-		        <!-- Grid column -->
 		        <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 		
 		          <!-- Links -->
@@ -277,5 +173,6 @@
 		
 		  </footer>
 		  <!-- Footer -->
-	</body>
+
+</body>
 </html>

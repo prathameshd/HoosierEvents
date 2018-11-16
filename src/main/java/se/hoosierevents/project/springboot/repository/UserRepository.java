@@ -4,9 +4,11 @@ import org.springframework.data.repository.CrudRepository;
 
 import se.hoosierevents.project.model.User;
 
-public interface UserRepository extends CrudRepository<User, String> {
+import java.util.Optional;
 
-	public User findById(Long id);
+public interface UserRepository extends CrudRepository<User, Long> {
+
 	public User findByEmail(String email);
+    public Optional<User> findById(Long id);
 }
 

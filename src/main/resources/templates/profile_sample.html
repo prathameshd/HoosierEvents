@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
+	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!  <link rel="stylesheet" href="bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="profile_sample.css">
-  	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	   <! <link rel="stylesheet" type="text/css" href="HomePage Style.css">
-
-  <style>
-  body, html, .container-fluid {
-     
-	 width:100%
-}
-</style>
+	 <title>Bootstrap Example</title>
+	 <meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <!-- <!  <link rel="stylesheet" href="bootstrap.min.css">  -->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" th:href="@{css/profile_sample.css}">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	  <!-- <! <link rel="stylesheet" type="text/css" href="HomePage Style.css"> -->
+	<script th:src="@{script/profile_sample.js}"></script>
+	  <style>
+	  body, html, .container-fluid {
+	     
+		 width:100%
+		}
+	  </style>
 </head>
+
 <body>
 <!-- NAVIGATION BAR -->
 <nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
@@ -50,7 +50,7 @@
 	</div>
 </nav>
 <!--<div style="background-color:red;left:-30%;height:100%;width:40%;position:relative;">-->
-<div class="container-fluid" style="height:100% !important;">
+<div class="container-fluid">
 <div class="row">
 	<div class="col-sm-4" style="border-right:1px solid lightgrey">
 	<!--<div class="container" style="height:100%;position:relative;top:10%;">-->
@@ -93,31 +93,17 @@
 	  <div class="col-sm-4">Filter</div>
 	  <div class="col-sm-8"><select class="form-control" style="width:50%" name= "timeZOne" id="event_category" onchange="change()">
       <option>All</option>
-      <option>cat0</option>
-      <option>cat1</option>
+      <option>Sports</option>
+      <option>Music</option>
       <option>cat2</option>
     </select>
 	</div>
 	</div>
-	  <div id="display_events">
+	<br>
+	  <div class="col-sm-12" id="display_events">
 	  
 	  </div>
-	  <!--<div id="container" class="cols">
-    <div class="box">a</div>
-    <div class="box">b</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-</div>-->
+
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
     <!--<div id="menu1" class="tab-pane fade">
@@ -135,19 +121,10 @@
  </div>
 	</div>
 </div>
+</div><br><br>
 
-
-  
-<!--</div>-->
-</div>
-<br><br><br>
 <!-- <!FOOTER DIV> -->
-
-
-
-<!--
-<footer class="footer">
-<div class="container-fluid footer">
+<!-- 
 <div class="row" style="background-color:#AE1616; color:black">
 <div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
 <div class="col-sm-6"></div>
@@ -158,13 +135,13 @@
 		              <i class="fa fa-facebook white-text mr-4"> </i>
 		            </a>
 					</div>
-		            
+		          
 					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="tw-ic">
 		              <i class="fa fa-twitter white-text mr-4"> </i>
 		            </a>
 					</div>
-		           
+		    
 					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="gplus-ic">
 		              <i class="fa fa-google-plus white-text mr-4"> </i>
@@ -173,13 +150,13 @@
 </div>
 </div>
 </div>
-<div class="row">
+<div class="row" style="background-color:#534E4E">
 	<div class="col-sm-4">
-	<div class="row"><h5><b>Hoosier Events</b></h5></div>
-		<div class="row">Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</div>
+	<div class="row"><h4>Hoosier Events</h4></div>
+		<div class="row"><h5>Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</h5></div>
 	<br>
 	</div>
-	<div class="col-sm-4 links" style="color:white"><h5><b>Useful Links</b></h5>
+	<div class="col-sm-4 links" style="color:white"><h4>Useful Links</h4>
 		
 		<div class="row"><a href="" style="color:#48A2BD">Your Account</a></div>
 		<div class="row"><a href="" style="color:#48A2BD">About us</a></div>
@@ -187,7 +164,7 @@
 		<br>
 	</div>
 	
-	<div class="col-sm-4"><h5><b>Contact Us</b></h5>
+	<div class="col-sm-4"><h4>Contact Us</h4>
 				            <i class="fa fa-home mr-3"></i>&nbsp Bloomington, IN 47408, US
 							<br>
 				            <i class="fa fa-envelope mr-3"></i>&nbsp info@example.com
@@ -198,95 +175,7 @@
 	</div>
 </div>
 </div>
-</footer>-->
-<script>
-var user_id=1;
-var div_count=5;
-$(document).ready(function(){
-	$.ajax({
-	type:'POST',
-	dataType:'json',
-	data: {id:user_id},
-	url:"/getUser",
-	  success: function(data) {
-			//console.log('success',data);
-			/*console.log("${m.event}");
-			//var data_var=JSON.parse(data);
-			document.getElementById("user_name").innerHTML=data.name;
-			document.getElementById("user_address").innerHTML=data.address;
-			document.getElementById("user_contact").innerHTML=data.contact;
-			document.getElementById("user_email").innerHTML=data.email;
-//			document.getElementById("created_by").innerHTML=data.createdBy.name;
-//			document.getElementById('myIframe').src = "map.html?seed=" + data.location;*/
-	   },
-	  // error:function(exception){alert('Exeption:'+exception);}
-	}); 
-	var i;
-		for(i=0;i<div_count;i++){
-		var div = document.createElement("div");
-	//div.style.width = "100px";
-	//div.style.height = "100px";
-	//div.style.background = "lightgrey";
-	div.style.border= "1px solid lightgrey";
-		div.style.borderRadius= "6px";
-	var p="div"+i;
-	div.id=p;
-	div.name=p;
-	var atname="cat"+i
-	div.setAttribute('category',atname);
-	//alert(div.getAttribute('category'));
-	div.style.align="center";
-	//div.addEventListener("click", function(){alert('q'+i)});	//pass id
-	//div.onClick="myFunction()"
-	div.className="row col-sm-12 panel panel-default abcd";
-	div.innerHTML= "EventName<br>";
-	div.innerHTML+= "Date<br>";
-	div.innerHTML+= "Location<br>";
-	div.innerHTML+= "category:"+div.getAttribute('category');
-
-
-	document.getElementById("display_events").appendChild(div);
-}
-	//document.getElementById("div1").style.display="none";
-	});
-	function myFunction(x){
-//	window.location="eventpage.html?id="+x;
-	alert('hello'+x);
-	}
-
-function change(){
-var i;
-for(i=0;i<div_count;i++)
-{
-
-	if(document.getElementById("event_category").value=="All")
-	{
-		var x="div"+i;
-		document.getElementById(x).style.display="block";
-
-	}
-	else
-	{
-		var x="div"+i;
-		var sel=document.getElementById("event_category").value;
-		//if(document.getElementById(x).name!=x){
-		//alert(i+"and"+sel);
-		//alert(document.getElementById(x).getAttribute('category')+"and"+sel);
-		if(document.getElementById(x).getAttribute('category')!=sel){
-		//alert('success');
-		document.getElementById(x).style.display="none";
-		}
-		else{
-				document.getElementById(x).style.display="block";
-
-		}
-	//}
-}
-}
-}
-
-</script>
-
+ -->
 
 </body>
 </html>
