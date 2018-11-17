@@ -55,7 +55,7 @@ public class User {
 	private String address;
 
 	@Id
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	@NotEmpty(message = "Please enter your Email address")
 	private String email;
 
