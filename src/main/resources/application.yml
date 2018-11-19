@@ -22,7 +22,6 @@ spring:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
 
-
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
@@ -68,6 +67,10 @@ spring:
     facebook:
       app-secret: ee6aea892482bfe1ad914bf1055d4d6a
       app-id: 270558996933505
+
+server:
+  port: 80
+
 security:
 
   basic:

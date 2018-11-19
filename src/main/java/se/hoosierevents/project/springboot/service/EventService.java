@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
@@ -59,6 +60,11 @@ public class EventService implements Service {
 
 	public List<EventCategory> getAllCategories() {
 		return new ArrayList<EventCategory> (eventCategoryRepository.findAll());
+	}
+
+	public void saveEvent(Event event, MultipartFile file) {
+		event.setImage(file.getOriginalFilename());
+		eventRepository.save(event);
 	}
 
 

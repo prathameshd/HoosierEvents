@@ -43,16 +43,8 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     //@Autowired
     private FacebookConnectionSignup facebookConnectionSignup;
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
-
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     @Override
     @RequestMapping("/login")

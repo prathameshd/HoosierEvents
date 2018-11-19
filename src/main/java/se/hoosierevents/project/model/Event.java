@@ -74,9 +74,6 @@ public class Event {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isPublic;
 
-	@Column(name = "ispromoted")
-	private Boolean isPromoted;
-
 	@Column(name = "category")
 	private String eventCategory;
 
@@ -89,6 +86,17 @@ public class Event {
 	@Column(name = "isapproved", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isApproved;
+	
+	@Column(name ="img")
+	private String image;
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public Event() {
 	}
@@ -126,7 +134,7 @@ public class Event {
 	}
 
 	public void setDescription(String description) {
-		description = description;
+		this.description = description;
 	}
 
 	public Boolean getIsPublic() {
@@ -135,14 +143,6 @@ public class Event {
 
 	public void setIsPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
-	}
-
-	public Boolean getIsPromoted() {
-		return isPromoted;
-	}
-
-	public void setIsPromoted(Boolean isPromoted) {
-		this.isPromoted = isPromoted;
 	}
 
 	public String getEventCategory() {
