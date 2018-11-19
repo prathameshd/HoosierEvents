@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
 	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 <head>
-  <title>Bootstrap Example</title>
+  <title>HoosierEvents</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
 
   <script src="script/eventpage.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="eventpage.css">
+  <link rel="stylesheet" th:href="@{css/eventpage.css}">
   	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	    <link rel="stylesheet" type="text/css" th:href="@{css/HomePageStyle.css}">
@@ -36,13 +36,6 @@
 	<ul class="nav navbar-nav" id="explore">
       <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
     </ul>
-	
-<!--    <form class="navbar-form navbar-left" action="">
-      <div class="form-group">
-        <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
-      </div>
-      <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
-    </form> -->
 	<ul class="nav navbar-nav navbar-right">
 	 <li><a class="top-nav-links" id="createevent" href="create_event.html" style="">Create Event</a></li>
       <li><a href="#" style=""><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
@@ -58,6 +51,7 @@
 	<!-- IMAGE DIV -->
 	<div class="col-sm-8">
 		<div class="row">
+		<img src="/Users/harishmaruthi/eclipse-workspace/hoosier-events/upload-dir/theatre%202.jpg" id="eventimg" class="" style="width:740px;height:360px;max-height:40%;max-width:100%;">
 		</div>
 	</div>
 <br>
@@ -72,6 +66,7 @@
 		<br><br><br>
 		</div>
 		<div class="row" style="bottom:10%;position:relative"><button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button></div></a>
+
 	</div>
 
 </div>	
@@ -115,16 +110,6 @@
 			<div class="col-sm-6"><h5>812555555</h5></div>
 		</div><br>
 		
-	<!--	<div class="row" style="text-align:center">
-					<div class="page-header"><h5>TAGS</h5></div>
-				
-		</div>	
-		
-		<div class="row" style="text-align:center;">
-			<button style="border-radius:5px;border:1px solid black;color:white;background-color:black;">qwe</button>
-			<button style="border-radius:5px;border:1px solid black;color:white;background-color:black;">123</button>
-			<b>#abc #xyz </b>
-		</div>	-->
 	</div>
 
 </div>
@@ -188,23 +173,8 @@
 
 
 <script>
-/*var t='{"event_name":"IMU Late Night","event_date":"20th November","event_location":"Indiana Memorial Union,Bloomington,Indiana","event_description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","created_by":"IU"}';
-var temp=JSON.parse(t);
 
-document.getElementById("event_title").innerHTML=temp.event_name;
-document.getElementById("event_date").innerHTML=temp.event_date;
-document.getElementById("event_location").innerHTML=temp.event_location;
-document.getElementById("event_description").innerHTML=temp.event_description;
-document.getElementById("created_by").innerHTML=temp.created_by;
-
-var loc=temp.event_location;
-
-passing parameter to iframe*/
-//document.getElementById('myIframe').src = "map.html?seed=" + loc;
-
-var event_id=1;
-console.log("${'m.event'}");
-	//AJAX CALL TO POPULATE PAGE
+var event_id=11;
 $(document).ready(function(){
 	$.ajax({
 	type:'POST',
@@ -213,8 +183,21 @@ $(document).ready(function(){
 	url:"/getEvent",
 	  success: function(data) {
 			console.log('success',data);
-			console.log("${m.event}");
-			//var data_var=JSON.parse(data);
+			
+			$.ajax({
+				type:'GET',
+				dataType:'image/jpg',
+				data: {img: data.image},
+				url:"/getImage",
+				  success: function(img) {
+						//document.getElementById("eventimg").src=img;
+				  },
+				  error:function(exception){
+					  //document.getElementById("eventimg").src=exception.responseText.toString().replace(/['"]+/g, '');
+					  }
+			});
+			
+			//debugger;
 			document.getElementById("event_title").innerHTML=data.eventTitle;
 			document.getElementById("event_date").innerHTML=data.startDate;
 			document.getElementById("event_location").innerHTML=data.location;
@@ -224,18 +207,7 @@ $(document).ready(function(){
 	   },
 	   error:function(exception){alert('Exeption:'+exception);}
 	}); 
-	
-	//AJAX CALL TO RETRIEVE DETAILS
-	 /*$.get("/getEvent", function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-			var data_var=JSON.parse(data);
-			document.getElementById("event_title").innerHTML=data_var.event_name;
-			document.getElementById("event_date").innerHTML=data_var.event_date;
-			document.getElementById("event_location").innerHTML=data_var.event_location;
-			document.getElementById("event_description").innerHTML=data_var.event_description;
-			document.getElementById("created_by").innerHTML=data_var.created_by;
-        });*/
-	});	
+});	
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRL6D4jfWOtmDd3ge1pRtkEx6OtrqdU8c&callback=myMap"></script>
