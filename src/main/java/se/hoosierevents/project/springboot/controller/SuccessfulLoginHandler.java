@@ -15,12 +15,14 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import se.hoosierevents.project.model.User;
+import se.hoosierevents.project.springboot.config.UserRole;
 import se.hoosierevents.project.springboot.repository.UserRepository;
 
 @Component
 
 @RequestMapping("/homepage")
-public class SuccessfulLoginHandler implements AuthenticationSuccessHandler {
+public class SuccessfulLoginHandler implements AuthenticationSuccessHandler, UserRole {
 
 	@Autowired
 	UserRepository userRepo;
@@ -29,19 +31,30 @@ public class SuccessfulLoginHandler implements AuthenticationSuccessHandler {
 
 	Authentication auth;
 
-	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
+	public void onAuthenticationSuccess(HttpServletRequest hsRequest, HttpServletResponse hsResponse,
 			Authentication authentication) throws IOException, ServletException {
-		System.out.println(authentication.getName());
 
-		HttpSession session = arg0.getSession();
+		HttpSession session = hsRequest.getSession();
+		User user = userRepo.findByEmail(authentication.getName());
 
 		if (null != session) {
-			session.setAttribute("user", userRepo.findByEmail(authentication.getName()));
+			session.setAttribute("user", user);
 		}
-
 		auth = authentication;
-		redirectStrategy.sendRedirect(arg0, arg1, "/homepage");
 
+		redirect(hsRequest, hsResponse, user);
+
+	}
+
+	private void redirect(HttpServletRequest hsRequest, HttpServletResponse hsResponse, User user) throws IOException {
+		if (null != user) {
+			if (Integer.parseInt(user.getUser_type()) == UserRole.USER_ADMIN) {
+				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
+			} else if (Integer.parseInt(user.getUser_type()) == UserRole.USER_ORGANIZER) {
+				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
+			}
+		}
+		redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
 	}
 
 }
