@@ -1,7 +1,6 @@
 package se.hoosierevents.project.springboot.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,8 @@ public class EventService implements Service {
 	@Autowired
 	EventCategoryRepository eventCategoryRepository;
 
-	//@Override
+	@Override
 	public String Serve() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -36,22 +34,20 @@ public class EventService implements Service {
 	}
 
 	public void saveEvent(Event event) {
-//		event.setCreatedBy(userRepository.findById(99L).get());
-//		event.setEventCategory(eventCategoryRepository.findById(1L).get());
 		eventRepository.save(event);
 	}
 
 	public List<Event> getAllEvents() {
-		return new ArrayList<Event> (eventRepository.findAll());
+		return new ArrayList<Event>(eventRepository.findAll());
 	}
 
 	public List<Event> getEventsbyCategory(Long id) {
 		EventCategory eventcategory = eventCategoryRepository.findById(id).get();
-		return new ArrayList<Event> (eventRepository.findAllByEventCategory(eventcategory));
+		return new ArrayList<Event>(eventRepository.findAllByEventCategory(eventcategory));
 	}
 
 	public List<Event> getEventsbyLocation(String location) {
-		return new ArrayList<Event> (eventRepository.findAllByLocation(location));
+		return new ArrayList<Event>(eventRepository.findAllByLocation(location));
 	}
 
 	public Event getEventbyName(String event) {
@@ -59,13 +55,19 @@ public class EventService implements Service {
 	}
 
 	public List<EventCategory> getAllCategories() {
-		return new ArrayList<EventCategory> (eventCategoryRepository.findAll());
+		return new ArrayList<EventCategory>(eventCategoryRepository.findAll());
 	}
 
 	public void saveEvent(Event event, MultipartFile file) {
-		event.setImage(file.getOriginalFilename());
+		event.setImage(getCurrentImageNameToCreate());
 		eventRepository.save(event);
 	}
 
+	public Long getCurrentEventId() {
+		return eventRepository.findMaxEventId();
+	}
 
+	public String getCurrentImageNameToCreate() {
+		return getCurrentEventId().toString() + ".jpg";
+	}
 }

@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import se.hoosierevents.project.springboot.config.StorageProperties;
 import se.hoosierevents.project.springboot.service.StorageService;
 
-
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
 @ComponentScan("se.hoosierevents.project.springboot")
@@ -27,16 +26,15 @@ public class HoosierEvents {
 	}
 
 	@Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
-    }
-	
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}
+
 	@Bean
-    CommandLineRunner init(StorageService storageService) {
-        return (args) -> {
-            //storageService.deleteAll();
-            storageService.init();
-        };
-    }
+	CommandLineRunner init(StorageService storageService) {
+		return (args) -> {
+			storageService.init();
+		};
+	}
 }

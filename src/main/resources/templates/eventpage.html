@@ -23,7 +23,8 @@
 </style>
 </head>
 <body>
-
+<!-- NAVIGATION BAR -->
+	
 <div class="container-fluid" style="background-color:;color:orange;padding:10px;border-bottom:1px solid lightgrey;">
 <div class="row">
 <div class="col-sm-2"><h4 style="color:orange;background-color:white;text-align:center;font-size:3vw;">HoosierEvents</h4></div>
@@ -35,35 +36,14 @@
 </div>
 </div>
 
-<!-- NAVIGATION BAR -->
-<!--<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
-  <div class="container-fluid" style="text-align:left">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="homePage.html" id="abc">HoosierEvents</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li id="homepage"><a href="homePage.html" class="top-nav-links" style="color:white;text-align:">Home</a></li>
-    </ul>
-	<ul class="nav navbar-nav" id="explore">
-      <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
-    </ul>
-	<ul class="nav navbar-nav navbar-right">
-	 <li><a class="top-nav-links" id="createevent" href="create_event.html" style="">Create Event</a></li>
-      <li><a href="#" style=""><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
-    </ul>
 
-	</div>
-</nav>-->
-	
-	
 <div class="container-fluid" style="background-color:lightgrey;">	
 <div class="container" style="width:90%;top:10%;position:relative;background-color:;-bottom:0.5px groove #F4EFFE">
 <div class="row">
 	<!-- IMAGE DIV -->
 	<div class="col-sm-8">
 		<div class="row">
-		<!--<img src="/Users/harishmaruthi/eclipse-workspace/hoosier-events/upload-dir/theatre%202.jpg" id="eventimg" class="" style="width:100%;height:auto;">-->
-		<img src="concert.jpg" id="eventimg" class="" style="width:100%;height:auto;">
+		<img src="" id="eventimg" class="" style="width:100%;height:auto;">
 		</div>
 	</div>
 <br>
@@ -164,7 +144,7 @@
 
 <script>
 
-var event_id=11;
+var event_id=13;
 $(document).ready(function(){
 	$.ajax({
 	type:'POST',
@@ -172,22 +152,9 @@ $(document).ready(function(){
 	data: {id:event_id},
 	url:"/getEvent",
 	  success: function(data) {
+		  debugger;
 			console.log('success',data);
-			
-			$.ajax({
-				type:'GET',
-				dataType:'image/jpg',
-				data: {img: data.image},
-				url:"/getImage",
-				  success: function(img) {
-						//document.getElementById("eventimg").src=img;
-				  },
-				  error:function(exception){
-					  //document.getElementById("eventimg").src=exception.responseText.toString().replace(/['"]+/g, '');
-					  }
-			});
-			
-			//debugger;
+			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg';
 			document.getElementById("event_title").innerHTML=data.eventTitle;
 			document.getElementById("event_date").innerHTML=data.startDate;
 			document.getElementById("event_location").innerHTML=data.location;

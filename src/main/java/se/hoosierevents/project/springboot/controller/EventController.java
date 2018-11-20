@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,40 +50,28 @@ public class EventController implements Controller {
 		return null;
 	}
 
-	@RequestMapping(value = "/image-byte-array", method = RequestMethod.GET)
-	public @ResponseBody byte[] getImageAsByteArray() throws IOException {
-		String imagePath = "theatre2.jpg";
-		Resource file = fileStoreService.loadAsResource(imagePath);
-	    return IOUtils.toByteArray(file.getInputStream());
-	}
-	
 	@RequestMapping(value = "/getImage")
 	@ResponseBody
-	public byte[] getEventImage(@RequestParam("img") String imagePath) {
+	public byte[] getEventImage(@RequestParam("img") String imagePath) throws IOException {
 		Resource file = fileStoreService.loadAsResource(imagePath);
-		 try {
-			return IOUtils.toByteArray(file.getInputStream());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return IOUtils.toByteArray(file.getInputStream());
 	}
 
 	@RequestMapping("/getEvent")
 	public ResponseEntity<Event> getEvent(@RequestParam("id") Long id, HttpSession session) {
-		
-		if (null != session) {
-			User user = (User) session.getAttribute(USER_KEY);
-			if (null == user) return null;
-		}
+
+//		if (null != session) {
+//			User user = (User) session.getAttribute(USER_KEY);
+//			if (null == user)
+//				return null;
+//		}
 		return ResponseEntity.ok(eventService.getEvent(id));
 	}
 
 	@RequestMapping("/saveEvent")
 	public RedirectView saveEvent(@RequestParam("file") MultipartFile file, @ModelAttribute Event event,
 			RedirectAttributes redirectAttributes) {
-		fileStoreService.store(file);
+		fileStoreService.store(file, eventService.getCurrentImageNameToCreate());
 		eventService.saveEvent(event, file);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
