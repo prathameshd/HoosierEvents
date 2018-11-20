@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,7 +72,12 @@ public class EventController implements Controller {
 	}
 
 	@RequestMapping("/getEvent")
-	public ResponseEntity<Event> getEvent(@RequestParam("id") Long id) {
+	public ResponseEntity<Event> getEvent(@RequestParam("id") Long id, HttpSession session) {
+		
+		if (null != session) {
+			User user = (User) session.getAttribute(USER_KEY);
+			if (null == user) return null;
+		}
 		return ResponseEntity.ok(eventService.getEvent(id));
 	}
 
