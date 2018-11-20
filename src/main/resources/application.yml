@@ -75,3 +75,8 @@ security:
 
   basic:
     enabled: false
+
+logging:
+  level:
+    org:
+      springframework: DEBUG

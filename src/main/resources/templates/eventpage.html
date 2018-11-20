@@ -34,7 +34,6 @@
 <div class="col-sm-1"><button class="btn-default xyz" style="color:orange;background-color:white;border:0px;"><h5>Login</h5></button></div>
 </div>
 </div>
-
 <!-- NAVIGATION BAR -->
 <!--<nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
   <div class="container-fluid" style="text-align:left">
@@ -54,16 +53,14 @@
 
 	</div>
 </nav>-->
-	
-	
+
 <div class="container-fluid" style="background-color:lightgrey;">	
 <div class="container" style="width:90%;top:10%;position:relative;background-color:;-bottom:0.5px groove #F4EFFE">
 <div class="row">
 	<!-- IMAGE DIV -->
 	<div class="col-sm-8">
 		<div class="row">
-		<!--<img src="/Users/harishmaruthi/eclipse-workspace/hoosier-events/upload-dir/theatre%202.jpg" id="eventimg" class="" style="width:100%;height:auto;">-->
-		<img src="concert.jpg" id="eventimg" class="" style="width:100%;height:auto;">
+		<img id="eventimg" src="" class="" style="width:100%;height:auto;">
 		</div>
 	</div>
 <br>
@@ -78,7 +75,6 @@
 		<br><br><br>
 		</div>
 		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button></div></div>
-
 	</div>
 
 </div>	
@@ -108,7 +104,6 @@
 		
 		<div class="row page-header">
 			<div class="col-sm-12"><h4>Organiser Contact Info:</h4></div>
-			<!--<div class="col-sm-4" style="text-align:center"><button class="btn-block chat-button">CHAT </button></div>-->
 		</div>
 		<div class="row">
 			<div class="col-sm-6"><h5 id="created_by"></h5></div>
@@ -121,10 +116,9 @@
 	
 			<div class="col-sm-6"><h5>812555555</h5></div>
 		</div><br>
-					<div class="row"><div class="col-sm-12" style="text-align:center"><button class="btn-block chat-button">Chat </button></div></div>
+		<div class="row"><div class="col-sm-12" style="text-align:center"><button class="btn-block chat-button">Chat </button></div></div>
 
 		<br>
-		
 	</div>
 </div>
 </div>
@@ -156,26 +150,30 @@
 
 	</div>
 </div>
+
 </div>
+<br><br><br><br><br>
 
 <!-- <!FOOTER DIV> -->
-<!--
+
 <div class="container-fluid footer">
 <div class="row" style="background-color:#AE1616; color:black">
 <div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
 <div class="col-sm-6"></div>
 <div class="col-sm-3">
 <div class="row" style="text-align:center">
-	<div class="col-sm-3">
+<!-- Facebook -->	<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="fb-ic">
 		              <i class="fa fa-facebook white-text mr-4"> </i>
 		            </a>
 					</div>
+		            <!-- Twitter -->
 					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="tw-ic">
 		              <i class="fa fa-twitter white-text mr-4"> </i>
 		            </a>
 					</div>
+		            <!-- Google +-->
 					<div class="col-sm-3">
 		            <a id="socialmedialink" href="#" class="gplus-ic">
 		              <i class="fa fa-google-plus white-text mr-4"> </i>
@@ -208,13 +206,9 @@
 
 	</div>
 </div>
-</div>-->
-
-
-
+</div>
 
 <script>
-
 var event_id=11;
 $(document).ready(function(){
 	$.ajax({
@@ -223,22 +217,9 @@ $(document).ready(function(){
 	data: {id:event_id},
 	url:"/getEvent",
 	  success: function(data) {
+		  
 			console.log('success',data);
-			
-			$.ajax({
-				type:'GET',
-				dataType:'image/jpg',
-				data: {img: data.image},
-				url:"/getImage",
-				  success: function(img) {
-						//document.getElementById("eventimg").src=img;
-				  },
-				  error:function(exception){
-					  //document.getElementById("eventimg").src=exception.responseText.toString().replace(/['"]+/g, '');
-					  }
-			});
-			
-			//debugger;
+			document.getElementById("eventimg").src='/getImage?img='+ data.image;
 			document.getElementById("event_title").innerHTML=data.eventTitle;
 			document.getElementById("event_date").innerHTML=data.startDate;
 			document.getElementById("event_location").innerHTML=data.location;
