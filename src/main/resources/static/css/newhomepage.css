@@ -1,0 +1,117 @@
+#details
+{
+	background-color:green;
+}
+.footer{
+	height:20%;	
+	top:15%;	
+	text-align:center;
+	position:relative;
+	background-color:;
+	color:white
+}
+
+.mySlides
+{
+	transition:3s;
+	width:100%;
+	height:75%;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card {
+    display: inline-block;
+  }
+}
+
+
+.hcard
+{
+overflow-x: scroll;
+display: flex;
+min-height:470px;
+	
+}
+.hcard:hover
+{
+	  /*  box-shadow: 0 8px 16px 3px rgba(0.5,0.5,0.5,0.7);*/
+			border-color:red !important;
+}
+
+.tabs
+{
+transition: 0.4s;
+	top:10%;
+	position:relative;
+ background-color:white;
+ min-width: 400px;
+ max-height:400px;
+ min-height:100px;
+text-align:center;
+transition: width:3s;
+ border-radius:4px;
+/* max-width: 300px;*/
+  margin: 5px;
+   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+
+}
+
+.tabs:hover
+{
+	/*    box-shadow: 0 8px 16px 0 rgba(1,1,1,5);*/
+		    box-shadow: 0 8px 16px 3px rgba(0.3,0.3,0.3,0.5);
+	max-height:410px;
+	
+	top:9%;
+/*	min-width:350px;*/
+		   -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 9s;
+}
+
+.abc{  
+  box-shadow: 0 8px 16px 0 rgba(0.2,0.2,0.2,0.2);
+  transition:0.4s;
+}
+.abc:hover
+{
+		
+	    box-shadow: 0 8px 16px 3px rgba(0.5,0.5,0.5,0.7);
+
+}
+/* width */
+
+::-webkit-scrollbar {
+	display:none;
+    width: 20px;
+}
+
+
+*/
+.hcard::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+ /*
+
+::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}*/
+
+.fancy
+{
+		font-family:"Trebuchet MS", Helvetica, sans-serif;
+
+}
+.xyz:hover
+{
+}
