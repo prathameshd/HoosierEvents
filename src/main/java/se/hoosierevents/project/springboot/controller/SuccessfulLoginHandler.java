@@ -52,9 +52,10 @@ public class SuccessfulLoginHandler implements AuthenticationSuccessHandler, Use
 				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
 			} else if (Integer.parseInt(user.getUser_type()) == UserRole.USER_ORGANIZER) {
 				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
+			} else{
+				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
 			}
 		}
-		redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");
 	}
 
 }
