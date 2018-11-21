@@ -6,12 +6,12 @@
 //var usernamePage = document.querySelector('#username-page');
 var chatPage = document.querySelector('#chat-page');
 // var usernameForm = document.querySelector('#usernameForm');
-var chatWindow = document.querySelector('#chat-Page');
 var chatButton = document.querySelector('#chatButton');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
+var closeButton = document.querySelector('.close');
 
 var stompClient = null;
 var username = null;
@@ -23,7 +23,7 @@ function connect(event) {
 	username = 'Harish';//document.querySelector('#name').value.trim();
 
 	if (username) {
-		//usernamePage.classList.add('hidden');
+		chatButton.style.display = "none";
 		chatPage.classList.remove('hidden');
 
 		var socket = new SockJS('/ws');
@@ -74,7 +74,7 @@ function onMessageReceived(payload) {
 
 	if (message.type === 'JOIN') {
 		messageElement.classList.add('event-message');
-		message.content = message.sender + ' joined!';
+		message.content = (message.sender==username?'You':message.sender) + ' joined!';
 	} else if (message.type === 'LEAVE') {
 		messageElement.classList.add('event-message');
 		message.content = message.sender + ' left!';
@@ -114,8 +114,10 @@ function getAvatarColor(messageSender) {
 }
 
 function closeForm() {
-	chatWindow.style.display = "none";
+	chatPage.classList.add('hidden');
+	chatButton.style.display = "block";
 }
 // usernameForm.addEventListener('submit', connect, true)
 chatButton.addEventListener('click', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+closeButton.addEventListener('click', closeForm, true)

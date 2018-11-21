@@ -176,6 +176,7 @@ button.accent {
 
 #chat-page ul li p {
 	margin: 0;
+	word-wrap: break-word
 }
 
 #chat-page .event-message {
@@ -302,3 +303,4 @@ button.accent {
   margin-bottom:10px;
   opacity: 0.8;
 }
+
