@@ -16,7 +16,7 @@
   	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <style>
-body{background-color:#F0EDED;}
+<!--body{background-color:#F0EDED;}-->
     .footer {
         bottom: 0;
         left: 0;
@@ -25,12 +25,27 @@ body{background-color:#F0EDED;}
         width: 100%;
         z-index: -1;
     }
+	.body
+	{
+	
+	}
 </style>
 </head>
 
 <body>
 
-
+<div class="container-fluid" style="background-color:white;color:#AE1616;padding:10px;border-bottom:1px solid lightgrey;">
+<div class="row">
+<div class="col-sm-2"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></div>
+<div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
+<div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
+<div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
+<div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Login</h5></button></div>
+</div>
+</div>
+<div class="main12">
+<div class="container-fluid" style="padding:70px;"></div>
+<!--
 <nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%">
   <div class="container-fluid" style="text-align:left">
     <div class="navbar-header">
@@ -38,7 +53,7 @@ body{background-color:#F0EDED;}
     </div>
     <ul class="nav navbar-nav">
       <li id="homepage"><a class="top-nav-links" style="color:white;">Home</a></li>
-    </ul>
+    </ul>-->
 	<!--<ul class="nav navbar-nav" id="explore">
       <li><a class="top-nav-links" href="search_events.html" style="color:white;">Explore Events</a></li>
     </ul>-->
@@ -48,19 +63,32 @@ body{background-color:#F0EDED;}
         <input type="text" class="form-control" style="text-align:center;" placeholder="search for events!">
       </div>
       <button type="submit" class="btn btn-default" style="height:4.5% !important;width:15%!important;position:relative"><span class="glyphicon glyphicon-search"></span></button>
-    </form> -->
+    </form> 
 
 
 	</div>
-</nav>
+</nav>-->
 
-<div class="container" style="background-color:white;top:10%;position:relative;width:50%;border:0.5px solid #F0EDED;border-radius:4px;">
+<div class="container" style="min-width:350px;background-color:white;top:20% !important;position:relative;width:50%;border:0.5px solid #F0EDED;border-radius:4px;">
 <div class="row">
-<div class="col-sm-12"><h3>Login</h3></div>
+<div class="col-sm-12"><h3></h3></div>
 </div>
                                 <form  name="f" th:action="@{/login}" method="post" class="login-form">
 
-
+<div class="row social-login">
+                        <!--<div class="col-sm-4">
+						<h5></h5></div>-->
+						<div class="col-sm-4"><h4>Login With</h4></div>
+                        <div class="col-sm-8 social-login-buttons">
+                            <a class="btn btn-link-1-facebook" style="color:#306090" href="/signin/facebook">
+                             <i class="fa fa-facebook"></i> Facebook</input>
+                            </a>
+                            <a class="btn btn-link-2" href="#" style="color:#d84830">
+                                <i class="fa fa-google-plus"></i> Google
+                            </a>
+                        </div>
+                    </div>
+<div class="row"><div class="col-sm-12" style="text-align:center;"><h6>Or</h6></div></div>					
 <div class="row form-group">
     <div th:if="${param.error}" class="alert alert-error">
         Invalid username or password.
@@ -84,7 +112,7 @@ body{background-color:#F0EDED;}
 
         <button type="button" class="btn-link" id="forgot_button">Forgot Password?</button>
 
-        <a href="/sign" >Sign Up!!</a>
+       <!-- <a href="/sign" >Sign Up!!</a>-->
 
       
 	</div>							
@@ -96,7 +124,7 @@ body{background-color:#F0EDED;}
 </div>
                                 </form>
 
-                   <div class="row social-login">
+                   <!--<div class="row social-login">
                         <div class="col-sm-4">
 						<h5>Login with:</h5></div>
                         <div class="col-sm-8 social-login-buttons">
@@ -107,8 +135,9 @@ body{background-color:#F0EDED;}
                                 <i class="fa fa-google-plus"></i> Google
                             </a>
                         </div>
-                    </div>
-<div class="row"> </div>
+                    </div>-->
+<br>					
+<div class="row"> <div class="col-sm-12">Dont have an account? Sign up <a href="/sign" >here</a>.</div></div>
 </div>
 
 <!-- The Modal -->
@@ -162,26 +191,55 @@ body{background-color:#F0EDED;}
  </div>
 
 </div>
-<!-- <!FOOTER DIV> -->
+<div class="container-fluid" style="padding:75px;"></div>
+</div>
+<div class="container-fluid fancy" style="text-align:center;bottom:0% !important;height:auto;position:relative;background-color:lightgrey !important;color:">
+<div class="row" style="background-color:;">
+	<div class="col-sm-4">
+	<div class="row"><div class="col-sm-12"><h4 style="color:#AE0D0D;">Hoosier Events</h4></div></div>
+		<div class="row" style="text-align:center;"><div class="col-sm-12">Connect with other enthusiasts and do what you enjoy. Signup to explore and host events!</div></div>
+	<br>
+	</div>
+	<div class="col-sm-4 links" style="color:#AE0D0D;"><div class="row"><div class="col-sm-12"><h4>Useful Links</h4></div></div>
+		
+		<div class="row"><div class="col-sm-12"><a href="" style="color:#48A2BD">Your Account</a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="" style="color:#48A2BD">About us</a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="" style="color:#48A2BD">Help</a></div></div>
+		<br>
+	</div>
+	
+	<div class="col-sm-4"><div class="row"><div class="col-sm-12"><h4 style="color:#AE0D0D;">Contact Us</h4></div></div>
+				            <i class="fa fa-home mr-3"></i>&nbsp Bloomington, IN 47408, US
+							<br>
+				            <i class="fa fa-envelope mr-3"></i>&nbsp info@example.com
+							<br>
+							<i class="fa fa-phone mr-3"></i>&nbsp + 01 234 567 88
 
+
+	</div>
+</div>
+</div>
+
+<!-- <!FOOTER DIV> -->
+<!--
 <div class="container-fluid footer">
     <div class="row" style="background-color:#AE1616; color:black">
         <div class="col-sm-3"><h5>Get Connected with us on Social Media</h5></div>
         <div class="col-sm-6"></div>
         <div class="col-sm-3">
             <div class="row" style="text-align:center">
-                <!-- Facebook -->	<div class="col-sm-3">
+                <div class="col-sm-3">
                 <a id="socialmedialink" href="#" class="fb-ic">
                     <i class="fa fa-facebook white-text mr-4"> </i>
                 </a>
             </div>
-                <!-- Twitter -->
+                
                 <div class="col-sm-3">
                     <a id="socialmedialink" href="#" class="tw-ic">
                         <i class="fa fa-twitter white-text mr-4"> </i>
                     </a>
                 </div>
-                <!-- Google +-->
+                
                 <div class="col-sm-3">
                     <a id="socialmedialink" href="#" class="gplus-ic">
                         <i class="fa fa-google-plus white-text mr-4"> </i>
@@ -214,7 +272,7 @@ body{background-color:#F0EDED;}
 
         </div>
     </div>
-</div>
+</div>-->
 <script>
 var modal = document.getElementById('myModal');
 
