@@ -50,7 +50,8 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     @RequestMapping("/login")
     protected void configure(HttpSecurity http) throws Exception {
         http
-
+        		.headers().frameOptions().disable()
+        		.and()
                 .authorizeRequests()
                 //  .antMatchers("/resources/**").permitAll().anyRequest().permitAll()
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
@@ -65,6 +66,8 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/forgotPassword.html").permitAll()
                 .antMatchers("/sendCode").permitAll()
+                .antMatchers("/map").permitAll()
+
                 .antMatchers("**facebook.com**").permitAll()
                 .antMatchers("/getauth").permitAll()
                 .and()
