@@ -66,6 +66,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/forgotPassword.html").permitAll()
                 .antMatchers("/sendCode").permitAll()
                 .antMatchers("**facebook.com**").permitAll()
+                .antMatchers("/getauth").permitAll()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
