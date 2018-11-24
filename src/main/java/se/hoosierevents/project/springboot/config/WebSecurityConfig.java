@@ -62,7 +62,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/forgotPassworderror").permitAll()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/sign").permitAll()
-
+                .antMatchers("/").permitAll()
                 .antMatchers("/forgotPassword.html").permitAll()
                 .antMatchers("/sendCode").permitAll()
                 .antMatchers("**facebook.com**").permitAll()
