@@ -82,9 +82,9 @@
 		<br><br><br>
 	
     <div class="col-sm-4" style="border-left:0.5px solid lightgrey">    
-		<div class="row" >
+		<!--<div class="row" >
 			<div class="col-sm-12"><iframe id="myIframe" style="border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
-		</div>
+		</div>-->
 		<br>
 		
 		<div class="row page-header">
@@ -108,6 +108,14 @@
 		
 	</div>
 </div>
+</div><br><br><br>
+<div class="container" style="top:15%;width:90%;position:relative;">
+<div class="row">
+			<div class="col-sm-12"><iframe id="myIframe" src="./map" style="min-width:400px;min-height:300px;border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
+		</div>
+<div class="row" style="text-align:center;">
+<div class="col-sm-12">Bloomington</div>
+</div>		
 </div>
 <br><br><br><br><br>
 
@@ -167,6 +175,11 @@
 
 
 <script>
+var loc="Bloomington";
+
+/*passing parameter to iframe*/
+document.getElementById('myIframe').src = "/map?seed=" + loc;
+
 
 var event_id=13;
 $(document).ready(function(){
