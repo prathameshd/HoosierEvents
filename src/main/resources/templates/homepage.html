@@ -71,7 +71,10 @@ img {
 <div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
 <div class="col-sm-1">
     <form action="/login">
-    <button class="btn-default xyz"  style="color:#AE0D0D;background-color:white;border:0px;"><h5>Login</h5></button>
+    <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
+    </form>
+    <form action="/logout">
+        <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
     </form>
 </div>
 </div>
@@ -511,6 +514,39 @@ t.style.display="none";
 }
 
 }
+</script>
+
+<script>
+
+   $(document).ready(function () {
+       $.ajax({
+               type: "GET",
+           url: '/getauth',
+           success: function (data) {
+                   debugger;
+                   console.log(data);
+               if(data==="anonymousUser"){
+                   document.getElementById('logoutbutt').style.display="none";
+                   document.getElementById('loginbutt').style.display="block";
+
+               }
+               else{
+                   document.getElementById("loginbutt").style.display="none";
+                   document.getElementById("logoutbutt").style.display="block";
+
+               }
+
+
+           },
+           error: function (e) {
+                   debugger;
+                   console.log(e);
+           }
+
+           }
+       )
+   })
+
 </script>
 </body>
 </html> 
