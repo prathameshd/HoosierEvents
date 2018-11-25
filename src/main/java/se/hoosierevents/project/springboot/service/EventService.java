@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
+import se.hoosierevents.project.model.User;
 import se.hoosierevents.project.springboot.repository.EventCategoryRepository;
 import se.hoosierevents.project.springboot.repository.EventRepository;
 import se.hoosierevents.project.springboot.repository.UserRepository;
@@ -69,5 +70,9 @@ public class EventService implements Service {
 
 	public String getCurrentImageNameToCreate() {
 		return getCurrentEventId().toString() + ".jpg";
+	}
+
+	public List<Event> getEventsByCreator(User user) {
+		return eventRepository.findEventsByCreator(user);
 	}
 }

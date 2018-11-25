@@ -1,7 +1,6 @@
 package se.hoosierevents.project.springboot.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -132,5 +131,10 @@ public class EventController implements Controller {
 	public ResponseEntity<List<Ticket>> getEventsToBeAttendedByUser(@RequestParam("id") Long id,
 			HttpServletRequest request, Model model) {
 		return ResponseEntity.ok(ticketService.getEventsToBeAttendedByUser(id));
+	}
+
+	@RequestMapping("/getEventsByCreator")
+	public ResponseEntity<List<Event>> getEventsByCreator(HttpSession session) {
+		return ResponseEntity.ok(eventService.getEventsByCreator((User) session.getAttribute(USER_KEY)));
 	}
 }

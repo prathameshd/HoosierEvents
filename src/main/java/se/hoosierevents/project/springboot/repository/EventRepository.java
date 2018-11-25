@@ -10,11 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
+import se.hoosierevents.project.model.User;
 
 @Repository
 @Transactional
 public interface EventRepository extends CrudRepository<Event, Long> {
 	final String EVENT_FIND_MAX_ID = "select max(event_id)+1 from events_master";
+	final String EVENT_FIND_BY_CREATOR = "select event from Event event where event.createdBy = ?1";
 
 	public List<Event> findAll();
 
@@ -27,7 +29,12 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	public List<Event> findAllByLocation(String location);
 
 	public Optional<Event> findAllByEventTitle(String event);
+	
+	public List<Event> findAllByCreatedBy(User user);
 
 	@Query(value = EVENT_FIND_MAX_ID, nativeQuery = true)
 	Long findMaxEventId();
+	
+	@Query(EVENT_FIND_BY_CREATOR)
+	public List<Event> findEventsByCreator(User createdBy);
 }
