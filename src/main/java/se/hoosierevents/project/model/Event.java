@@ -97,6 +97,17 @@ public class Event {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	
+	@Column(name ="twitterhandle")
+	private String twitterHandle;
+
+	public String getTwitterHandle() {
+		return twitterHandle;
+	}
+
+	public void setTwitterHandle(String twitterHandle) {
+		this.twitterHandle = twitterHandle;
+	}
 
 	public Event() {
 	}

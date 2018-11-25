@@ -21,7 +21,7 @@ CREATE TABLE user_details(
 
 /*EVENT TABLE*/
 create table events_master(event_name VARCHAR(25),event_id INT PRIMARY KEY AUTO_INCREMENT, created_by INT,location VARCHAR(50),start_time DATETIME,end_time DATETIME,
-						description VARCHAR(500),ispublic INT(1),category VARCHAR(25),max INT,price INT,available INT,isapproved INT(1),
+						description VARCHAR(500),ispublic INT(1),category VARCHAR(25), twitterhandle VARCHAR(50), max INT,price INT,available INT,isapproved INT(1),
 						FOREIGN KEY(created_by)REFERENCES user_details(user_id));
 						
 	/*Details about events_master
