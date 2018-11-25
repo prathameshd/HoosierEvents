@@ -19,7 +19,7 @@ public class GetUserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/getusertype" , method = RequestMethod.GET)
+    @RequestMapping(value = "/getuser")
     public ResponseEntity<User> GetUserType(HttpSession session)
     {
         User user = new User();

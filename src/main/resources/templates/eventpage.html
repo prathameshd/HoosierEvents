@@ -33,7 +33,14 @@
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
 <div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
-<div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Login</h5></button></div>
+<div class="col-sm-1">
+    <form action="/login">
+        <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
+    </form>
+    <form action="/logout">
+        <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
+    </form>
+</div>
 </div>
 </div>
 
@@ -58,7 +65,7 @@
 		<div class="row" style="color:#3C6198"><h5>TICKETS:Available</h5></div>
 		<br><br><br>
 		</div>
-		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button></div></div>
+		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button></div></div>
 
 	</div>
 
@@ -213,6 +220,67 @@ $(document).ready(function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/script/chat.handler.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+                type: "GET",
+                url: '/getuser',
+                success: function (data) {
+                    debugger;
+                    console.log(data);
+                    if(data.user_type==='1' ){
+                        document.getElementById('registerbutt').disabled=false;
+
+                    }
+
+
+
+                },
+                error: function (e) {
+                    debugger;
+                    console.log(e);
+                }
+
+            }
+        )
+    })
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+                type: "GET",
+                url: '/getauth',
+                success: function (data) {
+                    debugger;
+                    console.log(data);
+                    if(data==="anonymousUser"){
+                        document.getElementById('logoutbutt').style.display="none";
+                        document.getElementById('loginbutt').style.display="block";
+
+                    }
+                    else{
+                        document.getElementById("loginbutt").style.display="none";
+                        document.getElementById("logoutbutt").style.display="block";
+
+                    }
+
+
+                },
+                error: function (e) {
+                    debugger;
+                    console.log(e);
+                }
+
+            }
+        )
+    })
+
+</script>
 
 </body>
 </html>
