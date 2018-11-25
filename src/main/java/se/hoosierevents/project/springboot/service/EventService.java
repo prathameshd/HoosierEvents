@@ -37,7 +37,7 @@ public class EventService implements Service {
 		eventRepository.save(event);
 	}
 
-	public List<Event> getAllEvents() {
+	public ArrayList<Event> getAllEvents() {
 		return new ArrayList<Event>(eventRepository.findAll());
 	}
 

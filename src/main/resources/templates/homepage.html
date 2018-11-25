@@ -378,21 +378,24 @@ document.getElementsByClassName("all").style.display="none";
 
 //$(document).ready(function(){
 
-var events=[
-{"id":1,"name":"Career Fair111111111111111111111111111111111111111111111111111111111111111111111111111111111111111","location":"Indiana Memorial Union,Bloomington","category":"Career","image":"/images/career.jpg","start_time":"10/10/2018"},
-			{"id":2,"name":"Soccer","location":"Indiana University Stadium,Bloomington","category":"Sports","image":"/images/soccer.jpg","start_time":"10/10/2018"},
-			{"id":3,"name":"Concert","location":"The Vogue Theatre,Indianapolis","category":"Entertainment","image":"/images/concert2.jpg","start_time":"10/10/2018"},
-			{"id":4,"name":"Brooklyn Horror Festival","location":"Brooklyn, New York","category":"Entertainment","image":"/images/fest.jpg","start_time":"10/8/2018"},
-			/*{"id":5,"name":"iop","location":"Indiana Memorial Union,Bloomington","category":"education"},
-			{"id":6,"name":"plo","location":"Indiana Memorial Union,Bloomington","category":"business"},
-			{"id":7,"name":"cty","location":"Indiana Memorial Union,Bloomington","category":"education"},
-			{"id":8,"name":"xzq","location":"Indiana Memorial Union,Bloomington","category":"sports"},
-			{"id":9,"name":"qwe","location":"Indiana Memorial Union,Bloomington","category":"sports"},
-						{"id":8,"name":"xzq","location":"Indiana Memorial Union,Bloomington","category":"business"},
-						{"id":9,"name":"qwe","location":"Indiana Memorial Union,Bloomington","category":"education"},*/
+var events= null;
+$(document).ready(function(){
+	$.ajax({
+	type:'GET',
+	dataType:'json',
+	url:"/getAllEvents",
+	  success: function(events) {
+		  events.forEach(element => {
+			  //document.getElementById("eventimg").src='/getImage?img='+ element.id+'.jpg';
+			  console.log(element);
+			});
+	   },
+	   error:function(exception){
+		   console.log("error: "+ exception);}
+	}); 
+});	
+	
 
-			
-];
 //alert(events.length);
 var rowcount=Math.ceil(events.length/3);
 //alert(rowcount);
@@ -530,7 +533,6 @@ t.style.display="none";
                type: "GET",
            url: '/getauth',
            success: function (data) {
-                   debugger;
                    console.log(data);
                if(data==="anonymousUser"){
                    document.getElementById('logoutbutt').style.display="none";
@@ -546,7 +548,6 @@ t.style.display="none";
 
            },
            error: function (e) {
-                   debugger;
                    console.log(e);
            }
 
