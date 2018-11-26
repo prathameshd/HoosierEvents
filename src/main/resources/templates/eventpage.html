@@ -190,7 +190,7 @@
 var loc="Bloomington";
 
 /*passing parameter to iframe*/
-document.getElementById('myIframe').src = "/map?seed=" + loc;
+/*document.getElementById('myIframe').src = "/map?seed=" + loc;*/
 
 
 var event_id=11;
@@ -209,7 +209,7 @@ $(document).ready(function(){
 			document.getElementById("event_location").innerHTML=data.location;
 			document.getElementById("event_description").innerHTML=data.description;
 			document.getElementById("created_by").innerHTML=data.createdBy.name;
-			/*document.getElementById('myIframe').src = "map.html?seed=" + data.location;*/
+			document.getElementById('myIframe').src = "/map?seed=" + data.location;
 	   },
 	   //error:function(exception){alert('Exeption:'+exception);}
 	}); 
