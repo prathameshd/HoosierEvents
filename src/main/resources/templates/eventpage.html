@@ -18,9 +18,29 @@
 	    <link rel="stylesheet" type="text/css" th:href="@{css/HomePageStyle.css}">
 
   <style>
+  #registerbutt .tooltiptext {
+    visibility: hidden;
+    width: 150px;
+    background-color: white;
+    color: grey;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+#registerbutt[disabled]:hover .tooltiptext {
+    visibility: visible;
+}
+
   body, html, .container-fluid {
      
 	 width:100%
+}
+#registerbutt:disabled{
+background-color:#dddddd !important;
 }
 </style>
 </head>
@@ -65,8 +85,8 @@
 		<div class="row" style="color:#3C6198"><h5>TICKETS:Available</h5></div>
 		<br><br><br>
 		</div>
-		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button></div></div>
-
+		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5><span class="tooltiptext" ><h6>Login to Register.</h6></span></button>	
+</div></div>
 	</div>
 
 </div>	
@@ -126,17 +146,17 @@
 			<div class="col-sm-12"><iframe id="myIframe" src="./map" style="min-width:400px;min-height:300px;border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
 		</div>
 <div class="row" style="text-align:center;">
-<div class="col-sm-12">Bloomington</div>
+<div class="col-sm-12" id="eventlocation"></div>
 </div>		
 </div>
 <br><br><br><br><br>
 
 
- <div id="chat-page" class="hidden">
+ <div id="chat-page" class="hidden" style="min-width:300px;max-width:300px">
 	<div class="chat-container">
 		<div class="chat-header">
-			<table><tr><td align="left"><h2>Contact Organizer</h2></td>
-						<td align="right"><button class="close">Close</button></td></tr></table>
+			<table><tr><td align="left" id="organiser_chatname"><h5>Help Desk</h5></td>
+						<td align="right" style="padding-left:270px;"><button class="close">X</button></td></tr></table>
 		</div>
 		<div class="connecting">Connecting...</div>
 		<ul id="messageArea">
@@ -147,7 +167,7 @@
 				<div class="input-group clearfix">
 					<input type="text" id="message" placeholder="Type a message..."
 						autocomplete="off" class="form-control" />
-					<button type="submit" class="primary">Send</button>
+					<button type="submit" class="primary" style="background-color:green;border:1px solid green;color:white;border-radius:2px;">Send</button>
 				</div>
 			</div>
 		</form>
@@ -210,6 +230,8 @@ $(document).ready(function(){
 			document.getElementById("event_description").innerHTML=data.description;
 			document.getElementById("created_by").innerHTML=data.createdBy.name;
 			document.getElementById('myIframe').src = "/map?seed=" + data.location;
+			document.getElementById("eventlocation").innerHTML=data.location;
+			
 	   },
 	   //error:function(exception){alert('Exeption:'+exception);}
 	}); 
