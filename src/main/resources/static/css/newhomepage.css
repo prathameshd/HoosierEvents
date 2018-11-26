@@ -73,13 +73,13 @@ transition: width:3s;
 }
 
 .abc{  
-  box-shadow: 0 8px 16px 0 rgba(0.2,0.2,0.2,0.2);
+  box-shadow: 0 8px 8px 0 rgba(0.1,0.1,0.1,0.1);
   transition:0.4s;
 }
 .abc:hover
 {
 		
-	    box-shadow: 0 8px 16px 3px rgba(0.5,0.5,0.5,0.7);
+	    box-shadow: 0 8px 16px 1px rgba(0.2,0.2,0.2,0.3);
 
 }
 /* width */

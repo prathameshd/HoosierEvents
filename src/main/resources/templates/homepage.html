@@ -379,23 +379,74 @@ document.getElementsByClassName("all").style.display="none";
 //$(document).ready(function(){
 
 var events= null;
+var eventdata;
+var i=1;
+var temp;
 $(document).ready(function(){
 	$.ajax({
 	type:'GET',
 	dataType:'json',
 	url:"/getAllEvents",
 	  success: function(events) {
+//var rowcount=Math.ceil(events.length/3);
+		/*for (i=0;i<rowcount;i++)
+		{
+		var row=document.createElement("row");
+		row.id="displayrow"+i;
+		alert(row.id);
+		document.getElementById("display").appendChild(row);
+		}*/
 		  events.forEach(element => {
+				//alert(i);
+				
+				var x=document.createElement("div");
+				x.className="col-sm-6 abc";
+			//	x.style="border:1px solid lightgrey;width:60%;left:20%;min-width:300px;min-height:auto;max-height:auto !important;position:relative;";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;"
+
+				//x.innerHTML="<div class='container'><div class='row'><div class='col-sm-6'><p>"+element.eventTitle+"</p><p>"+element.location+"</p></div><div class='col-sm-6'><img src='/getImage?img="+element.id+".jpg' style='width:100%;min-height:155px;max-height:250px;'></div></div></div>>";
+			x.innerHTML="<img src='/getImage?img="+element.id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+element.eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+element.location+"</div></div></div>";
+				//x.id=element.id;
+
+				x.id=element.id;
+				alert(x.id);
+			//	document.getElementById(x.id).onclick="sendevent()";
+								x.addEventListener("click",sendevent);
+
+				i=i+1;
+										//		x.innerHTML="<p>"+element.eventTitle+"</p>";
+
+				//x.addEventListener("click",sendevent);
+
+				//temp="displayrow"+1;
+				document.getElementById("display").appendChild(x);
+								//document.getElementById("display").innerHTML+="<br>";
+
+			  //alert(element.id+"elements"+element.eventTitle+" "+element.location+"time"+element.startDate);
+			  //eventdata[i]=element.eventTitle;
+			  //i=i+1;
 			  //document.getElementById("eventimg").src='/getImage?img='+ element.id+'.jpg';
 			  console.log(element);
 			});
+		
+		
+		//alert(eventdata);
 	   },
 	   error:function(exception){
 		   console.log("error: "+ exception);}
-	}); 
+	});
+document.getElementById("tile1").addEventListener("click", function(){
+    alert("Hello World!");
 });	
-	
+});	
 
+
+function sendevent()
+{
+alert(this.id);
+}
+//alert(eventdata);
 //alert(events.length);
 var rowcount=Math.ceil(events.length/3);
 //alert(rowcount);
