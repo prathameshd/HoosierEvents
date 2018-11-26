@@ -41,7 +41,13 @@ public final RedirectView signMeUp(HttpServletRequest request, RegForm regForm, 
     user.setName(name);
     user.setPhoneNumber(phone);
     user.setEmail(email);
-    user.setActive(1);
+    
+    if(type_user.equals("user"))
+        user.setActive(1);
+    else
+        user.setActive(0);
+    
+    
     System.out.println(type_user);
     if(type_user.equals("user"))
         user.setUser_type("1");
