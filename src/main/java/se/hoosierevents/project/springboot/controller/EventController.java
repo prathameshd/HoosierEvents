@@ -59,12 +59,6 @@ public class EventController implements Controller {
 
 	@RequestMapping("/getEvent")
 	public ResponseEntity<Event> getEvent(@RequestParam("id") Long id, HttpSession session) {
-
-//		if (null != session) {
-//			User user = (User) session.getAttribute(USER_KEY);
-//			if (null == user)
-//				return null;
-//		}
 		return ResponseEntity.ok(eventService.getEvent(id));
 	}
 
@@ -76,11 +70,6 @@ public class EventController implements Controller {
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 		return new RedirectView("eventpage");
-	}
-
-	@RequestMapping("/knowMore")
-	public ResponseEntity<Event> knowMore(@RequestParam("id") Long id, HttpServletRequest request) {
-		return ResponseEntity.ok(eventService.getEvent(id));
 	}
 
 	@RequestMapping("/createEvent")
