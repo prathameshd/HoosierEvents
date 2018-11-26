@@ -70,6 +70,9 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getauth").permitAll()
                 .antMatchers("/getuser").permitAll()
                 .antMatchers("/eventpage").permitAll()
+                .antMatchers("/getImage").permitAll()
+                .antMatchers("/getAllEvents").permitAll()
+                .antMatchers("/getEvent").permitAll()
 
                 .and()
                 .csrf().disable()
