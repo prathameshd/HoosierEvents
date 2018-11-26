@@ -212,8 +212,7 @@ var loc="Bloomington";
 /*passing parameter to iframe*/
 /*document.getElementById('myIframe').src = "/map?seed=" + loc;*/
 
-
-var event_id=11;
+var event_id=document.URL.substr(document.URL.indexOf('=')+1);
 $(document).ready(function(){
 	$.ajax({
 	type:'POST',
@@ -221,7 +220,6 @@ $(document).ready(function(){
 	data: {id:event_id},
 	url:"/getEvent",
 	  success: function(data) {
-		  debugger;
 			console.log('success',data);
 			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg';
 			document.getElementById("event_title").innerHTML=data.eventTitle;
@@ -250,7 +248,6 @@ $(document).ready(function(){
                 type: "GET",
                 url: '/getuser',
                 success: function (data) {
-                    debugger;
                     console.log(data);
                     if(data.user_type==='1' ){
                         document.getElementById('registerbutt').disabled=false;
@@ -261,7 +258,6 @@ $(document).ready(function(){
 
                 },
                 error: function (e) {
-                    debugger;
                     console.log(e);
                 }
 
@@ -278,7 +274,6 @@ $(document).ready(function(){
                 type: "GET",
                 url: '/getauth',
                 success: function (data) {
-                    debugger;
                     console.log(data);
                     if(data==="anonymousUser"){
                         document.getElementById('logoutbutt').style.display="none";
@@ -294,7 +289,6 @@ $(document).ready(function(){
 
                 },
                 error: function (e) {
-                    debugger;
                     console.log(e);
                 }
 

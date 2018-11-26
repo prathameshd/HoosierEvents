@@ -410,7 +410,7 @@ $(document).ready(function(){
 				//x.id=element.id;
 
 				x.id=element.id;
-				alert(x.id);
+				//alert(x.id);
 			//	document.getElementById(x.id).onclick="sendevent()";
 								x.addEventListener("click",sendevent);
 
@@ -444,7 +444,7 @@ document.getElementById("tile1").addEventListener("click", function(){
 
 function sendevent()
 {
-alert(this.id);
+	window.location.href = "eventpage?id="+this.id;
 }
 //alert(eventdata);
 //alert(events.length);
