@@ -42,11 +42,13 @@ background-color:black;
 
 .chat-button{
 	height:30px;
-		color:#3C9883;
+	color:#3C9883;
 	background-color:white;
 	border:1px solid #3C9883;
 	border-radius:3px;
-		transition:0.5s;
+	transition:0.5s;
+		
+		/*min-width:100px;*/
 }
 
 .chat-button:hover{
@@ -65,7 +67,8 @@ color:white;
 	border: 2px solid #3C6198;
 	border-radius:3px;
 	height:40px;
-	width:100%;
+	width:75%;
+	min-width:150px;
 	left:10%;
 	position:relative;
 	transition:0.5s;
