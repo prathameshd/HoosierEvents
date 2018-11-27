@@ -254,8 +254,8 @@ img {
 </div>
 </div>
 </div>
-
-<div id="display2" class="container" style="height:75%;background-color:;width:100%;overflow-y:scroll;">
+<div id="container-fluid"><div class="row"><div class="col-sm-12"><h3>Events This Month</h3></div></div></div>
+<div id="display2" class="container" style="height:50%;background-color:;width:100%;overflow-y:scroll;">
 </div>
 
 <div class="container-fluid fancy" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color:#D5B4AA !important;color:">
@@ -440,6 +440,8 @@ $(document).ready(function(){
 	dataType:'json',
 	url:"/getAllEvents",
 	  success: function(events) {
+	  
+	  
 //var rowcount=Math.ceil(events.length/3);
 		/*for (i=0;i<rowcount;i++)
 		{
@@ -450,6 +452,11 @@ $(document).ready(function(){
 		}*/
 		  events.forEach(element => {
 				//alert(i);
+				//alert(element.startDate[5]+element.startDate[6]);
+				var d=new Date();
+				//alert(d.getMonth());
+				//if(element.location=="California")
+				{
 				
 				var x=document.createElement("div");
 				x.className="col-sm-6 abc";
@@ -473,6 +480,21 @@ $(document).ready(function(){
 
 				//temp="displayrow"+1;
 				document.getElementById("display").appendChild(x);
+				var eventyear=String(element.startDate[0])+String(element.startDate[1])+String(element.startDate[2])+String(element.startDate[3]);
+				if(String(element.startDate[5])=='0')
+				{
+				var date_e=String(element.startDate[6]);
+				}
+				else{
+				var date_e=String(element.startDate[5])+String(element.startDate[6]);
+				}
+				//alert(date_e+"and"+String(1));
+				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()))
+				{
+					document.getElementById("display2").appendChild(x);
+
+				//alert("ggez");
+				}
 								//document.getElementById("display").innerHTML+="<br>";
 
 			  //alert(element.id+"elements"+element.eventTitle+" "+element.location+"time"+element.startDate);
@@ -480,6 +502,7 @@ $(document).ready(function(){
 			  //i=i+1;
 			  //document.getElementById("eventimg").src='/getImage?img='+ element.id+'.jpg';
 			  console.log(element);
+			  }
 			});
 		
 		
