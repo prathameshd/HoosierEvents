@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
 
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
   <script src="script/eventpage.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -36,7 +38,8 @@
 }
 
   body, html, .container-fluid {
-     
+     font-family: 'Oxygen', sans-serif;
+
 	 width:100%
 }
 #registerbutt:disabled{
@@ -80,7 +83,7 @@ background-color:#dddddd !important;
 		<div class="headers">
 		<div class="row" ><h2 id="event_title"></h2></div>
 		<div class="row" ><h5 id="event_date"></h5></div>
-		<div class="row" ><h5 id="event_location"></h5></div>
+		<div class="row" ><h5 id="event_location" style="color:green"></h5></div>
 		<div class="row" style="color:#726868"><h5>10am-3pm</h5></div>
 		<div class="row" style="color:#3C6198"><h5>TICKETS:Available</h5></div>
 		<br><br><br>
@@ -108,34 +111,38 @@ background-color:#dddddd !important;
     </div>
 		<br><br><br>
 	
-    <div class="col-sm-4" style="">  
+<div class="col-sm-4" style="">  
     
 		<!--<div class="row" >
 			<div class="col-sm-12"><iframe id="myIframe" style="border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
 		</div>-->
 		
+		<br>
+		<div class="row page-header" style="text-align:center;">
+			<div class="col-sm-12"><h5>Contact Info:</h5></div>
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-sm-12"><h6 id="created_by"></h6></div>
+		</div>
 		
-		<div class="row page-header">
-			<div class="col-sm-12"><h4>Contact Info:</h4></div>
+		<div class="row" style="text-align:center;">
+			<div class="col-sm-12"><h6 id="user_email"></h6></div>
 		</div>
-		<div class="row">
-			<div class="col-sm-6"><h5 id="created_by"></h5></div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-12"><h5>event@corp.com</h5></div>
-		</div>
-		<div class="row">
+		<div class="row" style="text-align:center;">
 	
-			<div class="col-sm-12"><h5>812555555</h5></div>
+			<div class="col-sm-12"><h6 id="user_contact"></h6></div>
 		</div><br>
-					<div class="row"><div class="col-sm-12" style="text-align:center">
-					<button id="chatButton" class="btn-block chat-button">Chat </button></div></div>
+					<div class="row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-6" style="text-align:center">
+					<button id="chatButton" class="btn-block chat-button">Chat </button></div>
+										<div class="col-sm-3"></div>
+					</div>
 
 		<br>
 		 <div class="row">
     <div class="col-sm-12">
-    <a class="twitter-timeline" min-width:350px; data-height="300" href="https://twitter.com/BillGates?ref_src=twsrc%5Etfw">Twitter Handle</a> 
+    <a class="twitter-timeline" min-width:350px; data-height="350" href="https://twitter.com/BillGates?ref_src=twsrc%5Etfw">Twitter Handle</a> 
     </div>
     </div> 
 	</div>
@@ -152,11 +159,11 @@ background-color:#dddddd !important;
 <br><br><br><br><br>
 
 
- <div id="chat-page" class="hidden" style="min-width:300px;max-width:300px">
+ <div id="chat-page" class="hidden" style="min-width:350px;max-width:350px">
 	<div class="chat-container">
 		<div class="chat-header">
 			<table><tr><td align="left" id="organiser_chatname"><h5>Help Desk</h5></td>
-						<td align="right" style="padding-left:270px;"><button class="close">X</button></td></tr></table>
+						<td align="right" style="padding-left:200px;"><button class="close">X</button></td></tr></table>
 		</div>
 		<div class="connecting">Connecting...</div>
 		<ul id="messageArea">
@@ -229,6 +236,8 @@ $(document).ready(function(){
 			document.getElementById("created_by").innerHTML=data.createdBy.name;
 			document.getElementById('myIframe').src = "/map?seed=" + data.location;
 			document.getElementById("eventlocation").innerHTML=data.location;
+									document.getElementById("user_email").innerHTML=data.createdBy.email;
+						document.getElementById("user_contact").innerHTML=data.createdBy.contact;
 			
 	   },
 	   //error:function(exception){alert('Exeption:'+exception);}
