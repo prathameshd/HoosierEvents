@@ -64,8 +64,9 @@ public class EventController implements Controller {
 
 	@RequestMapping("/saveEvent")
 	public RedirectView saveEvent(@RequestParam("file") MultipartFile file, @ModelAttribute Event event,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, HttpSession session) {
 		fileStoreService.store(file, eventService.getCurrentImageNameToCreate());
+		event.setCreatedBy((User) session.getAttribute(USER_KEY));
 		eventService.saveEvent(event, file);
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
