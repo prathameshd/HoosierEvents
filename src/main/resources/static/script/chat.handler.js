@@ -15,18 +15,17 @@ var closeButton = document.querySelector('.close');
 
 var stompClient = null;
 var username = null;
+var socket = null;
 
 var colors = [ '#2196F3', '#32c787', '#00BCD4', '#ff5652', '#ffc107',
 		'#ff85af', '#FF9800', '#39bbb0' ];
 
 function connect(event) {
-	username = 'Harish';//document.querySelector('#name').value.trim();
+	chatButton.style.display = "none";
+	chatPage.classList.remove('hidden');
 
-	if (username) {
-		chatButton.style.display = "none";
-		chatPage.classList.remove('hidden');
-
-		var socket = new SockJS('/ws');
+	if (username && null==socket) {
+		socket = new SockJS('/ws');
 		stompClient = Stomp.over(socket);
 
 		stompClient.connect({}, onConnected, onError);
@@ -39,7 +38,7 @@ function onConnected() {
 	stompClient.subscribe('/topic/public', onMessageReceived);
 
 	// Tell your username to the server
-	stompClient.send("/app/chat.addUser", {}, JSON.stringify({
+	stompClient.send("/app/chat.addUser."+event_id, {}, JSON.stringify({
 		sender : username,
 		type : 'JOIN'
 	}))
@@ -60,7 +59,7 @@ function sendMessage(event) {
 			content : messageInput.value,
 			type : 'CHAT'
 		};
-		stompClient.send("/app/chat.sendMessage", {}, JSON
+		stompClient.send("/app/chat.sendMessage."+event_id, {}, JSON
 				.stringify(chatMessage));
 		messageInput.value = '';
 	}
@@ -121,3 +120,20 @@ function closeForm() {
 chatButton.addEventListener('click', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
 closeButton.addEventListener('click', closeForm, true)
+
+$(document).ready(function () {
+    $.ajax({
+        type: "GET",
+        url: '/getuser',
+        success: function (data) {
+        	if(null == data || data == ""){
+        		username = 'Guest';
+        	} else
+            username=data.name;
+        },
+        error: function (e) {
+        	username='Guest';
+        }
+
+    });
+})

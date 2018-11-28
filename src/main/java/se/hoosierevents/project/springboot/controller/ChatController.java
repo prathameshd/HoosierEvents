@@ -11,18 +11,17 @@ import se.hoosierevents.project.model.ChatMessage;
 @Controller
 public class ChatController {
 
-	@MessageMapping("/chat.sendMessage")
+	@MessageMapping("/chat.sendMessage.{channel}")
 	@SendTo("/topic/public")
 	public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
 		return chatMessage;
 	}
 
-	@MessageMapping("/chat.addUser")
+	@MessageMapping("/chat.addUser.{channel}")
 	@SendTo("/topic/public")
 	public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
 		// Add username in web socket session
 		headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
 		return chatMessage;
 	}
-
 }
