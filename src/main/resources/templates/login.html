@@ -89,7 +89,6 @@ padding-top:10px;
 
 <ul class='slideshow'>
   <li>
-    <h3>The Seasons</h3>
     <!-- By Keven Law from Los Angeles, USA (Long Hot Summer......) [CC-BY-SA-2.0 (http://creativecommons.org/licenses/by-sa/2.0)], via Wikimedia Commons, http://commons.wikimedia.org/wiki/File%3AFlickr_-_law_keven_-_Long_Hot_Summer.......jpg -->
     <span>Summer</span>
   </li>
@@ -375,28 +374,48 @@ window.onclick = function(event) {
 }
 
 function email_validate(){
+	
+    if(document.getElementById("reset_email").value==="")
+    	document.getElementById("invalid_email").style.display = "block";
+    else {
+        $.ajax({
+            type: "GET",
+            url: "/userExists",
+            data: {'email' :document.getElementById("reset_email").value},
+            success: function (data) {
+                
+                if (data === "nope") {
+                    
+                    document.getElementById("invalid_email").style.display = "block";
 
-    console.log("hello");
+                }
+                if(data === "found") {
+                    
+                    document.getElementById("invalid_email").style.display = "none";
+                    document.getElementById("pass_div").style.display = "block";
 
-$.getJSON("/validEmail",{emailvalid:document.getElementById("reset_email")},function(data){
-    var k = data[user];
-    document.getElementById("invalid_email").style.display = "block";
 
-    if(k=="") {
-        document.getElementById("invalid_email").style.display = "block";
+                }
+            },
+            error: function (e) {
+               
+                console.log(e);
+            }
+
+        })
     }
-});
+}
 
-if(document.getElementById("reset_email").value=="" )
-{
-document.getElementById("invalid_email").style.display="block";
+// if(document.getElementById("reset_email").value=="" )
+// {
+// document.getElementById("invalid_email").style.display="block";
+//
+// }
+// else{
+// document.getElementById("invalid_email").style.display="none";
+// pass_div.style.display="block";
+// }
 
-}
-else{
-document.getElementById("invalid_email").style.display="none";
-pass_div.style.display="block";
-}
-}
 function pass_reset(){
 alert('password has been reset!');
 location.reload();

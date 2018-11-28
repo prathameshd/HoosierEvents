@@ -73,7 +73,10 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getImage").permitAll()
                 .antMatchers("/getAllEvents").permitAll()
                 .antMatchers("/getEvent").permitAll()
+                .antMatchers("/userExists").permitAll()
+                .antMatchers("/forgotPass").permitAll()
 
+                
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
