@@ -96,7 +96,12 @@ background-color:#dddddd !important;
 <div class="col-sm-2"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></div>
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
-<div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
+<div class="col-sm-2"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
+<div class="col-sm-1">
+<form action="/">
+        <button class="btn-default xyz" id="profilebutton"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Profile</h5></button>
+    </form>
+	</div>
 <div class="col-sm-1">
     <form action="/login">
         <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
@@ -104,6 +109,7 @@ background-color:#dddddd !important;
     <form action="/logout">
         <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
     </form>
+	
 </div>
 </div>
 </div>
@@ -123,7 +129,7 @@ background-color:#dddddd !important;
 	<div class="col-sm-4" >
 		<div class="headers">
 		<div class="row" ><h2 id="event_title"></h2></div>
-		<div class="row" ><h3 id="event_date"></h3></div>
+		<div class="row" ><h3 id="event_date" style="color:green"></h3></div>
 		<div class="row" style="color:#726868"><h3 id="event_start_time"></h3></div>
 
 		<!--<div class="row" ><h4 id="event_location" style="color:green;font-family: 'Open Sans', sans-serif;
@@ -146,11 +152,17 @@ background-color:#dddddd !important;
 	<div class="col-sm-8">
       
 		<div class="row" style="width:90%;">
-			<div class="col-sm-12"><h5><b>ABOUT THIS EVENT</b></h5></div>
+					<div class="col-sm-2"></div>
+
+			<div class="col-sm-8"><h4><b>ABOUT THIS EVENT</b></h4></div>
+						<div class="col-sm-2"></div>
+
 		 </div>
 		 <br>
 		<div class="row" style="width:90%;">
-			<div class="col-sm-12"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p></div>
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p></div>
+			<div class="col-sm-2"></div>
 		</div>
     </div>
 	
@@ -162,13 +174,13 @@ background-color:#dddddd !important;
 		
 	
 			<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h5><b>&nbsp&nbsp&nbspLOCATION</b></h5></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspLOCATION</b></h4></div>
 		</div>
 		<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h5 style="font-family: 'Open Sans', sans-serif;" id="event_location">&nbsp&nbsp&nbsp</h5></div>
+			<div class="col-sm-12"><p style="font-family: 'Open Sans', sans-serif;" id="event_location">&nbsp&nbsp&nbsp</div>
 		</div><br>
 		<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h5><b>&nbsp&nbsp&nbspCONTACT INFO:</b></h5></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspCONTACT INFO:</b></h4></div>
 		</div>
 		<div class="row" style="text-align:left;">
 			<div class="col-sm-12"><p id="created_by" style="font-family: 'Open Sans', sans-serif;"></p></div>
@@ -321,9 +333,41 @@ $(document).ready(function(){
 			alert(data.startDate);
 			for (x=0;x<=9;x++)
 			{
-						document.getElementById("event_date").innerHTML+=data.startDate[x];
-
+						//document.getElementById("event_date").innerHTML+=data.startDate[x];
+						
+						
 			}
+			var day=String(data.startDate[8])+String(data.startDate[9]);
+			var month=String(data.startDate[5])+String(data.startDate[6]);
+			//document.getElementById("event_date").innerHTML+="<p style='color:black;'>Date:";
+			if(month=="01")
+			{	document.getElementById("event_date").innerHTML+="Date: Jan";	}
+			if(month=="02")
+			{	document.getElementById("event_date").innerHTML+="Date: Feb";	}
+			if(month=="03")
+			{	document.getElementById("event_date").innerHTML+="Date: Mar";	}
+			if(month=="04")
+			{	document.getElementById("event_date").innerHTML+="Date: Apr";	}
+			if(month=="05")
+			{	document.getElementById("event_date").innerHTML+="Date: May";	}
+			if(month=="06")
+			{	document.getElementById("event_date").innerHTML+="Date: Jun";	}
+			if(month=="07")
+			{	document.getElementById("event_date").innerHTML+="Date: Jul";	}
+			if(month=="08")
+			{	document.getElementById("event_date").innerHTML+="Date: Aug";	}
+			if(month=="09")
+			{	document.getElementById("event_date").innerHTML+="Date: Sep";	}
+			if(month=="10")
+			{	document.getElementById("event_date").innerHTML+="Date: Oct";	}
+			if(month=="11")
+			{	document.getElementById("event_date").innerHTML+="Date: Nov";	}
+			if(month=="12")
+			{	document.getElementById("event_date").innerHTML+="Date: Dec";	}
+			
+			document.getElementById("event_date").innerHTML+="&nbsp"+day;	
+			document.getElementById("event_start_time").innerHTML+="Time:&nbsp";
+			
 			for(x=11;x<=15;x++)
 			{
 			document.getElementById("event_start_time").innerHTML+=data.startDate[x];
@@ -357,7 +401,6 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.user_type==='1' ){
                         document.getElementById('registerbutt').disabled=false;
-
                     }
 
 
@@ -384,11 +427,15 @@ $(document).ready(function(){
                     if(data==="anonymousUser"){
                         document.getElementById('logoutbutt').style.display="none";
                         document.getElementById('loginbutt').style.display="block";
+												document.getElementById('profilebutton').style.display="none";
+
 
                     }
                     else{
                         document.getElementById("loginbutt").style.display="none";
                         document.getElementById("logoutbutt").style.display="block";
+												document.getElementById('profilebutton').style.display="block";
+
 
                     }
 
