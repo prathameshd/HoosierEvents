@@ -225,18 +225,17 @@ padding-top:10px;
  </div>
  <div id="invalid_email" style="color:red;display:none;"><h6>Enter valid email ID</h6></div>
  <div id="pass_div" style="display:none;"><br />
-  <form th:action="@{/forgotPass}" id="register-form" role="form" autocomplete="off" class="form" method="post">
 
  <div class="row">
 		 <div class="col-sm-4">Enter Code received:</div>
 		  <div class="col-sm-8">
-		  <input type="text" class="form-control" />
+		  <input type="text" class="form-control" id="code" />
 		  </div>
 
  </div>
  <div class="row">
 		 <div class="col-sm-4">Enter new password</div>
-		   <div class="col-sm-8"><input type="password" class="form-control" /></div>
+		   <div class="col-sm-8"><input type="password" class="form-control" id="newpassword" /></div>
 
  </div><br />
  <div class="row">
@@ -245,8 +244,12 @@ padding-top:10px;
             <input name="recover-submit" class="btn btn-primary btn-block" value="Reset Password" type="submit" onclick="pass_reset()" />
 		</div>
 
+     <div id="expired_code" style="color:red;display:none;"><h6>Code has expired !</h6></div>
+     <div id="invalid_code" style="color:red;display:none;"><h6>Code is Invalid</h6></div>
+     <div id="success" style="color:green;display:none;"><h6>Password reset successful !</h6></div>
+
  </div>
- </form>
+
  </div>
 <!--  <div class="row">
 		 <div class="col-sm-3"></div>
@@ -255,6 +258,8 @@ padding-top:10px;
  </div>
 
 </div>
+
+
 <div class="container-fluid" style="padding:75px;"></div>
 </div>
 <div class="container-fluid fancy" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color:#D5B4AA !important;color:">
@@ -373,24 +378,25 @@ window.onclick = function(event) {
     }
 }
 
-function email_validate(){
-	
+function email_validate(){ document.getElementById("pass_div").style.display = "none";
+
+
     if(document.getElementById("reset_email").value==="")
-    	document.getElementById("invalid_email").style.display = "block";
+        document.getElementById("invalid_email").style.display = "block";
     else {
         $.ajax({
             type: "GET",
             url: "/userExists",
             data: {'email' :document.getElementById("reset_email").value},
             success: function (data) {
-                
+
                 if (data === "nope") {
-                    
+
                     document.getElementById("invalid_email").style.display = "block";
 
                 }
                 if(data === "found") {
-                    
+
                     document.getElementById("invalid_email").style.display = "none";
                     document.getElementById("pass_div").style.display = "block";
 
@@ -398,7 +404,7 @@ function email_validate(){
                 }
             },
             error: function (e) {
-               
+
                 console.log(e);
             }
 
@@ -416,10 +422,45 @@ function email_validate(){
 // pass_div.style.display="block";
 // }
 
+
 function pass_reset(){
-alert('password has been reset!');
-location.reload();
+
+    document.getElementById("expired_code").style.display="none";
+    document.getElementById("invalid_code").style.display="none";
+    document.getElementById("success").style.display="none";
+
+    $.ajax({
+        type : "GET",
+        url: "/forgotPass",
+        data: {'code' : document.getElementById("code").value, 'password' : document.getElementById("newpassword").value},
+        success: function (data){
+            debugger;
+            if(data === "timeexpired"){
+
+                document.getElementById("expired_code").style.display="block";
+            }
+            if(data === "codeinvalid"){
+
+                debugger;
+                document.getElementById("invalid_code").style.display="block";
+            }
+            if(data === "success"){
+
+                document.getElementById("success").style.display="block";
+            }
+
+        },
+        error: function (e) {
+            console.log(e);
+
+        }
+    })
+
+
 }
+
+
+
 </script>
 
 </body>

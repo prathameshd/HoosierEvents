@@ -1,3 +1,4 @@
+
 package se.hoosierevents.project.springboot.controller;
 
 
@@ -9,14 +10,11 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import se.hoosierevents.project.model.User;
@@ -46,44 +44,60 @@ public class ForgotPassword {
     private String status;
 
 
-@RequestMapping(value = "/validEmail", method= RequestMethod.GET, produces = "application/json")
-public final Map<String,String> verifyEmail(@PathVariable String emailvalid)
-{
-    System.out.println("I am finally here");
-    final Map<String, String> messageObject = new HashMap<>();
-
-//    String emailvalid="arswaroop@outlk.com";
-
-    User userfound;
-
-if(userRepository.findByEmail(emailvalid)==null)
-{
-    messageObject.put("user","");
-    return messageObject;
-
-}
-
-else {
-    userfound = userRepository.findByEmail(emailvalid);
-
-    String user;
-    messageObject.put("user", userfound.getEmail());
-return messageObject;
-}
-}
-
-
-@RequestMapping(value = "/sendCode", method = RequestMethod.POST)
-public final RedirectView sendCode(@RequestParam("email") String username){
-    this.username1=username;
+//    @RequestMapping(value = "/validEmail", method= RequestMethod.GET, produces = "application/json")
+//    public final Map<String,String> verifyEmail(@PathVariable String emailvalid)
+//    {
+//        System.out.println("I am finally here");
+//        final Map<String, String> messageObject = new HashMap<>();
+//
+////    String emailvalid="arswaroop@outlk.com";
+//
+//        User userfound;
+//
+//        if(userRepository.findByEmail(emailvalid)==null)
+//        {
+//            messageObject.put("user","");
+//            return messageObject;
+//
+//        }
+//
+//        else {
+//            userfound = userRepository.findByEmail(emailvalid);
+//
+//            String user;
+//            messageObject.put("user", userfound.getEmail());
+//            return messageObject;
+//        }
+//    }
 
 
-     this.rand=new Random();
-     this.issuedDateTime=LocalDateTime.now();
-    this.expiredDateTime = this.issuedDateTime.plusHours(1);
-    this.status="pending";
 
-     id = String.format("%04d", rand.nextInt(10000));
+    @GetMapping(value="/userExists")
+    public ResponseEntity<String> userExistsornot(String email){
+
+        System.out.println("email" + email);
+
+        if(userRepository.findByEmail(email)!= null) {
+            sendCode(email);
+            return ResponseEntity.ok("found");
+        }
+        else
+            return ResponseEntity.ok("nope");
+
+    }
+
+
+
+    public final void sendCode(String username){
+        this.username1=username;
+
+
+        this.rand=new Random();
+        this.issuedDateTime=LocalDateTime.now();
+        this.expiredDateTime = this.issuedDateTime.plusHours(1);
+        this.status="pending";
+
+        id = String.format("%04d", rand.nextInt(10000));
 
 //    List<String> a= ldapTemplate.search(
 //            "ou=people",
@@ -96,37 +110,30 @@ public final RedirectView sendCode(@RequestParam("email") String username){
 //
 //     }
 //
+        System.out.println(username);
 
-    Mail mail = new Mail();
-    mail.setFrom("noreply@noreply.com");
-    mail.setSubject("HoosierEvents Password Recovery Code");
-    mail.setContent("Code to reset your password is " + id);
-    mail.setTo(username);
-    emailService.sendSimpleMessage(mail);
-
-
-    return new RedirectView("/forgotPassword");
+        Mail mail = new Mail();
+        mail.setFrom("noreply@noreply.com");
+        mail.setSubject("HoosierEvents Password Recovery Code");
+        mail.setContent("Code to reset your password is " + id);
+        mail.setTo(username);
+        emailService.sendSimpleMessage(mail);
 
 
-}
-
-@RequestMapping(value="/forgotPass" , method = RequestMethod.GET)
-public final RedirectView changetoForgot()
-{
-    return new RedirectView("/forgotPassword");
-
-}
+    }
 
 
-    @RequestMapping(value = "/forgotPass", method = RequestMethod.POST)
-    public final RedirectView forgot(Model model, HttpServletRequest request, RegForm regForm, @RequestParam("password") String password, @RequestParam("code") String code, BindingResult bindingResult){
-System.out.println(username1+" "+password);
+
+
+    @RequestMapping(value = "/forgotPass")
+    public final ResponseEntity<String> forgot(String password, String code){
+        System.out.println(username1+" "+password);
         this.ValidCode=code;
 
 
         this.confirmedDateTime=LocalDateTime.now();
         if(this.confirmedDateTime.isAfter(this.expiredDateTime)){
-            return new RedirectView ("/forgotPassworderror") ;
+            return ResponseEntity.ok("timeexpired");
 
         }
 
@@ -149,12 +156,12 @@ System.out.println(username1+" "+password);
 //        emailService.sendSimpleMessage(mail);
 
 
-            return new RedirectView ("/login");
+            return ResponseEntity.ok("success");
 
         }
 
         else {
-            return new RedirectView ("/forgotpassword");
+            return ResponseEntity.ok("codeinvalid");
         }
     }
 
@@ -163,4 +170,4 @@ System.out.println(username1+" "+password);
 
 
 
-    }
+}
