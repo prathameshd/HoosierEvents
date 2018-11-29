@@ -63,24 +63,29 @@
     </div>	<br />
     <div class="form-bottom">
         <!--/*@thymesVar id="RegForm" type="com.login.ldap.springboot.controller.RegForm"*/-->
-        <form role="form" th:action="@{/signup/me}" method="post">
+
             <div class="form-group">
                 <label class="" for="form-first-name">Name<span style="color:red">*</span></label>
                 <input  type="text" name="name"  placeholder="Name..." class="form-first-name form-control" id="form-first-name" required="required" />
-
+                <div id="empty_name" style="color:red;display:none;"><h6>Please enter your name.</h6></div>
             </div>
             <div class="form-group">
-                <label class="" for="form-last-name">Password<span style="color:red">*</span></label>
-                <input  type="password"   name="password_sign" placeholder="Password..." class="form-last-name form-control" required="required" id="form-last-name" />
+                <label class="" for="form-password">Password<span style="color:red">*</span></label>
+                <input  type="password"   name="password_sign" placeholder="Password..." class="form-last-name form-control" required="required" id="form-password" />
+                <div id="empty_password" style="color:red;display:none;"><h6>Please enter a password.</h6></div>
             </div>
             <div class="form-group">
                 <label class="" for="form-email">Email<span style="color:red">*</span></label>
-                <input  type="text"  name="email_sign" placeholder="Email..." class="form-email form-control" required="required" id="form-email" />
+                <input  type="email"  name="email_sign" placeholder="Email..." class="form-email form-control" required="required" id="form-email" />
+                <div id="valid_email" style="color:red;display:none;"><h6>Please enter your email ID</h6></div>
+                <div id="email_exists" style="color:red;display:none;"><h6>Email ID already taken</h6></div>
+                <div id="invalid_email" style="color:red;display:none;"><h6>Email ID is Invalid</h6></div>
             </div>
 
             <div class="form-group">
                 <label class="" for="form-phone">Phone<span style="color:red">*</span></label>
                 <input  type="text"  name="phone" placeholder="Phone Number..." class="form-phone form-control" required="required"  id="form-phone" />
+                <div id="valid_phone" style="color:red;display:none;"><h6>Please enter a valid phone number</h6></div>
             </div>
 
             <div class="form-group">
@@ -94,9 +99,10 @@
                 <div class="col-sm-12"><h6><span style="color:red">*</span>Fields are mandatory</h6></div></div>
             <div class="form-actions" >
 
-                <button class="btn" type="submit" id="submit_button"  >Sign me up!</button>
+                <button class="btn" type="submit" id="submit_button" onclick="sign_up()" >Sign me up!</button>
+                <div id="success" style="color:green;display:none;"><h3>User is signed up. <a href ="/login">Proceed to login</a></h3></div>
             </div>
-        </form>
+
 
     </div>
 </div>
@@ -127,6 +133,137 @@
 	</div>
 </div>
 </div>
+
+
+<script>
+
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function sign_up(){
+        document.getElementById("empty_name").style.display="none";
+        document.getElementById("empty_password").style.display="none";
+        document.getElementById("valid_email").style.display="none";
+        document.getElementById("email_exists").style.display="none";
+        document.getElementById("valid_phone").style.display="none";
+        document.getElementById("success").style.display="none";
+        document.getElementById("invalid_email").style.display="none";
+
+        debugger;
+        var flag=0;
+        var email=0;
+
+        if(document.getElementById("form-first-name").value === "")
+        {
+            debugger;
+            document.getElementById("empty_name").style.display="block";
+            flag=1;
+        }
+        if(document.getElementById("form-password").value === "")
+        {
+            document.getElementById("empty_password").style.display="block";
+            flag=1;
+        }
+
+        if(document.getElementById("form-email").value === "")
+        {
+            document.getElementById("valid_email").style.display="block";
+            flag=1;
+            email=1;
+        }
+        if(!validateEmail(document.getElementById("form-email").value)){
+            debugger;
+            document.getElementById("invalid_email").style.display="block";
+            flag=1;
+            email=1;
+        }
+
+        if(email===0) {
+            debugger;
+            $.ajax({
+                type: "GET",
+                url: "/checkifexists",
+                data: {'email': document.getElementById("form-email").value},
+                success: function (data) {
+
+                    if (data === "found") {
+                        debugger;
+                        flag = 1;
+                        document.getElementById("email_exists").style.display = "block";
+
+                    }
+                }
+
+
+            })
+        }
+
+
+        if(document.getElementById("form-phone").value === "")
+        {
+            document.getElementById("valid_phone").style.display="block";
+            flag=1;
+        }
+
+        if(document.getElementById("form-phone").value !== "")
+        {
+            if(isNaN(document.getElementById("form-phone").value))
+            {
+                flag=1;
+                document.getElementById("valid_phone").style.display="block";
+            }
+
+        }
+
+
+        if(flag===0)
+        {
+            debugger;
+            var typeofuser;
+            if (document.getElementById('user').checked){
+                typeofuser=document.getElementById('user').value;
+            }
+            if(document.getElementById('organizer').checked)
+            {
+                typeofuser=document.getElementById('organizer').value;
+            }
+debugger;
+            $.ajax({
+                type: "GET",
+                url: "/signup/me",
+                data: {'name': document.getElementById("form-first-name").value, 'password' : document.getElementById("form-password").value, 'phone' : document.getElementById("form-phone").value,'email':  document.getElementById("form-email").value ,'type_user' : typeofuser },
+                success: function (data) {
+                    debugger;
+                    if(data ==="Success"){
+                        debugger;
+                        document.getElementById("success").style.display="block";
+
+                    }
+
+                },
+                error: function(e){
+                    debugger;
+                    console.log(e);
+                }
+
+
+
+
+                }
+
+            )
+
+
+        }
+
+
+    }
+</script>
+
+
+
 
 </body>
 </html>

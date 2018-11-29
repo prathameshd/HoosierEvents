@@ -2,6 +2,7 @@ package se.hoosierevents.project.springboot.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
@@ -34,8 +35,8 @@ UserRepository userRepository;
 //
 //return "hello";
 //    }
-@RequestMapping(value = "/signup/me", method = RequestMethod.POST)
-public final RedirectView signMeUp(HttpServletRequest request, RegForm regForm, @RequestParam("name") String name, @RequestParam("email_sign") String email,@RequestParam("phone") String phone , @RequestParam("password_sign") String password, @RequestParam("userorg") String type_user){
+@RequestMapping(value = "/signup/me")
+public final ResponseEntity<String> signMeUp( String name, String email, String phone , String password,  String type_user){
     User user = new User();
 
     user.setName(name);
@@ -62,7 +63,7 @@ public final RedirectView signMeUp(HttpServletRequest request, RegForm regForm, 
 //        UserService users = new UserService();
 //       users.create(email, password);
 
-    return new RedirectView("/login");
+    return ResponseEntity.ok("Success");
 
 }
 }
