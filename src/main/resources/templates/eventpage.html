@@ -203,7 +203,7 @@ background-color:#dddddd !important;
 		<br>
 		 <div class="row">
     <div class="col-sm-12">
-    <a class="twitter-timeline" min-width:350px; data-height="350" href="https://twitter.com/BillGates?ref_src=twsrc%5Etfw">Twitter Handle</a> 
+    <a id="twitter_handle" class="twitter-timeline" min-width:350px; data-height="350">Twitter Handle</a> 
     </div>
     </div> 
 	</div>
@@ -330,7 +330,9 @@ $(document).ready(function(){
 			console.log('success',data);
 			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg';
 			document.getElementById("event_title").innerHTML=data.eventTitle;
-			alert(data.startDate);
+			//alert(data.startDate);
+			var gg="BillGates"
+			document.getElementById("twitter_handle").href="https://twitter.com/"+data.twitterHandle+"?ref_src=twsrc%5Etfw";
 			for (x=0;x<=9;x++)
 			{
 						//document.getElementById("event_date").innerHTML+=data.startDate[x];
