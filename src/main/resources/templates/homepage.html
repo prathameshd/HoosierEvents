@@ -169,7 +169,7 @@ img {
 <div class="col-sm-2"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></div>
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
-<div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
+<div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
 <div class="col-sm-1">
     <form action="/login">
     <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
@@ -409,7 +409,9 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
 <script>
 
-
+function Search(){
+	document.location.href = "/search";
+}
 
 //var x = document.getElementById("demo");
 /*
