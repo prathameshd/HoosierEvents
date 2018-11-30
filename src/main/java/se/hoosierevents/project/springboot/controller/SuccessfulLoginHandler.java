@@ -48,9 +48,9 @@ public class SuccessfulLoginHandler implements AuthenticationSuccessHandler, Use
 
 	private void redirect(HttpServletRequest hsRequest, HttpServletResponse hsResponse, User user) throws IOException {
 		if (null != user) {
-			if (Integer.parseInt(user.getUser_type()) == UserRole.USER_ADMIN) {
+			if (user.getUserType() == UserRole.USER_ADMIN) {
 				redirectStrategy.sendRedirect(hsRequest, hsResponse, "admin_profile");
-			} else if (Integer.parseInt(user.getUser_type()) == UserRole.USER_ORGANIZER) {
+			} else if (user.getUserType() == UserRole.USER_ORGANIZER) {
 				redirectStrategy.sendRedirect(hsRequest, hsResponse, "org_profile");
 			} else{
 				redirectStrategy.sendRedirect(hsRequest, hsResponse, "/");

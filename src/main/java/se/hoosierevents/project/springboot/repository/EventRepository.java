@@ -29,8 +29,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	public List<Event> findAllByLocation(String location);
 
 	public Optional<Event> findAllByEventTitle(String event);
-	
-	public List<Event> findAllByCreatedBy(User user);
 
 	@Query(value = EVENT_FIND_MAX_ID, nativeQuery = true)
 	Long findMaxEventId();

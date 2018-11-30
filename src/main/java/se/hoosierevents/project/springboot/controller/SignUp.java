@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 import se.hoosierevents.project.model.User;
+import se.hoosierevents.project.springboot.config.UserRole;
 import se.hoosierevents.project.springboot.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,9 +52,9 @@ public final ResponseEntity<String> signMeUp( String name, String email, String 
     
     System.out.println(type_user);
     if(type_user.equals("user"))
-        user.setUser_type("1");
+        user.setUserType(UserRole.USER_NORMAL);
     else
-        user.setUser_type("2");
+        user.setUserType(UserRole.USER_ORGANIZER);
     user.setPassword(bCryptPasswordEncoder.encode(password));
 
     userRepository.save(user);
