@@ -360,6 +360,32 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+                type: "GET",
+                url: '/getuser',
+                success: function (data) {
+                    console.log(data);
+                    if(data.userType===1 ){
+
+                        document.getElementById('registerbutt').disabled=false;
+                    }
+
+
+
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+
+            }
+        )
+    })
+
+</script>
+
 <script>
 var loc="Bloomington";
 
@@ -440,30 +466,7 @@ $(document).ready(function(){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/script/chat.handler.js"></script>
 
-<script>
 
-    $(document).ready(function () {
-        $.ajax({
-                type: "GET",
-                url: '/getuser',
-                success: function (data) {
-                    console.log(data);
-                    if(data.user_type==='1' ){
-                        document.getElementById('registerbutt').disabled=false;
-                    }
-
-
-
-                },
-                error: function (e) {
-                    console.log(e);
-                }
-
-            }
-        )
-    })
-
-</script>
 
 <script>
 
