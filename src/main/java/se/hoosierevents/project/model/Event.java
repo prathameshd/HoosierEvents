@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -74,8 +75,9 @@ public class Event {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isPublic;
 
-	@Column(name = "category")
-	private String eventCategory;
+	@OneToOne
+	@JoinColumn(name = "category")
+	private EventCategory eventCategory;
 
 	@Column(name = "max")
 	private int maximumSeats;
@@ -86,6 +88,14 @@ public class Event {
 	@Column(name = "isapproved", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isApproved;
+	
+	public Boolean getIsApproved() {
+		return isApproved;
+	}
+
+	public void setIsApproved(Boolean approval) {
+		this.isApproved = approval;
+	}
 	
 	@Column(name ="img")
 	private String image;
@@ -156,11 +166,11 @@ public class Event {
 		this.isPublic = isPublic;
 	}
 
-	public String getEventCategory() {
+	public EventCategory getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(String eventCategory) {
+	public void setEventCategory(EventCategory eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 }

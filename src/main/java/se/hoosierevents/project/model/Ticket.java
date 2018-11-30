@@ -49,9 +49,32 @@ public class Ticket {
         this.user = user;
     }
     
-    public Ticket() {
-	}
+//    @Column(name = "attendee_name")
+//	private String attendeeName;
+//
+//	public String getAttendeeName() {
+//		return attendeeName;
+//	}
+//
+//	public void setAttendeeName(String attendeeName) {
+//		this.attendeeName = attendeeName;
+//	}
     
+	@Column(name = "tickettype_id")
+	private Long ticketType;
+
+	public Long getticketType() {
+		return ticketType;
+	}
+
+	public void setticketType(Long ticketType) {
+		this.ticketType = ticketType;
+	}
+	
+	public Ticket() {
+		// TODO Auto-generated constructor stub
+	}
+	
     public Ticket(Event event, User user) {
     	this.event = event;
     	this.user = user;

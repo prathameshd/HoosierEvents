@@ -44,3 +44,12 @@ create table tickets(event_id INT,ticket_name VARCHAR(20),ticket_price INT,quant
 /*added primary key column*/
 /*EVENT ATTENDENCE TABLE*/
 create table event_attend(ticket_id INT PRIMARY KEY AUTO_INCREMENT,event_id INT,user_id INT,FOREIGN KEY(event_id)REFERENCES events_master(event_id),FOREIGN KEY(user_id)REFERENCES user_details(user_id));
+
+/*TICKET TYPE TABLE*/
+create table type_ticket ( tickettype_id INT PRIMARY KEY, tickettype VARCHAR(25) );
+
+/*TICKETS BREAKDOWN PER EVENT TABLE*/
+create table ticket_breakdown (tb_id INT PRIMARY KEY AUTO_INCREMENT, event_id INT, ticket_type INT, ticket_max INT, ticket_avail INT, price INT);
+
+ALTER TABLE event_attend ADD tickettype_id INT;
+ALTER TABLE event_attend ADD attendee_name VARCHAR(50); 

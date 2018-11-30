@@ -34,7 +34,9 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 
 	@Query(value = EVENT_FIND_MAX_ID, nativeQuery = true)
 	Long findMaxEventId();
-	
+
 	@Query(EVENT_FIND_BY_CREATOR)
 	public List<Event> findEventsByCreator(User createdBy);
+
+	public List<Event> findAllByCreatedBy(User user);
 }

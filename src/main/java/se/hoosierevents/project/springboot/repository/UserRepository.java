@@ -4,8 +4,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import org.springframework.data.repository.query.Param;
+
+import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
@@ -15,5 +18,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	public User findByEmail(@Param("email") String email);
 
     public Optional<User> findById(Long id);
+    
+    public List<User> findAll();
 }
 

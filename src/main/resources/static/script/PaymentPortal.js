@@ -1,16 +1,33 @@
 var event_name;
+var bronze;
+var silver;
+var gold;
+var total_cost;
 
-//window.onload = function () {
-//    var url = document.location.href,
-//        params = url.split('?')[1].split('&'),
-//        data = {}, tmp;
-//    for (var i = 0, l = params.length; i < l; i++) {
-//         tmp = params[i].split('=');
-//         data[tmp[0]] = tmp[1];
-//    }
-//    event_name = decodeURIComponent(data.name);
-//    document.getElementById('here').innerHTML = event_name;
-//}
+window.onload = function() {
+	  
+	var parameters = location.search.substring(1).split("&");
+    var temp = parameters[0].split("=");
+    console.log(temp[1]);
+    console.log(unescape(temp[1]));
+    var event_name_coded = unescape(temp[1]);
+    event_name = event_name_coded.replace('+', ' ');
+    temp = parameters[1].split("=");
+    bronze = decodeURIComponent(temp[1]);
+    temp = parameters[2].split("=");
+    silver = decodeURIComponent(temp[1]);
+    temp = parameters[3].split("=");
+    gold = decodeURIComponent(temp[1]);
+    $.ajax({
+		type:'POST',
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
+		url:"/getTicketPrice",
+		  success: function(data) {
+				console.log('success',data);
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+    
+};
 
 // Render the PayPal button
 paypal.Button.render({
@@ -67,22 +84,50 @@ paypal.Button.render({
 
 function SaveEventTicket(){
 	
-	var url = document.location.href,
-    params = url.split('?')[1].split('&'),
-    data = {}, tmp;
-	for (var i = 0, l = params.length; i < l; i++) {
-	     tmp = params[i].split('=');
-	     data[tmp[0]] = tmp[1];
-	}
-	event_name = decodeURIComponent(data.name);
+	
+	
+//	var url = document.location.href,
+//    params = url.split('?')[1].split('&'),
+//    b_params = url.split('&')[2].split('&'),
+//    s_params = url.split('&')[3].split('&'),
+//    g_params = url.split('&')[4].split('&'),
+//    data = {}, b_data = {}, s_data = {}, g_data = {},tmp;
+////	console.log(params);
+////	console.log(b_params);
+////	console.log(s_params);
+////	console.log(g_params);
+//	for (var i = 0, l = params.length; i < l; i++) {
+//	     tmp = params[i].split('=');
+//	     data[tmp[0]] = tmp[1];
+//	}
+//	for (var i = 0, l = b_params.length; i < l; i++) {
+//	     tmp = b_params[i].split('=');
+//	     b_data[tmp[0]] = tmp[1];
+//	}
+//	for (var i = 0, l = params.length; i < l; i++) {
+//	     tmp = s_params[i].split('=');
+//	     s_data[tmp[0]] = tmp[1];
+//	}
+//	for (var i = 0, l = params.length; i < l; i++) {
+//	     tmp = g_params[i].split('=');
+//	     g_data[tmp[0]] = tmp[1];
+//	}
+//	event_name = decodeURIComponent(data.event_name);
+//	var bronze = decodeURIComponent(b_data.bronze);
+//	var silver = decodeURIComponent(s_data.silver);
+//	var gold = decodeURIComponent(g_data.gold);
+	console.log(event_name);
+	console.log(bronze);
+	console.log(silver);
+	console.log(gold);
 	
 	$.ajax({
 		type:'POST',
-		data: {eventTitle:event_name},
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
 		url:"/saveEventTicket",
 		  success: function(data) {
 				console.log('success',data);
-				window.location.href = 'HomePage.html';
+				window.location.href = '/homepage';
 		   },
 		   error:function(exception){alert('Exception:'+exception);}})
 		   

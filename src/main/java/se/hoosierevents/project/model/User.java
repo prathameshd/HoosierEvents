@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "user_details")
 public class User implements  Serializable{
@@ -21,6 +23,7 @@ public class User implements  Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
 	@Column(name = "user_id", unique=true)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -55,24 +58,24 @@ public class User implements  Serializable{
 	@NotEmpty(message = "Please enter your Phone number")
 	private String phoneNumber;
 
-	public String getUser_type() {
-		return user_type;
+	public Long getUserType() {
+		return userType;
 	}
 
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
+	public void setUserType(Long userType) {
+		this.userType = userType;
 	}
 
 	@Column(name = "address")
 	private String address;
 
-	@Id
+	
 	@Column(name = "email", unique = true)
 	@NotEmpty(message = "Please enter your Email address")
 	private String email;
 
 	@Column(name="user_type")
-	private String user_type;
+	private Long userType;
 
 	public Long getId() {
 		return id;
