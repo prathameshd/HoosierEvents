@@ -20,6 +20,31 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	    <link rel="stylesheet" type="text/css" th:href="@{css/HomePageStyle.css}">
 
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' type='text/javascript'>
+	</script><br />
+	<script type='text/javascript'>
+        $(document).ready(function() {
+            $('img#closed').click(function(){
+                $('#btm_banner').hide(90);
+            });
+        });
+	</script>
+	<style type='text/css'>
+		div#btm_banner {
+			bottom: 0;
+			position: fixed;
+			width: 100%;
+			opacity: 0.9;
+			left: 0;
+		}
+		div#btm_banner img{
+			border:0;
+			cursor:pointer;
+		}
+	</style>
+
+
+
   <style>
   .fa {
 padding-top:10px;
@@ -89,6 +114,28 @@ background-color:#dddddd !important;
 </style>
 </head>
 <body>
+
+<div style='height: 0px;'></div>
+<div align='center' id='btm_banner' style='height: 150px; z-index: 9999;'>
+	<div style='text-align: center; width: 983px'>
+		<img id='closed' src='http://3.bp.blogspot.com/-FJbBxXlFzSM/UChDqaGbcMI/AAAAAAAACPA/Lc4uhFU639c
+/s320/exit.png'/></div>
+	<div style='clear: both;'></div>
+	<p>
+	<p><center>
+	<!-- ADVERTISING CODE -->
+
+
+	<iframe src="//cdn.bannersnack.com/banners/bu9eh4o23/embed/index.html?userId=38477934&t=1543552919" width="728" height="90" scrolling="no" frameborder="0" allowtransparency="true" allow="autoplay" allowfullscreen="true"></iframe>
+	<!-- ADVERTISING CODE -->
+</center></p>
+	</p>
+</div>
+
+
+
+
+
 <!-- NAVIGATION BAR -->
 	
 <div class="container-fluid" style="background-color:;color:#AE1616;padding:10px;border-bottom:1px solid lightgrey;">
