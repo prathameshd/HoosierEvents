@@ -177,6 +177,9 @@ img {
     <form action="/logout">
         <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
     </form>
+    <form action="/profile_sample">
+        <button class="btn-default xyz" id="profileButton"  style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
+    </form>
 </div>
 </div>
 </div>
@@ -725,11 +728,13 @@ t.style.display="none";
                if(data==="anonymousUser"){
                    document.getElementById('logoutbutt').style.display="none";
                    document.getElementById('loginbutt').style.display="block";
+                   document.getElementById('profileButton').style.display="none";
 
                }
                else{
                    document.getElementById("loginbutt").style.display="none";
                    document.getElementById("logoutbutt").style.display="block";
+                   document.getElementById("profileButton").style.display="block";
 
                }
 
