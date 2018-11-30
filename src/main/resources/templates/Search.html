@@ -253,6 +253,20 @@
 		  <!-- Footer -->
 	</body>
  	<script>
+ 	function DisplayAllEvents(){
+ 		console.log("Hello");
+ 		$.ajax({
+ 			type:'POST',
+ 			dataType:'JSON',
+ 			url:"/getAllEvents",
+ 			  success: function(data) {
+ 					console.log('success',data);
+ 					document.getElementById("event_title").innerHTML=data;
+
+ 			   },
+ 			   error:function(exception){alert('Exception:'+exception);}})
+ 	}
+ 	
 	function DisplayEventsfromCategory(){
 		var category_id = document.getElementById("searchbartextbox").value;
 		console.log(category_id);
