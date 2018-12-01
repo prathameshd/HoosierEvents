@@ -79,6 +79,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin_profile").permitAll()
                 .antMatchers("/adminProfile").permitAll()
                 .antMatchers("/org_profile").permitAll()
+                .antMatchers("/search").permitAll()
 
                 
                 .and()
