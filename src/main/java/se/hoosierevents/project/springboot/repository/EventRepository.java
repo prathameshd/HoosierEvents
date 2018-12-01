@@ -37,4 +37,6 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 	public List<Event> findEventsByCreator(User createdBy);
 
 	public List<Event> findAllByCreatedBy(User user);
+	
+	public List<Event> findAllByReported(Boolean reportFlag);
 }

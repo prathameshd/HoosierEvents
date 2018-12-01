@@ -72,9 +72,12 @@ body, html, .container-fluid {
 <div class="container-fluid" style="background-color:;color:#AE1616;padding:10px;border-bottom:1px solid lightgrey;">
 <div class="row">
     <div class="col-sm-2"><a href="/" style="text-decoration: none"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></a></div>
+
 <div class="col-sm-1"></div>
 <div class="col-sm-6"></div>
 <div class="col-sm-1"></div>
+<div class="col-sm-1">
+
 	<div class="col-sm-1">
 		<form action="/login">
 			<button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
@@ -84,6 +87,7 @@ body, html, .container-fluid {
 		</form>
 
 	</div>
+</div>
 
 
 	</div>
@@ -110,7 +114,7 @@ body, html, .container-fluid {
 			<li><a data-toggle="pill" href="#view_events">Events</a></li>                        
 		  </ul>
 		</li>
-		<li><a data-toggle="pill" href="#edit_events">Reported Events</a></li>
+		<li><a data-toggle="pill" href="#reported">Reported Events</a></li>
 	  </ul>
 	</div>
 	
@@ -164,22 +168,6 @@ body, html, .container-fluid {
 		<h4>Average Revenue Per Event:<span id="avg_revenue"></span></h4>
 		</div>
 	  </div>
-<!--	  <div id="container" class="cols">
-    <div class="box">a</div>
-    <div class="box">b</div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-</div>-->
       
     </div>
 	<div id="view_users" class="tab-pane fade">
@@ -194,12 +182,12 @@ body, html, .container-fluid {
 	
 	<div id="approve" class="tab-pane fade">
       <h3>Organizer Registration Requests</h3>
-	  <div id="waitlist_events" class="col-sm-9"></div>
+	  <div id="waitlist_organizers" class="col-sm-9"></div>
     </div>
     
     <div id="reported" class="tab-pane fade">
       <h3>Reported Events</h3>
-	  <div id="waitlist_events" class="col-sm-9"></div>
+	  <div id="reported_events" class="col-sm-9"></div>
     </div>
 		
  </div>
@@ -240,7 +228,7 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 		<div class="row">
 		<div class="col-sm-4"></div>
 
-		<div class="col-sm-1" style="padding-right:25px;" ><a href="https://www.facebook.com/HoosierEvents" class="fa fa-facebook"></a></div>
+		<div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-facebook"></a></div>
 <div class="col-sm-1" style="padding-right:25px;"><a href="#" class="fa fa-twitter"></a></div>
 <div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-google"></a></div>
 <div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-instagram"></a></div>
@@ -251,7 +239,6 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="/script/admin_profile.js"></script>
 
 <script type="text/javascript">
 
@@ -282,7 +269,6 @@ function doPendingRequestRender(users) {
 	document.getElementById("total_events").innerHTML+=total;
 	document.getElementById("pending_events").innerHTML+=pending;
 	document.getElementById("total_users").innerHTML+=count;
-	div_count=4; //size of result set-that is list of events in waitlist table
 	var i;
 		for(i=0;i<pending;i++){
 		
@@ -290,11 +276,11 @@ function doPendingRequestRender(users) {
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
 			div.style.borderRadius= "6px";
-			div.id="div"+userId;
+			var temp="divusr"+userId;
+			div.id=temp;
 			div.style.align="center";
-			var temp="div"+userId;
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp" + pendingOrganizers[i].name +"<br>";
+			div.innerHTML= "<h2>&nbsp" + pendingOrganizers[i].name +"</h2><br>";
 			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
 			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
 			
@@ -304,7 +290,7 @@ function doPendingRequestRender(users) {
 			b.innerHTML="Approve";
 			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
-			b.addEventListener("click",approveEvent);
+			b.addEventListener("click",approveRequest);
 			var b2=document.createElement("button");
 			b2.id=userId;
 			b2.innerHTML="Deny";
@@ -312,15 +298,26 @@ function doPendingRequestRender(users) {
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
-			document.getElementById("waitlist_events").appendChild(div);
+			document.getElementById("waitlist_organizers").appendChild(div);
 			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
+		
+		$.ajax({
+			type:'GET',
+			url:"/getReportedEvents",
+			  success: function(reportedEvents) {
+				  doReportedEventsRender(reportedEvents);
+			  },
+			  error: function(e) {
+				 console.log(e);
+			  }
+			});
 }
 
 var elemtUnderProcessId;
-function approveEvent()
+function approveRequest()
 {
 	elemtUnderProcessId = this.id;
 	$.ajax({
@@ -329,7 +326,7 @@ function approveEvent()
         data: {userId:this.id},
         success: function (data) {
         	alert("Organizer Approved");
-        	removeThisRecordFromPendingList(this.id);
+        	removeThisRecordFromPendingList("divusr", this.id);
         },
         error: function (e) {
             console.log(e);
@@ -346,7 +343,7 @@ function denyEvent()
         data: {userId:this.id},
         success: function (data) {
         	alert("Organizer Request Deleted!!");
-        	removeThisRecordFromPendingList(this.id);
+        	removeThisRecordFromPendingList("divusr", this.id);
         },
         error: function (e) {
             console.log(e);
@@ -354,8 +351,8 @@ function denyEvent()
 	});
 }
 
-function removeThisRecordFromPendingList(id){
-	var processedRecord = document.getElementById("div"+elemtUnderProcessId);
+function removeThisRecordFromPendingList(divPrefix, id){
+	var processedRecord = document.getElementById(divPrefix+elemtUnderProcessId);
 	processedRecord.parentNode.removeChild(processedRecord);
 	
 }
@@ -364,63 +361,172 @@ function removeThisRecordFromPendingList(id){
 
 //----reported events
 
-function doPendingRequestRender1(users) {
-	var pendingOrganizers = users.filter(function (users) {
-		  return (users.active == "0");
-		});
-	
-	var total = users.length; ;
-	var pending = pendingOrganizers.length;
+function doReportedEventsRender(reportedEvents) {
+	var total = reportedEvents.length; ;
+	var pending = reportedEvents.length;
 	var count = pending;
-	
-	document.getElementById("total_events").innerHTML+=total;
-	document.getElementById("pending_events").innerHTML+=pending;
-	document.getElementById("total_users").innerHTML+=count;
-	div_count=4; //size of result set-that is list of events in waitlist table
+
 	var i;
 		for(i=0;i<pending;i++){
 		
-			var userId = pendingOrganizers[i].id;
+			debugger;
+			var eventId = reportedEvents[i].id;
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
 			div.style.borderRadius= "6px";
-			div.id="div"+userId;
+			var temp="divevent"+eventId;
+			div.id=temp;
+			div.addEventListener("click",sendevent);
 			div.style.align="center";
-			var temp="div"+userId;
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp" + pendingOrganizers[i].name +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
+			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
+			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
-			b.id=userId;
-			b.innerHTML="Approve";
+			b.id=eventId;
+			b.innerHTML="Allow Event";
 			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
-			b.addEventListener("click",approveEvent);
+			b.addEventListener("click",allowReportedEvent);
 			var b2=document.createElement("button");
-			b2.id=userId;
-			b2.innerHTML="Deny";
-			b2.addEventListener("click",denyEvent);
+			b2.id=eventId;
+			b2.innerHTML="Delete Event";
+			b2.addEventListener("click",deleteReportedEvent);
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
-			document.getElementById("waitlist_events").appendChild(div);
+			document.getElementById("reported_events").appendChild(div);
 			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
 }
 
+function allowReportedEvent()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/allowReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Report ignored for the event!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+function deleteReportedEvent()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/deleteReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Successfully removed the reported event from the system!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+function sendevent()
+{
+	debugger;
+	window.location.href = "eventpage?id="+this.id.toString().replace("divevent","");
+}
 //----------------------------------
 
+//----ALl organizers
+
+function doReportedEventsRender1(reportedEvents) {
+	var total = reportedEvents.length; ;
+	var pending = reportedEvents.length;
+	var count = pending;
+
+	var i;
+		for(i=0;i<pending;i++){
+
+			var eventId = reportedEvents[i].id;
+			var div = document.createElement("div");
+			div.style.border= "1px solid lightgrey";
+			div.style.borderRadius= "6px";
+			var temp="divevent"+eventId;
+			div.id=temp;
+			div.style.align="center";
+			div.className="panel panel-default abcd";
+			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
+			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
+			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
+			
+			var form = document.createElement("button");
+			var b=document.createElement("button");
+			b.id=eventId;
+			b.innerHTML="Allow Event";
+			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
+			b.class="app_buttons btn-primary";
+			b.addEventListener("click",allowReportedEvent);
+			var b2=document.createElement("button");
+			b2.id=eventId;
+			b2.innerHTML="Delete Event";
+			b2.addEventListener("click",deleteReportedEvent);
+			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
+			b2.class="deny_buttons btn-primary";
+			
+			document.getElementById("reported_events").appendChild(div);
+			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).appendChild(b);
+			document.getElementById(temp).appendChild(b2);
+		}
+}
+
+function allowReportedEvent1()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/allowReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Report ignored for the event!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+function deleteReportedEvent1()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/deleteReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Successfully removed the reported event from the system!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+//----------------------------------
+
+
 //--------Harish----------------------
-</script>
 
-<script>
-
-    $(document).ready(function () {
+$(document).ready(function () {
         $.ajax({
                 type: "GET",
                 url: '/getauth',
@@ -429,16 +535,10 @@ function doPendingRequestRender1(users) {
                     if(data==="anonymousUser"){
                         document.getElementById('logoutbutt').style.display="none";
                         document.getElementById('loginbutt').style.display="block";
-                        document.getElementById('profilebutton').style.display="none";
-
-
                     }
                     else{
                         document.getElementById("loginbutt").style.display="none";
                         document.getElementById("logoutbutt").style.display="block";
-                        document.getElementById('profilebutton').style.display="block";
-
-
                     }
 
 
@@ -450,7 +550,7 @@ function doPendingRequestRender1(users) {
             }
         )
     })
-
+    
 </script>
 </body>
 </html>

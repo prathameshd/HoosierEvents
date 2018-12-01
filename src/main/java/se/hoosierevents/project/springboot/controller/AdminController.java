@@ -1,13 +1,17 @@
 package se.hoosierevents.project.springboot.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.User;
-import se.hoosierevents.project.springboot.repository.UserRepository;
 import se.hoosierevents.project.springboot.service.AdminService;
+import se.hoosierevents.project.springboot.service.EventService;
 import se.hoosierevents.project.springboot.service.UserService;
 
 @RestController
@@ -15,12 +19,11 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 
+	@Autowired
+	EventService eventService;
 
 	@Autowired
 	EmailService emailService;
-
-	@Autowired
-	UserRepository userRepository;
 
 	@Autowired
 	UserService userService;
@@ -28,15 +31,15 @@ public class AdminController {
 	@RequestMapping("/approveOrganizer")
 	public String approveOrganizer(@RequestParam("userId") Long id) {
 		User user;
-		user=userService.getUser(id);
+		user = userService.getUser(id);
 
 		Mail mail = new Mail();
 		mail.setFrom("noreply@noreply.com");
 		mail.setSubject("Welcome to HoosierEvents!");
-		mail.setContent("You have been successfully signed up as an organizer. For further questions please contact administrator at eventshoosier@gmail.com");
+		mail.setContent(
+				"You have been successfully signed up as an organizer. For further questions please contact administrator at eventshoosier@gmail.com");
 		mail.setTo(user.getEmail());
 		emailService.sendSimpleMessage(mail);
-
 		adminService.approveOrganizer(id);
 		return "Successfully Approved Organizer";
 	}
@@ -44,7 +47,7 @@ public class AdminController {
 	@RequestMapping("/denyOrganizer")
 	public String denyOrganizer(@RequestParam("userId") Long id) {
 		User user;
-		user=userService.getUser(id);
+		user = userService.getUser(id);
 
 		Mail mail = new Mail();
 		mail.setFrom("noreply@noreply.com");
@@ -53,8 +56,24 @@ public class AdminController {
 		mail.setTo(user.getEmail());
 		emailService.sendSimpleMessage(mail);
 
-
 		adminService.deleteUser(id);
 		return "Successfully Removed Organizer Request";
+	}
+
+	@RequestMapping("/getReportedEvents")
+	public ResponseEntity<List<Event>> getReportedEvents() {
+		return ResponseEntity.ok(eventService.getReportedEvents());
+	}
+
+	@RequestMapping("/allowReportedEvent")
+	public String allowReportedEvent(@RequestParam("userId") Long id) {
+		eventService.allowReportedEvent(id);
+		return "Successfully Allowed Event";
+	}
+
+	@RequestMapping("/deleteReportedEvent")
+	public String deleteReportedEvent(@RequestParam("userId") Long id) {
+		eventService.deleteReportedEvent(id);
+		return "Successfully Removed reported Event";
 	}
 }
