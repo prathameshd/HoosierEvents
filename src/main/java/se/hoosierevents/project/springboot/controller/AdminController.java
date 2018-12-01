@@ -74,6 +74,6 @@ public class AdminController {
 	@RequestMapping("/deleteReportedEvent")
 	public String deleteReportedEvent(@RequestParam("userId") Long id) {
 		eventService.deleteReportedEvent(id);
-		return "Successfully Removed reported Event";
+		return "Successfully Removed reported Event from the System!!";
 	}
 }

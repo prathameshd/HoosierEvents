@@ -429,7 +429,7 @@ function deleteReportedEvent()
         url: '/deleteReportedEvent',
         data: {userId:this.id},
         success: function (data) {
-        	alert("Successfully removed the reported event from the system!!");
+        	alert(data);
         	removeThisRecordFromPendingList("divevent", this.id);
         },
         error: function (e) {

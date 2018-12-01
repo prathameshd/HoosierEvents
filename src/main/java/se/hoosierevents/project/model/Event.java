@@ -71,6 +71,17 @@ public class Event {
 	@Column(name = "description")
 	private String description;
 
+	@Column(name = "reportstatement")
+	private String reportStatement;
+
+	public String getReportStatement() {
+		return reportStatement;
+	}
+
+	public void setReportStatement(String reportStatement) {
+		this.reportStatement = reportStatement;
+	}
+
 	@Column(name = "ispublic", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isPublic;
