@@ -390,6 +390,7 @@ $(document).ready(function(){
 	url:"/getAllOrganizers",
 	  success: function(users) {
 		  doPendingRequestRender(users);
+		  doApprovedOrganizersRender(users);
 	  },
 	  error: function(e) {
 		 console.log(e);
@@ -411,7 +412,7 @@ function doPendingRequestRender(users) {
 	document.getElementById("total_users").innerHTML+=count;
 	var i;
 		for(i=0;i<pending;i++){
-		
+			debugger;
 			var userId = pendingOrganizers[i].id;
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
@@ -434,7 +435,7 @@ function doPendingRequestRender(users) {
 			var b2=document.createElement("button");
 			b2.id=userId;
 			b2.innerHTML="Deny";
-			b2.addEventListener("click",denyEvent);
+			b2.addEventListener("click",denyRequest);
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
@@ -474,7 +475,7 @@ function approveRequest()
 	});
 }
 
-function denyEvent()
+function denyRequest()
 {
 	elemtUnderProcessId = this.id;
 	$.ajax({
@@ -508,8 +509,7 @@ function doReportedEventsRender(reportedEvents) {
 
 	var i;
 		for(i=0;i<pending;i++){
-		
-			debugger;
+
 			var eventId = reportedEvents[i].id;
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
@@ -521,6 +521,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.className="panel panel-default abcd";
 			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
 			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
+			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].reportStatement +"<br>";
 			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
 			
 			var form = document.createElement("button");
@@ -580,64 +581,81 @@ function deleteReportedEvent()
 
 function sendevent()
 {
-	debugger;
 	window.location.href = "eventpage?id="+this.id.toString().replace("divevent","");
 }
 //----------------------------------
 
-//----ALl organizers
+//----ALl approved organizers
 
-function doReportedEventsRender1(reportedEvents) {
-	var total = reportedEvents.length; ;
-	var pending = reportedEvents.length;
+function doApprovedOrganizersRender(users) {
+	var pendingOrganizers = users.filter(function (users) {
+		  return (users.active == "1");
+		});
+	
+	var total = users.length; ;
+	var pending = pendingOrganizers.length;
 	var count = pending;
-
+	
+	document.getElementById("total_events").innerHTML+=total;
+	document.getElementById("pending_events").innerHTML+=pending;
+	document.getElementById("total_users").innerHTML+=count;
 	var i;
 		for(i=0;i<pending;i++){
-
-			var eventId = reportedEvents[i].id;
+		
+			var userId = pendingOrganizers[i].id;
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
 			div.style.borderRadius= "6px";
-			var temp="divevent"+eventId;
+			var temp="divusr"+userId;
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
-			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
-			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
-			b.id=eventId;
-			b.innerHTML="Allow Event";
+			b.id=userId;
+			b.innerHTML="Contact";
 			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
-			b.addEventListener("click",allowReportedEvent);
+			b.addEventListener("click",sendMailOrganizer);
 			var b2=document.createElement("button");
-			b2.id=eventId;
-			b2.innerHTML="Delete Event";
-			b2.addEventListener("click",deleteReportedEvent);
+			b2.id=userId;
+			b2.innerHTML="Delete this Organizer";
+			b2.addEventListener("click",denyRequest);
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
-			document.getElementById("reported_events").appendChild(div);
+			document.getElementById("view_org").appendChild(div);
 			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
+		
+		$.ajax({
+			type:'GET',
+			url:"/getReportedEvents",
+			  success: function(reportedEvents) {
+				  doReportedEventsRender(reportedEvents);
+			  },
+			  error: function(e) {
+				 console.log(e);
+			  }
+			});
 }
 
-function allowReportedEvent1()
+function sendMailOrganizer()
 {
 	elemtUnderProcessId = this.id;
 	$.ajax({
 		type: "PUT",
-        url: '/allowReportedEvent',
+        url: '/approveOrganizer',
         data: {userId:this.id},
         success: function (data) {
-        	alert("Report ignored for the event!!");
-        	removeThisRecordFromPendingList("divevent", this.id);
+        	alert("Organizer Approved");
+        	removeThisRecordFromPendingList("divusr", this.id);
         },
         error: function (e) {
             console.log(e);
@@ -645,22 +663,6 @@ function allowReportedEvent1()
 	});
 }
 
-function deleteReportedEvent1()
-{
-	elemtUnderProcessId = this.id;
-	$.ajax({
-		type: "PUT",
-        url: '/deleteReportedEvent',
-        data: {userId:this.id},
-        success: function (data) {
-        	alert("Successfully removed the reported event from the system!!");
-        	removeThisRecordFromPendingList("divevent", this.id);
-        },
-        error: function (e) {
-            console.log(e);
-        }
-	});
-}
 //----------------------------------
 
 
