@@ -22,6 +22,8 @@ UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    EmailService emailService;
 
 //    @RequestMapping(value="/signup",method = RequestMethod.POST)
 //    public String SignmeUp(@ModelAttribute("RegForm") RegForm regForm, BindingResult result) {
@@ -36,6 +38,10 @@ UserRepository userRepository;
 //
 //return "hello";
 //    }
+
+
+
+
 @RequestMapping(value = "/signup/me")
 public final ResponseEntity<String> signMeUp( String name, String email, String phone , String password,  String type_user){
     User user = new User();
@@ -63,6 +69,27 @@ public final ResponseEntity<String> signMeUp( String name, String email, String 
     System.out.println(user.getPassword());
 //        UserService users = new UserService();
 //       users.create(email, password);
+
+    Mail mail = new Mail();
+    mail.setFrom("noreply@noreply.com");
+
+    if (type_user.equals("user")) {
+
+
+        mail.setSubject("Welcome to HoosierEvents!");
+        mail.setContent("Thank you for signing up. Explore HoosierEvents to goto your favorite events in your town");
+
+
+    }
+    if (type_user.equals("organizer")){
+
+        mail.setSubject("Welcome to HoosierEvents!");
+        mail.setContent("Thank you for your interest in signing up as an organizer at HoosierEvents! Administrator will take a look at your application and you will get notified");
+
+    }
+    mail.setTo(user.getEmail());
+    emailService.sendSimpleMessage(mail);
+
 
     return ResponseEntity.ok("Success");
 
