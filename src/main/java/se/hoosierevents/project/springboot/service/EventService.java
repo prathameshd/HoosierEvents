@@ -103,47 +103,46 @@ public class EventService implements Service {
 
 	public List<Event> getFutureEventsByOrganizer(Long id, Boolean approval) {
 		User user = userRepository.findById(id).get();
-		ArrayList<Event> db_result = new ArrayList<Event> (eventRepository.findAllByCreatedBy(user));
-		ArrayList<Event> result = new ArrayList<Event> ();
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAllByCreatedBy(user));
+		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		System.out.println(today);
-		if(approval) {
-			for(int i = 0; i< db_result.size(); i++) {
-				Date event_date= db_result.get(i).getEndDate();
+		if (approval) {
+			for (int i = 0; i < db_result.size(); i++) {
+				Date event_date = db_result.get(i).getEndDate();
 				System.out.println(event_date);
-				if(event_date.after(today)) {
+				if (event_date.after(today)) {
 					System.out.println("Correct!");
 					int j;
-					for( j = 0; j < result.size(); j++) {
-						if(db_result.get(i).getId() == result.get(j).getId() ) {
+					for (j = 0; j < result.size(); j++) {
+						if (db_result.get(i).getId() == result.get(j).getId()) {
 							break;
 						}
 					}
-					if( j == result.size()) {
+					if (j == result.size()) {
 						result.add(db_result.get(i));
-					}	
+					}
 				}
 			}
-		}
-		else {
-			for(int i = 0; i< db_result.size(); i++) {
-				Date event_date= db_result.get(i).getEndDate();
+		} else {
+			for (int i = 0; i < db_result.size(); i++) {
+				Date event_date = db_result.get(i).getEndDate();
 				System.out.println(event_date);
-				if(event_date.before(today)) {
+				if (event_date.before(today)) {
 					System.out.println("Correct!");
 					int j;
-					for( j = 0; j < result.size(); j++) {
-						if(db_result.get(i).getId() == result.get(j).getId() ) {
+					for (j = 0; j < result.size(); j++) {
+						if (db_result.get(i).getId() == result.get(j).getId()) {
 							break;
 						}
 					}
-					if( j == result.size()) {
+					if (j == result.size()) {
 						result.add(db_result.get(i));
-					}	
+					}
 				}
 			}
 		}
-		
+
 		return result;
 	}
 
@@ -164,5 +163,11 @@ public class EventService implements Service {
 		Event reportedEvent = eventRepository.findById(id).get();
 		reportedEvent.setReported(false);
 		eventRepository.save(reportedEvent);
+	}
+
+	public void reportEvent(Long id) {
+		Event event = eventRepository.findById(id).get();
+		event.setReported(true);
+		eventRepository.save(event);
 	}
 }

@@ -236,4 +236,10 @@ public class EventController implements Controller {
 		}
 		return revenue;
 	}
+	
+	@RequestMapping("/reportEvent")
+	public String reportEvent(@RequestParam("eventId") Long id, String reportedStatement) {
+		eventService.reportEvent(id);
+		return "Reported the Event to admin";
+	}
 }

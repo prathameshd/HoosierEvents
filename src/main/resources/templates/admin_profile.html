@@ -376,6 +376,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.style.borderRadius= "6px";
 			var temp="divevent"+eventId;
 			div.id=temp;
+			div.addEventListener("click",sendevent);
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
@@ -436,7 +437,92 @@ function deleteReportedEvent()
         }
 	});
 }
+
+function sendevent()
+{
+	debugger;
+	window.location.href = "eventpage?id="+this.id.toString().replace("divevent","");
+}
 //----------------------------------
+
+//----ALl organizers
+
+function doReportedEventsRender1(reportedEvents) {
+	var total = reportedEvents.length; ;
+	var pending = reportedEvents.length;
+	var count = pending;
+
+	var i;
+		for(i=0;i<pending;i++){
+
+			var eventId = reportedEvents[i].id;
+			var div = document.createElement("div");
+			div.style.border= "1px solid lightgrey";
+			div.style.borderRadius= "6px";
+			var temp="divevent"+eventId;
+			div.id=temp;
+			div.style.align="center";
+			div.className="panel panel-default abcd";
+			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
+			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
+			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
+			
+			var form = document.createElement("button");
+			var b=document.createElement("button");
+			b.id=eventId;
+			b.innerHTML="Allow Event";
+			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
+			b.class="app_buttons btn-primary";
+			b.addEventListener("click",allowReportedEvent);
+			var b2=document.createElement("button");
+			b2.id=eventId;
+			b2.innerHTML="Delete Event";
+			b2.addEventListener("click",deleteReportedEvent);
+			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
+			b2.class="deny_buttons btn-primary";
+			
+			document.getElementById("reported_events").appendChild(div);
+			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).appendChild(b);
+			document.getElementById(temp).appendChild(b2);
+		}
+}
+
+function allowReportedEvent1()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/allowReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Report ignored for the event!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+function deleteReportedEvent1()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/deleteReportedEvent',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Successfully removed the reported event from the system!!");
+        	removeThisRecordFromPendingList("divevent", this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+//----------------------------------
+
 
 //--------Harish----------------------
 
@@ -449,16 +535,10 @@ $(document).ready(function () {
                     if(data==="anonymousUser"){
                         document.getElementById('logoutbutt').style.display="none";
                         document.getElementById('loginbutt').style.display="block";
-                        document.getElementById('profilebutton').style.display="none";
-
-
                     }
                     else{
                         document.getElementById("loginbutt").style.display="none";
                         document.getElementById("logoutbutt").style.display="block";
-                        document.getElementById('profilebutton').style.display="block";
-
-
                     }
 
 
