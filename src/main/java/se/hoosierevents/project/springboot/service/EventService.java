@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
-import se.hoosierevents.project.model.Ticket;
 import se.hoosierevents.project.model.User;
 import se.hoosierevents.project.springboot.repository.EventCategoryRepository;
 import se.hoosierevents.project.springboot.repository.EventRepository;
@@ -46,28 +45,28 @@ public class EventService implements Service {
 
 	public List<Event> getFutureEvents(Boolean approval) {
 		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAll());
-		ArrayList<Event> result = new ArrayList<Event> ();
+		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		System.out.println(today);
-		for(int i = 0; i< db_result.size(); i++) {
-			Date event_date= db_result.get(i).getEndDate();
+		for (int i = 0; i < db_result.size(); i++) {
+			Date event_date = db_result.get(i).getEndDate();
 			System.out.println(event_date);
-			if(event_date.after(today) && (db_result.get(i).getIsApproved() == approval)) {
+			if (event_date.after(today) && (db_result.get(i).getIsApproved() == approval)) {
 				System.out.println("Correct!");
 				int j;
-				for( j = 0; j < result.size(); j++) {
-					if(db_result.get(i).getId() == result.get(j).getId() ) {
+				for (j = 0; j < result.size(); j++) {
+					if (db_result.get(i).getId() == result.get(j).getId()) {
 						break;
 					}
 				}
-				if( j == result.size()) {
+				if (j == result.size()) {
 					result.add(db_result.get(i));
-				}	
+				}
 			}
 		}
 		return result;
 	}
-	
+
 	public List<Event> getEventsbyCategory(Long id) {
 		EventCategory eventcategory = eventCategoryRepository.findById(id).get();
 		return new ArrayList<Event>(eventRepository.findAllByEventCategory(eventcategory));
@@ -101,34 +100,48 @@ public class EventService implements Service {
 	public List<Event> getEventsByCreator(User user) {
 		return eventRepository.findEventsByCreator(user);
 	}
-	
+
 	public List<Event> getFutureEventsByOrganizer(Long id, Boolean approval) {
 		User user = userRepository.findById(id).get();
-		ArrayList<Event> db_result = new ArrayList<Event> (eventRepository.findAllByCreatedBy(user));
-		ArrayList<Event> result = new ArrayList<Event> ();
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAllByCreatedBy(user));
+		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		System.out.println(today);
-		for(int i = 0; i< db_result.size(); i++) {
-			Date event_date= db_result.get(i).getEndDate();
+		for (int i = 0; i < db_result.size(); i++) {
+			Date event_date = db_result.get(i).getEndDate();
 			System.out.println(event_date);
-			if(event_date.after(today) && (db_result.get(i).getIsApproved() == approval)) {
+			if (event_date.after(today) && (db_result.get(i).getIsApproved() == approval)) {
 				System.out.println("Correct!");
 				int j;
-				for( j = 0; j < result.size(); j++) {
-					if(db_result.get(i).getId() == result.get(j).getId() ) {
+				for (j = 0; j < result.size(); j++) {
+					if (db_result.get(i).getId() == result.get(j).getId()) {
 						break;
 					}
 				}
-				if( j == result.size()) {
+				if (j == result.size()) {
 					result.add(db_result.get(i));
-				}	
+				}
 			}
 		}
 		return result;
 	}
-	
+
 	public List<Event> getEventsByOrganizer(Long id) {
 		User user = userRepository.findById(id).get();
-		return new ArrayList<Event> (eventRepository.findAllByCreatedBy(user));
+		return new ArrayList<Event>(eventRepository.findAllByCreatedBy(user));
+	}
+
+	public List<Event> getReportedEvents() {
+		return eventRepository.findAllByReported(true);
+	}
+
+	public void deleteReportedEvent(Long id) {
+		eventRepository.deleteById(id);
+	}
+
+	public void allowReportedEvent(Long id) {
+		Event reportedEvent = eventRepository.findById(id).get();
+		reportedEvent.setReported(false);
+		eventRepository.save(reportedEvent);
 	}
 }
