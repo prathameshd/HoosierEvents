@@ -419,8 +419,8 @@ function doPendingRequestRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email+"&nbsp&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +" ("+ pendingOrganizers[i].email + " ) </h4><br>";
+			div.innerHTML+= ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address);
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
@@ -518,7 +518,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.className="panel panel-default abcd";
 			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
 			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
-			div.innerHTML+= "&nbsp; Reporter Message: " + reportedEvents[i].reportStatement +"<br>";
+			div.innerHTML+= "&nbsp; Reporter Message: " + ((reportedEvents[i].reportStatement == null)?"-No Message-":reportedEvents[i].reportStatement) +"<br>";
 			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
 			
 			var form = document.createElement("button");
@@ -604,9 +604,8 @@ function doApprovedOrganizersRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"  ( " + pendingOrganizers[i].email + ")</h4><br>";
+			div.innerHTML+= "&nbsp" + ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address) ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
