@@ -419,25 +419,24 @@ function doPendingRequestRender(users) {
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email+"&nbsp&nbsp" + pendingOrganizers[i].address ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
 			b.id=userId;
 			b.innerHTML="Approve";
-			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
+			b.style="left:70%;position:relative;background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
 			b.addEventListener("click",approveRequest);
 			var b2=document.createElement("button");
 			b2.id=userId;
 			b2.innerHTML="Deny";
 			b2.addEventListener("click",denyRequest);
-			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
+			b2.style="left:71%;position:relative;background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
 			document.getElementById("waitlist_organizers").appendChild(div);
-			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).innerHTML+="<br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
