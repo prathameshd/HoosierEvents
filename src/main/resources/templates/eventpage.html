@@ -255,7 +255,7 @@ background-color:#dddddd !important;
 		<div class="row" style="color:#3C6198"><h5>&nbsp</h5></div>
 		<br><br><br>
 		</div>
-		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h4>Register<h4><span class="tooltiptext" ><h6>Login to Register.</h6></span></button>	
+		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h4>Register</h4><span id="disabledtext" class="tooltiptext" ><h6>Login to Register.</h6></span></button>
 </div></div>
 	</div>
 
@@ -453,6 +453,10 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
                     if(data.userType===1 ){
 
                         document.getElementById('registerbutt').disabled=false;
+                    }
+                    if(data.userType===2 || data.userType===99){
+                        document.getElementById('disabledtext').innerHTML='You are not allowed to register to an event';
+
                     }
 
 
