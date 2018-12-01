@@ -83,13 +83,12 @@ padding-top:10px;
 }
 
 body{
-font-family: 'Open Sans', sans-serif;
+font-family: 'Oxygen', sans-serif;
 }
 .card {
     transition: 0.3s;
    
     border-radius: 5px;
-	font-family:"Trebuchet MS", Helvetica, sans-serif;
 	
 	background-color:white;
 	<!--border:1px solid #F0EDED;-->
@@ -169,17 +168,20 @@ img {
 <div class="col-sm-2"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></div>
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
-<div class="col-sm-3"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
+<div class="col-sm-1"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
+<div class="col-sm-1">  <form action="/profile_sample">
+        <button class="btn-default xyz" id="profileButton"  style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
+    </form></div>
 <div class="col-sm-1">
     <form action="/login">
     <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
     </form>
+	</div>
+	<div class="col-sm-1">
     <form action="/logout">
         <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
     </form>
-    <form action="/profile_sample">
-        <button class="btn-default xyz" id="profileButton"  style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
-    </form>
+  
 </div>
 </div>
 </div>
@@ -243,8 +245,8 @@ img {
 	</div></div>
 </div>-->
 <br>
-<div class="row"><div class="col-sm-12" style="text-align:center;background-color:;"><h2>All Events</h2></div></div>
-<div class="row" style="background-color:"><div class="col-sm-4" style="text-align:right;"><h5>Filter By Category:</h5></div>
+<div class="row"><div class="col-sm-12" style="text-align:center;background-color:;"><h3>All Events</h3></div></div>
+<!--<div class="row" style="background-color:"><div class="col-sm-4" style="text-align:right;"><h5>Filter By Category:</h5></div>
 <div class="col-sm-8">
 <select class="form-control" style="width:50%" name= "cat" id="event_category" onchange="change()">
       <option>All</option>
@@ -253,17 +255,17 @@ img {
       <option>Education</option>
     </select>
 </div>
-</div>
+</div>-->
 </div>
 <br>
 <div id="display" class="container-fluid" style="height:75%;width:100%;background-color:;overflow-y:scroll;">
 </div>
 
 <br><br>
-<div class="container-fluid" style="width:100%;">
-<div class="row " style="background-color:;color:black;text-align:center;"><div class="col-sm-12"><h1 class="fancy" style="">Explore Categories</h1></div></div> 
+<div class="container-fluid" style="width:100%;font-family: 'Open Sans', sans-serif;background-color:#1E3F4D">
+<div class="row " style="background-color:;color:black;text-align:center;"><div class="col-sm-12"><h1 class="" style="">Explore Categories</h1></div></div> 
 <div class="row">
-<div class="card hcard" style="border-radius:0px;background-color:white;height:80%;width:100%;">
+<div class="card hcard" style="border-radius:0px;background-color:#1E3F4D;height:80%;width:100%;">
   <div class="card--content tabs" style=" background-color:#304860; !important;color:white" id="career" onclick="testfun(this.id);">
     <div class="row"><div class="col-sm-12"><image src='/images/career_tile.jpg' style="height:75%;width:100%;"></div></div> 
   <div class="row"><div class="col-sm-12"><h3>&nbspCareer</h3></div></div>
@@ -307,11 +309,11 @@ img {
 </div>
 </div>
 </div>
-<div id="container-fluid"><div class="row"><div class="col-sm-12"><h3>Events This Month</h3></div></div></div>
+<div id="container-fluid" style="text-align:center;"><div class="row"><div class="col-sm-12"><h3>Events This Month</h3></div></div></div>
 <div id="display2" class="container" style="height:50%;background-color:;width:100%;overflow-y:scroll;">
 </div>
 
-<div class="container-fluid fancy" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color: !important;color:">
+<div class="container-fluid" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color: !important;color:">
 <br><div class="row" style="background-color:;">
 	<!--<div class="col-sm-4">
 	<div class="row" style="background-color:lightgrey"><div class="col-sm-12"><h4 style="color:#AE0D0D">Hoosier Events</h4></div></div>
@@ -528,7 +530,7 @@ $(document).ready(function(){
 				var x=document.createElement("div");
 				x.className="col-sm-6 abc";
 			//	x.style="border:1px solid lightgrey;width:60%;left:20%;min-width:300px;min-height:auto;max-height:auto !important;position:relative;";
-				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;"
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
 
 				//x.innerHTML="<div class='container'><div class='row'><div class='col-sm-6'><p>"+element.eventTitle+"</p><p>"+element.location+"</p></div><div class='col-sm-6'><img src='/getImage?img="+element.id+".jpg' style='width:100%;min-height:155px;max-height:250px;'></div></div></div>>";
 			x.innerHTML="<img src='/getImage?img="+element.id+".jpg' style='width:100%;height:auto;'>";
