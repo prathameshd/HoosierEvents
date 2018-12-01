@@ -135,7 +135,7 @@ body, html, .container-fluid {
 	<div id="dash" class="tab-pane fade in active ">
 							<h3 style="text-align:center;     font-family: 'Open Sans', sans-serif;">User Statistics</h3>
 
-	<div id="piechart" style="height:400px;">
+	<div id="piechart" style="height:650px;">
 						</div><br>
 						  <div class="row">
 	  <div class="col-sm-4">
@@ -267,43 +267,40 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
 //google charts 
 
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMaterial);
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries);
 
-function drawMaterial() {
-  var data = new google.visualization.DataTable();
-data.addColumn('string', 'Months');
-data.addColumn('number', 'Number of Events');
-data.addRows([
-  ['January', 0],
-  ['February', 1],
-  ['March', 1],
-  ['April', 3],
-	  ['May', 4],
-	    ['June', 1],
-		  ['July', 0],
-		    ['August', 5],
-			  ['September', 1],
-			    ['October', 3],
-				  ['November', 0],
-				    ['December', 0],
-]);
+function drawMultSeries() {
+      var data = google.visualization.arrayToDataTable([
+        ['Month', 'Users', 'Organisers'],
+    ['January', 0,5],
+  ['February', 1,4],
+  ['March', 1,1],
+  ['April', 3,0],
+	  ['May', 0,4],
+	    ['June', 1,12],
+		  ['July', 0,2],
+		    ['August', 2,5],
+			  ['September', 2,1],
+			    ['October', 3,3],
+				  ['November', 0,1],
+				    ['December', 0,0],
+      ]);
 
-      var materialOptions = {
-        chart: {
-          title: 'Events By Month'
-        },
+      var options = {
+        title: 'Monthly Demographic of New Users',
+        chartArea: {width: '60%'},
         hAxis: {
-          title: 'Total Population',
-          minValue: 0,
+          title: 'Number of Users',
+          minValue: 0
         },
         vAxis: {
-          title: 'City'
-        },
-        bars: 'horizontal'
+          title: 'Month'
+        }
       };
-      var materialChart = new google.charts.Bar(document.getElementById('piechart'));
-      materialChart.draw(data, materialOptions);
+
+      var chart = new google.visualization.BarChart(document.getElementById('piechart'));
+      chart.draw(data, options);
     }
 
 
