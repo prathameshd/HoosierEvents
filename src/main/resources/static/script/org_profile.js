@@ -110,9 +110,9 @@ $(document).ready(function(){
 	{
 	// call edit page via controller and pass event id via edit button
 	// on editpage get id and autofill page via retrieving data from controller
-		alert(this.id);
+		//alert(this.id);
 	var x=this.parentElement.getAttribute("name");
-	alert(x);
+	//alert(x);
 		var modal = document.getElementById('myModal');
 	   modal.style.display = "block";
 	   document.getElementById("modal_name").value=x;
