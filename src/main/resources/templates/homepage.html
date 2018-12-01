@@ -169,9 +169,9 @@ img {
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
 <div class="col-sm-1"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
-<div class="col-sm-1">  <form action="/profile_sample">
-        <button class="btn-default xyz" id="profileButton"  style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
-    </form></div>
+<div class="col-sm-1"> 
+        <button class="btn-default xyz" id="profileButton" onclick="navigateToProfile()" style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
+    </div>
 <div class="col-sm-1">
     <form action="/login">
     <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
@@ -722,14 +722,28 @@ t.style.display="none";
 </script>
 
 <script>
+var user;
 
+function navigateToProfile() {
+	var navPath ;
+	if (user.userType == "1") {
+		navPath = "/profile_sample";
+	} else if (user.userType == "2") {
+		navPath = "/org_profile";
+	} else {
+		navPath = "/admin_profile"
+	}
+	
+	document.location.href = navPath;
+}
    $(document).ready(function () {
        $.ajax({
                type: "GET",
-           url: '/getauth',
+           url: '/getuser',
            success: function (data) {
                    console.log(data);
-               if(data==="anonymousUser"){
+               user = data;
+               if(data===""){
                    document.getElementById('logoutbutt').style.display="none";
                    document.getElementById('loginbutt').style.display="block";
                    document.getElementById('profileButton').style.display="none";
