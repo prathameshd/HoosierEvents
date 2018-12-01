@@ -257,6 +257,21 @@
 		
 		  </footer>
 		  <!-- Footer -->
+	<script>
+        function GET() {
+            var data = [];
+            for(x = 0; x < arguments.length; ++x)
+                data.push(location.href.match(new RegExp("(/\?id=)([^\&]*)"))[2]);
+            return data;
+        }
+
+         $(document).ready(function(){
+			if((GET("id")[0])!=="") {
+                document.getElementById('searchbartextbox').value = (GET("id")[0]);
+            }
+			})
+
+	</script>
 	</body>
  	<script>
  	function DisplayAllEvents(){
