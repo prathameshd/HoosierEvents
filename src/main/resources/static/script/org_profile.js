@@ -10,6 +10,7 @@ $(document).ready(function(){
     	url:"/getFutureEventsByOrganizer",
     	  success: function(data) {
     		  console.log('successEvents',data);
+			  var live_event_count=data.length;
     		  document.getElementById("total_events").innerHTML=data.length; 
     	   },
     	  error:function(exception){alert('Exception:'+exception);}
@@ -32,6 +33,7 @@ $(document).ready(function(){
     	url:"/getEventsByOrganizerToBeApproved",
     	  success: function(data) {
     		  console.log('successEvents',data);
+			  var pending_event_count=data.length;
     		  document.getElementById("pending_events").innerHTML=data.length; 
     	   },
     	  error:function(exception){alert('Exception:'+exception);}
@@ -68,7 +70,7 @@ $(document).ready(function(){
 		//div.style.width = "100px";
 		//div.style.height = "100px";
 		//div.style.background = "lightgrey";
-		div.style.border= "1px solid lightgrey";
+		div.style.border= "0.1px solid lightgrey";
 			div.style.borderRadius= "6px";
 		div.id="div"+i;
 		//alert(div.id);
@@ -93,37 +95,15 @@ $(document).ready(function(){
 		b.addEventListener("click",editbutton);
 		//alert(b.id);
 		document.getElementById("approved").appendChild(div);
-		document.getElementById(temp).innerHTML+="<br><br>";
+		document.getElementById(temp).innerHTML+="</div><br><br>";
 		document.getElementById(temp).appendChild(b);
 					//document.getElementById("approved").innerHTML+="<br>";
 	}	
 });
 
 // Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Work', 8],
-  ['Friends', 2],
-  ['Eat', 2],
-  ['TV', 2],
-  ['Gym', 2],
-  ['Sleep', 8]
-]);
-
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'My Average Day', 'width':550, 'height':400};
-
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-
-
+		
 
 	
 	function editbutton(id)
