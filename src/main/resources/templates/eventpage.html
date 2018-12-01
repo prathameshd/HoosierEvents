@@ -155,7 +155,7 @@ background-color:#dddddd !important;
 <body>
 
 <!--modal-->
-<div id="myModal" class="modal container">
+<div id="eventReportModal" class="modal container">
 
 	<!-- Modal content -->
 	<div class="modal-content" >
@@ -168,10 +168,10 @@ background-color:#dddddd !important;
 
 		</div>
         <div class="row">
-            <button class="btn-default" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick=""><h5>Send Recovery Code to Email</h5></button>
+            <button class="btn-default" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="reportEvent()"><h5>Report Event</h5></button>
         </div>
         <div class="row">
-            <div id="reported" style="color:red;display:none;"><h6>Event has been reported!</h6></div>
+            <div id="reported" style="color:red;display:none;"><h6>You have reported this event to Administrator!</h6></div>
 
         </div>
 
@@ -475,6 +475,22 @@ var loc="Bloomington";
 /*document.getElementById('myIframe').src = "/map?seed=" + loc;*/
 var x;
 var event_id=document.URL.substr(document.URL.indexOf('=')+1);
+
+function reportEvent() {
+	$.ajax({
+		type: "PUT",
+        url: '/reportEvent',
+        data: {eventId:event_id, reportedStatement: document.getElementById("reporttext").value},
+        success: function (data) {
+        	document.getElementById("reported").style.display = 'block';
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+
 $(document).ready(function(){
 	$.ajax({
 	type:'POST',
@@ -586,7 +602,7 @@ $(document).ready(function(){
 </script>
 
 	<script>
-        var modal = document.getElementById('myModal');
+        var modal = document.getElementById('eventReportModal');
 
         // Get the button that opens the modal
         var btn = document.getElementById("reportthisevent");

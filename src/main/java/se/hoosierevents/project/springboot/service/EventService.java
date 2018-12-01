@@ -165,9 +165,10 @@ public class EventService implements Service {
 		eventRepository.save(reportedEvent);
 	}
 
-	public void reportEvent(Long id) {
+	public void reportEvent(Long id, String reportedStatement) {
 		Event event = eventRepository.findById(id).get();
 		event.setReported(true);
+		event.setReportStatement(reportedStatement);
 		eventRepository.save(event);
 	}
 }

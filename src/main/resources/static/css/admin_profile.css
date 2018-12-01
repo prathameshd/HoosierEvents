@@ -24,21 +24,30 @@
 	background-color:white;
 	color:black;
 	text-align:left;
+	transition:0.4s;
 }
+#org_pending_count{
 
+	background-color:white;
+	color:black;
+	text-align:left;
+	transition:0.4s;
+}
 #org_count{
 	background-color:white;
 	color:black;
 	text-align:left;
+	transition:0.4s;
 }
 
 #live_events:hover,#pen_events:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	
 }
-#users_count:hover,#org_count:hover
+#users_count:hover,#org_count:hover,#org_pending_count:hover
 {
-	background-color:lightgrey;
+	background-color:darkslategrey;
+	color:white;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	
 }
@@ -47,6 +56,7 @@
 {
 	background-color:#9cf;
 	color:black;
+	transition:0.4s;
 }
 
 .abcd:hover{

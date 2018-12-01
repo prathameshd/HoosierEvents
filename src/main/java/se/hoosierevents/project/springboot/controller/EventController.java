@@ -239,7 +239,7 @@ public class EventController implements Controller {
 	
 	@RequestMapping("/reportEvent")
 	public String reportEvent(@RequestParam("eventId") Long id, String reportedStatement) {
-		eventService.reportEvent(id);
+		eventService.reportEvent(id, reportedStatement);
 		return "Reported the Event to admin";
 	}
 }
