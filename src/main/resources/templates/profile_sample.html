@@ -69,7 +69,7 @@ padding-top:10px;
 	
 <div class="container-fluid" style="background-color:;color:#AE1616;padding:10px;border-bottom:1px solid lightgrey;">
 <div class="row">
-<div class="col-sm-2"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></div>
+	<div class="col-sm-2"><a href="/" style="text-decoration: none"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></a></div>
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
 <div class="col-sm-2"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
@@ -191,15 +191,49 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 		<div class="row">
 		<div class="col-sm-4"></div>
 
-		<div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-facebook"></a></div>
-<div class="col-sm-1" style="padding-right:25px;"><a href="#" class="fa fa-twitter"></a></div>
+		<div class="col-sm-1" style="padding-right:25px;" ><a href="https://www.facebook.com/HoosierEvents" class="fa fa-facebook"></a></div>
+<div class="col-sm-1" style="padding-right:25px;"><a href="https://twitter.com/hoosierevents" class="fa fa-twitter"></a></div>
 <div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-google"></a></div>
-<div class="col-sm-1" style="padding-right:25px;" ><a href="#" class="fa fa-instagram"></a></div>
+<div class="col-sm-1" style="padding-right:25px;" ><a href="https://www.instagram.com/eventshoosier/" class="fa fa-instagram"></a></div>
 <div class="col-sm-4"></div>
 		</div>
 	</div>
 </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+                type: "GET",
+                url: '/getauth',
+                success: function (data) {
+                    console.log(data);
+                    if(data==="anonymousUser"){
+                        document.getElementById('logoutbutt').style.display="none";
+                        document.getElementById('loginbutt').style.display="block";
+                        document.getElementById('profileButton').style.display="none";
+
+                    }
+                    else{
+                        document.getElementById("loginbutt").style.display="none";
+                        document.getElementById("logoutbutt").style.display="block";
+                        document.getElementById("profileButton").style.display="block";
+
+                    }
+
+
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+
+            }
+        )
+    })
+
+</script>
 
 </body>
 </html>
