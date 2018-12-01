@@ -75,6 +75,34 @@ public class Event {
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isPublic;
 
+	@Column(name = "reported", nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private Boolean reported;
+
+	public Boolean getReported() {
+		return reported;
+	}
+
+	public void setReported(Boolean reported) {
+		this.reported = reported;
+	}
+
+	public int getMaximumSeats() {
+		return maximumSeats;
+	}
+
+	public void setMaximumSeats(int maximumSeats) {
+		this.maximumSeats = maximumSeats;
+	}
+
+	public int getAvaialableSeats() {
+		return avaialableSeats;
+	}
+
+	public void setAvaialableSeats(int avaialableSeats) {
+		this.avaialableSeats = avaialableSeats;
+	}
+
 	@OneToOne
 	@JoinColumn(name = "category")
 	private EventCategory eventCategory;
@@ -88,7 +116,7 @@ public class Event {
 	@Column(name = "isapproved", nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean isApproved;
-	
+
 	public Boolean getIsApproved() {
 		return isApproved;
 	}
@@ -96,8 +124,8 @@ public class Event {
 	public void setIsApproved(Boolean approval) {
 		this.isApproved = approval;
 	}
-	
-	@Column(name ="img")
+
+	@Column(name = "img")
 	private String image;
 
 	public String getImage() {
@@ -107,8 +135,8 @@ public class Event {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
-	@Column(name ="twitterhandle")
+
+	@Column(name = "twitterhandle")
 	private String twitterHandle;
 
 	public String getTwitterHandle() {

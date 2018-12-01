@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org"
 	  xmlns="http://www.w3.org/1999/html" xmlns:form="http://www.w3.org/1999/html">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Hoosier Events</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
   
@@ -14,7 +14,7 @@
   <link rel="stylesheet"  th:href="@{/css/admin_profile.css}">
   	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	   <! <link rel="stylesheet" type="text/css" href="HomePage Style.css">
+	   <link rel="stylesheet" type="text/css" href="HomePage Style.css">
 
   <style>
   body, html, .container-fluid {
@@ -24,6 +24,8 @@
 </style>
 </head>
 <body>
+<input id="model_name" type="hidden" th:value="${name}"/>
+<input id="model" type="hidden" th:value="${model}"/>
 <!-- NAVIGATION BAR -->
 <nav class="navbar navbar-inverse" style="background-color:#AE1616;width:100%" >
   <div class="container-fluid" style="text-align:left">
@@ -56,7 +58,7 @@
 	  
 	  <ul class="nav nav-pills nav-stacked" >
 		<li class="active" ><a data-toggle="pill" href="#dash" >Dashboard</a></li>
-				<li><a data-toggle="pill" href="#approve">Approve Events</a></li>
+		<li><a data-toggle="pill" href="#approve">Pending Approval Requests</a></li>
 
 		<li class="dropdown">
 		  <a class="dropdown-toggle" data-toggle="dropdown" href="#">View<span class="caret"></span></a>
@@ -66,9 +68,7 @@
 			<li><a data-toggle="pill" href="#view_events">Events</a></li>                        
 		  </ul>
 		</li>
-		<!--<li><a data-toggle="pill" href="#edit_events">Change Event Information</a></li>
-		<li><a data-toggle="pill" href="#edit">Edit Profile</a></li>-->
-		<!--<li><a data-toggle="pill" href="#">Menu 3</a></li>-->
+		<li><a data-toggle="pill" href="#edit_events">Reported Events</a></li>
 	  </ul>
 	</div>
 	
@@ -154,7 +154,12 @@
     </div>
 	
 	<div id="approve" class="tab-pane fade">
-      <h3>Events(Pending Approval)</h3>
+      <h3>Organizer Registration Requests</h3>
+	  <div id="waitlist_events" class="col-sm-9"></div>
+    </div>
+    
+    <div id="reported" class="tab-pane fade">
+      <h3>Reported Events</h3>
 	  <div id="waitlist_events" class="col-sm-9"></div>
     </div>
 		
@@ -222,71 +227,62 @@
 </div>
 -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="/script/admin_profile.js"></script>
 
-<script>
-/*
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
 
-// Draw the chart and set the chart values
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['Work', 8],
-  ['Friends', 2],
-  ['Eat', 2],
-  ['TV', 2],
-  ['Gym', 2],
-  ['Sleep', 8]
-]);
+//----------------Author Harish----------------
 
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'My Average Day', 'width':550, 'height':400};
-
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-*/
-var total =10;
-var pending=3;
-var count=50;
 $(document).ready(function(){
-document.getElementById("total_events").innerHTML+=total;
-document.getElementById("pending_events").innerHTML+=pending;
-document.getElementById("total_users").innerHTML+=count;
-div_count=4; //size of result set-that is list of events in waitlist table
-var i;
-	for(i=0;i<div_count;i++){
+	$.ajax({
+	type:'GET',
+	url:"/getAllOrganizers",
+	  success: function(users) {
+		  doPendingRequestRender(users);
+	  },
+	  error: function(e) {
+		 console.log(e);
+	  }
+	});
+});
+
+function doPendingRequestRender(users) {
+	var pendingOrganizers = users.filter(function (users) {
+		  return (users.active == "0");
+		});
 	
+	var total = users.length; ;
+	var pending = pendingOrganizers.length;
+	var count = pending;
+	
+	document.getElementById("total_events").innerHTML+=total;
+	document.getElementById("pending_events").innerHTML+=pending;
+	document.getElementById("total_users").innerHTML+=count;
+	div_count=4; //size of result set-that is list of events in waitlist table
+	var i;
+		for(i=0;i<pending;i++){
+		
+			var userId = pendingOrganizers[i].id;
 			var div = document.createElement("div");
-			//div.style.width = "100px";
-			//div.style.height = "100px";
-			//div.style.background = "lightgrey";
 			div.style.border= "1px solid lightgrey";
-				div.style.borderRadius= "6px";
-			div.id="div"+i;
-			//alert(div.id);
+			div.style.borderRadius= "6px";
+			div.id="div"+userId;
 			div.style.align="center";
-			var temp="div"+i;
-			//var y=document.getElementById("temp");
-			//document.getElementById('temp').addEventListener("click", function(){alert('q');});	//pass id
-			//div.onClick="myFunction()"
+			var temp="div"+userId;
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbspEventName<br>";
-			div.innerHTML+= "&nbspDate<br>";
-			div.innerHTML+= "&nbspLocation";
+			div.innerHTML= "&nbsp" + pendingOrganizers[i].name +"<br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
 			
+			var form = document.createElement("button");
 			var b=document.createElement("button");
-			b.id="approve"+i;
+			b.id=userId;
 			b.innerHTML="Approve";
 			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
 			b.addEventListener("click",approveEvent);
-			//alert(b.id);
-						var b2=document.createElement("button");
-			b2.id="deny"+i;
+			var b2=document.createElement("button");
+			b2.id=userId;
 			b2.innerHTML="Deny";
 			b2.addEventListener("click",denyEvent);
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
@@ -296,43 +292,106 @@ var i;
 			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
-						//document.getElementById("approved").innerHTML+="<br>";
-
-			
+		}
 }
-/*
+
+var elemtUnderProcessId;
+function approveEvent()
+{
+	elemtUnderProcessId = this.id;
 	$.ajax({
-	type:'POST',
-	dataType:'json',
-	data: {id:user_id},
-	url:"/getUser",
-	  success: function(data) {
-			console.log('success',data);
-			console.log("${m.event}");
-			//var data_var=JSON.parse(data);
-			document.getElementById("user_name").innerHTML=data.name;
-			document.getElementById("user_address").innerHTML=data.address;
-			document.getElementById("user_contact").innerHTML=data.contact;
-			document.getElementById("user_email").innerHTML=data.email;
-//			document.getElementById("created_by").innerHTML=data.createdBy.name;
-//			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
-	   },
-	   error:function(exception){alert('Exeption:'+exception);}
-	}); */
+		type: "PUT",
+        url: '/approveOrganizer',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Organizer Approved");
+        	removeThisRecordFromPendingList(this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
 	});
+}
+
+function denyEvent()
+{
+	elemtUnderProcessId = this.id;
+	$.ajax({
+		type: "PUT",
+        url: '/denyOrganizer',
+        data: {userId:this.id},
+        success: function (data) {
+        	alert("Organizer Request Deleted!!");
+        	removeThisRecordFromPendingList(this.id);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+
+function removeThisRecordFromPendingList(id){
+	var processedRecord = document.getElementById("div"+elemtUnderProcessId);
+	processedRecord.parentNode.removeChild(processedRecord);
 	
-	function approveEvent(b)
-	{
-	alert('approved'+this.id);
-	alert(window.location.href);
-//	location.reload();
-location='#dash';
-//window.open('#approve');
-	}
-	function denyEvent(b)
-	{
-	alert('Denied'+this.id);
-	}
+}
+
+
+
+//----reported events
+
+function doPendingRequestRender1(users) {
+	var pendingOrganizers = users.filter(function (users) {
+		  return (users.active == "0");
+		});
+	
+	var total = users.length; ;
+	var pending = pendingOrganizers.length;
+	var count = pending;
+	
+	document.getElementById("total_events").innerHTML+=total;
+	document.getElementById("pending_events").innerHTML+=pending;
+	document.getElementById("total_users").innerHTML+=count;
+	div_count=4; //size of result set-that is list of events in waitlist table
+	var i;
+		for(i=0;i<pending;i++){
+		
+			var userId = pendingOrganizers[i].id;
+			var div = document.createElement("div");
+			div.style.border= "1px solid lightgrey";
+			div.style.borderRadius= "6px";
+			div.id="div"+userId;
+			div.style.align="center";
+			var temp="div"+userId;
+			div.className="panel panel-default abcd";
+			div.innerHTML= "&nbsp" + pendingOrganizers[i].name +"<br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
+			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			
+			var form = document.createElement("button");
+			var b=document.createElement("button");
+			b.id=userId;
+			b.innerHTML="Approve";
+			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
+			b.class="app_buttons btn-primary";
+			b.addEventListener("click",approveEvent);
+			var b2=document.createElement("button");
+			b2.id=userId;
+			b2.innerHTML="Deny";
+			b2.addEventListener("click",denyEvent);
+			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
+			b2.class="deny_buttons btn-primary";
+			
+			document.getElementById("waitlist_events").appendChild(div);
+			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).appendChild(b);
+			document.getElementById(temp).appendChild(b2);
+		}
+}
+
+//----------------------------------
+
+//--------Harish----------------------
 </script>
 </body>
 </html>
