@@ -77,6 +77,10 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/checkifexists").permitAll()
                 .antMatchers("/org_profile").permitAll()
                 .antMatchers("/search").permitAll()
+                .antMatchers("/getEventsbyCategory").permitAll()
+                .antMatchers("/getEventsbyLocation").permitAll()
+                .antMatchers("/getEventbyName").permitAll()
+                .antMatchers("/getCategories").permitAll()
 
                 
                 .and()

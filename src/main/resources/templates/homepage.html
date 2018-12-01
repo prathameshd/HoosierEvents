@@ -267,7 +267,7 @@ img {
 <div class="row">
 <div class="card hcard" style="border-radius:0px;background-color:#1E3F4D;height:80%;width:100%;">
   <div class="card--content tabs" style=" background-color:#304860; !important;color:white" id="career" onclick="testfun(this.id);">
-    <div class="row"><div class="col-sm-12"><image src='/images/career_tile.jpg' style="height:75%;width:100%;"></div></div> 
+    <div class="row"><div class="col-sm-12"><image src='/images/career_tile.jpg' style="height:75%;width:100%;"></div></div>
   <div class="row"><div class="col-sm-12"><h3>&nbspCareer</h3></div></div>
  </div><br>
   <div class="card--content tabs" id="music" onclick="testfun(this.id)" style=" background-color:black; !important;color:white">
@@ -415,7 +415,7 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 <script>
 
 function Search(){
-	document.location.href = "/search";
+	document.location.href = "/search?id="+document.getElementById("myInput").value;
 }
 
 //var x = document.getElementById("demo");
@@ -485,7 +485,8 @@ function carousel() {
 function testfun(x)
 {
 //var x=this.id;
-alert(x);
+    document.location.href = "/search?id="+x;
+
 }
 
 
