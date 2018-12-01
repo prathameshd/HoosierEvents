@@ -98,7 +98,7 @@ body, html, .container-fluid {
 <!--<div style="background-color:red;left:-30%;height:100%;width:40%;position:relative;">-->
 <div class="container-fluid" style="height:100% !important;">
 <div class="row">
-	<div class="col-sm-4" style="border-right:1px solid lightgrey">
+	<div class="col-sm-4" style="">
 	<!--<div class="container" style="height:100%;position:relative;top:10%;">-->
 	  <div class="page-header"><h3>Admin User</h3></div>
 	  
@@ -120,10 +120,57 @@ body, html, .container-fluid {
 	
 			<div class="col-sm-8" style="height:500px;overflow-y:scroll;">
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 <div class="tab-content">
 
 	
 	<div id="dash" class="tab-pane fade in active ">
+							<h3 style="text-align:center;     font-family: 'Open Sans', sans-serif;">User Statistics</h3>
+
+	<div id="piechart" style="height:400px;">
+						</div><br>
+						  <div class="row">
+	  <div class="col-sm-4">
+	  <div class="panel panel-default" id="users_count"><h5>&nbspRegistered Users<span id="total_users"> </span>
+	  </h5>
+<!--	  	   <div class="panel panel-default" id="users_count" ><h5 style="top:25%;position:relative"> &nbsp Total Registered Users:<span id="total_users"> </span></h5></div>-->
+		</div> 	
+		</div>
+	
+	  <div class="col-sm-4">
+<div class="panel panel-default" id="org_count"><h5>&nbspRegistered Organisers<span id="total_org"> </span></h5>
+		</div> 	
+		</div>
+			  <div class="col-sm-4">
+<div class="panel panel-default" id="org_pending_count"><h5>&nbspApproval Requests<span id="total_pending_org"> </span></h5>
+		</div> 	
+		</div>
+	  </div>
+						
+						
+						<br>
+						<h3 style="text-align:center;     font-family: 'Open Sans', sans-serif;">Revenue Statistics</h3>
+						<div id="piechart3" style="height:400px;">
+						</div>
+						<div id="piechart2" style="height:400px;">
+						</div>
+	  <div class="row">
+	  <div class="col-sm-6">
+		<h4>Net Revenue:<span id="total_revenue"></span></h4>
+		</div>
+		<div class="col-sm-6">
+		<h4>Average Revenue Per Event:<span id="avg_revenue"></span></h4>
+		</div>
+	  </div>				
+						
       <h3 style="color:darkslategrey">Event Statistics</h3>
 	 
 	<div class="row">
@@ -141,33 +188,9 @@ body, html, .container-fluid {
 	  </div>
 	  
 	  </div>
-	  <h3 style="color:darkslategrey">User Demographics</h3>
-	  <div class="row">
-	  <div class="col-sm-6">
-	  <div class="panel panel-default" id="users_count"><h5>&nbspRegistered Users<span id="total_users"> </span>
-	  </h5>
-<!--	  	   <div class="panel panel-default" id="users_count" ><h5 style="top:25%;position:relative"> &nbsp Total Registered Users:<span id="total_users"> </span></h5></div>-->
-		</div> 	
-		</div>
-		<div class="col-sm-6"></div>
-	  </div>
+	
 	  
-	    <div class="row">
-	  <div class="col-sm-6">
-<div class="panel panel-default" id="org_count"><h5>&nbspRegistered Organisers<span id="total_org"> </span></h5>
-		</div> 	
-		</div>
-	  </div>
-	  
-	  <h3 style="color:darkslategrey">Revenue Stats</h3>
-	  <div class="row">
-	  <div class="col-sm-6">
-		<h4>Net Revenue:<span id="total_revenue"></span></h4>
-		</div>
-		<div class="col-sm-6">
-		<h4>Average Revenue Per Event:<span id="avg_revenue"></span></h4>
-		</div>
-	  </div>
+
       
     </div>
 	<div id="view_users" class="tab-pane fade">
@@ -181,7 +204,7 @@ body, html, .container-fluid {
     </div>
 	
 	<div id="approve" class="tab-pane fade">
-      <h3>Organizer Registration Requests</h3>
+      <h3 class="sticky">Organizer Registration Requests</h3>
 	  <div id="waitlist_organizers" class="col-sm-9"></div>
     </div>
     
@@ -242,6 +265,123 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
 <script type="text/javascript">
 
+//google charts 
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMaterial);
+
+function drawMaterial() {
+  var data = new google.visualization.DataTable();
+data.addColumn('string', 'Months');
+data.addColumn('number', 'Number of Events');
+data.addRows([
+  ['January', 0],
+  ['February', 1],
+  ['March', 1],
+  ['April', 3],
+	  ['May', 4],
+	    ['June', 1],
+		  ['July', 0],
+		    ['August', 5],
+			  ['September', 1],
+			    ['October', 3],
+				  ['November', 0],
+				    ['December', 0],
+]);
+
+      var materialOptions = {
+        chart: {
+          title: 'Events By Month'
+        },
+        hAxis: {
+          title: 'Total Population',
+          minValue: 0,
+        },
+        vAxis: {
+          title: 'City'
+        },
+        bars: 'horizontal'
+      };
+      var materialChart = new google.charts.Bar(document.getElementById('piechart'));
+      materialChart.draw(data, materialOptions);
+    }
+
+
+
+google.charts.load('current', {'packages':['corechart']});
+		google.charts.setOnLoadCallback(drawChart);
+	
+	function drawChart() {
+/*  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Events');
+  data.addColumn('number', 'abc');
+
+    data.addRow(['Live',live_event_count]);
+	data.addRow(['Pending',pending_event_count]);*/
+	
+       var data = google.visualization.arrayToDataTable([
+          ['Category', 'Revenue'],
+          ['Sports',     1500],
+          ['Education',      2500],
+          ['Career',  500],
+        
+        ]);
+
+        var options = {
+          title: 'Revenue By Category'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+	  
+	  google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Month');
+      data.addColumn('number', 'Revenue');
+		
+      data.addRows([
+  ['Jan', 0],
+  ['Feb', 1],
+  ['Mar', 1],
+  ['Apr', 3],
+	  ['May', 4],
+	    ['Jun', 1],
+		  ['Jul', 0],
+		    ['Aug', 5],
+			  ['Sep', 1],
+			    ['Oct', 3],
+				  ['Nov', 0],
+				    ['Dec', 0],
+      ]);
+
+      var options = {
+        title: 'Revenue by Month',
+        hAxis: {
+          title: 'Month',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'Revenue',
+		  color:'red'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('piechart3'));
+
+      chart.draw(data, options);
+    }
+	
+// google charts end
 //----------------Author Harish----------------
 
 $(document).ready(function(){
@@ -280,7 +420,7 @@ function doPendingRequestRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h2>&nbsp" + pendingOrganizers[i].name +"</h2><br>";
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
 			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
 			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
 			
@@ -379,7 +519,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.addEventListener("click",sendevent);
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp; <h2>" + reportedEvents[i].eventTitle +"</h2>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
+			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
 			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
 			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
 			
