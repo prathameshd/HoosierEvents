@@ -4,6 +4,7 @@
 <head>
   <title>HoosierEvents</title>
   <meta charset="utf-8">
+  <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -603,28 +604,12 @@ var span2 = document.getElementsByClassName("close")[0];
 btn2.onclick = function() {
 	/* modal1.style.display = "none"; */ 
     modal2.style.display = "block";
-	var event =
-	console.log(document.getElementById("event_title").innerHTML);
-	console.log(document.getElementById("quantity").value);
-	console.log(document.getElementById("quantity2").value);
-	console.log(document.getElementById("quantity3").value);
 	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
 	document.getElementById("bronze").value = document.getElementById("quantity").value;
 	document.getElementById("silver").value = document.getElementById("quantity2").value;
 	document.getElementById("gold").value = document.getElementById("quantity3").value;
-	var div_count = parseInt(document.getElementById("quantity").value) + parseInt(document.getElementById("quantity2").value) + parseInt(document.getElementById("quantity3").value);
-	var i;
-	console.log(div_count)
-	for(i=1;i<=div_count;i++){
-		document.getElementById("name_form").innerHTML="Attendee "+i+" Name: ";
-		var input = document.createElement("input");
-		var input_name = "name"+i;
-		input.name = input_name;
-		console.log(input_name);
-		document.getElementById("name_form").appendChild(input);
 	}
     
-}
 
 // When the user clicks on <span> (x), close the modal
 span2.onclick = function() {
