@@ -121,7 +121,7 @@ public class EventController implements Controller {
 	}
 
 	@RequestMapping("/getEventbyName")
-	public ResponseEntity<Event> getEventbyName(@RequestParam("event") String event, HttpServletRequest request,
+	public ResponseEntity<List<Event>> getEventbyName(@RequestParam("event") String event, HttpServletRequest request,
 			Model model) {
 		return ResponseEntity.ok(eventService.getEventbyName(event));
 	}
