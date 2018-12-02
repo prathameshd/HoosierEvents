@@ -55,6 +55,18 @@ public class TicketDetails {
 		return maximumSeats;
 	}
 
+	public TicketDetails() {
+		super();
+	}
+
+	public TicketDetails(Event event, Long ticketType, int maximumSeats, int availableSeats, float price) {
+		this.event = event;
+		this.ticketType = ticketType;
+		this.maximumSeats = maximumSeats;
+		this.availableSeats = availableSeats;
+		this.price = price;
+	}
+
 	public void setMaximumSeats(int maximumSeats) {
 		this.maximumSeats = maximumSeats;
 	}

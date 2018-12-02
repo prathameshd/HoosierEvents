@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +24,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
 import se.hoosierevents.project.model.Ticket;
+import se.hoosierevents.project.model.TicketDetails;
 import se.hoosierevents.project.model.User;
 import se.hoosierevents.project.springboot.service.EventService;
 import se.hoosierevents.project.springboot.service.FileSystemStorageService;
@@ -65,14 +65,11 @@ public class EventController implements Controller {
 	}
 
 	@RequestMapping("/saveEvent")
-	public RedirectView saveEvent(@RequestParam("file") MultipartFile file, @ModelAttribute Event event,
-			RedirectAttributes redirectAttributes, HttpSession session) {
+	public RedirectView saveEvent(@RequestParam("file") MultipartFile file, @ModelAttribute Event event, HttpServletRequest httpServletRequest, HttpSession session) {
 		fileStoreService.store(file, eventService.getCurrentImageNameToCreate());
 		event.setCreatedBy((User) session.getAttribute(USER_KEY));
-		eventService.saveEvent(event, file);
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
-		return new RedirectView("eventpage");
+		eventService.saveEvent(event, file, httpServletRequest);
+		return new RedirectView("eventpage?id="+event.getId());
 	}
 
 	@RequestMapping("/updateEvent")
@@ -80,17 +77,6 @@ public class EventController implements Controller {
 		eventService.updateEvent(event);
 		return "Successfully updated the event!";
 	}
-
-	@RequestMapping("/createEvent")
-	public RedirectView createEvent(Model model) {
-		model.addAttribute("event", new Event());
-		return new RedirectView("create_event.html");
-	}
-
-	//@RequestMapping("/getUser")
-	//public ResponseEntity<User> getUser(@RequestParam("id") Long id, HttpServletRequest request, Model model) {
-	//	return ResponseEntity.ok(userService.getUser(id));
-	//}
 
 	@RequestMapping("/getUser")
 	public User getUser(HttpServletRequest request, Model model) {

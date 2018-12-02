@@ -114,9 +114,8 @@ public class Event {
 		this.avaialableSeats = avaialableSeats;
 	}
 
-	@OneToOne
-	@JoinColumn(name = "category")
-	private EventCategory eventCategory;
+	@Column(name = "category")
+	private String eventCategory;
 
 	@Column(name = "max")
 	private int maximumSeats;
@@ -205,11 +204,11 @@ public class Event {
 		this.isPublic = isPublic;
 	}
 
-	public EventCategory getEventCategory() {
+	public String getEventCategory() {
 		return eventCategory;
 	}
 
-	public void setEventCategory(EventCategory eventCategory) {
+	public void setEventCategory(String eventCategory) {
 		this.eventCategory = eventCategory;
 	}
 }

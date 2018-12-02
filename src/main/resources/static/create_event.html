@@ -131,20 +131,20 @@ body, html, .container-fluid {
 <div class="row">
 <div class="col-sm-2"><h5>Starts</h5></div>
 <div class="col-sm-5" style="text-align:left">
-<input type="date" class="form-control" name="" style="width:50%;" id="start_date" th:field="*{startDate}">
+<input type="date" class="form-control" name="start_date" style="width:50%;" id="start_date" th:field="*{startDate}">
 </div>
 <div class="col-sm-5">
-	<input type="time" class="form-control" style="width:50%;" id="start_time" th:field="*{startDate}">
+	<input type="time" class="form-control" style="width:50%;" name="start_time" id="start_time" th:field="*{startDate}">
 </div>
 </div>
 <br>
 <div class="row">
 <div class="col-sm-2"><h5>Ends</h5></div>
 <div class="col-sm-5" style="text-align:left">
-<input type="date" class="form-control" style="width:50%;" name="" id="end_date" th:field="*{endDate}">
+<input type="date" class="form-control" style="width:50%;" name="end_date" id="end_date" th:field="*{endDate}">
 </div>
 <div class="col-sm-5">
-	<input type="time" class="form-control" style="width:50%;" id="end_time">
+	<input type="time" class="form-control" style="width:50%;" name="end_time" id="end_time">
 </div>
 </div>
 <br>
@@ -190,6 +190,7 @@ Select a category that best describes the event.
       <option>Business</option>
       <option>Outdoors</option>
       <option>Education</option>
+      <option>Entertainment</option>
       <option>Career</option>
       <option>Culture</option>
     </select>
@@ -204,18 +205,18 @@ Select a category that best describes the event.
 </div><br>-->
 <div class="row">
 <div class="col-sm-4"><input type="text" class="form-control" disabled value="Bronze"></div>
-<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
-<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" name="bronzeQ" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" name="bronzeP" class="form-control"></div>
 </div><br>
 <div class="row">
 <div class="col-sm-4"><input type="text" class="form-control" disabled value="Silver"></div>
-<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
-<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" name="silverQ" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" name="silverP" class="form-control"></div>
 </div><br>
 <div class="row">
 <div class="col-sm-4"><input type="text" class="form-control" disabled value="Gold"></div>
-<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
-<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" name="goldQ" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" name="goldP" class="form-control"></div>
 </div><br>
 <!--<div class="row">
 <input type="text" name="seats" class="form-control" id="event_max">
