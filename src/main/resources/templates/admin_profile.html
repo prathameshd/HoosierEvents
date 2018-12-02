@@ -98,7 +98,7 @@ body, html, .container-fluid {
 <!--<div style="background-color:red;left:-30%;height:100%;width:40%;position:relative;">-->
 <div class="container-fluid" style="height:100% !important;">
 <div class="row">
-	<div class="col-sm-4" style="">
+	<div class="col-sm-4" style="border-right:1px inset #dcf;">
 	<!--<div class="container" style="height:100%;position:relative;top:10%;">-->
 	  <div class="page-header"><h3>Admin User</h3></div>
 	  
@@ -106,15 +106,16 @@ body, html, .container-fluid {
 		<li class="active" ><a data-toggle="pill" href="#dash" >Dashboard</a></li>
 		<li><a data-toggle="pill" href="#approve">Pending Approval Requests</a></li>
 
-		<li class="dropdown">
-		  <a class="dropdown-toggle" data-toggle="dropdown" href="#">View<span class="caret"></span></a>
-		  <ul class="dropdown-menu">
+		<!-- <li class="dropdown"> -->
+		  <li><a data-toggle="pill" href="#view_org">Registered Organizers</a>
+		  <!-- <ul class="dropdown-menu">
 			<li><a data-toggle="pill" href="#view_users">Users</a></li>
 			<li><a data-toggle="pill" href="#view_org">Organisers</a></li>
 			<li><a data-toggle="pill" href="#view_events">Events</a></li>                        
-		  </ul>
-		</li>
+		  </ul> -->
+		<!-- </li> -->
 		<li><a data-toggle="pill" href="#reported">Reported Events</a></li>
+		<li><a data-toggle="pill" href="#announcement">Announcements</a></li>
 	  </ul>
 	</div>
 	
@@ -409,7 +410,7 @@ function doPendingRequestRender(users) {
 	document.getElementById("total_users").innerHTML+=count;
 	var i;
 		for(i=0;i<pending;i++){
-			debugger;
+
 			var userId = pendingOrganizers[i].id;
 			var div = document.createElement("div");
 			div.style.border= "1px solid lightgrey";
@@ -418,26 +419,25 @@ function doPendingRequestRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +" ("+ pendingOrganizers[i].email + " ) </h4><br>";
+			div.innerHTML+= ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address);
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
 			b.id=userId;
 			b.innerHTML="Approve";
-			b.style="background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
+			b.style="left:70%;position:relative;background-color:green;color:white;border:1px solid green;border-radius:5px;box-shadow:0px 0px 0px grey;";
 			b.class="app_buttons btn-primary";
 			b.addEventListener("click",approveRequest);
 			var b2=document.createElement("button");
 			b2.id=userId;
 			b2.innerHTML="Deny";
 			b2.addEventListener("click",denyRequest);
-			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
+			b2.style="left:71%;position:relative;background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
 			
 			document.getElementById("waitlist_organizers").appendChild(div);
-			document.getElementById(temp).innerHTML+="<br><br>";
+			document.getElementById(temp).innerHTML+="<br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
@@ -518,7 +518,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.className="panel panel-default abcd";
 			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
 			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
-			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].reportStatement +"<br>";
+			div.innerHTML+= "&nbsp; Reporter Message: " + ((reportedEvents[i].reportStatement == null)?"-No Message-":reportedEvents[i].reportStatement) +"<br>";
 			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
 			
 			var form = document.createElement("button");
@@ -592,10 +592,7 @@ function doApprovedOrganizersRender(users) {
 	var total = users.length; ;
 	var pending = pendingOrganizers.length;
 	var count = pending;
-	
-	document.getElementById("total_events").innerHTML+=total;
-	document.getElementById("pending_events").innerHTML+=pending;
-	document.getElementById("total_users").innerHTML+=count;
+
 	var i;
 		for(i=0;i<pending;i++){
 		
@@ -607,9 +604,8 @@ function doApprovedOrganizersRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"</h4><br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].email +"<br>";
-			div.innerHTML+= "&nbsp" + pendingOrganizers[i].address ;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"  ( " + pendingOrganizers[i].email + ")</h4><br>";
+			div.innerHTML+= "&nbsp" + ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address) ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
@@ -630,34 +626,11 @@ function doApprovedOrganizersRender(users) {
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
-		
-		$.ajax({
-			type:'GET',
-			url:"/getReportedEvents",
-			  success: function(reportedEvents) {
-				  doReportedEventsRender(reportedEvents);
-			  },
-			  error: function(e) {
-				 console.log(e);
-			  }
-			});
 }
 
 function sendMailOrganizer()
 {
 	elemtUnderProcessId = this.id;
-	$.ajax({
-		type: "PUT",
-        url: '/approveOrganizer',
-        data: {userId:this.id},
-        success: function (data) {
-        	alert("Organizer Approved");
-        	removeThisRecordFromPendingList("divusr", this.id);
-        },
-        error: function (e) {
-            console.log(e);
-        }
-	});
 }
 
 //----------------------------------
