@@ -559,7 +559,7 @@ $(document).ready(function(){
 				var date_e=String(element.startDate[5])+String(element.startDate[6]);
 				}
 				//alert(date_e+"and"+String(1));
-				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()))
+				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()+1900))
 				{
 					document.getElementById("display2").appendChild(x);
 
