@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +25,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
 import se.hoosierevents.project.model.Ticket;
-import se.hoosierevents.project.model.TicketType;
 import se.hoosierevents.project.model.User;
 import se.hoosierevents.project.springboot.service.EventService;
 import se.hoosierevents.project.springboot.service.FileSystemStorageService;
@@ -73,6 +73,12 @@ public class EventController implements Controller {
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 		return new RedirectView("eventpage");
+	}
+
+	@RequestMapping("/updateEvent")
+	public String updateEvent(@ModelAttribute Event event) {
+		eventService.updateEvent(event);
+		return "Successfully updated the event!";
 	}
 
 	@RequestMapping("/createEvent")
