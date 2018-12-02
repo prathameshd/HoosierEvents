@@ -80,7 +80,15 @@ public class Ticket {
     	this.user = user;
 	}
     
-    public Ticket(Event event) {
+    public Ticket(Long id, User user, Event event, Long ticketType) {
+		super();
+		this.id = id;
+		this.user = user;
+		this.event = event;
+		this.ticketType = ticketType;
+	}
+
+	public Ticket(Event event) {
     	this.event = event;
 	}
 }
