@@ -243,6 +243,7 @@ background-color:#dddddd !important;
 		</div>
 	</div>
 <br>
+
 	<!-- event details div -->
 	<div class="col-sm-4" >
 		<div class="headers">
@@ -361,7 +362,7 @@ background-color:#dddddd !important;
 
 </div>	
 </div>
-</div>
+</div></div>
 <br><br><br>
 
 <!-- DESCRIPTION AND DETAILS DIV -->
@@ -646,24 +647,23 @@ span2.onclick = function() {
         )
         
         $(document).ready(function(){
-        	$.ajax({
+        	/*$.ajax({
         	type:'POST',
         	dataType:'json',
         	data: {id:event_id},
         	url:"/getEvent",
         	  success: function(data) {
-        		  /* debugger; */
         			console.log('success',data);
-        			/* document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg'; */
+        			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg'; 
         			document.getElementById("event_title").innerHTML=data.eventTitle;
-        			document.getElementById("event_date").innerHTML=data.startDate;
-        			document.getElementById("event_location").innerHTML=data.location;
+        			//document.getElementById("event_date").innerHTML=data.startDate;
+        			//document.getElementById("event_location").innerHTML=data.location;
         			document.getElementById("event_description").innerHTML=data.description;
         			document.getElementById("created_by").innerHTML=data.createdBy.name;
         			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
         	   },
         	   error:function(exception){alert('Exception:'+exception);}
-        	}); 
+        	}); */
         	// This button will increment the value
             $('[data-quantity="plus1"]').click(function(e){
             	var bronze = Number(document.getElementById('quantity').value);
