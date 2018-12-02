@@ -69,15 +69,35 @@ public class EventService implements Service {
 
 	public List<Event> getEventsbyCategory(Long id) {
 		EventCategory eventcategory = eventCategoryRepository.findById(id).get();
-		return new ArrayList<Event>(eventRepository.findAllByEventCategory(eventcategory));
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAllByEventCategory(eventcategory));
+		ArrayList<Event> result = new ArrayList<Event>();
+		Date today = new Date();
+		for (int i = 0; i < db_result.size(); i++) {
+			
+			if (db_result.get(i).getEndDate().after(today)) {
+				System.out.println("Correct!");
+				result.add(db_result.get(i));
+			}
+		}
+		return result;
 	}
 
 	public List<Event> getEventsbyLocation(String location) {
 		return new ArrayList<Event>(eventRepository.findAllByLocation(location));
 	}
 
-	public Event getEventbyName(String event) {
-		return eventRepository.findAllByEventTitle(event).get();
+	public List<Event> getEventbyName(String event) {
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAll());
+		ArrayList<Event> result = new ArrayList<Event>();
+		Date today = new Date();
+		for (int i = 0; i < db_result.size(); i++) {
+			
+			if (db_result.get(i).getEventTitle().toLowerCase().contains(event) && db_result.get(i).getEndDate().after(today)) {
+				System.out.println("Correct!");
+				result.add(db_result.get(i));
+			}
+		}
+		return result;
 	}
 
 	public List<EventCategory> getAllCategories() {
