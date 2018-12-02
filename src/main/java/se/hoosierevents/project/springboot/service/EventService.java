@@ -47,7 +47,7 @@ public class EventService implements Service {
 	public void saveEvent(Event event, MultipartFile file, HttpServletRequest request) {
 		event.setStartDate(getDateFromRequest(request, START_DATE, START_TIME));
 		event.setEndDate(getDateFromRequest(request, END_DATE, END_TIME));
-		event.setEventCategory(eventCategoryRepository.findByName(event.getEventCategory()).getId().toString());
+		event.setEventCategory(eventCategoryRepository.findByName(event.getEventCategory().getName()));
 		eventRepository.save(event);
 		TicketDetails ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_BRONZE_ID,
 				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
@@ -140,9 +140,7 @@ public class EventService implements Service {
 		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		for (int i = 0; i < db_result.size(); i++) {
-
-			if (db_result.get(i).getEventTitle().toLowerCase().contains(event)
-					&& db_result.get(i).getEndDate().after(today)) {
+			if (db_result.get(i).getEventTitle().toLowerCase().contains(event) && db_result.get(i).getEndDate().after(today)) {
 				System.out.println("Correct!");
 				result.add(db_result.get(i));
 			}
@@ -150,6 +148,26 @@ public class EventService implements Service {
 		return result;
 	}
 
+//			if (db_result.get(i).getEventTitle().toLowerCase().contains(event)
+//					&& db_result.get(i).getEndDate().after(today)) {
+//				System.out.println("Correct!");
+//				result.add(db_result.get(i));
+//			}
+//		}
+//		return result;
+//	}
+	public List<Event> getEventsforFirstSearch(String search_text) {
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAll());
+		ArrayList<Event> result = new ArrayList<Event>();
+		Date today = new Date();
+		for (int i = 0; i < db_result.size(); i++) {
+			if (db_result.get(i).getEndDate().after(today) && (db_result.get(i).getEventTitle().toLowerCase().contains(search_text) || db_result.get(i).getEventCategory().getName().toLowerCase().contains(search_text) || db_result.get(i).getDescription().toLowerCase().contains(search_text))) {
+				System.out.println("Correct!");
+				result.add(db_result.get(i));
+			}
+		}
+		return result;
+	}
 	public List<EventCategory> getAllCategories() {
 		return new ArrayList<EventCategory>(eventCategoryRepository.findAll());
 	}
