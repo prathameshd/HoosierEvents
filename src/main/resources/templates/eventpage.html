@@ -235,7 +235,7 @@ background-color:#dddddd !important;
 </div>
 
 
-<div class="container-fluid" style="background-color:lightgrey;">	
+<div class="container-fluid" style="background-color:#F3F2F2;">	
 <div class="container" style="width:90%;top:10%;position:relative;background-color:;-bottom:0.5px groove #F4EFFE">
 <div class="row">
 	<!-- IMAGE DIV -->
@@ -252,7 +252,7 @@ background-color:#dddddd !important;
 		<div class="row" ><h2 id="event_title"></h2></div>
 		<div class="row" ><h3 id="event_date" style="color:green"></h3></div>
 		<div class="row" style="color:#726868"><h3 id="event_start_time"></h3></div>
-
+		<div class="row" id="hiddenid" style="display:none;"></div>
 		<!--<div class="row" ><h4 id="event_location" style="color:green;font-family: 'Open Sans', sans-serif;
 "></h4></div>-->
 		<div class="row" style="color:#3C6198"><h5>&nbsp</h5></div>
@@ -452,7 +452,7 @@ background-color:#dddddd !important;
 <div class="col-sm-12" id="eventlocation"></div>
 </div>		
 </div>
-<br><br><br><br><br>
+<br><br><br> 
 
 
  <div id="chat-page" class="hidden" style="min-width:350px;max-width:350px;min-height:auto;">
@@ -477,6 +477,19 @@ background-color:#dddddd !important;
 	</div>
 </div>
 
+
+<div id="container-fluid" style="text-align:center;"><div class="row"><div class="col-sm-12"><h4>Other Events You May Like</h4></div></div></div><br>
+<div class="container" style="height:50%;width:100%;overflow-y:hidden;overflow-x:hidden;">
+<div class="row"> 
+<div id="newdiv" class="col-sm-4">
+</div>
+<div id="newdiv2" class="col-sm-4">
+</div>
+<div id="newdiv3" class="col-sm-4">
+</div>
+</div><br>
+</div>
+<br><br><br>
 <div class="container-fluid fancy" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color: !important;color:">
 <br><div class="row" style="background-color:;">
 	<!--<div class="col-sm-4">
@@ -624,6 +637,9 @@ span2.onclick = function() {
         modal2.style.display = "none";
     }
 }
+
+
+
 
 
     $(document).ready(function () {
@@ -813,6 +829,150 @@ span2.onclick = function() {
 </script>
 
 <script>
+var counter=0;
+$(document).ready(function(){
+	$.ajax({
+	type:'GET',
+	dataType:'json',
+	url:"/getAllEvents",
+	  success: function(events) {
+		// events.forEach(element => {
+				//var d=new Date();
+				//alert("call success");
+				//while(counter<=2)
+				//{
+				//alert("loop success"+element.eventTitle);
+//				if(element.category==this.category)
+				var hiddenID=document.getElementById("hiddenid").innerHTML;
+				var random1=Math.floor(Math.random() * events.length);
+				while(events[random1].id == hiddenID)
+				{
+				var random1=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+
+			x.innerHTML="<img src='/getImage?img="+events[random1].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random1].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random1].location+"</div></div></div>";
+
+				x.id=events[random1].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv").appendChild(x);
+				counter=counter+1;
+
+				//second event
+				
+					var random2=Math.floor(Math.random() * events.length);
+				while(events[random2].id == hiddenID || events[random2].id==events[random1].id)
+				{
+				var random2=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+
+			x.innerHTML="<img src='/getImage?img="+events[random2].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random2].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random2].location+"</div></div></div>";
+
+				x.id=events[random2].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv2").appendChild(x);
+				counter=counter+1;
+				
+				//third event
+				
+					var random3=Math.floor(Math.random() * events.length);
+				while(events[random3].id == hiddenID || events[random3].id==events[random2].id || events[random3].id==events[random1].id)
+				{
+				var random3=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+
+			x.innerHTML="<img src='/getImage?img="+events[random3].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random3].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random3].location+"</div></div></div>";
+
+				x.id=events[random3].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv3").appendChild(x);
+				counter=counter+1;
+				
+				/*var eventyear=String(element.startDate[0])+String(element.startDate[1])+String(element.startDate[2])+String(element.startDate[3]);
+				if(String(element.startDate[5])=='0')
+				{
+				var date_e=String(element.startDate[6]);
+				}
+				else{
+				var date_e=String(element.startDate[5])+String(element.startDate[6]);
+				}
+				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()+1900))
+				{
+					document.getElementById("display2").appendChild(x);
+
+				
+				}*/
+							
+			  console.log(element);
+			  //}
+			//});
+	   },
+	   error:function(exception){
+		   console.log("error: "+ exception);}
+	});
+});	
+
+
+
+
+
+function sendevent()
+{
+	window.location.href = "eventpage?id="+this.id;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var loc="Bloomington";
 
 /*passing parameter to iframe*/
@@ -845,6 +1005,7 @@ $(document).ready(function(){
 			console.log('success',data);
 			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg';
 			document.getElementById("event_title").innerHTML=data.eventTitle;
+			document.getElementById("hiddenid").innerHTML=data.id;
 			//alert(data.startDate);
 			var gg="BillGates"
 			document.getElementById("twitter_handle").href="https://twitter.com/"+data.twitterHandle+"?ref_src=twsrc%5Etfw";
