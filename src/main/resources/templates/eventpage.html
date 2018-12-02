@@ -255,7 +255,107 @@ background-color:#dddddd !important;
 		<div class="row" style="color:#3C6198"><h5>&nbsp</h5></div>
 		<br><br><br>
 		</div>
-		<div class="row" style="bottom:10%;position:relative"><div class="col-sm-12"><button id="registerbutt" disabled class="btn-block register_button" onClick="NewPage()"><h4>Register</h4><span id="disabledtext" class="tooltiptext" ><h6>Login to Register.</h6></span></button>
+		<div class="row" style="bottom:10%;position:relative">
+			<div class="col-sm-12">
+				<button id="registerbutt" disabled class="btn-block register_button">
+					<h4>Register</h4>
+					<span id="disabledtext" class="tooltiptext" >
+						<h6>Login to Register.</h6>
+					</span>
+				</button>
+				<!-- The Modal -->
+					<div id="myModal" class="modal">
+				<!-- Modal content -->
+				  <div class="modal-content">
+				    <span id="span1" class="close">&times;</span>
+				    	<ul>
+				    		<li>Bronze tickets: 
+					    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
+								<div class="input-group plus-minus-input">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="minus1" data-field="quantity">
+								      <i class="fa fa-minus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								  <input class="input-group-field" type="number" name="quantity" id="quantity" value="0">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="plus1" data-field="quantity">
+								      <i class="fa fa-plus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								</div>
+				    		</li>
+				    		<li>Silver tickets: 
+				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
+								<div class="input-group plus-minus-input">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="minus2" data-field="quantity2">
+								      <i class="fa fa-minus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								  <input class="input-group-field" type="number" name="quantity2" id="quantity2" value="0">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="plus2" data-field="quantity2">
+								      <i class="fa fa-plus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								</div>
+				    		</li>
+				    		<li>Gold tickets: 
+				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
+								<div class="input-group plus-minus-input">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="minus3" data-field="quantity3">
+								      <i class="fa fa-minus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								  <input class="input-group-field" type="number" name="quantity3" id="quantity3" value="0">
+								  <div class="input-group-button">
+								    <button type="button" class="button hollow circle" data-quantity="plus3" data-field="quantity3">
+								      <i class="fa fa-plus" aria-hidden="true"></i>
+								    </button>
+								  </div>
+								</div>
+				    		</li>
+				    	</ul>
+				    <button class="btn-block register_button" id="myBtn3"><h5>REGISTER<h5></button>
+				   </div>
+			    	<!-- <!-- The Modal -->
+				 <div id="myModal2" class="modal">
+					Modal content
+					  <div class="modal-content">
+					    <span id="span2" class="close">&times;</span>
+					    	<form action="/PaymentPortal" id="name_form">
+					    		<input id='event_name' name='event_name' type='hidden'>
+					    		<input id='bronze' name='bronze' type='hidden'>
+					    		<input id='silver' name='silver' type='hidden'>
+					    		<input id='gold' name='gold' type='hidden'>
+							  Attendee 1 Name:<br>
+							  <input type="text" name="name1" value="name1"><br>
+							  Attendee 2 Name:<br>
+							  <input type="text" name="name2" value="name2"><br>
+							  Attendee 3 Name:<br>
+							  <input type="text" name="name3" value="name3"><br>
+							  Attendee 4 Name:<br>
+							  <input type="text" name="name4" value="name4"><br>
+							  Attendee 5 Name:<br>
+							  <input type="text" name="name5" value="name5"><br>
+							  Attendee 6 Name:<br>
+							  <input type="text" name="name6" value="name6"><br>
+							  Attendee 7 Name:<br>
+							  <input type="text" name="name7" value="name7"><br>
+							  Attendee 8 Name:<br>
+							  <input type="text" name="name8" value="name8"><br>
+							  Attendee 9 Name:<br>
+							  <input type="text" name="name9" value="name9"><br>
+							  Attendee 10 Name:<br>
+							  <input type="text" name="name10" value="name10"><br><br>
+							  <!-- <input type="submit" value="Submit"> -->
+							  <button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button> 
+							</form>
+			    			<!-- <button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button> -->
+		  				</div>
+					</div>
 </div></div>
 	</div>
 
@@ -444,6 +544,82 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <script>
+
+//Get the modal
+var modal1 = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("registerbutt");
+
+// Get the <span> element that closes the modal
+var span = document.getElementById("span1");
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+    if (event.target == modal1) {
+        modal1.style.display = "none";
+    }
+}
+
+//Get the modal
+var modal2 = document.getElementById('myModal2');
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("myBtn3");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() {
+	/* modal1.style.display = "none"; */ 
+    modal2.style.display = "block";
+	var event =
+	console.log(document.getElementById("event_title").innerHTML);
+	console.log(document.getElementById("quantity").value);
+	console.log(document.getElementById("quantity2").value);
+	console.log(document.getElementById("quantity3").value);
+	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
+	document.getElementById("bronze").value = document.getElementById("quantity").value;
+	document.getElementById("silver").value = document.getElementById("quantity2").value;
+	document.getElementById("gold").value = document.getElementById("quantity3").value;
+	var div_count = parseInt(document.getElementById("quantity").value) + parseInt(document.getElementById("quantity2").value) + parseInt(document.getElementById("quantity3").value);
+	var i;
+	console.log(div_count)
+	for(i=1;i<=div_count;i++){
+		document.getElementById("name_form").innerHTML="Attendee "+i+" Name: ";
+		var input = document.createElement("input");
+		var input_name = "name"+i;
+		input.name = input_name;
+		console.log(input_name);
+		document.getElementById("name_form").appendChild(input);
+	}
+    
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+    modal2.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+ window.onclick = function(event) {
+    if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+}
+
+
     $(document).ready(function () {
         $.ajax({
                 type: "GET",
@@ -468,6 +644,165 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
             }
         )
+        
+        $(document).ready(function(){
+        	$.ajax({
+        	type:'POST',
+        	dataType:'json',
+        	data: {id:event_id},
+        	url:"/getEvent",
+        	  success: function(data) {
+        		  /* debugger; */
+        			console.log('success',data);
+        			/* document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg'; */
+        			document.getElementById("event_title").innerHTML=data.eventTitle;
+        			document.getElementById("event_date").innerHTML=data.startDate;
+        			document.getElementById("event_location").innerHTML=data.location;
+        			document.getElementById("event_description").innerHTML=data.description;
+        			document.getElementById("created_by").innerHTML=data.createdBy.name;
+        			document.getElementById('myIframe').src = "map.html?seed=" + data.location;
+        	   },
+        	   error:function(exception){alert('Exception:'+exception);}
+        	}); 
+        	// This button will increment the value
+            $('[data-quantity="plus1"]').click(function(e){
+            	var bronze = Number(document.getElementById('quantity').value);
+            	var silver = Number(document.getElementById('quantity2').value);
+            	var gold = Number(document.getElementById('quantity3').value);
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                	if((currentVal)==10){
+                		alert("You can buy only a maximum of 10 tickets at a time!");
+                	}
+                	else if(silver > 0 || gold > 0){
+                		alert("You can buy only one type of ticket at a time!")
+                	}
+                	else{
+                		// Increment
+                        $('input[name='+fieldName+']').val(currentVal + 1);
+                	}
+                    
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus1"]').click(function(e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    // Decrement one
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+         // This button will increment the value
+            $('[data-quantity="plus2"]').click(function(e){
+            	var bronze = Number(document.getElementById('quantity').value);
+            	var silver = Number(document.getElementById('quantity2').value);
+            	var gold = Number(document.getElementById('quantity3').value);
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                	if((currentVal)==10){
+                		alert("You can buy only a maximum of 10 tickets at a time!");
+                	}
+                	else if(bronze > 0 || gold > 0){
+                		alert("You can buy only one type of ticket at a time!")
+                	}
+                	else{
+                		// Increment
+                        $('input[name='+fieldName+']').val(currentVal + 1);
+                	}
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus2"]').click(function(e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    // Decrement one
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+         // This button will increment the value
+            $('[data-quantity="plus3"]').click(function(e){
+            	var bronze = Number(document.getElementById('quantity').value);
+            	var silver = Number(document.getElementById('quantity2').value);
+            	var gold = Number(document.getElementById('quantity3').value);
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                	if((currentVal)==10){
+                		alert("You can buy only a maximum of 10 tickets at a time!");
+                	}
+                	else if(silver > 0 || bronze > 0){
+                		alert("You can buy only one type of ticket at a time!")
+                	}
+                	else{
+                		// Increment
+                        $('input[name='+fieldName+']').val(currentVal + 1);
+                	}
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus3"]').click(function(e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    // Decrement one
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name='+fieldName+']').val(0);
+                }
+            });
+        });	
+        
+        
     })
 
 </script>
