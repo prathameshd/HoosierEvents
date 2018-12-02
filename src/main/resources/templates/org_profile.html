@@ -139,19 +139,55 @@ body, html, .container-fluid {
 					</div>
 
 					<div id="dash" class="tab-pane fade in active ">
-						<div id="piechart" style="height:400px;">
+					<h3 style="text-align:center;     font-family: 'Oxygen', sans-serif;
+">Event Statistics</h3><br>
+						<div id="piechart" style="height:450px;">
 						</div>
 						<div id="piechart3" style="height:400px;">
 						</div>
-						<div id="piechart2" style="height:400px;">
+						
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="panel panel-default" id="users_count">
+									<h5 style="">
+										&nbsp Total Users:<span id="total_users"> </span>
+									</h5>
+								</div>
+							</div>
+							<div class="col-sm-6">
+									<div class="panel panel-default" id="totalevents" >
+									<h5 style="">
+										&nbsp Total Events:<span id="totaleventcount"> </span>
+									</h5>
+								</div>
+							</div>
+
 						</div>
-						<h3>Event Statistics</h3>
+						
+						<br>
+						<h3 style="text-align:center;     font-family: 'Oxygen', sans-serif;
+">Revenue Statistics</h3><br>
+						<div id="piechart2" style="height:400px;">
+						</div><br>
+						
+						<div class="row">
+							<div class="col-sm-6">
+								<h4>
+									Net Revenue:<span id="total_revenue"></span>
+								</h4>
+							</div>
+							<div class="col-sm-6">
+								<h4>
+									Average Revenue Per Event:<span id="avg_revenue"></span>
+								</h4>
+							</div>
+						</div>
+						
+						<!--<h3>Event Statistics</h3>
 
 						<div class="row">
 							<div class="col-sm-6">
-								<!--<div id="piechart">
-	  
-	  </div>-->
+
 								<div class="panel panel-default" id="live_events">
 									<h5>
 										&nbspLive Events:<span id="total_events"> </span>
@@ -170,31 +206,9 @@ body, html, .container-fluid {
 
 							</div>
 
-						</div>
-						<h3>User Demographics</h3>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="panel panel-default" id="users_count">
-									<h5 style="top: 25%; position: relative">
-										&nbsp Total Users:<span id="total_users"> </span>
-									</h5>
-								</div>
-							</div>
-
-						</div>
-						<h3>Revenue Stats</h3>
-						<div class="row">
-							<div class="col-sm-6">
-								<h4>
-									Net Revenue:<span id="total_revenue"></span>
-								</h4>
-							</div>
-							<div class="col-sm-6">
-								<h4>
-									Average Revenue Per Event:<span id="avg_revenue"></span>
-								</h4>
-							</div>
-						</div>
+						</div>-->
+						
+						
 						<!--	  <div id="container" class="cols">
     <div class="box">a</div>
     <div class="box">b</div>
@@ -576,7 +590,7 @@ data.addRows([
           minValue: 0,
         },
         vAxis: {
-          title: 'City'
+          title: 'Events'
         },
         bars: 'horizontal'
       };

@@ -20,14 +20,18 @@
 
 
 #users_count{
-	height:50px;;
-	width:50%;
-	background-color:darkslategrey;
+	height:45px;;
+	background-color:green;
 	color:white;
 	text-align:left;
 }
-
-#live_events:hover,#pen_events:hover,#users_count:hover{
+#totalevents{
+	height:45px;;
+	background-color:orange;
+	color:white;
+	text-align:left;
+}
+#live_events:hover,#pen_events:hover,#users_count:hover,#totalevents:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
