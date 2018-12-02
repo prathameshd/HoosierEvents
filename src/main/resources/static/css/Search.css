@@ -131,14 +131,14 @@ transition: width:3s;
 }
 
 #searchbardropdown {
-	font-family: "Verdana";
 	background-color:#990000;
-	height:130%;
+	height:100%;
+	border-radius:3px;
 }
 
 #searchbartextbox {
-	height:130%;
-	background-color:#ffe4e1;
+	height:100%;
+	background-color:;
 }
 
 #smallmenu {
@@ -148,4 +148,31 @@ transition: width:3s;
 	padding-left:100%;
 }
 
+.abc{  
+  box-shadow: 0 0px 0px 0 rgba(0,0,0,0);
+  transition:0.4s;
+}
+.abc:hover
+{
+		
+	    box-shadow: 0 8px 16px 1px rgba(0.2,0.2,0.2,0.3);
 
+}
+.ss
+{
+	background-color:#AE1616;
+	color:white;
+	border-radius:4px;
+	transition:0.4s;
+	border:1px solid #AE1616;
+}
+.ss:active
+{
+	background-color:white;
+	color:#AE1616;
+}
+.ss:hover
+{
+	background-color:white;
+	color:#AE1616;
+}
