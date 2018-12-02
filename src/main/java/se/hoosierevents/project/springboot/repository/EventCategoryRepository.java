@@ -11,4 +11,5 @@ public interface EventCategoryRepository extends CrudRepository<EventCategory, L
 
     public Optional<EventCategory> findById(Long id);
     public List<EventCategory> findAll();
+    public EventCategory findByName(String categoryName);
 }

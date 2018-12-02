@@ -47,24 +47,32 @@ public class EventService implements Service {
 	public void saveEvent(Event event, MultipartFile file, HttpServletRequest request) {
 		event.setStartDate(getDateFromRequest(request, START_DATE, START_TIME));
 		event.setEndDate(getDateFromRequest(request, END_DATE, END_TIME));
+		event.setEventCategory(eventCategoryRepository.findByName(event.getEventCategory()).getId().toString());
 		eventRepository.save(event);
 		TicketDetails ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_BRONZE_ID,
-				Integer.parseInt(request.getParameter(BRONZE_SEAT_AVAILABLE)),
-				Integer.parseInt(request.getParameter(BRONZE_SEAT_AVAILABLE)),
-				Float.parseFloat(request.getParameter(BRONZE_PRICE)));
+				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(BRONZE_PRICE))));
 		ticketDetailsRepository.save(ticketDetails);
 
 		ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_SILVER_ID,
-				Integer.parseInt(request.getParameter(SILVER_SEAT_AVAILABLE)),
-				Integer.parseInt(request.getParameter(SILVER_SEAT_AVAILABLE)),
-				Float.parseFloat(request.getParameter(SILVER_PRICE)));
+				Integer.parseInt(getValue(request.getParameter(SILVER_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(SILVER_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(SILVER_PRICE))));
 		ticketDetailsRepository.save(ticketDetails);
 
 		ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_GOLD_ID,
-				Integer.parseInt(request.getParameter(GOLD_SEAT_AVAILABLE)),
-				Integer.parseInt(request.getParameter(GOLD_SEAT_AVAILABLE)),
-				Float.parseFloat(request.getParameter(GOLD_PRICE)));
+				Integer.parseInt(getValue(request.getParameter(GOLD_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(GOLD_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(GOLD_PRICE))));
 		ticketDetailsRepository.save(ticketDetails);
+	}
+
+	private String getValue(String parameter) {
+		if (parameter == null || parameter.isEmpty())
+			return "0";
+
+		return parameter;
 	}
 
 	private Date getDateFromRequest(HttpServletRequest request, String date, String time) {
