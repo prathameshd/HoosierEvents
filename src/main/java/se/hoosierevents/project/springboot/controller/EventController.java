@@ -84,10 +84,25 @@ public class EventController implements Controller {
 		User user = (User) session.getAttribute("user");
 		return user;
 	}
+	
+	@RequestMapping("/checkIfStudent")
+	public String checkIfStudent(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if(user.getEmail().contains("@iu.edu")) {
+			return "true";
+		}
+		return "false";
+	}
 
 	@RequestMapping("/getAllEvents")
 	public ResponseEntity<List<Event>> getAllEvents(HttpServletRequest request, Model model) {
 		return ResponseEntity.ok(eventService.getAllEvents());
+	}
+	
+	@RequestMapping("/getEventsforFirstSearch")
+	public ResponseEntity<List<Event>> getEventsforFirstSearch(@RequestParam("search_text") String search_text, HttpServletRequest request, Model model) {
+		return ResponseEntity.ok(eventService.getEventsforFirstSearch(search_text));
 	}
 	
 	@RequestMapping("/getAllUsers")
@@ -122,12 +137,45 @@ public class EventController implements Controller {
 	public ResponseEntity<List<EventCategory>> getAllCategories(HttpServletRequest request, Model model) {
 		return ResponseEntity.ok(eventService.getAllCategories());
 	}
+	
+	@RequestMapping("/checkifCategory")
+	public String checkifCategory(@RequestParam("search_text") String search_text, HttpServletRequest request, Model model) {
+		Integer n = 0;
+		List<EventCategory> categories = new ArrayList<EventCategory>(eventService.getAllCategories());
+		for(int i = 0; i < categories.size(); i++) {
+			if(categories.get(i).getName().toLowerCase().equals(search_text.toLowerCase()))
+				return categories.get(i).getId().toString();
+		}
+		return n.toString();
+	}
 
 	@RequestMapping("/saveEventTicket")
 	public void saveEventTicket(@RequestParam("eventTitle") String eventTitle, @RequestParam("tickets_bronze") String tickets_bronze, @RequestParam("tickets_silver") String tickets_silver, @RequestParam("tickets_gold") String tickets_gold, HttpServletRequest request, Model m) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		ticketService.saveEventTicket(eventTitle,user);
+	}
+	
+	@RequestMapping("/getTicketPrice")
+	public ResponseEntity<Float> getTicketPrice(@RequestParam("eventTitle") String eventTitle, @RequestParam("tickets_bronze") String tickets_bronze, @RequestParam("tickets_silver") String tickets_silver, @RequestParam("tickets_gold") String tickets_gold, HttpServletRequest request, Model m) {
+//		HttpSession session = request.getSession();
+//		User user = (User) session.getAttribute("user");
+		Float price = (float) 0;
+		if(Integer.parseInt(tickets_bronze) > 0) {
+			price = ticketService.getTicketPrice(eventTitle, 1) * Integer.parseInt(tickets_bronze);
+		}
+		else if(Integer.parseInt(tickets_silver) > 0) {
+			price = ticketService.getTicketPrice(eventTitle, 2) * Integer.parseInt(tickets_silver);
+		}
+		else if(Integer.parseInt(tickets_gold) > 0) {
+			price = (ticketService.getTicketPrice(eventTitle, 3))*Integer.parseInt(tickets_gold);
+		}
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if(user.getEmail().contains("@iu.edu")) {
+			price = price/2;
+		}
+		return ResponseEntity.ok(price);
 	}
 
 	@RequestMapping("/getEventsToBeAttendedByUser")
