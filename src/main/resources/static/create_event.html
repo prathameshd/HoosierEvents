@@ -16,6 +16,16 @@
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	    <link rel="stylesheet" type="text/css" th:href="@{css/HomePageStyle.css}">
   <style>
+  #event_host_button
+  {
+  transition:0.4s;
+  }
+  #event_host_button:hover{
+		color:white !important;
+		background-color:green !important;
+	box-shadow:2px 2px 2px grey;
+	
+}
 
  .fa {
 padding-top:10px;
@@ -91,7 +101,7 @@ body, html, .container-fluid {
 <div class="row">
 <div class="col-sm-2" style="background-color:">
 </div>
-<div class="col-sm-8" style=" ">
+<div class="col-sm-8">
 <div class="row" style="color:darkred">
 <h2>create your event!</h2>
 </div><br>
@@ -119,7 +129,7 @@ body, html, .container-fluid {
 <div class="row" style="">
 <h4><span class="glyphicon glyphicon-calendar" style="color:#2D80DF"></span> Details</h4></div>
 <div class="row">
-<div class="col-sm-2"><h5>Start Time</h5></div>
+<div class="col-sm-2"><h5>Starts</h5></div>
 <div class="col-sm-5" style="text-align:left">
 <input type="date" class="form-control" name="" style="width:50%;" id="start_date" th:field="*{startDate}">
 </div>
@@ -129,7 +139,7 @@ body, html, .container-fluid {
 </div>
 <br>
 <div class="row">
-<div class="col-sm-2"><h5>End Time</h5></div>
+<div class="col-sm-2"><h5>Ends</h5></div>
 <div class="col-sm-5" style="text-align:left">
 <input type="date" class="form-control" style="width:50%;" name="" id="end_date" th:field="*{endDate}">
 </div>
@@ -163,13 +173,13 @@ body, html, .container-fluid {
 <textarea name="description" id="event_desc" style="width:75%;height:35%;resize:none;" th:field="*{description}">
 </textarea>
 </div><br><br>
-<div class="row" style="background-color:white;border-radius:10px;">
+<!--<div class="row" style="background-color:white;border-radius:10px;">
 <br>
 <div class="col-md-4" style=""><h4 style="color:#2D80DF;">WHAT TYPE OF EVENT IS THIS ?</h4></div>
 <div class="col-sm-4"><h5><input type="radio" class="form-check-input"name="isPublic" id="event_type" checked>PUBLIC</h5></div>
 <div class="col-sm-4"><h5><input type="radio" class="form-check-input" name="optradio">PRIVATE</h5></div>
 <br><br>
-</div>
+</div>-->
 <br>
 <div class="row" style="">
 <h4>Category</h4>
@@ -185,11 +195,31 @@ Select a category that best describes the event.
     </select>
 </div>
 <br><div class="row">
-<h4>Number of Seats</h4> 
+<h4>Tickets</h4> 
 </div>
+<!--<div class="row">
+<div class="col-sm-4">Type</div>
+<div class="col-sm-4">Quantity</div>
+<div class="col-sm-4">Price</div>
+</div><br>-->
 <div class="row">
+<div class="col-sm-4"><input type="text" class="form-control" disabled value="Bronze"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+</div><br>
+<div class="row">
+<div class="col-sm-4"><input type="text" class="form-control" disabled value="Silver"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+</div><br>
+<div class="row">
+<div class="col-sm-4"><input type="text" class="form-control" disabled value="Gold"></div>
+<div class="col-sm-4"><input type="text" placeholder="Quantity" class="form-control"></div>
+<div class="col-sm-4"><input type="text" placeholder="Price" class="form-control"></div>
+</div><br>
+<!--<div class="row">
 <input type="text" name="seats" class="form-control" id="event_max">
-</div>
+</div>-->
 
 <br>
 <!--<div class="row" style="background-color:white;border-radius:10px;">
@@ -203,7 +233,7 @@ Select a category that best describes the event.
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">
-<input type="submit"  value="HOST EVENT" class="btn-block create_button" id="event_host_button">
+<input type="submit"  value="Host Event" class="btn-block create_button" id="event_host_button" style="font-size:18;background-color:white;color:green;border:1px solid green;border-radius:4px;">
 </div>
 <div class="col-sm-4"></div>
 </div>
