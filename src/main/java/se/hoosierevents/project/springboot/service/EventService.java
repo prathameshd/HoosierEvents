@@ -191,4 +191,12 @@ public class EventService implements Service {
 		event.setReportStatement(reportedStatement);
 		eventRepository.save(event);
 	}
+
+	public void updateEvent(Event updatedEvent) {
+		Event originalEvent = eventRepository.findById(updatedEvent.getId()).get();
+		originalEvent.setEventTitle(updatedEvent.getEventTitle());
+		originalEvent.setDescription(updatedEvent.getDescription());
+		originalEvent.setLocation(updatedEvent.getLocation());
+		eventRepository.save(originalEvent);
+	}
 }
