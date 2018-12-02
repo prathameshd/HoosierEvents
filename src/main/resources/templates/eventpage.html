@@ -158,17 +158,19 @@ background-color:#dddddd !important;
 <div id="eventReportModal" class="modal container">
 
 	<!-- Modal content -->
-	<div class="modal-content" >
+	<div class="modal-content" style="width:40%;" >
 		<span class="close">&times;</span>
 		<div class="row">
-			<div class="col-sm-8">	<h4>What's wrong with this event?</h4></div>
+			<div class="col-sm-12" style="text-align:left;     font-family: 'Oxygen', sans-serif;
+">	<h4>What's wrong with this event?</h4></div>
 		</div><br />
 		<div class="row">
-			<textarea rows="4" cols="50" placeholder="Please write here" id="reporttext"> </textarea>
+			<div class="col-sm-12"><textarea rows="4" cols="50" style="width:100%;" placeholder="Please write here" id="reporttext"> </textarea></div>
 
-		</div>
+		</div><br>
         <div class="row">
-            <button class="btn-default" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="reportEvent()"><h5>Report Event</h5></button>
+			<div class="col-sm-8"></div>
+           <div class="col-sm-4"> <button class="btn-block" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="reportEvent()"><h5>Report Event</h5></button></div>
         </div>
         <div class="row">
             <div id="reported" style="color:red;display:none;"><h6>You have reported this event to Administrator!</h6></div>
@@ -380,7 +382,19 @@ background-color:#dddddd !important;
 		 <br>
 		<div class="row" style="width:90%;">
 			<div class="col-sm-2"></div>
-			<div class="col-sm-8"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p></div>
+			<div class="col-sm-8"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p><br>
+				 <div class="row">
+                 <div class="col-sm-4">
+
+
+                     <button type="button" style="color:red" class="btn-link" id="reportthisevent">Report Event</button>
+
+                     <!-- <a href="/sign" >Sign Up!!</a>-->
+
+
+                 </div>
+             </div>
+			</div>
 			<div class="col-sm-2"></div>
 		</div>
     </div>
@@ -424,18 +438,9 @@ background-color:#dddddd !important;
     <div class="col-sm-12">
     <a id="twitter_handle" class="twitter-timeline" min-width:350px; data-height="350">Twitter Handle</a> 
     </div>
-             <div class="row">
-                 <div class="col-sm-12">
-
-
-                     <button type="button" class="btn-link" id="reportthisevent">Report Event</button>
-
-                     <!-- <a href="/sign" >Sign Up!!</a>-->
-
-
-                 </div>
-             </div>
+            
     </div> 
+
 	</div>
 </div>
 </div><br><br><br>
