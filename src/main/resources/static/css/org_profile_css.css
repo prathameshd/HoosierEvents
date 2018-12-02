@@ -6,6 +6,45 @@
 	background-color:#534E4E;
 	color:white
 }
+#update_button
+{
+	background-color:white;
+	color:darkslategrey;
+	border:1px solid darkslategrey;
+	transition:0.4s;
+}
+#update_button:hover
+{
+	background-color:darkslategrey;
+	color:white;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.edit_event_button
+{
+	background-color:white;
+	color:darkslategrey;
+	border:1px solid darkslategrey;
+	border-radius:5px;
+}
+.event_delete_button
+{
+	background-color:white;
+	color:red;
+	border:1px solid red;
+	border-radius:5px;
+}
+.event_delete_button:hover
+{
+	background-color:red;
+	color:white;
+}
+.edit_event_button:hover
+{
+	background-color:darkslategrey;
+	color:white;
+}
+
 #live_events{
 	height:45px;
 	background-color:green;

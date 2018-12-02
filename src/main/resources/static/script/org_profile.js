@@ -94,14 +94,14 @@ function eventsRender(events, parentDiv) {
 		b.id=events[i].id;
 		b.innerHTML="Edit";
 		b.style="";
-		b.class="btn-default";
+		b.class="btn-default edit_event_button";
 		b.addEventListener("click", editbutton);
 		document.getElementById(temp).appendChild(b);
 		var b2=document.createElement("button");
 		b2.id=events[i].id;
 		b2.innerHTML="Drop Event";
 		b2.style="";
-		b2.class="btn-default";
+		b2.class="btn-default event_delete_button";
 		b2.addEventListener("click", deleteEvent);
 		document.getElementById(temp).appendChild(b2);
 	}

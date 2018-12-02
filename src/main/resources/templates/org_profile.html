@@ -121,10 +121,10 @@ body, html, .container-fluid {
 				</ul>
 			</div>
 
-			<div class="col-sm-8" style="height:500px;overflow-y:scroll;">
+			<div class="col-sm-8" style="height:500px;overflow-y:auto;overflow-x:hidden;">
 
 				<div class="tab-content">
-					<div id="edit" class="tab-pane fade">
+					<div id="edit" class="tab-pane fade" style="height:350px;">
 						<h3>Edit Details</h3>
 						<!--	  <form id="modify_details" action="/modifyUser">	-->
 						Name <input type="text" class="form-control" id="user_name">
@@ -138,7 +138,7 @@ body, html, .container-fluid {
 						</button>
 					</div>
 
-					<div id="dash" class="tab-pane fade in active ">
+					<div id="dash" class="tab-pane fade in active " style="max-height:500px;">
 					<h3 style="text-align:center;     font-family: 'Oxygen', sans-serif;
 ">Event Statistics</h3><br>
 						<div id="piechart" style="height:450px;">
@@ -209,21 +209,19 @@ body, html, .container-fluid {
 						</div>-->
 					
 					</div>
-					<div id="upcoming" class="container tab-pane fade">
+					<div id="upcoming" class="container tab-pane fade" style="max-height:500px;">
 						<h3>Live Events</h3>
 						<div id="app"></div>
 
 					</div>
-					</div>
 					<div id="elapsed" class="tab-pane fade">
 						<h3>Elapsed Events</h3>
 					</div>
-					<div id="edit_events" class="tab-pane fade">
+					</div>
+					
+					<!--<div id="edit_events" class="tab-pane fade" style="max-height:500px;">
 						<h3>Edit Events</h3>
-						<!--	  Event ID
-	  	<input type="text" class="form-control" id="event_id">-->
 						Event Name
-						<!--			  	<input type="text" class="form-control" id="event_id">-->
 						<select class="form-control" style="width: 50%" name="event_name"
 							id="event_name">
 
@@ -261,7 +259,7 @@ body, html, .container-fluid {
 							<option>Career</option>
 							<option>Culture</option>
 						</select>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
