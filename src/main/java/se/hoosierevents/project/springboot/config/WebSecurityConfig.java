@@ -81,7 +81,7 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getEventsbyLocation").permitAll()
                 .antMatchers("/getEventbyName").permitAll()
                 .antMatchers("/getCategories").permitAll()
-
+                .antMatchers("/getEventsforFirstSearch").permitAll()
                 
                 .and()
                 .csrf().disable()
