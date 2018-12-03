@@ -335,9 +335,9 @@ background-color:#dddddd !important;
 			    	<!-- <!-- The Modal -->
 				 <div id="myModal2" class="modal">
 					Modal content
-					  <div class="modal-content" style="width:35%;">
+					  <div id="dynamicmodal" class="modal-content" style="width:35%;">
 					    <span id="span2" class="close" onClick="closeall();">&times;</span>
-					    	<form action="/PaymentPortal" id="name_form">
+					    	<!--<form action="/PaymentPortal" id="name_form">
 					    		<input id='event_name' name='event_name' type='hidden'>
 					    		<input id='bronze' name='bronze' type='hidden'>
 					    		<input id='silver' name='silver' type='hidden'>
@@ -362,9 +362,8 @@ background-color:#dddddd !important;
 							  <input type="text" name="name9" value="name9"><br><br>
 							  Attendee 10 Name:&nbsp
 							  <input type="text" name="name10" value="name10"><br><br>
-							  <!-- <input type="submit" value="Submit"> -->
 							  <button class="btn-block register_button" onClick="NewPage()"><h5>Proceed to Payment<h5></button> 
-							</form>
+							</form>-->
 			    			<!-- <button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button> -->
 		  				</div>
 					</div>
@@ -590,6 +589,9 @@ var span = document.getElementById("span1");
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
     modal1.style.display = "block";
+	document.getElementById("quantity").value=0;
+		document.getElementById("quantity2").value=0;
+			document.getElementById("quantity3").value=0;
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -615,8 +617,40 @@ var span2 = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
 btn2.onclick = function() {
+	
 	/* modal1.style.display = "none"; */ 
     modal2.style.display = "block";
+	var dynamicmodal=document.getElementById("dynamicmodal");
+	dynamicmodal.innerHTML="";
+	//alert("first"+document.getElementById("quantity").value+"second"+document.getElementById("quantity2").value+"third"+document.getElementById("quantity3").value)
+	if(document.getElementById("quantity").disabled==false)
+	{
+	var count=document.getElementById("quantity").value;
+	}
+	
+	if(document.getElementById("quantity2").disabled==false)
+	{
+	var count=document.getElementById("quantity2").value;
+	}
+	
+	if(document.getElementById("quantity3").disabled==false)
+	{
+	var count=document.getElementById("quantity3").value;
+	}
+	
+	//var count=document.getElementById("quantity").value+document.getElementById("quantity2").value+document.getElementById("quantity3").value;
+	var i;
+	for(i=0;i<count;i++)
+	{
+	dynamicmodal.innerHTML+="Name"+(i+1);
+	var div=document.createElement("input");
+	div.name="name"+(i+1);
+	div.id="name"+(i+1);
+	dynamicmodal.innerHTML+="<br>";
+	dynamicmodal.appendChild(div);
+	dynamicmodal.innerHTML+="<br><br>";
+	}
+	dynamicmodal.innerHTML+="<div class='row'><button class='btn-default' style='background-color:white;color:red;border:1px solid red;border-radius:3px;' onclick='closeall();'>Cancel</button><button class='btn-default' style='background-color:white;color:navy;border:1px solid navy;border-radius:3px;'>Proceed</button></div>";
 	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
 	document.getElementById("bronze").value = document.getElementById("quantity").value;
 	document.getElementById("silver").value = document.getElementById("quantity2").value;
