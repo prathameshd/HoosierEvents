@@ -423,10 +423,6 @@ function doPendingRequestRender(users) {
 	var total = users.length; ;
 	var pending = pendingOrganizers.length;
 	var count = pending;
-	
-	document.getElementById("total_events").innerHTML+=total;
-	document.getElementById("pending_events").innerHTML+=pending;
-	document.getElementById("total_users").innerHTML+=count;
 	var i;
 		for(i=0;i<pending;i++){
 
@@ -439,7 +435,6 @@ function doPendingRequestRender(users) {
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +" ("+ pendingOrganizers[i].email + " ) </h4><br>";
-			//div.innerHTML+= ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address);
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
