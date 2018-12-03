@@ -172,7 +172,7 @@ body, html, .container-fluid {
 		</div>
 	  </div>				
 						
-      <!--<h3 style="color:darkslategrey">Event Statistics</h3>
+      <!--<<h3 style="color:darkslategrey">Event Statistics</h3>
 	 
 	<div class="row">
 	 <div class="col-sm-6">
@@ -363,18 +363,18 @@ function drawBasic() {
       data.addColumn('number', 'Revenue');
 		
       data.addRows([
-  ['Jan', 10000],
-  ['Feb', 10000],
-  ['Mar', 15000],
-  ['Apr', 3000],
-	  ['May', 7000],
-	    ['Jun', 25000],
-		  ['Jul', 8000],
-		    ['Aug', 2000],
-			  ['Sep', 15000],
-			    ['Oct', 5000],
-				  ['Nov', 25000],
-				    ['Dec', 50000],
+    	  ['Jan', 10000],
+    	  ['Feb', 10000],
+    	  ['Mar', 15000],
+    	  ['Apr', 3000],
+    		  ['May', 7000],
+    		    ['Jun', 25000],
+    			  ['Jul', 8000],
+    			    ['Aug', 2000],
+    				  ['Sep', 15000],
+    				    ['Oct', 5000],
+    					  ['Nov', 25000],
+    					    ['Dec', 50000],
       ]);
 
       var options = {
@@ -456,7 +456,6 @@ function doPendingRequestRender(users) {
 			b2.class="deny_buttons btn-primary";
 			
 			document.getElementById("waitlist_organizers").appendChild(div);
-			document.getElementById(temp).innerHTML+="<br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
@@ -532,13 +531,12 @@ function doReportedEventsRender(reportedEvents) {
 			div.style.borderRadius= "6px";
 			var temp="divevent"+eventId;
 			div.id=temp;
-			//div.addEventListener("click",sendevent);
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
-			div.innerHTML+= "&nbsp; Category: " + reportedEvents[i].eventCategory.name +"<br>";
-			div.innerHTML+= "&nbsp; Reporter Message: " + ((reportedEvents[i].reportStatement == null)?"-No Message-":reportedEvents[i].reportStatement) +"<br>";
-			div.innerHTML+= "&nbsp; Organizer: " + reportedEvents[i].createdBy.email + "&nbsp; Name: " +  reportedEvents[i].createdBy.name;
+			div.innerHTML= "&nbsp; <h4><b>" + reportedEvents[i].eventTitle +"</b></h4>" ;
+			div.innerHTML+= "&nbsp; <b>Category:</b> " + reportedEvents[i].eventCategory.name +"<br>";
+			div.innerHTML+= "&nbsp; <b>Reporter Message:</b> " + ((reportedEvents[i].reportStatement == null)?"-No Message-":reportedEvents[i].reportStatement) +"<br>";
+			div.innerHTML+= "&nbsp; <b>Organizer: </b>" + reportedEvents[i].createdBy.name + "&nbsp;( "+ reportedEvents[i].createdBy.email + " )" ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
@@ -553,11 +551,18 @@ function doReportedEventsRender(reportedEvents) {
 			b2.addEventListener("click",deleteReportedEvent);
 			b2.style="background-color:#C02837;border:1px solid #C02837;border-radius:5px;color:white;";
 			b2.class="deny_buttons btn-primary";
+			var b3=document.createElement("button");
+			b3.id=eventId;
+			b3.innerHTML="View this Event";
+			b3.addEventListener("click",sendevent);
+			b3.style="background-color:#666;border:1px solid #C02837;border-radius:5px;color:white;";
+			b3.class="deny_buttons btn-primary";
 			
 			document.getElementById("reported_events").appendChild(div);
 			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
+			document.getElementById(temp).appendChild(b3);
 		}
 }
 
@@ -623,8 +628,7 @@ function doApprovedOrganizersRender(users) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"  ( " + pendingOrganizers[i].email + ")</h4><br>";
-			//div.innerHTML+= "&nbsp" + ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address) ;
+			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"  ( " + pendingOrganizers[i].email + ")</h4>";
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
@@ -641,7 +645,6 @@ function doApprovedOrganizersRender(users) {
 			b2.class="deny_buttons btn-primary";
 			
 			document.getElementById("view_org").appendChild(div);
-			document.getElementById(temp).innerHTML+="<br><br>";
 			document.getElementById(temp).appendChild(b);
 			document.getElementById(temp).appendChild(b2);
 		}
