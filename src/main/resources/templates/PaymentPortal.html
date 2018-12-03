@@ -172,6 +172,39 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $.ajax({
+                type: "GET",
+                url: '/getuser',
+                success: function (data) {
+                    console.log(data);
+                    debugger;
+                    user = data;
+                    if(data===""){
+                        document.getElementById('logoutbutt').style.display="none";
+                        document.getElementById('loginbutt').style.display="block";
+
+
+                    }
+                    else{
+                        document.getElementById("loginbutt").style.display="none";
+                        document.getElementById("logoutbutt").style.display="block";
+
+
+                    }
+
+
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+
+            }
+        )
+    })
+</script>
+
 
 </body>
 </html>

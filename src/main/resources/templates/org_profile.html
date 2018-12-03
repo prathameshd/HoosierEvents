@@ -81,8 +81,12 @@ body, html, .container-fluid {
 	<div class="col-sm-2"><a href="/" style="text-decoration: none"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></a></div>
 <div class="col-sm-1"></div>
 <div class="col-sm-6"></div>
-<div class="col-sm-1"></div>
 	<div class="col-sm-1">
+		<button class="btn-default xyz" onclick="gotocreate()" id="createeve" style="color:white;background-color:blue;border:0px;-moz-border-radius: 4px;-webkit-border-radius: 4x;border-radius: 4px;"><h5>Create Event</h5></button>
+
+	</div>
+	<div class="col-sm-1">
+
 		<form action="/login">
 			<button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
 		</form>
@@ -93,7 +97,8 @@ body, html, .container-fluid {
 	</div>
 
 
-	</div>
+
+</div>
 
    
 	
@@ -366,6 +371,11 @@ data.addRows([
         chart: {
           title: 'Events By Month'
         },
+		  animation:{
+              duration: 1000,
+              easing: 'out',
+              startup: true
+		  },
         hAxis: {
           title: 'Total Population',
           minValue: 0,
@@ -401,6 +411,11 @@ google.charts.load('current', {'packages':['corechart']});
         ]);
 
         var options = {
+            animation:{
+                duration: 1000,
+                easing: 'out',
+                startup: true
+            },
           title: 'Revenue By Category'
         };
 
@@ -434,6 +449,11 @@ function drawBasic() {
       ]);
 
       var options = {
+          animation:{
+              duration: 1000,
+              easing: 'out',
+              startup: true
+          },
         title: 'Event Atendees by Month',
         hAxis: {
           title: 'Month',
@@ -485,6 +505,12 @@ function drawBasic() {
         })
 
 	</script>
+<script>
+	function gotocreate()
+	{
+	    document.location.href="/createevent";
+	}
+</script>
 
 </body>
 </html>

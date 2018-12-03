@@ -449,7 +449,7 @@ background-color:#dddddd !important;
 		<br>
 		 <div class="row">
     <div class="col-sm-12">
-    <a id="twitter_handle" class="twitter-timeline" min-width:350px; data-height="350">Twitter Handle</a> 
+    <a id="twitter_handle" class="twitter-timeline"  data-height="350">Twitter Handle</a>
     </div>
             
     </div> 
@@ -573,7 +573,7 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
 
 
 
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 <script>
 
@@ -1184,9 +1184,29 @@ $(document).ready(function(){
 			document.getElementById("event_title").innerHTML=data.eventTitle;
 			document.getElementById("hiddenid").innerHTML=data.id;
 			//alert(data.startDate);
-			var gg="BillGates"
-			document.getElementById("twitter_handle").href="https://twitter.com/"+data.twitterHandle+"?ref_src=twsrc%5Etfw";
-			for (x=0;x<=9;x++)
+
+
+          document.getElementById("twitter_handle").setAttribute("href","https://twitter.com/"+data.twitterHandle);
+          window.twttr = (function (d,s,id) {
+              var t, js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+              js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+              return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+          }(document, "script", "twitter-wjs"));
+
+          twttr.ready(function (twttr) {
+              twttr.widgets.load();
+              setInterval(function() {
+                  twttr.widgets.load();
+                  console.log("update twitter timeline");
+              }, 1000);
+          });
+
+
+
+
+
+          for (x=0;x<=9;x++)
 			{
 						//document.getElementById("event_date").innerHTML+=data.startDate[x];
 						
