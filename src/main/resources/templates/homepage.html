@@ -724,12 +724,13 @@ function navigateToProfile() {
 	document.location.href = navPath;
 }
    $(document).ready(function () {
+	   document.getElementById("myInput").value = "";
        $.ajax({
                type: "GET",
            url: '/getuser',
            success: function (data) {
                    console.log(data);
-                   debugger;
+                  /*  debugger; */
                user = data;
                if(data===""){
                    document.getElementById('logoutbutt').style.display="none";
