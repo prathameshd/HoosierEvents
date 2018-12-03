@@ -264,7 +264,10 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 	
-	
+	function sendevent()
+{
+	window.location.href = "eventpage?id="+this.id;
+}
 	
         function GET() {
             var data = [];
@@ -306,6 +309,8 @@ for (var i = 0; i < btns.length; i++) {
 												x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
 												x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
 												x.id=data[i].id;
+																				x.addEventListener("click",sendevent);
+
 												document.getElementById("result_data").appendChild(x);
 											}
          	             			   },
@@ -329,6 +334,8 @@ for (var i = 0; i < btns.length; i++) {
 												x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
 												x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
 												x.id=data[i].id;
+																				x.addEventListener("click",sendevent);
+
 												document.getElementById("result_data").appendChild(x);
 											}
 
@@ -355,6 +362,8 @@ for (var i = 0; i < btns.length; i++) {
 										x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
 										x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
 										x.id=data[i].id;
+																		x.addEventListener("click",sendevent);
+
 										document.getElementById("result_data").appendChild(x);
 									}
              			   },
@@ -383,6 +392,8 @@ for (var i = 0; i < btns.length; i++) {
 						x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
 						x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
 						x.id=data[i].id;
+														x.addEventListener("click",sendevent);
+
 						document.getElementById("result_data").appendChild(x);
 					}
 
@@ -419,6 +430,8 @@ for (var i = 0; i < btns.length; i++) {
 				//x.id=element.id;
 
 				x.id=data[i].id;
+												x.addEventListener("click",sendevent);
+
 				//alert(x.id);
 			//	document.getElementById(x.id).onclick="sendevent()";
 				//x.addEventListener("click",sendevent);
@@ -472,6 +485,8 @@ for (var i = 0; i < btns.length; i++) {
 				//x.id=element.id;
 
 				x.id=data[i].id;
+												x.addEventListener("click",sendevent);
+
 				//alert(x.id);
 			//	document.getElementById(x.id).onclick="sendevent()";
 				//x.addEventListener("click",sendevent);
@@ -522,6 +537,8 @@ for (var i = 0; i < btns.length; i++) {
 				//x.id=element.id;
 
 				x.id=data[i].id;
+												x.addEventListener("click",sendevent);
+
 				//alert(x.id);
 			//	document.getElementById(x.id).onclick="sendevent()";
 				//x.addEventListener("click",sendevent);

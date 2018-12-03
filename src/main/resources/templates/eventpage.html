@@ -221,7 +221,7 @@ background-color:#dddddd !important;
 	<div class="col-sm-2"><a href="/" style="text-decoration: none"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></a></div>
 <div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
 <div class="col-sm-5"><input type="text" class="form-control" id="myInput" placeholder="Search"></div>
-<div class="col-sm-2"><button id="myBtn" style="display:none;" onclick="javascript:alert('Hello World!')"></button></div>
+<div class="col-sm-2"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
 <div class="col-sm-1">
 <form action="/">
         <button class="btn-default xyz" id="profilebutton"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Profile</h5></button>
@@ -725,6 +725,22 @@ document.getElementById("quantity2").disabled=false;
 }
 }
 
+function Search(){
+	document.location.href = "/search?id="+document.getElementById("myInput").value;
+}
+
+var input = document.getElementById("myInput");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Cancel the default action, if needed
+  event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Trigger the button element with a click
+    document.getElementById("myBtn").click();
+  }
+});
 
 
 
