@@ -47,7 +47,11 @@
 
 
   <style>
+	html
+	{
+	  scroll-behavior: smooth;
 
+	}
       .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
@@ -408,13 +412,18 @@ background-color:#dddddd !important;
 		
 	
 			<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspLOCATION</b></h4></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbspLOCATION</b></h4></div>
 		</div>
+		
 		<div class="row" style="text-align:left;">
 			<div class="col-sm-12"><p style="font-family: 'Open Sans', sans-serif;" id="event_location">&nbsp&nbsp&nbsp</div>
-		</div><br>
+		</div>
+		<div class="row">
+		<div class="col-sm-12"><a href="#mapdiv">&nbsp&nbsp&nbspView Map</a></div>
+		</div>
+		<br>
 		<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspCONTACT INFO:</b></h4></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbspCONTACT INFO:</b></h4></div>
 		</div>
 		<div class="row" style="text-align:left;">
 			<div class="col-sm-12"><p id="created_by" style="font-family: 'Open Sans', sans-serif;"></p></div>
@@ -445,7 +454,7 @@ background-color:#dddddd !important;
 	</div>
 </div>
 </div><br><br><br>
-<div class="container" style="top:15%;width:90%;position:relative;">
+<div class="container" id="mapdiv" style="top:15%;width:90%;position:relative;">
 <div class="row">
 			<div class="col-sm-12"><iframe id="myIframe" src="./map" style="min-width:400px;min-height:300px;border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
 		</div>
@@ -838,9 +847,43 @@ $(document).ready(function(){
 				var x=document.createElement("div");
 				x.className="col-sm-12 abc";
 				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
-
+				/*date fix logic*/
+//				alert(events[random1].startDate[8]);
+			var day=String(events[random1].startDate[8])+String(events[random1].startDate[9]);
+			var month=String(events[random1].startDate[5])+String(events[random1].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
+			//document.getElementById("event_date").innerHTML+="&nbsp"+day;	
+			//document.getElementById("event_start_time").innerHTML+="Time:&nbsp";
+				//alert(displaydate);
+				
+				
+				
 			x.innerHTML="<img src='/getImage?img="+events[random1].id+".jpg' style='width:100%;height:auto;'>";
-			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random1].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random1].location+"</div></div></div>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random1].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green'>"+displaydate+"</div></div></div>";
 
 				x.id=events[random1].id;
 								x.addEventListener("click",sendevent);
@@ -862,8 +905,37 @@ $(document).ready(function(){
 				x.className="col-sm-12 abc";
 				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
 
+				
+				var day=String(events[random2].startDate[8])+String(events[random2].startDate[9]);
+			var month=String(events[random2].startDate[5])+String(events[random2].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
+			
 			x.innerHTML="<img src='/getImage?img="+events[random2].id+".jpg' style='width:100%;height:auto;'>";
-			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random2].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random2].location+"</div></div></div>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random2].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+displaydate+"</div></div></div>";
 
 				x.id=events[random2].id;
 								x.addEventListener("click",sendevent);
@@ -885,8 +957,35 @@ $(document).ready(function(){
 				x.className="col-sm-12 abc";
 				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
 
+				var day=String(events[random3].startDate[8])+String(events[random3].startDate[9]);
+			var month=String(events[random3].startDate[5])+String(events[random3].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
 			x.innerHTML="<img src='/getImage?img="+events[random3].id+".jpg' style='width:100%;height:auto;'>";
-			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random3].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+events[random3].location+"</div></div></div>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random3].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+displaydate+"</div></div></div>";
 
 				x.id=events[random3].id;
 								x.addEventListener("click",sendevent);
