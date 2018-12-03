@@ -116,8 +116,8 @@ public class EventService implements Service {
 		return result;
 	}
 
-	public List<Event> getEventsbyCategory(Long id) {
-		EventCategory eventcategory = eventCategoryRepository.findById(id).get();
+	public List<Event> getEventsbyCategory(String category_name) {
+		EventCategory eventcategory = eventCategoryRepository.findByName(category_name);
 		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAllByEventCategory(eventcategory));
 		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
