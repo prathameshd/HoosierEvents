@@ -1,10 +1,12 @@
 <html>
 <head>
   <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="758699515124-637q0cgmp8vbs4pdoheg8f09boubprrs.apps.googleusercontent.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/newhomepage.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oxygen" rel="stylesheet">
@@ -176,8 +178,8 @@ img {
     <form action="/login">
     <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
     </form>
-	</div>
-	<div class="col-sm-1">
+</div>
+    <div class="col-sm-1">
     <form action="/logout">
         <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
     </form>
@@ -490,7 +492,9 @@ $(document).ready(function(){
 	dataType:'json',
 	url:"/getAllEvents",
 	  success: function(events) {
-	  
+          gapi.load('auth2', function() {
+              gapi.auth2.init();
+          });
 	  
 //var rowcount=Math.ceil(events.length/3);
 		/*for (i=0;i<rowcount;i++)
@@ -723,6 +727,7 @@ function navigateToProfile() {
            url: '/getuser',
            success: function (data) {
                    console.log(data);
+                   debugger;
                user = data;
                if(data===""){
                    document.getElementById('logoutbutt').style.display="none";
@@ -746,7 +751,10 @@ function navigateToProfile() {
            }
        )
    })
+    
+
 
 </script>
+
 </body>
 </html> 

@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="google-signin-client_id" content="758699515124-637q0cgmp8vbs4pdoheg8f09boubprrs.apps.googleusercontent.com">
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oxygen" rel="stylesheet">
@@ -12,8 +13,9 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-
+    <script type="text/javascript"
+            src="https://mail.google.com/mail/u/0/?logout&hl=en"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   <link rel="stylesheet" th:href="@{/css/loginpage.css}" />
   	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -147,15 +149,13 @@ padding-top:10px;
 						<h5></h5></div>-->
 						<div class="col-sm-4"><h4>Login With</h4></div>
                         <div class="col-sm-8 social-login-buttons">
-                            <a class="btn btn-link-1-facebook" style="color:#306090" href="/signin/facebook">
-                             <i class="fa fa-facebook"></i> Facebook</input>
-                            </a>
-                            <a class="btn btn-link-2" href="#" style="color:#d84830">
-                                <i class="fa fa-google-plus"></i> Google
+
+                            <a class="btn-block btn-link-2" href="/" style="color:#d84830">
+                                <div class="g-signin2" data-onsuccess="onSignIn" ></div>
                             </a>
                         </div>
                     </div>
-<div class="row"><div class="col-sm-12" style="text-align:center;"><h6>Or</h6></div></div>					
+<div class="row"><div class="col-sm-5"></div><div class="col-sm-7" style="text-align:left;"><h6>Or</h6></div></div>
 <div class="row form-group">
     <div th:if="${param.error}" class="alert alert-error">
         Invalid username or password.
@@ -424,7 +424,87 @@ function email_validate(){ document.getElementById("pass_div").style.display = "
 // document.getElementById("invalid_email").style.display="none";
 // pass_div.style.display="block";
 // }
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    console.log('Full Name: ' + profile.getName());
+    console.log('Given Name: ' + profile.getGivenName());
+    console.log('Family Name: ' + profile.getFamilyName());
+    console.log("Image URL: " + profile.getImageUrl());
+    console.log("Email: " + profile.getEmail());
+        debugger;
+    // The ID token you need to pass to your backend:
 
+    $.ajax({
+        type: "GET",
+        url: "/checkifexists",
+        data: {'email': profile.getEmail()},
+        success: function (data) {
+            debugger;
+            if (data === "found") {
+                debugger;
+                $.ajax({
+
+                    type:"GET",
+                    url: "/googleuserexists",
+                    data: {'email': profile.getEmail()},
+                    success: function(data){
+
+
+                        debugger;
+                        document.location.href = '/';
+
+                    }
+                })
+
+            }
+
+            else {
+
+                $.ajax({
+                    type:"GET",
+                    url: "/googleusernotexists",
+                    data: {'email': profile.getEmail(),'name' : profile.getGivenName()},
+                    success: function(data){
+
+                        if(data==="created")
+
+                            debugger;
+                        $.ajax({
+                            type:"GET",
+                            url: "googleuserexists",
+                            data: {'email': profile.getEmail()},
+                            success: function(data){
+                                if(data==="done")
+                                    debugger;
+                                document.location.href = '/';
+
+                            }
+                        });
+
+                    }
+                });
+
+
+
+            }
+        }
+
+
+    });
+
+
+
+
+
+
+}
+
+
+function found(){
+
+}
 
 function pass_reset(){
 
