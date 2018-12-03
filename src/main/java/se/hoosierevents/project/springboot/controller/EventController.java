@@ -116,9 +116,9 @@ public class EventController implements Controller {
 	}
 
 	@RequestMapping("/getEventsbyCategory")
-	public ResponseEntity<List<Event>> getEventsbyCategory(@RequestParam("id") Long id, HttpServletRequest request,
+	public ResponseEntity<List<Event>> getEventsbyCategory(@RequestParam("id") String category_name, HttpServletRequest request,
 			Model model) {
-		return ResponseEntity.ok(eventService.getEventsbyCategory(id));
+		return ResponseEntity.ok(eventService.getEventsbyCategory(category_name));
 	}
 
 	@RequestMapping("/getEventsbyLocation")
