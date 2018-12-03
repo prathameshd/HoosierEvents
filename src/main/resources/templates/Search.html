@@ -276,7 +276,58 @@ for (var i = 0; i < btns.length; i++) {
          $(document).ready(function(){
 			if((GET("id")[0])!=="") {
                 document.getElementById('searchbartextbox').value = (GET("id")[0]);
-            }
+                var input_text = GET("id")[0];
+                console.log(input_text);
+                $.ajax({
+         			type:'POST',
+         			dataType:'text',
+         			data: {search_text: input_text},
+         			url:"/checkifCategory",
+         			  success: function(data) {
+         					console.log('success',data);
+         					var id = parseInt(data);
+         					console.log(id);
+         					/* document.getElementById("result_data").innerHTML=data; */
+         					if(id > 0){
+         						$.ajax({
+         	             			type:'POST',
+         	             			dataType:'JSON',
+         	             			data: {id: id},
+         	             			url:"/getEventsbyCategory",
+         	             			  success: function(data) {
+         	             					console.log('success',data);
+         	             					/* document.getElementById("result_data").innerHTML=data; */
+         	             			   },
+         	             			   error:function(exception){alert('Exception:'+exception);}})
+         					}
+         					else{
+         						$.ajax({
+         	             			type:'POST',
+         	             			dataType:'JSON',
+         	             			data: {search_text: input_text},
+         	             			url:"/getEventsforFirstSearch",
+         	             			  success: function(data) {
+         	             					console.log('success',data);
+         	             					document.getElementById("result_data").innerHTML=data;
+
+         	             			   },
+         	             			   error:function(exception){alert('Exception:'+exception);}})
+         					}
+         			   },
+         			   error:function(exception){alert('Exception:'+exception);}})
+			}
+                else{
+                	$.ajax({
+             			type:'POST',
+             			dataType:'JSON',
+             			url:"/getAllEvents",
+             			  success: function(data) {
+             					console.log('success',data);
+             					document.getElementById("result_data").innerHTML=data;
+
+             			   },
+             			   error:function(exception){alert('Exception:'+exception);}})
+                }
 			})
 
 	</script>
@@ -309,8 +360,8 @@ for (var i = 0; i < btns.length; i++) {
 				
 				document.getElementById("result_data").innerHTML="";
 				var i;
-				alert(data.length);
-				alert(data[0].eventTitle);
+				/* alert(data.length); */
+				/* alert(data[0].eventTitle); */
 				for (i=0;i<data.length;i++)
 				{
 							
@@ -410,10 +461,10 @@ for (var i = 0; i < btns.length; i++) {
 				//document.getElementById("result_data").innerHTML="";
 				console.log('success',data);
 				
-											alert('success by name');
+											/* alert('success by name'); */
 		
 				var i;
-				alert(data.length);
+				/* alert(data.length); */
 				//alert(data[0].eventTitle);
 				for (i=0;i<data.length;i++)
 				{

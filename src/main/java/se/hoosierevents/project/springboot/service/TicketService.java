@@ -108,5 +108,12 @@ public class TicketService implements Service {
 	public float getRevenue(Long event_id, Long ticketType_id){
 		return 0;//ticketDetailsRepository.findByEventAndType(event_id,ticketType_id).getPrice();
 	}
+	
+	public Float getTicketPrice(String eventTitle, int ticket_type) {
+		Event event = eventRepository.findAllByEventTitle(eventTitle).get();
+//		Ticket ticket = new Ticket(event,user);
+//		Integer event_id = Math.toIntExact(event.getId());
+		return ticketDetailsRepository.findTicketPrice(event.getId(),ticket_type);
+	}
 
 }

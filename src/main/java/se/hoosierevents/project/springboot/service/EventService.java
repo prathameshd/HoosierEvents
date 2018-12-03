@@ -1,8 +1,12 @@
 package se.hoosierevents.project.springboot.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,9 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import se.hoosierevents.project.model.Event;
 import se.hoosierevents.project.model.EventCategory;
+import se.hoosierevents.project.model.TicketDetails;
 import se.hoosierevents.project.model.User;
 import se.hoosierevents.project.springboot.repository.EventCategoryRepository;
 import se.hoosierevents.project.springboot.repository.EventRepository;
+import se.hoosierevents.project.springboot.repository.TicketDetailsRepository;
 import se.hoosierevents.project.springboot.repository.UserRepository;
 
 @Component
@@ -26,6 +32,9 @@ public class EventService implements Service {
 	@Autowired
 	EventCategoryRepository eventCategoryRepository;
 
+	@Autowired
+	TicketDetailsRepository ticketDetailsRepository;
+
 	@Override
 	public String Serve() {
 		return null;
@@ -35,8 +44,48 @@ public class EventService implements Service {
 		return eventRepository.findById(id).get();
 	}
 
-	public void saveEvent(Event event) {
+	public void saveEvent(Event event, MultipartFile file, HttpServletRequest request) {
+		event.setStartDate(getDateFromRequest(request, START_DATE, START_TIME));
+		event.setEndDate(getDateFromRequest(request, END_DATE, END_TIME));
+		event.setEventCategory(eventCategoryRepository.findByName(request.getParameter(EVENT_CATEGORY)));
 		eventRepository.save(event);
+		TicketDetails ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_BRONZE_ID,
+				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(BRONZE_PRICE))));
+		ticketDetailsRepository.save(ticketDetails);
+
+		ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_SILVER_ID,
+				Integer.parseInt(getValue(request.getParameter(SILVER_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(SILVER_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(SILVER_PRICE))));
+		ticketDetailsRepository.save(ticketDetails);
+
+		ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_GOLD_ID,
+				Integer.parseInt(getValue(request.getParameter(GOLD_SEAT_AVAILABLE))),
+				Integer.parseInt(getValue(request.getParameter(GOLD_SEAT_AVAILABLE))),
+				Float.parseFloat(getValue(request.getParameter(GOLD_PRICE))));
+		ticketDetailsRepository.save(ticketDetails);
+	}
+
+	private String getValue(String parameter) {
+		if (parameter == null || parameter.isEmpty())
+			return "0";
+
+		return parameter;
+	}
+
+	private Date getDateFromRequest(HttpServletRequest request, String date, String time) {
+		String startDateString = request.getParameterValues(date)[0];
+		String startTimeString = request.getParameterValues(time)[0];
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-DD HH:mm");
+		try {
+			return formatter.parse(startDateString + " " + startTimeString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 	public ArrayList<Event> getAllEvents() {
@@ -73,7 +122,7 @@ public class EventService implements Service {
 		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		for (int i = 0; i < db_result.size(); i++) {
-			
+
 			if (db_result.get(i).getEndDate().after(today)) {
 				System.out.println("Correct!");
 				result.add(db_result.get(i));
@@ -91,7 +140,6 @@ public class EventService implements Service {
 		ArrayList<Event> result = new ArrayList<Event>();
 		Date today = new Date();
 		for (int i = 0; i < db_result.size(); i++) {
-			
 			if (db_result.get(i).getEventTitle().toLowerCase().contains(event) && db_result.get(i).getEndDate().after(today)) {
 				System.out.println("Correct!");
 				result.add(db_result.get(i));
@@ -100,6 +148,26 @@ public class EventService implements Service {
 		return result;
 	}
 
+//			if (db_result.get(i).getEventTitle().toLowerCase().contains(event)
+//					&& db_result.get(i).getEndDate().after(today)) {
+//				System.out.println("Correct!");
+//				result.add(db_result.get(i));
+//			}
+//		}
+//		return result;
+//	}
+	public List<Event> getEventsforFirstSearch(String search_text) {
+		ArrayList<Event> db_result = new ArrayList<Event>(eventRepository.findAll());
+		ArrayList<Event> result = new ArrayList<Event>();
+		Date today = new Date();
+		for (int i = 0; i < db_result.size(); i++) {
+			if (db_result.get(i).getEndDate().after(today) && (db_result.get(i).getEventTitle().toLowerCase().contains(search_text) || db_result.get(i).getEventCategory().getName().toLowerCase().contains(search_text) || db_result.get(i).getDescription().toLowerCase().contains(search_text))) {
+				System.out.println("Correct!");
+				result.add(db_result.get(i));
+			}
+		}
+		return result;
+	}
 	public List<EventCategory> getAllCategories() {
 		return new ArrayList<EventCategory>(eventCategoryRepository.findAll());
 	}
@@ -190,5 +258,13 @@ public class EventService implements Service {
 		event.setReported(true);
 		event.setReportStatement(reportedStatement);
 		eventRepository.save(event);
+	}
+
+	public void updateEvent(Event updatedEvent) {
+		Event originalEvent = eventRepository.findById(updatedEvent.getId()).get();
+		originalEvent.setEventTitle(updatedEvent.getEventTitle());
+		originalEvent.setDescription(updatedEvent.getDescription());
+		originalEvent.setLocation(updatedEvent.getLocation());
+		eventRepository.save(originalEvent);
 	}
 }

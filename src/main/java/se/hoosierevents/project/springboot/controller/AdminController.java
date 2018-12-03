@@ -66,13 +66,13 @@ public class AdminController {
 	}
 
 	@RequestMapping("/allowReportedEvent")
-	public String allowReportedEvent(@RequestParam("userId") Long id) {
+	public String allowReportedEvent(@RequestParam("eventId") Long id) {
 		eventService.allowReportedEvent(id);
 		return "Successfully Allowed Event";
 	}
 
 	@RequestMapping("/deleteReportedEvent")
-	public String deleteReportedEvent(@RequestParam("userId") Long id) {
+	public String deleteReportedEvent(@RequestParam("eventId") Long id) {
 		eventService.deleteReportedEvent(id);
 		return "Successfully Removed reported Event from the System!!";
 	}

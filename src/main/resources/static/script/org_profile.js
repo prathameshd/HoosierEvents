@@ -1,6 +1,3 @@
-
-var count=50;
-var div_count=6;
 var events_to_occur;
 var events_occured;
 var pending_event_count;
@@ -11,10 +8,9 @@ $(document).ready(function(){
     	dataType:'json',
     	url:"/getFutureEventsByOrganizer",
     	  success: function(data) {
-    		  console.log('successEvents',data);
 			  live_event_count=data.length;
-			  events_to_occur = data;
-    		  document.getElementById("total_events").innerHTML=data.length; 
+    		  //document.getElementById("total_events").innerHTML=data.length; 
+    		  eventsRender(data, "upcoming");
     	   },
     	  error:function(exception){alert('Exception:'+exception);}
     	}); 
@@ -40,7 +36,7 @@ $(document).ready(function(){
     	  success: function(data) {
     		  console.log('successEvents',data);
 			  pending_event_count=data.length;
-    		  document.getElementById("pending_events").innerHTML=data.length; 
+    		  //document.getElementById("pending_events").innerHTML=data.length; 
     		  events_occured = data;
     	   },
     	  error:function(exception){alert('Exception:'+exception);}
@@ -69,172 +65,111 @@ $(document).ready(function(){
 		   },
 		  error:function(exception){alert('Exception:'+exception);}
 		});
-	console.log("hello");
-	console.log(live_event_count);
-	console.log(events_to_occur);
-	var i;
-	for(i=0;i<div_count;i++){
-		
-		var div = document.createElement("div");
-		//div.style.width = "100px";
-		//div.style.height = "100px";
-		//div.style.background = "lightgrey";
-		div.style.border= "0.1px solid lightgrey";
-			div.style.borderRadius= "6px";
-		div.id="div"+i;
-		//alert(div.id);
-		div.style.align="center";
-		var temp="div"+i;
-		//alert(temp);
-		//var y=document.getElementById("temp");
-		//document.getElementById('temp').addEventListener("click", function(){alert('q');});	//pass id
-		//div.onClick="myFunction()"
-		div.className="row col-sm-10 panel panel-default abcd";
-		div.innerHTML= "EventName<br>";
-		div.innerHTML+= "Date<br>";
-		div.innerHTML+= "Location";
-		div.setAttribute("name","Event1");
-		div.setAttribute("date",'date1');
-		div.setAttribute("location",'location1');									
-		var b=document.createElement("button");
-		b.id="button"+i;
-		b.innerHTML="Edit";
-		b.style="";
-		b.class="btn-default";
-		b.addEventListener("click",editbutton);
-		//alert(b.id);
-		document.getElementById("approved").appendChild(div);
-		document.getElementById(temp).innerHTML+="</div><br><br>";
-		document.getElementById(temp).appendChild(b);
-					//document.getElementById("approved").innerHTML+="<br>";
-	}
 	
-	
-	
-//	var i;
-//	for(i=0;i<live_event_count;i++){
-//		
-//		var div = document.createElement("div");
-//		div.style.border= "0.1px solid #F0EDED";
-//		div.style="background-color:white;font-family: 'Open Sans', sans-serif;";
-//			div.style.borderRadius= "6px";
-//		var p="div"+i;
-//		div.id=p;
-//		div.name=p;
-//		var atname=events_to_occur[i].event.eventCategory.name
-//		div.setAttribute('category',atname);
-//		div.style.align="center";
-//		div.className="row col-sm-12 panel panel-default abc";
-//		var display_date;
-//		var day=String(events_to_occur[i].event.startDate[8])+String(events_to_occur[i].event.startDate[9]);
-//		var month=String(events_to_occur[i].event.startDate[5])+String(events_to_occur[i].event.startDate[6]);
-//		if(month=="01")
-//		{	display_date="Date: Jan "+day;	}
-//		if(month=="02")
-//		{	display_date="Date: Feb "+day;	}
-//		if(month=="03")
-//		{	display_date="Date: Mar "+day;	}
-//		if(month=="04")
-//		{	display_date="Date: Apr "+day;	}
-//		if(month=="05")
-//		{	display_date="Date: May "+day;	}
-//		if(month=="06")
-//		{	display_date="Date: Jun "+day;	}
-//		if(month=="07")
-//		{	display_date="Date: Jul "+day;	}
-//		if(month=="08")
-//		{	display_date="Date: Aug "+day;	}
-//		if(month=="09")
-//		{	display_date="Date: Sep "+day;	}
-//		if(month=="10")
-//		{	display_date="Date: Oct "+day;	}
-//		if(month=="11")
-//		{	display_date="Date: Nov "+day;	}
-//		if(month=="12")
-//		{	display_date="Date: Dec "+day;	}
-//		div.innerHTML+= "<h5>"+events_to_occur[i].event.eventTitle+"</h5>"+display_date+"<br>"+events_to_occur[i].event.location+"<br>";
-//
-//		var b=document.createElement("button");
-//		b.id="button"+i;
-//		b.class="btn-default";
-//		b.innerHTML=" Edit Event";
-//		b.style="background-color:red;color:white;border:1px solid red;border-radius:4px;"
-//		
-//		document.getElementById("approved").appendChild(div);
-//		document.getElementById(p).innerHTML+="<br><br>";
-//		document.getElementById(p).appendChild(b);
-	//document.getElementById("div1").style.display="none";
-		
-//		var div = document.createElement("div");
-//		//div.style.width = "100px";
-//		//div.style.height = "100px";
-//		//div.style.background = "lightgrey";
-//		div.style.border= "1px solid lightgrey";
-//			div.style.borderRadius= "6px";
-//		div.id="div"+i;
-//		//alert(div.id);
-//		div.style.align="center";
-//		var temp="div"+i;
-//		//alert(temp);
-//		//var y=document.getElementById("temp");
-//		//document.getElementById('temp').addEventListener("click", function(){alert('q');});	//pass id
-//		//div.onClick="myFunction()"
-//		div.className="row col-sm-10 panel panel-default abcd";
-//		div.innerHTML= "EventName<br>";
-//		div.innerHTML+= "Date<br>";
-//		div.innerHTML+= "Location";
-//		div.setAttribute("name","Event1");
-//		div.setAttribute("date",'date1');
-//		div.setAttribute("location",'location1');									
-//		var b=document.createElement("button");
-//		b.id="button"+i;
-//		b.innerHTML="Edit";
-//		b.style="";
-//		b.class="btn-default";
-//		b.addEventListener("click",editbutton);
-//		//alert(b.id);
-//		document.getElementById("approved").appendChild(div);
-//		document.getElementById(temp).innerHTML+="<br><br>";
-//		document.getElementById(temp).appendChild(b);
-//					//document.getElementById("approved").innerHTML+="<br>";
-//	}
 });
 
-// Load google charts
+//____________________AUTHOR HARISH_________________________________
 
+function eventsRender(events, parentDiv) {
+	var i;
+	var divCount = events.length;
+	for(i=0;i<divCount;i++){
+		var currentEvent = events[i];
+		var div = document.createElement("div");
+		div.style.border= "0.1px solid lightgrey";
+		div.style.borderRadius= "6px";
+		var temp="div"+events[i].id;
+		div.id=temp;
+		div.style.align="center";
+		div.className="row col-sm-10 panel panel-default abcd";
+		div.innerHTML= "EventName : " + currentEvent.eventTitle + "<br>";
+		div.innerHTML+= "Date : "+ currentEvent.startDate + "<br>";
+		div.innerHTML+= "Location : "+ currentEvent.location + "&nbsp; Category : "+ currentEvent.eventCategory.name + "<br/><br/>";
+		div.setAttribute("eventId", currentEvent.id);
+		div.setAttribute("name", currentEvent.eventTitle);
+		div.setAttribute("description", currentEvent.description);
+		div.setAttribute("location", currentEvent.location);
+		document.getElementById(parentDiv).appendChild(div);
+		var b=document.createElement("button");
+		b.id=events[i].id;
+		b.innerHTML="Edit";
+		b.style="";
+		b.class="btn-default edit_event_button";
+		b.addEventListener("click", editbutton);
+		document.getElementById(temp).appendChild(b);
+		var b2=document.createElement("button");
+		b2.id=events[i].id;
+		b2.innerHTML="Drop Event";
+		b2.style="";
+		b2.class="btn-default event_delete_button";
+		b2.addEventListener("click", deleteEvent);
+		document.getElementById(temp).appendChild(b2);
+	}
+}
+
+function deleteEvent() {
+//	var getEventDiv= document.getElementById("div"+this.id);
+//	var modal = document.getElementById('myModal');
+//	modal.style.display = "block";
+//
+//	document.getElementById("edit_name").value = getEventDiv.getAttribute("name");
+//	document.getElementById("edit_name").value = getEventDiv.getAttribute("date");
+//	document.getElementById("edit_name").value = getEventDiv.getAttribute("location");
+//
+//	var span = document.getElementsByClassName("close")[0];
+//	span.onclick = function() {
+//		modal.style.display = "none";
+//	}
+//
+//	window.onclick = function(event) {
+//	    if (event.target == modal) {
+//	        modal.style.display = "block";
+//	    }
+//	 }
+}
+
+function editbutton() {
+	var getEventDiv= document.getElementById("div"+this.id);
+	var modal = document.getElementById('myModal');
+	modal.style.display = "block";
+
+	document.getElementById("edit_name").value = getEventDiv.getAttribute("name");
+	document.getElementById("edit_description").value = getEventDiv.getAttribute("description");
+	document.getElementById("edit_location").value = getEventDiv.getAttribute("location");
+	document.getElementById("eventId").value = getEventDiv.getAttribute("eventId");
+
+	var span = document.getElementsByClassName("close")[0];
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "block";
+	    }
+	 }
+}
+
+function updateEvent(){
+	$.ajax({
+		type: "POST",
+        url: '/updateEvent',
+        data: {id:document.getElementById("eventId").value, eventTitle: document.getElementById("edit_name").value, description: document.getElementById("edit_description").value, location: document.getElementById("edit_location").value},
+        success: function (data) {
+        	var modal = document.getElementById('myModal');
+        	modal.style.display = "none";
+        	alert(data);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+	});
+}
+//_____________________HARISH_______________________________________
 		
 
 	
-	function editbutton(id)
-	{
-	// call edit page via controller and pass event id via edit button
-	// on editpage get id and autofill page via retrieving data from controller
-		//alert(this.id);
-	var x=this.parentElement.getAttribute("name");
-	//alert(x);
-		var modal = document.getElementById('myModal');
-	   modal.style.display = "block";
-	   document.getElementById("modal_name").value=x;
-	   // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
-
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "block";
-    }
-    
-}
-
-	}
 	
 
 

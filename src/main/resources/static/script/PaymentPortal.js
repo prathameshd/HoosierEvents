@@ -3,6 +3,7 @@ var bronze;
 var silver;
 var gold;
 var total_cost;
+var disc_cost;
 
 window.onload = function() {
 	  
@@ -11,7 +12,8 @@ window.onload = function() {
     console.log(temp[1]);
     console.log(unescape(temp[1]));
     var event_name_coded = unescape(temp[1]);
-    event_name = event_name_coded.replace('+', ' ');
+    event_name = event_name_coded.replace(/\+/g, ' ');
+    console.log(event_name);
     temp = parameters[1].split("=");
     bronze = decodeURIComponent(temp[1]);
     temp = parameters[2].split("=");
@@ -20,10 +22,30 @@ window.onload = function() {
     gold = decodeURIComponent(temp[1]);
     $.ajax({
 		type:'POST',
+		dataType:'text',
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
+		url:"/checkIfStudent",
+		  success: function(data) {
+				console.log('success',data);
+				if(data == "true"){
+//					total_cost = total_cost/2;
+//					disc_cost = total_cost/2;
+//					console.log(total_cost);
+//					console.log(disc_cost);
+					document.getElementById("discount").innerHTML = "<h4>50% Student Discount Applied</h4>";	
+				}
+				
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+    $.ajax({
+		type:'POST',
+		dataType:'JSON',
 		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
 		url:"/getTicketPrice",
 		  success: function(data) {
 				console.log('success',data);
+				total_cost = parseInt(data);
+				document.getElementById("here").innerHTML = "<h3>Your total cost is: $"+data+"</h3>";
 		   },
 		   error:function(exception){alert('Exception:'+exception);}})
     
@@ -31,6 +53,8 @@ window.onload = function() {
 
 // Render the PayPal button
 paypal.Button.render({
+	
+						
 						// Set your environment
 						env : 'sandbox', // sandbox | production
 
@@ -66,7 +90,7 @@ paypal.Button.render({
 								payment : {
 									transactions : [ {
 										amount : {
-											total : '1.00',
+											total : total_cost,
 											currency : 'USD'
 										}
 									} ]
@@ -84,38 +108,6 @@ paypal.Button.render({
 
 function SaveEventTicket(){
 	
-	
-	
-//	var url = document.location.href,
-//    params = url.split('?')[1].split('&'),
-//    b_params = url.split('&')[2].split('&'),
-//    s_params = url.split('&')[3].split('&'),
-//    g_params = url.split('&')[4].split('&'),
-//    data = {}, b_data = {}, s_data = {}, g_data = {},tmp;
-////	console.log(params);
-////	console.log(b_params);
-////	console.log(s_params);
-////	console.log(g_params);
-//	for (var i = 0, l = params.length; i < l; i++) {
-//	     tmp = params[i].split('=');
-//	     data[tmp[0]] = tmp[1];
-//	}
-//	for (var i = 0, l = b_params.length; i < l; i++) {
-//	     tmp = b_params[i].split('=');
-//	     b_data[tmp[0]] = tmp[1];
-//	}
-//	for (var i = 0, l = params.length; i < l; i++) {
-//	     tmp = s_params[i].split('=');
-//	     s_data[tmp[0]] = tmp[1];
-//	}
-//	for (var i = 0, l = params.length; i < l; i++) {
-//	     tmp = g_params[i].split('=');
-//	     g_data[tmp[0]] = tmp[1];
-//	}
-//	event_name = decodeURIComponent(data.event_name);
-//	var bronze = decodeURIComponent(b_data.bronze);
-//	var silver = decodeURIComponent(s_data.silver);
-//	var gold = decodeURIComponent(g_data.gold);
 	console.log(event_name);
 	console.log(bronze);
 	console.log(silver);

@@ -98,7 +98,7 @@ body, html, .container-fluid {
 <!--<div style="background-color:red;left:-30%;height:100%;width:40%;position:relative;">-->
 <div class="container-fluid" style="height:100% !important;">
 <div class="row">
-	<div class="col-sm-4" style="border-right:1px inset #dcf;">
+	<div class="col-sm-4">
 	<!--<div class="container" style="height:100%;position:relative;top:10%;">-->
 	  <div class="page-header"><h3>Admin User</h3></div>
 	  
@@ -420,7 +420,7 @@ function doPendingRequestRender(users) {
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +" ("+ pendingOrganizers[i].email + " ) </h4><br>";
-			div.innerHTML+= ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address);
+			//div.innerHTML+= ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address);
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");
@@ -513,7 +513,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.style.borderRadius= "6px";
 			var temp="divevent"+eventId;
 			div.id=temp;
-			div.addEventListener("click",sendevent);
+			//div.addEventListener("click",sendevent);
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "&nbsp; <h4>" + reportedEvents[i].eventTitle +"</h4>&nbsp; &nbsp; Available Seats: "+ reportedEvents[i].avaialble ;
@@ -548,7 +548,7 @@ function allowReportedEvent()
 	$.ajax({
 		type: "PUT",
         url: '/allowReportedEvent',
-        data: {userId:this.id},
+        data: {eventId:this.id},
         success: function (data) {
         	alert("Report ignored for the event!!");
         	removeThisRecordFromPendingList("divevent", this.id);
@@ -565,9 +565,9 @@ function deleteReportedEvent()
 	$.ajax({
 		type: "PUT",
         url: '/deleteReportedEvent',
-        data: {userId:this.id},
+        data: {eventId:this.id},
         success: function (data) {
-        	alert(data);
+        	alert("Reported Event has been removed from the System");
         	removeThisRecordFromPendingList("divevent", this.id);
         },
         error: function (e) {
@@ -605,7 +605,7 @@ function doApprovedOrganizersRender(users) {
 			div.style.align="center";
 			div.className="panel panel-default abcd";
 			div.innerHTML= "<h4>&nbsp" + pendingOrganizers[i].name +"  ( " + pendingOrganizers[i].email + ")</h4><br>";
-			div.innerHTML+= "&nbsp" + ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address) ;
+			//div.innerHTML+= "&nbsp" + ((pendingOrganizers[i].address == null)?"-No Address-":pendingOrganizers[i].address) ;
 			
 			var form = document.createElement("button");
 			var b=document.createElement("button");

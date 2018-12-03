@@ -4,6 +4,7 @@
 <head>
   <title>HoosierEvents</title>
   <meta charset="utf-8">
+  <meta http-equiv="Pragma" content="no-cache" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -46,7 +47,11 @@
 
 
   <style>
+	html
+	{
+	  scroll-behavior: smooth;
 
+	}
       .modal {
           display: none; /* Hidden by default */
           position: fixed; /* Stay in place */
@@ -158,17 +163,19 @@ background-color:#dddddd !important;
 <div id="eventReportModal" class="modal container">
 
 	<!-- Modal content -->
-	<div class="modal-content" >
+	<div class="modal-content" style="width:40%;" >
 		<span class="close">&times;</span>
 		<div class="row">
-			<div class="col-sm-8">	<h4>What's wrong with this event?</h4></div>
+			<div class="col-sm-12" style="text-align:left;     font-family: 'Oxygen', sans-serif;
+">	<h4>What's wrong with this event?</h4></div>
 		</div><br />
 		<div class="row">
-			<textarea rows="4" cols="50" placeholder="Please write here" id="reporttext"> </textarea>
+			<div class="col-sm-12"><textarea rows="4" cols="50" style="width:100%;" placeholder="Please write here" id="reporttext"> </textarea></div>
 
-		</div>
+		</div><br>
         <div class="row">
-            <button class="btn-default" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="reportEvent()"><h5>Report Event</h5></button>
+			<div class="col-sm-8"></div>
+           <div class="col-sm-4"> <button class="btn-block" style="background-color:lightgrey;color:black;border:1px solid lightgrey;border-radius:4px" onclick="reportEvent()"><h5>Report Event</h5></button></div>
         </div>
         <div class="row">
             <div id="reported" style="color:red;display:none;"><h6>You have reported this event to Administrator!</h6></div>
@@ -233,7 +240,7 @@ background-color:#dddddd !important;
 </div>
 
 
-<div class="container-fluid" style="background-color:lightgrey;">	
+<div class="container-fluid" style="background-color:#F3F2F2;">	
 <div class="container" style="width:90%;top:10%;position:relative;background-color:;-bottom:0.5px groove #F4EFFE">
 <div class="row">
 	<!-- IMAGE DIV -->
@@ -250,7 +257,7 @@ background-color:#dddddd !important;
 		<div class="row" ><h2 id="event_title"></h2></div>
 		<div class="row" ><h3 id="event_date" style="color:green"></h3></div>
 		<div class="row" style="color:#726868"><h3 id="event_start_time"></h3></div>
-
+		<div class="row" id="hiddenid" style="display:none;"></div>
 		<!--<div class="row" ><h4 id="event_location" style="color:green;font-family: 'Open Sans', sans-serif;
 "></h4></div>-->
 		<div class="row" style="color:#3C6198"><h5>&nbsp</h5></div>
@@ -267,92 +274,96 @@ background-color:#dddddd !important;
 				<!-- The Modal -->
 					<div id="myModal" class="modal">
 				<!-- Modal content -->
-				  <div class="modal-content">
+				  <div class="modal-content" style="width:35%;">
 				    <span id="span1" class="close">&times;</span>
 				    	<ul>
 				    		<li>Bronze tickets: 
 					    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
-								<div class="input-group plus-minus-input">
-								  <div class="input-group-button">
-								    <button type="button" class="button hollow circle" data-quantity="minus1" data-field="quantity">
+								<div class="row">
+								  <!--<div class="col-sm-4 input-group-button">
+								    <button type="button" class="button hollow circle" style="width:15px;height:15px;" data-quantity="minus1" data-field="quantity">
 								      <i class="fa fa-minus" aria-hidden="true"></i>
 								    </button>
-								  </div>
-								  <input class="input-group-field" type="number" name="quantity" id="quantity" value="0">
-								  <div class="input-group-button">
+								  </div>-->
+								  <div class="col-sm-4"><input class="form-control" min=0 max=10 type="number" name="quantity" id="quantity" value="0" onchange="disableinputs();"></div>
+								  <!--<div class="col-sm-4 input-group-button">
 								    <button type="button" class="button hollow circle" data-quantity="plus1" data-field="quantity">
 								      <i class="fa fa-plus" aria-hidden="true"></i>
 								    </button>
-								  </div>
+								  </div>-->
+								
 								</div>
-				    		</li>
+				    		</li><br>
 				    		<li>Silver tickets: 
 				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
-								<div class="input-group plus-minus-input">
+								<div class="row">
+								<!--<div class="input-group plus-minus-input">
 								  <div class="input-group-button">
 								    <button type="button" class="button hollow circle" data-quantity="minus2" data-field="quantity2">
 								      <i class="fa fa-minus" aria-hidden="true"></i>
 								    </button>
-								  </div>
-								  <input class="input-group-field" type="number" name="quantity2" id="quantity2" value="0">
-								  <div class="input-group-button">
+								  </div>-->
+								  <div class="col-sm-4"><input class="form-control" min=0 max=10 type="number" name="quantity2" id="quantity2" value="0" onchange="disableinputs2();"></div>
+								  <!--<div class="input-group-button">
 								    <button type="button" class="button hollow circle" data-quantity="plus2" data-field="quantity2">
 								      <i class="fa fa-plus" aria-hidden="true"></i>
 								    </button>
 								  </div>
+								</div>-->
 								</div>
-				    		</li>
+				    		</li><br>
 				    		<li>Gold tickets: 
 				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
-								<div class="input-group plus-minus-input">
+									<div class="row">	
+								<!--<div class="input-group plus-minus-input">
 								  <div class="input-group-button">
 								    <button type="button" class="button hollow circle" data-quantity="minus3" data-field="quantity3">
 								      <i class="fa fa-minus" aria-hidden="true"></i>
 								    </button>
-								  </div>
-								  <input class="input-group-field" type="number" name="quantity3" id="quantity3" value="0">
-								  <div class="input-group-button">
+								  </div>-->
+								 <div class="col-sm-4"><input class="form-control" min=0 max=10 type="number" name="quantity3" id="quantity3" value="0" onchange="disableinputs3();"></div>
+								  <!--<div class="input-group-button">
 								    <button type="button" class="button hollow circle" data-quantity="plus3" data-field="quantity3">
 								      <i class="fa fa-plus" aria-hidden="true"></i>
 								    </button>
-								  </div>
+								  </div>-->
 								</div>
 				    		</li>
-				    	</ul>
-				    <button class="btn-block register_button" id="myBtn3"><h5>REGISTER<h5></button>
+				    	</ul><br>
+				    <button class="btn-block register_button" id="myBtn3"><h5>Proceed<h5></button>
 				   </div>
 			    	<!-- <!-- The Modal -->
 				 <div id="myModal2" class="modal">
 					Modal content
-					  <div class="modal-content">
-					    <span id="span2" class="close">&times;</span>
+					  <div class="modal-content" style="width:35%;">
+					    <span id="span2" class="close" onClick="closeall();">&times;</span>
 					    	<form action="/PaymentPortal" id="name_form">
 					    		<input id='event_name' name='event_name' type='hidden'>
 					    		<input id='bronze' name='bronze' type='hidden'>
 					    		<input id='silver' name='silver' type='hidden'>
 					    		<input id='gold' name='gold' type='hidden'>
-							  Attendee 1 Name:<br>
-							  <input type="text" name="name1" value="name1"><br>
-							  Attendee 2 Name:<br>
-							  <input type="text" name="name2" value="name2"><br>
-							  Attendee 3 Name:<br>
-							  <input type="text" name="name3" value="name3"><br>
-							  Attendee 4 Name:<br>
-							  <input type="text" name="name4" value="name4"><br>
-							  Attendee 5 Name:<br>
-							  <input type="text" name="name5" value="name5"><br>
-							  Attendee 6 Name:<br>
-							  <input type="text" name="name6" value="name6"><br>
-							  Attendee 7 Name:<br>
-							  <input type="text" name="name7" value="name7"><br>
-							  Attendee 8 Name:<br>
-							  <input type="text" name="name8" value="name8"><br>
-							  Attendee 9 Name:<br>
-							  <input type="text" name="name9" value="name9"><br>
-							  Attendee 10 Name:<br>
+							  Attendee 1 Name:&nbsp
+							  <input type="text" name="name1" value="name1"><br><br>
+							  Attendee 2 Name:&nbsp
+							  <input type="text" name="name2" value="name2"><br><br>
+							  Attendee 3 Name:&nbsp
+							  <input type="text" name="name3" value="name3"><br><br>
+							  Attendee 4 Name:&nbsp
+							  <input type="text" name="name4" value="name4"><br><br>
+							  Attendee 5 Name:&nbsp
+							  <input type="text" name="name5" value="name5"><br><br>
+							  Attendee 6 Name:&nbsp
+							  <input type="text" name="name6" value="name6"><br><br>
+							  Attendee 7 Name:&nbsp
+							  <input type="text" name="name7" value="name7"><br><br>
+							  Attendee 8 Name:&nbsp
+							  <input type="text" name="name8" value="name8"><br><br>
+							  Attendee 9 Name:&nbsp
+							  <input type="text" name="name9" value="name9"><br><br>
+							  Attendee 10 Name:&nbsp
 							  <input type="text" name="name10" value="name10"><br><br>
 							  <!-- <input type="submit" value="Submit"> -->
-							  <button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button> 
+							  <button class="btn-block register_button" onClick="NewPage()"><h5>Proceed to Payment<h5></button> 
 							</form>
 			    			<!-- <button class="btn-block register_button" onClick="NewPage()"><h5>REGISTER<h5></button> -->
 		  				</div>
@@ -380,7 +391,19 @@ background-color:#dddddd !important;
 		 <br>
 		<div class="row" style="width:90%;">
 			<div class="col-sm-2"></div>
-			<div class="col-sm-8"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p></div>
+			<div class="col-sm-8"><p style="font-family: 'Open Sans', sans-serif;" id="event_description"> </p><br>
+				 <div class="row">
+                 <div class="col-sm-4">
+
+
+                     <button type="button" style="color:red" class="btn-link" id="reportthisevent">Report Event</button>
+
+                     <!-- <a href="/sign" >Sign Up!!</a>-->
+
+
+                 </div>
+             </div>
+			</div>
 			<div class="col-sm-2"></div>
 		</div>
     </div>
@@ -393,13 +416,18 @@ background-color:#dddddd !important;
 		
 	
 			<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspLOCATION</b></h4></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbspLOCATION</b></h4></div>
 		</div>
+		
 		<div class="row" style="text-align:left;">
 			<div class="col-sm-12"><p style="font-family: 'Open Sans', sans-serif;" id="event_location">&nbsp&nbsp&nbsp</div>
-		</div><br>
+		</div>
+		<div class="row">
+		<div class="col-sm-12"><a href="#mapdiv">&nbsp&nbsp&nbspView Map</a></div>
+		</div>
+		<br>
 		<div class="row" style="text-align:left;">
-			<div class="col-sm-12"><h4><b>&nbsp&nbsp&nbspCONTACT INFO:</b></h4></div>
+			<div class="col-sm-12"><h4><b>&nbsp&nbspCONTACT INFO:</b></h4></div>
 		</div>
 		<div class="row" style="text-align:left;">
 			<div class="col-sm-12"><p id="created_by" style="font-family: 'Open Sans', sans-serif;"></p></div>
@@ -424,22 +452,13 @@ background-color:#dddddd !important;
     <div class="col-sm-12">
     <a id="twitter_handle" class="twitter-timeline" min-width:350px; data-height="350">Twitter Handle</a> 
     </div>
-             <div class="row">
-                 <div class="col-sm-12">
-
-
-                     <button type="button" class="btn-link" id="reportthisevent">Report Event</button>
-
-                     <!-- <a href="/sign" >Sign Up!!</a>-->
-
-
-                 </div>
-             </div>
+            
     </div> 
+
 	</div>
 </div>
 </div><br><br><br>
-<div class="container" style="top:15%;width:90%;position:relative;">
+<div class="container" id="mapdiv" style="top:15%;width:90%;position:relative;">
 <div class="row">
 			<div class="col-sm-12"><iframe id="myIframe" src="./map" style="min-width:400px;min-height:300px;border:1px solid lightgrey;width:100%;position:relative;left:0%;"></iframe></div>
 		</div>
@@ -447,14 +466,14 @@ background-color:#dddddd !important;
 <div class="col-sm-12" id="eventlocation"></div>
 </div>		
 </div>
-<br><br><br><br><br>
+<br><br><br> 
 
 
  <div id="chat-page" class="hidden" style="min-width:350px;max-width:350px;min-height:auto;">
 	<div class="chat-container">
 		<div class="chat-header">
 			<table><tr><td align="left" id="organiser_chatname"><h5>Help Desk</h5></td>
-						<td align="right" style="padding-left:200px;"><button class="close">X</button></td></tr></table>
+						<td align="right" style="padding-left:200px;"><button id="closeButton" class="close">X</button></td></tr></table>
 		</div>
 		<div class="connecting">Connecting...</div>
 		<ul id="messageArea">
@@ -472,6 +491,19 @@ background-color:#dddddd !important;
 	</div>
 </div>
 
+
+<div id="container-fluid" style="text-align:center;"><div class="row"><div class="col-sm-12"><h4>Other Events You May Like</h4></div></div></div><br>
+<div class="container" style="height:50%;width:100%;overflow-y:hidden;overflow-x:hidden;">
+<div class="row"> 
+<div id="newdiv" class="col-sm-4">
+</div>
+<div id="newdiv2" class="col-sm-4">
+</div>
+<div id="newdiv3" class="col-sm-4">
+</div>
+</div><br>
+</div>
+<br><br><br>
 <div class="container-fluid fancy" style="border-top:1px solid lightgrey;text-align:center;top:20%;height:auto;position:relative;background-color: !important;color:">
 <br><div class="row" style="background-color:;">
 	<!--<div class="col-sm-4">
@@ -585,29 +617,17 @@ var span2 = document.getElementsByClassName("close")[0];
 btn2.onclick = function() {
 	/* modal1.style.display = "none"; */ 
     modal2.style.display = "block";
-	var event =
-	console.log(document.getElementById("event_title").innerHTML);
-	console.log(document.getElementById("quantity").value);
-	console.log(document.getElementById("quantity2").value);
-	console.log(document.getElementById("quantity3").value);
 	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
 	document.getElementById("bronze").value = document.getElementById("quantity").value;
 	document.getElementById("silver").value = document.getElementById("quantity2").value;
 	document.getElementById("gold").value = document.getElementById("quantity3").value;
-	var div_count = parseInt(document.getElementById("quantity").value) + parseInt(document.getElementById("quantity2").value) + parseInt(document.getElementById("quantity3").value);
-	var i;
-	console.log(div_count)
-	for(i=1;i<=div_count;i++){
-		document.getElementById("name_form").innerHTML="Attendee "+i+" Name: ";
-		var input = document.createElement("input");
-		var input_name = "name"+i;
-		input.name = input_name;
-		console.log(input_name);
-		document.getElementById("name_form").appendChild(input);
 	}
     
+function closeall()
+{
+modal2.style.display="none";
+modal1.style.display="none";
 }
-
 // When the user clicks on <span> (x), close the modal
 span2.onclick = function() {
     modal2.style.display = "none";
@@ -619,6 +639,60 @@ span2.onclick = function() {
         modal2.style.display = "none";
     }
 }
+
+function disableinputs()
+{
+if(document.getElementById("quantity").value>0)
+{
+document.getElementById("quantity2").disabled=true;
+document.getElementById("quantity3").disabled=true;
+document.getElementById("quantity2").value=0;
+document.getElementById("quantity3").value=0;
+}
+else
+{
+
+document.getElementById("quantity2").disabled=false;
+document.getElementById("quantity3").disabled=false;
+}
+}
+
+function disableinputs2()
+{
+if(document.getElementById("quantity2").value>0)
+{
+document.getElementById("quantity").disabled=true;
+document.getElementById("quantity3").disabled=true;
+document.getElementById("quantity").value=0;
+document.getElementById("quantity3").value=0;
+}
+else
+{
+
+document.getElementById("quantity").disabled=false;
+document.getElementById("quantity3").disabled=false;
+}
+}
+
+function disableinputs3()
+{
+if(document.getElementById("quantity3").value>0)
+{
+document.getElementById("quantity").disabled=true;
+document.getElementById("quantity2").disabled=true;
+document.getElementById("quantity").value=0;
+document.getElementById("quantity2").value=0;
+}
+else
+{
+
+document.getElementById("quantity").disabled=false;
+document.getElementById("quantity2").disabled=false;
+}
+}
+
+
+
 
 
     $(document).ready(function () {
@@ -808,6 +882,240 @@ span2.onclick = function() {
 </script>
 
 <script>
+var counter=0;
+$(document).ready(function(){
+	$.ajax({
+	type:'GET',
+	dataType:'json',
+	url:"/getAllEvents",
+	  success: function(events) {
+		// events.forEach(element => {
+				//var d=new Date();
+				//alert("call success");
+				//while(counter<=2)
+				//{
+				//alert("loop success"+element.eventTitle);
+//				if(element.category==this.category)
+				var hiddenID=document.getElementById("hiddenid").innerHTML;
+				var random1=Math.floor(Math.random() * events.length);
+				while(events[random1].id == hiddenID)
+				{
+				var random1=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+				/*date fix logic*/
+//				alert(events[random1].startDate[8]);
+			var day=String(events[random1].startDate[8])+String(events[random1].startDate[9]);
+			var month=String(events[random1].startDate[5])+String(events[random1].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
+			//document.getElementById("event_date").innerHTML+="&nbsp"+day;	
+			//document.getElementById("event_start_time").innerHTML+="Time:&nbsp";
+				//alert(displaydate);
+				
+				
+				
+			x.innerHTML="<img src='/getImage?img="+events[random1].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random1].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green'>"+displaydate+"</div></div></div>";
+
+				x.id=events[random1].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv").appendChild(x);
+				counter=counter+1;
+
+				//second event
+				
+					var random2=Math.floor(Math.random() * events.length);
+				while(events[random2].id == hiddenID || events[random2].id==events[random1].id)
+				{
+				var random2=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+
+				
+				var day=String(events[random2].startDate[8])+String(events[random2].startDate[9]);
+			var month=String(events[random2].startDate[5])+String(events[random2].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
+			
+			x.innerHTML="<img src='/getImage?img="+events[random2].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random2].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+displaydate+"</div></div></div>";
+
+				x.id=events[random2].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv2").appendChild(x);
+				counter=counter+1;
+				
+				//third event
+				
+					var random3=Math.floor(Math.random() * events.length);
+				while(events[random3].id == hiddenID || events[random3].id==events[random2].id || events[random3].id==events[random1].id)
+				{
+				var random3=Math.floor(Math.random() * events.length);
+
+				}
+				var x=document.createElement("div");
+				x.className="col-sm-12 abc";
+				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+
+				var day=String(events[random3].startDate[8])+String(events[random3].startDate[9]);
+			var month=String(events[random3].startDate[5])+String(events[random3].startDate[6]);
+			if(month=="01")
+			{	var displaydate="Jan "+day;	}
+			if(month=="02")
+			{	var displaydate="Feb "+day;	}
+			if(month=="03")
+			{	var displaydate="Mar "+day;	}
+			if(month=="04")
+			{	var displaydate="Apr "+day;	}
+			if(month=="05")
+			{	var displaydate="May "+day;	}
+			if(month=="06")
+			{	var displaydate="Jun "+day;	}
+			if(month=="07")
+			{	var displaydate="Jul "+day;	}
+			if(month=="08")
+			{	var displaydate="Aug "+day;	}
+			if(month=="09")
+			{	var displaydate="Sep "+day;	}
+			if(month=="10")
+			{	var displaydate="Oct "+day;	}
+			if(month=="11")
+			{	var displaydate="Nov "+day;	}
+			if(month=="12")
+			{	var displaydate="Dec "+day;	}
+			
+			x.innerHTML="<img src='/getImage?img="+events[random3].id+".jpg' style='width:100%;height:auto;'>";
+			x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+events[random3].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+displaydate+"</div></div></div>";
+
+				x.id=events[random3].id;
+								x.addEventListener("click",sendevent);
+
+
+
+				document.getElementById("newdiv3").appendChild(x);
+				counter=counter+1;
+				
+				/*var eventyear=String(element.startDate[0])+String(element.startDate[1])+String(element.startDate[2])+String(element.startDate[3]);
+				if(String(element.startDate[5])=='0')
+				{
+				var date_e=String(element.startDate[6]);
+				}
+				else{
+				var date_e=String(element.startDate[5])+String(element.startDate[6]);
+				}
+				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()+1900))
+				{
+					document.getElementById("display2").appendChild(x);
+
+				
+				}*/
+							
+			  console.log(element);
+			  //}
+			//});
+	   },
+	   error:function(exception){
+		   console.log("error: "+ exception);}
+	});
+});	
+
+
+
+
+
+function sendevent()
+{
+	window.location.href = "eventpage?id="+this.id;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var loc="Bloomington";
 
 /*passing parameter to iframe*/
@@ -840,6 +1148,7 @@ $(document).ready(function(){
 			console.log('success',data);
 			document.getElementById("eventimg").src='/getImage?img='+ data.id+'.jpg';
 			document.getElementById("event_title").innerHTML=data.eventTitle;
+			document.getElementById("hiddenid").innerHTML=data.id;
 			//alert(data.startDate);
 			var gg="BillGates"
 			document.getElementById("twitter_handle").href="https://twitter.com/"+data.twitterHandle+"?ref_src=twsrc%5Etfw";

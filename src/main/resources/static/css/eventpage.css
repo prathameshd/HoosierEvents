@@ -169,3 +169,14 @@ color:white;
     text-decoration: none;
     cursor: pointer;
 }
+
+.abc{  
+  box-shadow: 0 0px 0px 0 rgba(0,0,0,0);
+  transition:0.4s;
+}
+.abc:hover
+{
+		
+	    box-shadow: 0 8px 16px 1px rgba(0.2,0.2,0.2,0.3);
+
+}
