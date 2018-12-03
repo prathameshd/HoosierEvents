@@ -165,20 +165,20 @@ body, html, .container-fluid {
 						</div>
 	  <div class="row">
 	  <div class="col-sm-6">
-		<h4>Net Revenue:<span id="total_revenue"></span></h4>
+		<h4>Net Revenue: <span id="total_revenue">175000$</span></h4>
 		</div>
 		<div class="col-sm-6">
-		<h4>Average Revenue Per Event:<span id="avg_revenue"></span></h4>
+		<h4>Average Revenue Per Event: <span id="avg_revenue">1500$</span></h4>
 		</div>
 	  </div>				
 						
-      <h3 style="color:darkslategrey">Event Statistics</h3>
+      <!--<h3 style="color:darkslategrey">Event Statistics</h3>
 	 
 	<div class="row">
 	 <div class="col-sm-6">
 	  <!--<div id="piechart">
 	  
-	  </div>-->
+	  </div>
 	  <div class="panel panel-default" id="live_events" ><h4> &nbsp Live Events:<span id="total_events"> </span></h4></div>
 
 	  </div>
@@ -188,7 +188,7 @@ body, html, .container-fluid {
 	  
 	  </div>
 	  
-	  </div>
+	  </div>-->
 	
 	  
 
@@ -338,9 +338,9 @@ google.charts.load('current', {'packages':['corechart']});
 	
        var data = google.visualization.arrayToDataTable([
           ['Category', 'Revenue'],
-          ['Sports',     1500],
-          ['Education',      2500],
-          ['Career',  500],
+          ['Sports',     100000],
+          ['Education',      25000],
+          ['Music',  50000],
         
         ]);
 
@@ -363,18 +363,18 @@ function drawBasic() {
       data.addColumn('number', 'Revenue');
 		
       data.addRows([
-  ['Jan', 0],
-  ['Feb', 1],
-  ['Mar', 1],
-  ['Apr', 3],
-	  ['May', 4],
-	    ['Jun', 1],
-		  ['Jul', 0],
-		    ['Aug', 5],
-			  ['Sep', 1],
-			    ['Oct', 3],
-				  ['Nov', 0],
-				    ['Dec', 0],
+  ['Jan', 10000],
+  ['Feb', 10000],
+  ['Mar', 15000],
+  ['Apr', 3000],
+	  ['May', 7000],
+	    ['Jun', 25000],
+		  ['Jul', 8000],
+		    ['Aug', 2000],
+			  ['Sep', 15000],
+			    ['Oct', 5000],
+				  ['Nov', 25000],
+				    ['Dec', 50000],
       ]);
 
       var options = {
