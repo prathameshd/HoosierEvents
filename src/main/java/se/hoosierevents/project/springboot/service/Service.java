@@ -16,6 +16,8 @@ public interface Service {
 	final String BRONZE_SEAT_AVAILABLE = "bronzeQ";
 	final String SILVER_SEAT_AVAILABLE = "silverQ";
 	final String GOLD_SEAT_AVAILABLE = "goldQ";
+	
+	final String EVENT_CATEGORY = "event_category";
 
 	public String Serve();
 }

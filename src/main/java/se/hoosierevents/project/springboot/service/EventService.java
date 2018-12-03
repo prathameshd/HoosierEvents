@@ -47,7 +47,7 @@ public class EventService implements Service {
 	public void saveEvent(Event event, MultipartFile file, HttpServletRequest request) {
 		event.setStartDate(getDateFromRequest(request, START_DATE, START_TIME));
 		event.setEndDate(getDateFromRequest(request, END_DATE, END_TIME));
-		event.setEventCategory(eventCategoryRepository.findByName(event.getEventCategory().getName()));
+		event.setEventCategory(eventCategoryRepository.findByName(request.getParameter(EVENT_CATEGORY)));
 		eventRepository.save(event);
 		TicketDetails ticketDetails = new TicketDetails(event, TicketDetailsRepository.TICKET_TYPE_BRONZE_ID,
 				Integer.parseInt(getValue(request.getParameter(BRONZE_SEAT_AVAILABLE))),
