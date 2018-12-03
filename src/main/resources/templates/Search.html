@@ -296,7 +296,18 @@ for (var i = 0; i < btns.length; i++) {
          	             			url:"/getEventsbyCategory",
          	             			  success: function(data) {
          	             					console.log('success',data);
-         	             					/* document.getElementById("result_data").innerHTML=data; */
+         	             					document.getElementById("result_data").innerHTML="";
+         	             					var i;
+											for (i=0;i<data.length;i++)
+											{			
+												var x=document.createElement("div");
+												x.className="col-sm-6 abc";
+												x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+												x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
+												x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
+												x.id=data[i].id;
+												document.getElementById("result_data").appendChild(x);
+											}
          	             			   },
          	             			   error:function(exception){alert('Exception:'+exception);}})
          					}
@@ -308,7 +319,18 @@ for (var i = 0; i < btns.length; i++) {
          	             			url:"/getEventsforFirstSearch",
          	             			  success: function(data) {
          	             					console.log('success',data);
-         	             					document.getElementById("result_data").innerHTML=data;
+         	             					document.getElementById("result_data").innerHTML="";
+         	             					var i;
+											for (i=0;i<data.length;i++)
+											{			
+												var x=document.createElement("div");
+												x.className="col-sm-6 abc";
+												x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+												x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
+												x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
+												x.id=data[i].id;
+												document.getElementById("result_data").appendChild(x);
+											}
 
          	             			   },
          	             			   error:function(exception){alert('Exception:'+exception);}})
@@ -323,8 +345,18 @@ for (var i = 0; i < btns.length; i++) {
              			url:"/getAllEvents",
              			  success: function(data) {
              					console.log('success',data);
-             					document.getElementById("result_data").innerHTML=data;
-
+             					document.getElementById("result_data").innerHTML="";
+	             					var i;
+									for (i=0;i<data.length;i++)
+									{			
+										var x=document.createElement("div");
+										x.className="col-sm-6 abc";
+										x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+										x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
+										x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
+										x.id=data[i].id;
+										document.getElementById("result_data").appendChild(x);
+									}
              			   },
              			   error:function(exception){alert('Exception:'+exception);}})
                 }
@@ -341,7 +373,18 @@ for (var i = 0; i < btns.length; i++) {
  			url:"/getAllEvents",
  			  success: function(data) {
  					console.log('success',data);
- 					document.getElementById("result_data").innerHTML=data;
+ 					document.getElementById("result_data").innerHTML="";
+  					var i;
+					for (i=0;i<data.length;i++)
+					{			
+						var x=document.createElement("div");
+						x.className="col-sm-6 abc";
+						x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
+						x.innerHTML="<img src='/getImage?img="+data[i].id+".jpg' style='width:100%;height:auto;'>";
+						x.innerHTML+="<div class='container'><div class='row'><div class='col-sm-12'>"+data[i].eventTitle+"</div></div><div class='row'><div class='col-sm-12' style='color:green;'>"+data[i].location+"</div></div></div>";
+						x.id=data[i].id;
+						document.getElementById("result_data").appendChild(x);
+					}
 
  			   },
  			   error:function(exception){alert('Exception:'+exception);}})
@@ -458,7 +501,7 @@ for (var i = 0; i < btns.length; i++) {
 			data: {event:event_name},
 			url:"/getEventbyName",
 			success: function(data) {
-				//document.getElementById("result_data").innerHTML="";
+				document.getElementById("result_data").innerHTML="";
 				console.log('success',data);
 				
 											/* alert('success by name'); */
