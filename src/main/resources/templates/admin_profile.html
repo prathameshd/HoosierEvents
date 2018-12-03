@@ -567,7 +567,7 @@ function deleteReportedEvent()
         url: '/deleteReportedEvent',
         data: {eventId:this.id},
         success: function (data) {
-        	alert(data);
+        	alert("Reported Event has been removed from the System");
         	removeThisRecordFromPendingList("divevent", this.id);
         },
         error: function (e) {
