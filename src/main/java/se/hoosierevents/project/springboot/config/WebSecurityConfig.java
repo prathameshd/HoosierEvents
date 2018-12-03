@@ -90,6 +90,8 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/getEventbyName").permitAll()
                 .antMatchers("/getCategories").permitAll()
                 .antMatchers("/getEventsforFirstSearch").permitAll()
+                .antMatchers("/googleuserexists").permitAll()
+                .antMatchers("/googleusernotexists").permitAll()
                 
                 .and()
                 .csrf().disable()
