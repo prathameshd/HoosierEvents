@@ -141,18 +141,18 @@ body, html, .container-fluid {
 						</div><br>
 						  <div class="row">
 	  <div class="col-sm-4">
-	  <div class="panel panel-default" id="users_count"><h5>&nbspRegistered Users<span id="total_users"> </span>
+	  <div class="panel panel-default" id="users_count"><h5>&nbspRegistered Users <span id="total_users">50 </span>
 	  </h5>
 <!--	  	   <div class="panel panel-default" id="users_count" ><h5 style="top:25%;position:relative"> &nbsp Total Registered Users:<span id="total_users"> </span></h5></div>-->
 		</div> 	
 		</div>
 	
 	  <div class="col-sm-4">
-<div class="panel panel-default" id="org_count"><h5>&nbspRegistered Organisers<span id="total_org"> </span></h5>
+<div class="panel panel-default" id="org_count"><h5>&nbspRegistered Organisers <span id="total_org">20 </span></h5>
 		</div> 	
 		</div>
 			  <div class="col-sm-4">
-<div class="panel panel-default" id="org_pending_count"><h5>&nbspApproval Requests<span id="total_pending_org"> </span></h5>
+<div class="panel panel-default" id="org_pending_count"><h5>&nbspApproval Requests <span id="total_pending_org">4 </span></h5>
 		</div> 	
 		</div>
 	  </div>
@@ -293,7 +293,7 @@ google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries() {
       var data = google.visualization.arrayToDataTable([
-        ['Month', 'Users', 'Organisers'],
+        ['Month', 'Organisers', 'Users'],
     ['January', 0,5],
   ['February', 1,4],
   ['March', 1,1],
@@ -339,9 +339,9 @@ google.charts.load('current', {'packages':['corechart']});
 	
        var data = google.visualization.arrayToDataTable([
           ['Category', 'Revenue'],
-          ['Sports',     100000],
-          ['Education',      25000],
-          ['Music',  50000],
+          ['Sports',     10000],
+          ['Education',      2500],
+          ['Music',  5000],
         
         ]);
 
@@ -364,18 +364,18 @@ function drawBasic() {
       data.addColumn('number', 'Revenue');
 		
       data.addRows([
-    	  ['Jan', 10000],
-    	  ['Feb', 10000],
-    	  ['Mar', 15000],
-    	  ['Apr', 3000],
-    		  ['May', 7000],
-    		    ['Jun', 25000],
-    			  ['Jul', 8000],
-    			    ['Aug', 2000],
-    				  ['Sep', 15000],
-    				    ['Oct', 5000],
-    					  ['Nov', 25000],
-    					    ['Dec', 50000],
+    	  ['Jan', 1000],
+    	  ['Feb', 1000],
+    	  ['Mar', 1500],
+    	  ['Apr', 300],
+    		  ['May', 700],
+    		    ['Jun', 2500],
+    			  ['Jul', 800],
+    			    ['Aug', 200],
+    				  ['Sep', 1500],
+    				    ['Oct', 500],
+    					  ['Nov', 2500],
+    					    ['Dec', 5000],
       ]);
 
       var options = {
