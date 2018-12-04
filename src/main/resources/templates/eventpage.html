@@ -278,7 +278,7 @@ background-color:#dddddd !important;
 				  <div class="modal-content" style="width:35%;">
 				    <span id="span1" class="close">&times;</span>
 				    	<ul>
-				    		<li>Bronze tickets: 
+				    		<li><div id="display_bronze"></div> 
 					    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
 								<div class="row">
 								  <!--<div class="col-sm-4 input-group-button">
@@ -295,7 +295,7 @@ background-color:#dddddd !important;
 								
 								</div>
 				    		</li><br>
-				    		<li>Silver tickets: 
+				    		<li ><div id="display_silver"></div> 
 				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
 								<div class="row">
 								<!--<div class="input-group plus-minus-input">
@@ -313,7 +313,7 @@ background-color:#dddddd !important;
 								</div>-->
 								</div>
 				    		</li><br>
-				    		<li>Gold tickets: 
+				    		<li ><div id="display_gold"></div> 
 				    		<!-- Change the `data-field` of buttons and `name` of input field's for multiple plus minus buttons-->
 									<div class="row">	
 								<!--<div class="input-group plus-minus-input">
@@ -589,10 +589,58 @@ var span = document.getElementById("span1");
 
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-    modal1.style.display = "block";
+	modal1.style.display = "block";
+	var event_name = document.getElementById("event_title").innerHTML;
+	var bronze = 1;
+	var silver = 0;
+	var gold = 0;
+	$.ajax({
+		type:'POST',
+		dataType:'JSON',
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
+		url:"/getTicketPrice",
+		  success: function(data) {
+				console.log('success',data);
+				total_cost = parseInt(data);
+				document.getElementById("display_bronze").innerHTML = "Bronze Tickets: $"+data;
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+	bronze = 0;
+	silver = 1;
+	gold = 0;
+	
+	$.ajax({
+		type:'POST',
+		dataType:'JSON',
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
+		url:"/getTicketPrice",
+		  success: function(data) {
+				console.log('success',data);
+				total_cost = parseInt(data);
+				document.getElementById("display_silver").innerHTML = "Silver Tickets: $"+data;
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+		   
+	bronze = 0;
+	silver = 0;
+	gold = 1;
+	
+	$.ajax({
+		type:'POST',
+		dataType:'JSON',
+		data: {eventTitle:event_name , tickets_bronze:bronze, tickets_silver:silver, tickets_gold:gold},
+		url:"/getTicketPrice",
+		  success: function(data) {
+				console.log('success',data);
+				total_cost = parseInt(data);
+				document.getElementById("display_gold").innerHTML = "Gold Tickets: $"+data;
+		   },
+		   error:function(exception){alert('Exception:'+exception);}})
+    
 	document.getElementById("quantity").value=0;
 		document.getElementById("quantity2").value=0;
 			document.getElementById("quantity3").value=0;
+	
 }
 
 // When the user clicks on <span> (x), close the modal
