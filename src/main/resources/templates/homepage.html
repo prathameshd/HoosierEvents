@@ -515,7 +515,7 @@ $(document).ready(function(){
 				{
 				
 				var x=document.createElement("div");
-				x.className="col-sm-6 abc";
+				x.className="col-sm-4 abc";
 			//	x.style="border:1px solid lightgrey;width:60%;left:20%;min-width:300px;min-height:auto;max-height:auto !important;position:relative;";
 				x.style="padding:15px;border-radius:4px;min-height:auto;min-width:200px;max-width:500;max-height:auto;font-family: 'Open Sans', sans-serif;";
 
@@ -545,7 +545,7 @@ $(document).ready(function(){
 				var date_e=String(element.startDate[5])+String(element.startDate[6]);
 				}
 				//alert(date_e+"and"+String(1));
-				if(date_e==String(d.getMonth()) && String(eventyear)==String(d.getYear()+1900))
+				if(date_e==String(d.getMonth()+1) && String(eventyear)==String(d.getYear()+1900))
 				{
 					document.getElementById("display2").appendChild(x);
 

@@ -528,7 +528,7 @@ function doReportedEventsRender(reportedEvents) {
 			div.id=temp;
 			div.style.align="center";
 			div.className="panel panel-default abcd";
-			div.innerHTML= "&nbsp; <h4><b>" + reportedEvents[i].eventTitle +"</b></h4>" ;
+			div.innerHTML= "&nbsp; <h4 style='color:#622'><b>" + reportedEvents[i].eventTitle +"</b></h4>" ;
 			div.innerHTML+= "&nbsp; <b>Category:</b> " + reportedEvents[i].eventCategory.name +"<br>";
 			div.innerHTML+= "&nbsp; <b>Reporter Message:</b> " + ((reportedEvents[i].reportStatement == null)?"-No Message-":reportedEvents[i].reportStatement) +"<br>";
 			div.innerHTML+= "&nbsp; <b>Organizer: </b>" + reportedEvents[i].createdBy.name + "&nbsp;( "+ reportedEvents[i].createdBy.email + " )" ;
