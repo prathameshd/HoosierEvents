@@ -82,7 +82,7 @@ body, html, .container-fluid {
 <div class="col-sm-1"></div>
 <div class="col-sm-6"></div>
 	<div class="col-sm-1">
-		<button class="btn-default xyz" onclick="gotocreate()" id="createeve" style="color:white;background-color:blue;border:0px;-moz-border-radius: 4px;-webkit-border-radius: 4x;border-radius: 4px;"><h5>Create Event</h5></button>
+		<button class="btn-default xyz" onclick="gotocreate()" id="createeve" style="color:white;background-color:orange;border:0px;-moz-border-radius: 4px;-webkit-border-radius: 4x;border-radius: 4px;"><h5>Create Event</h5></button>
 
 	</div>
 	<div class="col-sm-1">
@@ -215,6 +215,7 @@ body, html, .container-fluid {
 					
 					</div>
 					<div id="upcoming" class="container tab-pane fade" style="max-height:500px;">
+<!--						<div class="row"><div class="col-sm-2"></div><div class="col-sm-8" id="upcoming2"></div><div class="col-sm-2"></div></div>-->
 						<h3>Live Events</h3>
 						<div id="app"></div>
 
@@ -508,7 +509,7 @@ function drawBasic() {
 <script>
 	function gotocreate()
 	{
-	    document.location.href="/createevent";
+	    document.location.href="/createEvent";
 	}
 </script>
 
