@@ -7,7 +7,7 @@ var disc_cost;
 
 window.onload = function() {
 	  
-	var parameters = location.search.substring(1).split("&");
+	var parameters = location.search.substring(1).split("?");
     var temp = parameters[0].split("=");
     console.log(temp[1]);
     console.log(unescape(temp[1]));

@@ -639,6 +639,38 @@ btn2.onclick = function() {
 	var count=document.getElementById("quantity3").value;
 	}
 	
+	var div1=document.createElement("input");
+	div1.name="event_name";
+	div1.id="event_name";
+	div1.type="hidden";
+	/* dynamicmodal.innerHTML+="<br>"; */
+	dynamicmodal.appendChild(div1);
+	/* dynamicmodal.innerHTML+="<br><br>"; */
+	
+	var div2=document.createElement("input");
+	div2.name="bronze";
+	div2.id="bronze";
+	div2.type="hidden";
+	/* dynamicmodal.innerHTML+="<br>"; */
+	dynamicmodal.appendChild(div2);
+	/* dynamicmodal.innerHTML+="<br><br>"; */
+	
+	var div3=document.createElement("input");
+	div3.name="silver";
+	div3.id="silver";
+	div3.type="hidden";
+	/* dynamicmodal.innerHTML+="<br>"; */
+	dynamicmodal.appendChild(div3);
+	/* dynamicmodal.innerHTML+="<br><br>"; */
+	
+	var div4=document.createElement("input");
+	div4.name="gold";
+	div4.id="gold";
+	div4.type="hidden";
+	/* dynamicmodal.innerHTML+="<br>"; */
+	dynamicmodal.appendChild(div4);
+	/* dynamicmodal.innerHTML+="<br><br>"; */
+	
 	//var count=document.getElementById("quantity").value+document.getElementById("quantity2").value+document.getElementById("quantity3").value;
 	var i;
 	for(i=0;i<count;i++)
@@ -651,7 +683,7 @@ btn2.onclick = function() {
 	dynamicmodal.appendChild(div);
 	dynamicmodal.innerHTML+="<br><br>";
 	}
-	dynamicmodal.innerHTML+="<div class='row'><button class='btn-default' style='background-color:white;color:red;border:1px solid red;border-radius:3px;' onclick='closeall();'>Cancel</button><button class='btn-default' style='background-color:white;color:navy;border:1px solid navy;border-radius:3px;'>Proceed</button></div>";
+	dynamicmodal.innerHTML+="<div class='row'><button class='btn-default' style='background-color:white;color:red;border:1px solid red;border-radius:3px;' onclick='closeall();'>Cancel</button><button class='btn-default' style='background-color:white;color:navy;border:1px solid navy;border-radius:3px;' onClick='NewPage()'>Proceed</button></div>";
 	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
 	document.getElementById("bronze").value = document.getElementById("quantity").value;
 	document.getElementById("silver").value = document.getElementById("quantity2").value;
