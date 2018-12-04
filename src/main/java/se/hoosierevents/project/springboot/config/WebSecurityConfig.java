@@ -83,7 +83,6 @@ public  class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/userExists").permitAll()
                 .antMatchers("/forgotPass").permitAll()
                 .antMatchers("/checkifexists").permitAll()
-                .antMatchers("/org_profile").permitAll()
                 .antMatchers("/search").permitAll()
                 .antMatchers("/getEventsbyCategory").permitAll()
                 .antMatchers("/getEventsbyLocation").permitAll()

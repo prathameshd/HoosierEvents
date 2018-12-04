@@ -148,17 +148,18 @@
 <div class="container-fluid" style="background-color:;color:#AE1616;padding:10px;border-bottom:1px solid lightgrey;">
 <div class="row">
     <div class="col-sm-2"><a href="/" style="text-decoration: none"><h4 style="color:#AE0D0D;background-color:white;text-align:center">HoosierEvents</h4></a></div>
-<div class="col-sm-1"><button class="btn-default xyz" style="color:#AE0D0D;background-color:white;border:0px;"><h5>Explore</h5></button></div>
+<div class="col-sm-1"></div>
 <div class="col-sm-5"></div>
 <div class="col-sm-1"><button id="myBtn" style="display:none;" onclick="Search()"></button></div>
-<div class="col-sm-1"> 
-        <button class="btn-default xyz" id="profileButton" onclick="navigateToProfile()" style="color:#AE0D0D;background-color:green;border:0px; display: none; background: url(/images/profile_img.jpg)">Profile</button>
+    <div class="col-sm-1">
+        <button class="btn-default xyz" id="profilebutton" onclick="navigateToProfile()" style="color:#AE0D0D;background-color:green;border:0px; display: none;  background: url(/images/profile_img.jpg)"><h5>Profile</h5></button>
     </div>
 <div class="col-sm-1">
     <form action="/login">
-    <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none"><h5>Login</h5></button>
+    <button class="btn-default xyz" id="loginbutt" style="color:#AE0D0D;background-color:white;border:0px;display: none;"><h5>Login</h5></button>
     </form>
 	</div>
+
 	<div class="col-sm-1">
     <form action="/logout">
         <button class="btn-default xyz" id="logoutbutt"  style="color:#AE0D0D;background-color:white;border:0px; display: none"><h5>Logout</h5></button>
@@ -573,5 +574,41 @@ for (var i = 0; i < btns.length; i++) {
 			   },
 		   error:function(exception){alert('Exception:'+exception);}})
 	}
+	</script>
+	<script>
+
+        $(document).ready(function () {
+            $.ajax({
+                    type: "GET",
+                    url: '/getauth',
+                    success: function (data) {
+                        console.log(data);
+                        if(data==="anonymousUser"){
+                            document.getElementById('logoutbutt').style.display="none";
+                            document.getElementById('loginbutt').style.display="block";
+                            document.getElementById('profilebutton').style.display="none";
+
+
+                        }
+                        else{
+
+                            document.getElementById("loginbutt").style.display="none";
+                            document.getElementById("logoutbutt").style.display="block";
+
+                            document.getElementById('profilebutton').style.display="block";
+
+
+                        }
+
+
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+
+                }
+            )
+        })
+
 	</script>
 </html>
