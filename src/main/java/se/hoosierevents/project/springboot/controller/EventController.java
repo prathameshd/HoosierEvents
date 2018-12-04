@@ -140,13 +140,13 @@ public class EventController implements Controller {
 	
 	@RequestMapping("/checkifCategory")
 	public String checkifCategory(@RequestParam("search_text") String search_text, HttpServletRequest request, Model model) {
-		Integer n = 0;
+//		Integer n = 0;
 		List<EventCategory> categories = new ArrayList<EventCategory>(eventService.getAllCategories());
 		for(int i = 0; i < categories.size(); i++) {
 			if(categories.get(i).getName().toLowerCase().equals(search_text.toLowerCase()))
-				return categories.get(i).getId().toString();
+				return categories.get(i).getName();
 		}
-		return n.toString();
+		return "false";
 	}
 
 	@RequestMapping("/saveEventTicket")
