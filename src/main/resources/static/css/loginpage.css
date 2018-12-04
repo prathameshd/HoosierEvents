@@ -105,25 +105,25 @@ body {
 }
 
 .slideshow li:nth-child(1) span {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/summer-slide.jpg);
+  background-image: url(https://images8.alphacoders.com/491/thumb-1920-491958.jpg);
 }
 
 .slideshow li:nth-child(2) span {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/fall-slide.jpg);
+  background-image: url(https://newsroom.unl.edu/announce/files/file95316.jpg);
   -webkit-animation-delay: 6s;
   -moz-animation-delay: 6s;
   animation-delay: 6s;
 }
 
 .slideshow li:nth-child(3) span {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/winter-slide.jpg);
+  background-image: url(https://www.marsdd.com/wp-content/uploads/2018/06/job-fairs-hackathons-1998x1100.jpg);
   -webkit-animation-delay: 12s;
   -moz-animation-delay: 12s;
   animation-delay: 12s;
 }
 
 .slideshow li:nth-child(4) span {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/203277/spring-slide.jpg);
+  background-image: url(https://usatcfn.files.wordpress.com/2018/05/usatsi_10299992-21.jpg);
   -webkit-animation-delay: 18s;
   -moz-animation-delay: 18s;
   animation-delay: 18s;
