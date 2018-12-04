@@ -68,6 +68,11 @@ $(document).ready(function(){
 	
 });
 
+	function sendevent()
+{
+	window.location.href = "eventpage?id="+this.id;
+}
+
 //____________________AUTHOR HARISH_________________________________
 
 function eventsRender(events, parentDiv) {
@@ -79,31 +84,48 @@ function eventsRender(events, parentDiv) {
 		div.style.border= "0.1px solid lightgrey";
 		div.style.borderRadius= "6px";
 		var temp="div"+events[i].id;
-		div.id=temp;
+		div.id=currentEvent.id;
 		div.style.align="center";
+		div.style="min-height:auto;min-width:200px;max-width:auto;max-height:300px;";
 		div.className="row col-sm-10 panel panel-default abcd";
-		div.innerHTML= "EventName : " + currentEvent.eventTitle + "<br>";
-		div.innerHTML+= "Date : "+ currentEvent.startDate + "<br>";
-		div.innerHTML+= "Location : "+ currentEvent.location + "&nbsp; Category : "+ currentEvent.eventCategory.name + "<br/><br/>";
+		//div.innerHTML+="<img src='/getImage?img="+currentEvent.id+".jpg' style='width:100%;height:auto;max-height:210px;'>";
+		div.innerHTML+= "<b>" + currentEvent.eventTitle + "<b><br>";
+		//div.innerHTML+= "Date : "+ currentEvent.startDate + "<br>";
+		div.innerHTML+= "<span style='color:green'>Location : </span>"+ currentEvent.location + "<br><span style='color:orange'>Category :</span> "+ currentEvent.eventCategory.name + "<br/><br/>";
 		div.setAttribute("eventId", currentEvent.id);
 		div.setAttribute("name", currentEvent.eventTitle);
 		div.setAttribute("description", currentEvent.description);
 		div.setAttribute("location", currentEvent.location);
+		//div.addEventListener("click",sendevent);
+
 		document.getElementById(parentDiv).appendChild(div);
+		var bb=document.createElement("button");
+		bb.id=events[i].id;
+		bb.innerHTML="View";
+		bb.style="background-color:white;color:navy;border:1px solid navy;border-radius:4px;";
+		bb.class="btn-default";
+		bb.addEventListener("click", sendevent);
+		//document.getElementById(temp).appendChild(b2);
+		div.appendChild(bb);
 		var b=document.createElement("button");
 		b.id=events[i].id;
 		b.innerHTML="Edit";
-		b.style="";
+		b.style="background-color:white;color:green;border:1px solid green;border-radius:4px;";
 		b.class="btn-default edit_event_button";
 		b.addEventListener("click", editbutton);
-		document.getElementById(temp).appendChild(b);
+		//document.getElementById(temp).appendChild(b);
+		div.appendChild(b);
 		var b2=document.createElement("button");
 		b2.id=events[i].id;
 		b2.innerHTML="Drop Event";
-		b2.style="";
+		b2.style="background-color:white;color:red;border:1px solid red;border-radius:4px;";
 		b2.class="btn-default event_delete_button";
 		b2.addEventListener("click", deleteEvent);
-		document.getElementById(temp).appendChild(b2);
+		//document.getElementById(temp).appendChild(b2);
+		div.appendChild(b2);
+		/*add*/
+				//document.getElementById(parentDiv).innerHTML+="<br>";
+
 	}
 }
 
