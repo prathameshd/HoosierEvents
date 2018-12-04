@@ -22,7 +22,7 @@ public class CustomHomePage extends WebMvcConfigurerAdapter {
         registry.addViewController("/PaymentPortal").setViewName("PaymentPortal");
         registry.addViewController("/map").setViewName("map");
         registry.addViewController("/editevent").setViewName("edit_event");
-        registry.addViewController("/createevent").setViewName("create_event");
+//        registry.addViewController("/createevent").setViewName("create_event");
 
 
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);

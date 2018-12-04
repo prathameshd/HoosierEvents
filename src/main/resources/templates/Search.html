@@ -576,6 +576,21 @@ for (var i = 0; i < btns.length; i++) {
 	}
 	</script>
 	<script>
+var user;
+
+function navigateToProfile() {
+    var navPath ;
+    if (user.userType == "1") {
+        navPath = "/profile_sample";
+    } else if (user.userType == "2") {
+        navPath = "/org_profile";
+    } else {
+        navPath = "/admin_profile"
+    }
+
+    document.location.href = navPath;
+}
+
 
         $(document).ready(function () {
             $.ajax({
@@ -583,6 +598,7 @@ for (var i = 0; i < btns.length; i++) {
                     url: '/getauth',
                     success: function (data) {
                         console.log(data);
+                        user = data;
                         if(data==="anonymousUser"){
                             document.getElementById('logoutbutt').style.display="none";
                             document.getElementById('loginbutt').style.display="block";
