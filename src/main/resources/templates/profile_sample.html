@@ -212,7 +212,7 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
                 url: '/getuser',
                 success: function (data) {
                     console.log(data);
-                    if(data==="anonymousUser"){
+                    if(data===""){
                         document.getElementById('logoutbutt').style.display="none";
                         document.getElementById('loginbutt').style.display="block";
                         document.getElementById('profileButton').style.display="none";

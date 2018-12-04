@@ -603,7 +603,7 @@ function navigateToProfile() {
                     success: function (data) {
                         console.log(data);
                         user = data;
-                        if(data==="anonymousUser"){
+                        if(data===""){
                             document.getElementById('logoutbutt').style.display="none";
                             document.getElementById('loginbutt').style.display="block";
                             document.getElementById('profilebutton').style.display="none";
@@ -614,7 +614,6 @@ function navigateToProfile() {
 
                             document.getElementById("loginbutt").style.display="none";
                             document.getElementById("logoutbutt").style.display="block";
-
                             document.getElementById('profilebutton').style.display="block";
 
 
