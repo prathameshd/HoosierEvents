@@ -675,7 +675,7 @@ btn2.onclick = function() {
 	var i;
 	for(i=0;i<count;i++)
 	{
-	dynamicmodal.innerHTML+="Name"+(i+1);
+	dynamicmodal.innerHTML+="Name "+(i+1)+ ":";
 	var div=document.createElement("input");
 	div.name="name"+(i+1);
 	div.id="name"+(i+1);
@@ -683,7 +683,7 @@ btn2.onclick = function() {
 	dynamicmodal.appendChild(div);
 	dynamicmodal.innerHTML+="<br><br>";
 	}
-	dynamicmodal.innerHTML+="<div class='row'><button class='btn-default' style='background-color:white;color:red;border:1px solid red;border-radius:3px;' onclick='closeall();'>Cancel</button><button class='btn-default' style='background-color:white;color:navy;border:1px solid navy;border-radius:3px;' onClick='NewPage()'>Proceed</button></div>";
+	dynamicmodal.innerHTML+="<div class='row'><button class='btn-default' style='background-color:red;color:white;border:1px solid red;border-radius:3px;'  onclick='closeall();'>Cancel</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class='btn-default' style='background-color:green;color:white;border:1px solid navy;border-radius:3px;' onClick='NewPage()'>Proceed</button></div>";
 	document.getElementById("event_name").value = (document.getElementById("event_title").innerHTML);
 	document.getElementById("bronze").value = document.getElementById("quantity").value;
 	document.getElementById("silver").value = document.getElementById("quantity2").value;
