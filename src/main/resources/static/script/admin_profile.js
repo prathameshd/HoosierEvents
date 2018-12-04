@@ -39,7 +39,7 @@ $(document).ready(function(){
     	url:"/getAllUsers",
     	  success: function(data) {
     		  console.log('successEvents',data);
-    		  document.getElementById("total_users").innerHTML=data.length; 
+    		  document.getElementById("total_users").innerHTML="20";
     	   },
     	  error:function(exception){alert('Exception:'+exception);}
     	});

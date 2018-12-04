@@ -480,7 +480,7 @@ function drawBasic() {
         $(document).ready(function () {
             $.ajax({
                     type: "GET",
-                    url: '/getauth',
+                    url: '/getuser',
                     success: function (data) {
                         console.log(data);
                         if(data==="anonymousUser"){

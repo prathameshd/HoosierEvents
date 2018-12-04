@@ -209,7 +209,7 @@ text-align:center"><h4 style="color:#AE0D0D;">Connect with Us</h4></div></div>
     $(document).ready(function () {
         $.ajax({
                 type: "GET",
-                url: '/getauth',
+                url: '/getuser',
                 success: function (data) {
                     console.log(data);
                     if(data==="anonymousUser"){

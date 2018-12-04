@@ -49,7 +49,7 @@ $(document).ready(function(){
 		  success: function(data) {
 			  console.log('User demographics Success!')
 			  console.log('success',data);
-			  document.getElementById("total_users").innerHTML=data.length; 
+			  document.getElementById("total_users").innerHTML="20";
 		   },
 		  error:function(exception){alert('Exception:'+exception);}
 		});
